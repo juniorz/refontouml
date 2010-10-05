@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto_1.0.0.201010051304.jar" id="br.inf.ufes.nemo.rcarraretto" version="1.0.0.201010051304">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto_1.0.0.201010051422.jar" id="br.inf.ufes.nemo.rcarraretto" version="1.0.0.201010051422">
       <category name="OntoUML"/>
    </feature>
    <category-def name="OntoUML" label="OntoUML"/>
