@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete 2 element(s) from project &apos;Metamodels&apos;&#x0D;&#x0A;- Original project: &apos;Metamodels&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     OntoUMLBob.uml&#x0D;&#x0A;     OntoUMLProfile.uml" description="Delete elements" element1="OntoUMLBob.uml" element2="OntoUMLProfile.uml" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1267461289113" subPackages="false" version="1.0"/>
-</session>

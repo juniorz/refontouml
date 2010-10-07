@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete 2 element(s) from project &apos;UML2SBVR&apos;&#x0D;&#x0A;- Original project: &apos;UML2SBVR&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     bin&#x0D;&#x0A;     src" description="Delete elements" element1="bin" element2="src" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="2" stamp="1269909371309" subPackages="false" version="1.0"/>
-</session>
