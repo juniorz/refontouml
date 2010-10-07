@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY OntoECG "http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:OntoECG="http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about=""/>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#existentiallyDependentOf -->
+
+	<owl:ObjectProperty rdf:about="#existentiallyDependentOf"/>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#hastimeExtent -->
+
+	<owl:ObjectProperty rdf:about="#hasTimeExtent">
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:domain rdf:resource="#Individual"/>
+		<rdfs:range rdf:resource="#TemporalExtent"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#inheres -->
+
+	<owl:ObjectProperty rdf:about="#inheres">
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#inseparablePartOf -->
+
+	<owl:ObjectProperty rdf:about="#inseparablePartOf">
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#mediates -->
+
+	<owl:ObjectProperty rdf:about="#mediates">
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#memberOf -->
+
+	<owl:ObjectProperty rdf:about="#memberOf">
+		<rdfs:range rdf:resource="#Collective"/>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#FunctionalComplex"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#partOf -->
+
+	<owl:ObjectProperty rdf:about="#partOf"/>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#subCollectionOf -->
+
+	<owl:ObjectProperty rdf:about="#subCollectionOf">
+		<rdfs:range rdf:resource="#Collective"/>
+		<rdfs:domain rdf:resource="#Collective"/>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#Individual -->
+
+	<owl:Class rdf:about="#Individual">
+		<owl:disjointWith rdf:resource="#TemporalExtent"/>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#TemporalExtent -->
+
+	<owl:Class rdf:about="#TemporalExtent"/>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#QuaIndividual -->
+
+	<owl:Class rdf:about="#QuaIndividual">
+		<rdfs:subClassOf rdf:resource="#Individual"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#partOf"/>
+				<owl:someValuesFrom rdf:resource="#Relator"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#existentiallyDependentOf"/>
+				<owl:someValuesFrom rdf:resource="#QuaIndividual"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#inheres"/>
+				<owl:someValuesFrom rdf:resource="#Individual"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#Relator -->
+
+	<owl:Class rdf:about="#Relator">
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#Individual"/>
+				<owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Individual"/>
+	</owl:Class>
+
+
+
+	<owl:Class rdf:about="#FunctionalComplex">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Heart"/>
+					<rdf:Description rdf:about="#LeftVentricle"/>
+					<rdf:Description rdf:about="#RightVentricle"/>
+					<rdf:Description rdf:about="#LeftAtrium"/>
+					<rdf:Description rdf:about="#RightAtrium"/>
+					<rdf:Description rdf:about="#CardiacElectricalImpulse"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Individual"/>
+	</owl:Class>
+
+
+
+	<owl:Class rdf:about="#Collective">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<owl:Restriction>
+						<owl:onProperty>
+							<owl:ObjectProperty>
+								<owl:inverseOf rdf:resource="#memberOf"/>
+							</owl:ObjectProperty>
+						</owl:onProperty>
+						<owl:someValuesFrom>
+							<owl:Class>
+								<owl:unionOf rdf:parseType="Collection">
+									<rdf:Description rdf:about="#Collective"/>
+									<rdf:Description rdf:about="#FunctionalComplex"/>
+								</owl:unionOf>
+							</owl:Class>
+						</owl:someValuesFrom>
+					</owl:Restriction>
+					<owl:Restriction>
+						<owl:onProperty>
+							<owl:ObjectProperty>
+								<owl:inverseOf rdf:resource="#subCollectionOf"/>
+							</owl:ObjectProperty>
+						</owl:onProperty>
+						<owl:someValuesFrom rdf:resource="#Collective"/>
+					</owl:Restriction>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Individual"/>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#Heart -->
+
+	<owl:Class rdf:about="#Heart">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#LeftVentricle"/>
+		<owl:disjointWith rdf:resource="#RightVentricle"/>
+		<owl:disjointWith rdf:resource="#LeftAtrium"/>
+		<owl:disjointWith rdf:resource="#RightAtrium"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#LeftVentricle -->
+
+	<owl:Class rdf:about="#LeftVentricle">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Heart"/>
+		<owl:disjointWith rdf:resource="#RightVentricle"/>
+		<owl:disjointWith rdf:resource="#LeftAtrium"/>
+		<owl:disjointWith rdf:resource="#RightAtrium"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#RightVentricle -->
+
+	<owl:Class rdf:about="#RightVentricle">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Heart"/>
+		<owl:disjointWith rdf:resource="#LeftVentricle"/>
+		<owl:disjointWith rdf:resource="#LeftAtrium"/>
+		<owl:disjointWith rdf:resource="#RightAtrium"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+	</owl:Class>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/OntoECG.owl#LeftAtrium -->
+
+	<owl:Class rdf:about="#LeftAtrium">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<ow

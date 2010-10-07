@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OntoUML:Container xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:OntoUML="OntoUML" xmi:id="_Tl54cOtiEd6mjutSR3ntVg">
+  <InstanciarElement xsi:type="OntoUML:Kind" xmi:id="_VKNj0OtiEd6mjutSR3ntVg" name="Chassis"/>
+  <InstanciarElement xsi:type="OntoUML:Kind" xmi:id="_VYTDIOtiEd6mjutSR3ntVg" name="Engine"/>
+  <InstanciarElement xsi:type="OntoUML:Kind" xmi:id="_Vm3qoOtiEd6mjutSR3ntVg" name="Car"/>
+  <InstanciarElement xsi:type="OntoUML:Relator" xmi:id="_XYickOtiEd6mjutSR3ntVg" name="Purchase"/>
+  <InstanciarElement xsi:type="OntoUML:Role" xmi:id="_XkU10OtiEd6mjutSR3ntVg" name="CarCustomer"/>
+  <InstanciarElement xsi:type="OntoUML:Role" xmi:id="_Xzbo0OtiEd6mjutSR3ntVg" name="CarSupplier"/>
+  <InstanciarElement xsi:type="OntoUML:Kind" xmi:id="_YWggsOtiEd6mjutSR3ntVg" name="Person"/>
+  <InstanciarElement xsi:type="OntoUML:Kind" xmi:id="_YmxxUOtiEd6mjutSR3ntVg" name="Organization"/>
+  <InstanciarElement xsi:type="OntoUML:Generalization" xmi:id="_kAYG0OtiEd6mjutSR3ntVg" target="_Xzbo0OtiEd6mjutSR3ntVg" source="_YmxxUOtiEd6mjutSR3ntVg"/>
+  <InstanciarElement xsi:type="OntoUML:Generalization" xmi:id="_kZ5aEOtiEd6mjutSR3ntVg" target="_XkU10OtiEd6mjutSR3ntVg" source="_YWggsOtiEd6mjutSR3ntVg"/>
+  <InstanciarElement xsi:type="OntoUML:componentOf" xmi:id="_mjrKAOtiEd6mjutSR3ntVg" target="_mj_TEOtiEd6mjutSR3ntVg" source="_mjrxEOtiEd6mjutSR3ntVg" targetAux1="_VYTDIOtiEd6mjutSR3ntVg" sourceAux1="_Vm3qoOtiEd6mjutSR3ntVg" name="c2" isShareable="false">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="_mj_TEOtiEd6mjutSR3ntVg" upper="1" lower="1"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="_mjrxEOtiEd6mjutSR3ntVg" upper="1"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:componentOf" xmi:id="_nCAEwOtiEd6mjutSR3ntVg" target="_nCAr0etiEd6mjutSR3ntVg" source="_nCAr0OtiEd6mjutSR3ntVg" targetAux1="_VKNj0OtiEd6mjutSR3ntVg" sourceAux1="_Vm3qoOtiEd6mjutSR3ntVg" name="c1" isShareable="false" isEssential="true" isImmutablePart="true">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="_nCAr0etiEd6mjutSR3ntVg" upper="1" lower="1" isReadOnly="true"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="_nCAr0OtiEd6mjutSR3ntVg" upper="1"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:Mediation" xmi:id="__58OsOtiEd6mjutSR3ntVg" target="__5-q8OtiEd6mjutSR3ntVg" source="__59c0OtiEd6mjutSR3ntVg" targetAux1="_Vm3qoOtiEd6mjutSR3ntVg" sourceAux1="_XYickOtiEd6mjutSR3ntVg">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="__5-q8OtiEd6mjutSR3ntVg" lower="1" isReadOnly="true"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="__59c0OtiEd6mjutSR3ntVg" upper="1" lower="1"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:Mediation" xmi:id="_AZG28OtjEd6mjutSR3ntVg" target="_AZMWgOtjEd6mjutSR3ntVg" source="_AZG28etjEd6mjutSR3ntVg" targetAux1="_Xzbo0OtiEd6mjutSR3ntVg" sourceAux1="_XYickOtiEd6mjutSR3ntVg">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="_AZMWgOtjEd6mjutSR3ntVg" upper="1" lower="1" isReadOnly="true"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="_AZG28etjEd6mjutSR3ntVg" lower="1"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:Mediation" xmi:id="_AxoEoOtjEd6mjutSR3ntVg" target="_AxpSwOtjEd6mjutSR3ntVg" source="_AxoEoetjEd6mjutSR3ntVg" targetAux1="_XkU10OtiEd6mjutSR3ntVg" sourceAux1="_XYickOtiEd6mjutSR3ntVg">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="_AxpSwOtjEd6mjutSR3ntVg" upper="1" lower="1" isReadOnly="true"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="_AxoEoetjEd6mjutSR3ntVg" lower="1"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:MaterialAssociation" xmi:id="_Pp9K0OtjEd6mjutSR3ntVg" name="\purchases" associationEnd="_Pp-Y8OtjEd6mjutSR3ntVg _Pp_nEOtjEd6mjutSR3ntVg" isDerived="true" associationEndAux1="_XkU10OtiEd6mjutSR3ntVg" associationEndAux2="_Xzbo0OtiEd6mjutSR3ntVg">
+    <associationEnd3Aux xmi:id="_Pp-Y8OtjEd6mjutSR3ntVg" lower="1" name="\sells_to" isDerived="true" associationEnd="_Pp9K0OtjEd6mjutSR3ntVg" associationEndPositionAux="1"/>
+    <associationEnd3Aux xmi:id="_Pp_nEOtjEd6mjutSR3ntVg" lower="1" name="\buys_from" isDerived="true" associationEnd="_Pp9K0OtjEd6mjutSR3ntVg" associationEndPositionAux="2"/>
+  </InstanciarElement>
+  <InstanciarElement xsi:type="OntoUML:Derivation" xmi:id="_WEBrQOtjEd6mjutSR3ntVg" target="_WECSUOtjEd6mjutSR3ntVg" source="_WEBrQetjEd6mjutSR3ntVg" targetAux1="_XYickOtiEd6mjutSR3ntVg" sourceAux1="_Pp9K0OtjEd6mjutSR3ntVg" name="d">
+    <targetAux2 xsi:type="OntoUML:Property" xmi:id="_WECSUOtjEd6mjutSR3ntVg" upper="1" lower="1" isReadOnly="true"/>
+    <sourceAux2 xsi:type="OntoUML:Property" xmi:id="_WEBrQetjEd6mjutSR3ntVg" upper="1" lower="1"/>
+  </InstanciarElement>
+</OntoUML:Container>

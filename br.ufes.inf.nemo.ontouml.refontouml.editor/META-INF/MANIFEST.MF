@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OntoUML Reference Metamodel Editor
+Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml.editor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: RefOntoUML.presentation.RefOntoUMLEditorPlugin$Implementation
+Bundle-Vendor: NEMO
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: RefOntoUML.presentation
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources;visibility:=reexport,
+ br.ufes.inf.nemo.ontouml.refontouml.edit;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport
+Bundle-ActivationPolicy: lazy

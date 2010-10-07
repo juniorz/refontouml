@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: RC Front-End Profile
+Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.rcfrontend;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: br.ufes.inf.nemo.ontouml.rcfrontend.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-Vendor: NEMO
