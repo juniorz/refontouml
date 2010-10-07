@@ -1,0 +1,735 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY BaseTeste "http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:BaseTeste="http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#existentiallyDependentOf -->
+    <owl:ObjectProperty rdf:about="#existentiallyDependentOf">
+        <owl:inverseOf rdf:resource="#invExistentiallyDependentOf"/>
+    </owl:ObjectProperty>
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#componentOf -->
+
+    <owl:ObjectProperty rdf:about="#componentOf">
+        <rdfs:range rdf:resource="#FunctionalComplex"/>
+        <rdfs:domain rdf:resource="#FunctionalComplex"/>
+        <rdfs:subPropertyOf rdf:resource="#partOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#componentOfHeartPerson -->
+
+    <owl:ObjectProperty rdf:about="#componentOfHeartPerson">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Heart"/>
+        <rdfs:range rdf:resource="#Person"/>
+        <rdfs:subPropertyOf rdf:resource="#componentOf"/>
+        <rdfs:subPropertyOf rdf:resource="#inseparablePartOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#hasTimeExtent -->
+
+    <owl:ObjectProperty rdf:about="#hasTimeExtent">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:domain rdf:resource="#Individual"/>
+        <rdfs:range rdf:resource="#TemporalExtent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#inheres -->
+
+    <owl:ObjectProperty rdf:about="#inheres">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#inseparablePartOf -->
+
+    <owl:ObjectProperty rdf:about="#inseparablePartOf">
+        <rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+        <rdfs:subPropertyOf rdf:resource="#partOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#invExistentiallyDependentOf -->
+
+    <owl:ObjectProperty rdf:about="#invExistentiallyDependentOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#mediates -->
+
+    <owl:ObjectProperty rdf:about="#mediates">
+        <rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+        <rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#memberOf -->
+
+    <owl:ObjectProperty rdf:about="#memberOf">
+        <rdfs:range rdf:resource="#Collective"/>
+        <rdfs:subPropertyOf rdf:resource="#partOf"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Collective"/>
+                    <rdf:Description rdf:about="#FunctionalComplex"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#memberOfAgentGroup -->
+
+    <owl:ObjectProperty rdf:about="#memberOfAgentGroup">
+        <rdfs:domain rdf:resource="#Agent"/>
+        <rdfs:range rdf:resource="#Group"/>
+        <rdfs:subPropertyOf rdf:resource="#memberOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#memberOfPersonFamily -->
+
+    <owl:ObjectProperty rdf:about="#memberOfPersonFamily">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:range rdf:resource="#Family"/>
+        <rdfs:domain rdf:resource="#Person"/>
+        <rdfs:subPropertyOf rdf:resource="#inseparablePartOf"/>
+        <rdfs:subPropertyOf rdf:resource="#memberOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#partOf -->
+
+    <owl:ObjectProperty rdf:about="#partOf"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#subCollectionOf -->
+
+    <owl:ObjectProperty rdf:about="#subCollectionOf">
+        <rdfs:range rdf:resource="#Collective"/>
+        <rdfs:domain rdf:resource="#Collective"/>
+        <rdfs:subPropertyOf rdf:resource="#partOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Agent -->
+
+    <owl:Class rdf:about="#Agent">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Organization"/>
+                    <rdf:Description rdf:about="#Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Collective -->
+
+    <owl:Class rdf:about="#Collective">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <owl:ObjectProperty>
+                                <owl:inverseOf rdf:resource="#memberOf"/>
+                            </owl:ObjectProperty>
+                        </owl:onProperty>
+                        <owl:someValuesFrom>
+                            <owl:Class>
+                                <owl:unionOf rdf:parseType="Collection">
+                                    <rdf:Description rdf:about="#Collective"/>
+                                    <rdf:Description rdf:about="#FunctionalComplex"/>
+                                </owl:unionOf>
+                            </owl:Class>
+                        </owl:someValuesFrom>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <owl:ObjectProperty>
+                                <owl:inverseOf rdf:resource="#subCollectionOf"/>
+                            </owl:ObjectProperty>
+                        </owl:onProperty>
+                        <owl:someValuesFrom rdf:resource="#Collective"/>
+                    </owl:Restriction>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Family"/>
+                    <rdf:Description rdf:about="#Group"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Object"/>
+        <owl:disjointWith rdf:resource="#FunctionalComplex"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Enrollment -->
+
+    <owl:Class rdf:about="#Enrollment">
+        <rdfs:subClassOf rdf:resource="#Relator"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#mediates"/>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Organization"/>
+                            <rdf:Description rdf:about="#Person"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#partOf"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:allValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#QuaSchool"/>
+                            <rdf:Description rdf:about="#QuaStudent"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <owl:ObjectProperty>
+                                <owl:inverseOf rdf:resource="#partOf"/>
+                            </owl:ObjectProperty>
+                        </owl:onProperty>
+                        <owl:onClass rdf:resource="#QuaSchool"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty>
+                            <owl:ObjectProperty>
+                                <owl:inverseOf rdf:resource="#partOf"/>
+                            </owl:ObjectProperty>
+                        </owl:onProperty>
+                        <owl:onClass rdf:resource="#QuaStudent"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#mediates"/>
+                        <owl:onClass rdf:resource="#Organization"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="#mediates"/>
+                        <owl:onClass rdf:resource="#Person"/>
+                        <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Family -->
+
+    <owl:Class rdf:about="#Family">
+        <rdfs:subClassOf rdf:resource="#Collective"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#memberOfPersonFamily"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#memberOfPersonFamily"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:allValuesFrom rdf:resource="#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#FunctionalComplex -->
+
+    <owl:Class rdf:about="#FunctionalComplex">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Dog"/>
+                    <rdf:Description rdf:about="#Heart"/>
+                    <rdf:Description rdf:about="#Organization"/>
+                    <rdf:Description rdf:about="#Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Group -->
+
+    <owl:Class rdf:about="#Group">
+        <rdfs:subClassOf rdf:resource="#Collective"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#memberOfAgentGroup"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#memberOfAgentGroup"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:allValuesFrom rdf:resource="#Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Heart -->
+
+    <owl:Class rdf:about="#Heart">
+        <rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+        <owl:disjointWith rdf:resource="#Organization"/>
+        <owl:disjointWith rdf:resource="#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Individual -->
+
+    <owl:Class rdf:about="#Individual">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Moment"/>
+                    <rdf:Description rdf:about="#Object"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <owl:disjointWith rdf:resource="#TemporalExtent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Man -->
+
+    <owl:Class rdf:about="#Man">
+        <rdfs:subClassOf rdf:resource="#Person"/>
+        <owl:disjointWith rdf:resource="#Woman"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Mode -->
+
+    <owl:Class rdf:about="#Mode">
+        <rdfs:subClassOf rdf:resource="#Moment"/>
+        <owl:disjointWith rdf:resource="#Relator"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Moment -->
+
+    <owl:Class rdf:about="#Moment">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Mode"/>
+                    <rdf:Description rdf:about="#Relator"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Individual"/>
+        <owl:disjointWith rdf:resource="#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Object -->
+
+    <owl:Class rdf:about="#Object">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Collective"/>
+                    <rdf:Description rdf:about="#FunctionalComplex"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Individual"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Organization -->
+
+    <owl:Class rdf:about="#Organization">
+        <rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+        <owl:disjointWith rdf:resource="#Person"/>
+    </owl:Class>
+    
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#QuaIndividual -->
+
+    <owl:Class rdf:about="#QuaIndividual">
+        <rdfs:subClassOf rdf:resource="#Mode"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#partOf"/>
+                <owl:someValuesFrom rdf:resource="#Relator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#inheres"/>
+                <owl:someValuesFrom rdf:resource="#Individual"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#existentiallyDependentOf"/>
+                <owl:someValuesFrom rdf:resource="#QuaIndividual"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#QuaSchool -->
+
+    <owl:Class rdf:about="#QuaSchool">
+        <rdfs:subClassOf rdf:resource="#QuaIndividual"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#inheres"/>
+                <owl:someValuesFrom rdf:resource="#Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#existentiallyDependentOf"/>
+                <owl:someValuesFrom rdf:resource="#QuaStudent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#partOf"/>
+                <owl:someValuesFrom rdf:resource="#Enrollment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="#QuaStudent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#QuaStudent -->
+
+    <owl:Class rdf:about="#QuaStudent">
+        <rdfs:subClassOf rdf:resource="#QuaIndividual"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#inheres"/>
+                <owl:someValuesFrom rdf:resource="#Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#existentiallyDependentOf"/>
+                <owl:someValuesFrom rdf:resource="#QuaSchool"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#partOf"/>
+                <owl:someValuesFrom rdf:resource="#Enrollment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Relator -->
+
+    <owl:Class rdf:about="#Relator">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#mediates"/>
+                <owl:onClass rdf:resource="#Individual"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#Moment"/>
+    </owl:Class>
+    
+
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#TemporalExtent -->
+
+    <owl:Class rdf:about="#TemporalExtent"/>
+    
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Woman -->
+
+    <owl:Class rdf:about="#Woman">
+        <rdfs:subClassOf rdf:resource="#Person"/>
+    </owl:Class>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Partes a serem tratadas
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#owns -->
+
+    <!-- Para cada relacao-nomeada ( nao-derivada e nao-especializacao-de-outra) -->
+    <!-- 					NOME -->
+    <owl:ObjectProperty rdf:about="#owns">
+    <!-- 					DOMAIN -->
+        <rdfs:range rdf:resource="#Dog"/>
+    <!-- 					RANGE -->
+        <rdfs:domain rdf:resource="#Person"/>
+    <!-- se o source da associacao eh readOnly     -->
+        <rdfs:subPropertyOf rdf:resource="#invExistentiallyDependentOf"/>
+    <!-- se o dest da associacao eh readOnly     -->
+    <!-- <rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/> -->
+    </owl:ObjectProperty>
+   
+
+    <!-- Se tiver especializacao, para cada uma (pode ter ainda recursivamente sub-especializacoes) -->
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#ownsSpecialPersonSpecialDog -->
+    <!-- 					NOME+DOMAIN+RANGE -->
+    <owl:ObjectProperty rdf:about="#ownsSpecialPersonSpecialDog">
+    <!-- 					DOMAIN -->
+        <rdfs:range rdf:resource="#SpecialDog"/>
+    <!-- 					RANGE -->
+        <rdfs:domain rdf:resource="#SpecialPerson"/>
+    <!-- 					NOME-DA-SUPER-RELACAO -->
+        <rdfs:subPropertyOf rdf:resource="#owns"/>
+    <!-- se o source da associacao eh readOnly     -->
+        <rdfs:subPropertyOf rdf:resource="#invExistentiallyDependentOf"/>
+    <!-- se o dest da associacao eh readOnly     -->
+    <!-- <rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/> -->
+    </owl:ObjectProperty>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    <!-- Para cada kind ou subkind -->
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Dog -->
+
+    <owl:Class rdf:about="#Dog">
+        <rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+
+        <!-- Para para cada associacao mandatoria (card min do "lado oposto" maior que zero) -->
+        <rdfs:subClassOf>
+            <owl:Restriction>
+
+		    <!-- se a classe eh o source da associacao -->
+		    <!-- 					NOME-DA-ASSOCIACA0 -->
+                <!-- <owl:onProperty rdf:resource="#owns"/> -->
+		    <!-- se senao -->
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+		    <!-- 					NOME-DA-ASSOCIACA0 -->
+                        <owl:inverseOf rdf:resource="#owns"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+		    <!-- end -->
+
+		    <!-- 					NOME-DO-LADO-OPOSTO -->
+                <owl:onClass rdf:resource="#Person"/>
+    		    <!--	   		SE A CARDINALIDADE EM RELACAO A R EH EXATA	  		-->
+    		    <!--											     cardinalidade			    -->
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+    		    <!--	   		SENAO	  									-->
+                <!--	   											minC					    -->
+                <!--    <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality> -->
+                <!--												maxC					    -->
+                <!--    <owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">10</owl:maxQualifiedCardinality> -->
+
+            </owl:Restriction>
+        </rdfs:subClassOf>
+	  <!--    -->
+
+        <owl:disjointWith rdf:resource="#Heart"/>
+        <owl:disjointWith rdf:resource="#Organization"/>
+        <owl:disjointWith rdf:resource="#Person"/>
+    </owl:Class>
+    <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#SpecialDog -->
+
+    <owl:Class rdf:about="#SpecialDog">
+        <rdfs:subClassOf rdf:resource="#Dog"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <owl:ObjectProperty>
+                        <owl:inverseOf rdf:resource="#ownsSpecialPersonSpecialDog"/>
+                    </owl:ObjectProperty>
+                </owl:onProperty>
+                <owl:onClass rdf:resource="#SpecialPerson"/>
+                <owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#Person -->
+
+    <owl:Class rdf:about="#Person">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="#Man"/>
+                    <rdf:Description rdf:about="#Woman"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+        <rdfs:subClassOf>
+	      <!-- SE A CARDINALIDADE MINIMA EH UM, UMA OPCAO ALTERNATIVA EH USAR ESSE PADRAO DE OWL-RESTRICTION	-->
+	      <!-- MAS PODE SEGUIR O PADRAO DE RESTRICAO DE CARDINALIDADE ESPECIFICADO EM DOG 	-->
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#owns"/>
+                <owl:someValuesFrom rdf:resource="#Dog"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#SpecialPerson -->
+
+    <owl:Class rdf:about="#SpecialPerson">
+        <rdfs:subClassOf rdf:resource="#Person"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#ownsSpecialPersonSpecialDog"/>
+                <owl:someValuesFrom rdf:resource="#SpecialDog"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    
+
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+
