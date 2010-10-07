@@ -1,0 +1,14 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267577924176
+executed,command,org.eclipse.pde.ui,3.5.0.v20090821,"org.eclipse.pde.ui.runtimeWorkbenchShortcut.run",1267577928315
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577929168
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577940610
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577979050
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577979095
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577980603
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577980726
+closed,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267577981463
+stopped,bundle,org.eclipse.emf.teneo.eclipselink.ui,1.0.0.v200909151729,"org.eclipse.emf.teneo.eclipselink.ui",1267577982895
+stopped,bundle,org.eclipse.emf.teneo.eclipselink,1.0.0.v200909151729,"org.eclipse.emf.teneo.eclipselink",1267577982895
+stopped,bundle,org.eclipse.emf.ecoretools.diagram,0.9.0.v200906221231,"org.eclipse.emf.ecoretools.diagram",1267577982895
+stopped,bundle,org.eclipse.gmf.ecore.editor,2.1.0.v20090529-1925,"org.eclipse.gmf.ecore.editor",1267577982895

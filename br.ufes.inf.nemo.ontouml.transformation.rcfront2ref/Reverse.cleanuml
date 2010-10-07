@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="ASCII"?>
+<CleanUML:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CleanUML="CleanUML" name="Reverse" visibility="public">
+  <packagedElement xsi:type="CleanUML:SubKind" name="Person" visibility="public">
+    <generalization general="//@packagedElement.24" generalizationSet="//@packagedElement.55"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Group" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Deceased Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.49"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Living Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.49"/>
+    <generalization general="//@packagedElement.23"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Spatial Thing" visibility="public" isAbstract="true"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="PhysicalObject" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Geographical Space" visibility="public" isAbstract="true">
+    <generalization general="//@packagedElement.4"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="SurgeryRoom" visibility="public">
+    <generalization general="//@packagedElement.6" generalizationSet="//@packagedElement.50"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Gallery" visibility="public">
+    <generalization general="//@packagedElement.6" generalizationSet="//@packagedElement.50"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Museum" visibility="public">
+    <generalization general="//@packagedElement.6" generalizationSet="//@packagedElement.50"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Material Entity" visibility="public" isAbstract="true"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Inanimated Entity" visibility="public" isAbstract="true">
+    <generalization general="//@packagedElement.10" generalizationSet="//@packagedElement.51"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Biological Entity" visibility="public" isAbstract="true">
+    <generalization general="//@packagedElement.10" generalizationSet="//@packagedElement.51"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Statue" visibility="public">
+    <generalization general="//@packagedElement.11"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Human Organ" visibility="public" isAbstract="true">
+    <generalization general="//@packagedElement.12"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Human Heart" visibility="public">
+    <generalization general="//@packagedElement.14"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Male Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.52"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Female Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.52"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Father" visibility="public">
+    <generalization general="//@packagedElement.16"/>
+    <generalization general="//@packagedElement.20" generalizationSet="//@packagedElement.53"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Mother" visibility="public">
+    <generalization general="//@packagedElement.17"/>
+    <generalization general="//@packagedElement.20" generalizationSet="//@packagedElement.53"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Parent" visibility="public">
+    <generalization general="//@packagedElement.0"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Offspring" visibility="public">
+    <generalization general="//@packagedElement.0"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Registration" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Active Agent" visibility="public" isAbstract="true">
+    <generalization general="//@packagedElement.24"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Agent" visibility="public" isAbstract="true"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Organization" visibility="public">
+    <generalization general="//@packagedElement.24" generalizationSet="//@packagedElement.55"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Extinct Organization" visibility="public">
+    <generalization general="//@packagedElement.25" generalizationSet="//@packagedElement.54"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Active Organization" visibility="public">
+    <generalization general="//@packagedElement.23"/>
+    <generalization general="//@packagedElement.25" generalizationSet="//@packagedElement.54"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Mental State" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Intention" visibility="public">
+    <generalization general="//@packagedElement.28" generalizationSet="//@packagedElement.56"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Belief" visibility="public">
+    <generalization general="//@packagedElement.28" generalizationSet="//@packagedElement.56"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Desire" visibility="public">
+    <generalization general="//@packagedElement.28" generalizationSet="//@packagedElement.56"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Individual Artist" visibility="public">
+    <generalization general="//@packagedElement.0"/>
+    <generalization general="//@packagedElement.35" generalizationSet="//@packagedElement.57"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Band Member" visibility="public">
+    <generalization general="//@packagedElement.32"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Band" visibility="public">
+    <generalization general="//@packagedElement.25"/>
+    <generalization general="//@packagedElement.35" generalizationSet="//@packagedElement.57"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Performer Artist" visibility="public" isAbstract="true"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Recording" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Track" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Authorship" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Album" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Album Track" visibility="public">
+    <generalization general="//@packagedElement.37"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:DataType" name="LocationCoordinates" visibility="public">
+    <ownedAttribute name="latitude" visibility="public" aggregation="composite">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute name="longitude" visibility="public" aggregation="composite">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute name="altitude" visibility="public" aggregation="composite">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:DataType" name="Priority Level" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.43/@ownedEnd.0 //@packagedElement.43/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.0" association="//@packagedElement.43">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.15" aggregation="composite" association="//@packagedElement.43">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.44/@ownedEnd.0 //@packagedElement.44/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.25" association="//@packagedElement.44">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.24" aggregation="shared" association="//@packagedElement.44">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.45/@ownedEnd.0 //@packagedElement.45/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.1" association="//@packagedElement.45">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.24" aggregation="shared" association="//@packagedElement.45">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.46/@ownedEnd.0 //@packagedElement.46/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.0" association="//@packagedElement.46">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.12" aggregation="composite" association="//@packagedElement.46">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.47/@ownedEnd.0 //@packagedElement.47/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.34" association="//@packagedElement.47">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.33" aggregation="shared" association="//@packagedElement.47">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:componentOf" visibility="public" memberEnd="//@packagedElement.48/@ownedEnd.0 //@packagedElement.48/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.39" association="//@packagedElement.48">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.40" aggregation="shared" association="//@packagedElement.48">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="2"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.3/@generalization.0 //@packagedElement.2/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" generalization="//@packagedElement.7/@generalization.0 //@packagedElement.8/@generalization.0 //@packagedElement.9/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" generalization="//@packagedElement.11/@generalization.0 //@packagedElement.12/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.16/@generalization.0 //@packagedElement.17/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" generalization="//@packagedElement.18/@generalization.1 //@packagedElement.19/@generalization.1">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.26/@generalization.0 //@packagedElement.27/@generalization.1">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" generalization="//@packagedElement.0/@generalization.0 //@packagedElement.25/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" generalization="//@packagedElement.29/@generalization.0 //@packagedElement.30/@generalization.0 //@packagedElement.31/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.34/@generalization.1 //@packagedElement.32/@generalization.1">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.58/@ownedEnd.0 //@packagedElement.58/@ownedEnd.1" navigableOwnedEnd="//@packagedElement.58/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.4" association="//@packagedElement.58">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="location" visibility="public" type="//@packagedElement.41" association="//@packagedElement.58">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.59/@ownedEnd.0 //@packagedElement.59/@ownedEnd.1" navigableOwnedEnd="//@packagedElement.59/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.5" association="//@packagedElement.59">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="location" visibility="public" type="//@packagedElement.41" association="//@packagedElement.59">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is located in" visibility="public" memberEnd="//@packagedElement.60/@ownedEnd.0 //@packagedElement.60/@ownedEnd.1" isDerived="true">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.5" association="//@packagedElement.60">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.4" association="//@packagedElement.60">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name=" spatially subsumes" visibility="public" memberEnd="//@packagedElement.61/@ownedEnd.0 //@packagedElement.61/@ownedEnd.1" isDerived="true">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.6" association="//@packagedElement.61">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.6" association="//@packagedElement.61">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is constituted by" visibility="public" memberEnd="//@packagedElement.62/@ownedEnd.0 //@packagedElement.62/@ownedEnd.1">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.5" association="//@packagedElement.62">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.10" association="//@packagedElement.62">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is parent of" visibility="public" memberEnd="//@packagedElement.63/@ownedEnd.0 //@packagedElement.63/@ownedEnd.1" isDerived="true">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.20" association="//@packagedElement.63">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="2"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.21" association="//@packagedElement.63">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.64/@ownedEnd.0 //@packagedElement.64/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.22" association="//@packagedElement.64">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.21" isReadOnly="true" association="//@packagedElement.64">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.65/@ownedEnd.0 //@packagedElement.65/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.22" association="//@packagedElement.65">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.20" isReadOnly="true" association="//@packagedElement.65">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="2"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.66/@ownedEnd.0 //@packagedElement.66/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.28" association="//@packagedElement.66">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.23" isReadOnly="true" association="//@packagedElement.66">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.67/@ownedEnd.0 //@packagedElement.67/@ownedEnd.1" navigableOwnedEnd="//@packagedElement.67/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.29" association="//@packagedElement.67">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="priority" visibility="public" type="//@packagedElement.42" association="//@packagedElement.67">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is more important than" visibility="public" memberEnd="//@packagedElement.68/@ownedEnd.0 //@packagedElement.68/@ownedEnd.1">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.29" isDerived="true" association="//@packagedElement.68">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.29" association="//@packagedElement.68">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is constituted by" visibility="public" memberEnd="//@packagedElement.69/@ownedEnd.0 //@packagedElement.69/@ownedEnd.1">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.25" association="//@packagedElement.69">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.1" association="//@packagedElement.69">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="is higher than" visibility="public" memberEnd="//@packagedElement.70/@ownedEnd.0 //@packagedElement.70/@ownedEnd.1">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.42" association="//@packagedElement.70">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.42" association="//@packagedElement.70">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.71/@ownedEnd.0 //@packagedElement.71/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.36" association="//@packagedElement.71">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.35" isReadOnly="true" association="//@packagedElement.71">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.72/@ownedEnd.0 //@packagedElement.72/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.36" association="//@packagedElement.72">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.37" isReadOnly="true" association="//@packagedElement.72">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" name="records" visibility="public" memberEnd="//@packagedElement.73/@ownedEnd.0 //@packagedElement.73/@ownedEnd.1" isDerived="true">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.35" association="//@packagedElement.73">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.37" association="//@packagedElement.73">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.74/@ownedEnd.0 //@packagedElement.74/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.38" association="//@packagedElement.74">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.35" isReadOnly="true" association="//@packagedElement.74">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.75/@ownedEnd.0 //@packagedElement.75/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.38" association="//@packagedElement.75">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.39" isReadOnly="true" association="//@packagedElement.75">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.76/@ownedEnd.0 //@packagedElement.76/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.63" association="//@packagedElement.76">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="2"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.22" isReadOnly="true" association="//@packagedElement.76">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Association" visibility="public" memberEnd="//@packagedElement.77/@ownedEnd.0 //@packagedElement.77/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.73" association="//@packagedElement.77">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.36" isReadOnly="true" association="//@packagedElement.77">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</CleanUML:Package>

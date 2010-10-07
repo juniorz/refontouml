@@ -1,0 +1,23 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Substance Sortal</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getSubstanceSortal()
+ * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='testrule'"
+ *        annotation="http://www.eclipse.org/ocl/examples/OCL testrule='self.oclAsType(NamedElement).name <> \'Brain\''"
+ * @generated
+ */
+public interface SubstanceSortal extends RigidSortalClass {
+} // SubstanceSortal

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<introContent>
+  	<extensionContent id="org.eclipse.emf.mint" style="css/overview.css" name="Mint" path="overview/@">
+		<group style-id="content-group" id="content-group">
+       		<link label="Mint" url="http://wiki.eclipse.org/Mint" id="mint-overview" style-id="content-link">
+          		<text>Get the most out of JDT when developing EMF-based software.</text>
+       		</link>
+       	</group>
+  	</extensionContent>
+</introContent>

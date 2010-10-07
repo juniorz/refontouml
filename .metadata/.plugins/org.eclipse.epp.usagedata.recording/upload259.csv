@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267622874562
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267622891702
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623004451
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623009548
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623026524
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623043937
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623065412
+executed,command,org.eclipse.ltk.ui.refactoring,3.4.100.v20090604,"org.eclipse.ltk.ui.refactoring.commands.deleteResources",1267623065417
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.delete",1267623065417
+error,log,,,"org.eclipse.qvt.declarative.parser.ocl does not exist",1267623065495
+error,log,,,"org.eclipse.qvt.declarative.emof.essentialocl does not exist",1267623065527
+error,log,,,"org.eclipse.qvt.declarative.editor.ui does not exist",1267623065547
+started,bundle,org.eclipse.ocl.ecore,1.3.0.v200905271400,"org.eclipse.ocl.ecore",1267623065866
+started,bundle,org.eclipse.ocl,1.3.0.v200905271400,"org.eclipse.ocl",1267623065880
+error,log,,,"org.eclipse.qvt.declarative.ecore.qvtbase does not exist",1267623066078
+error,log,,,"org.eclipse.qvt.declarative.editor.model does not exist",1267623066102
+error,log,,,"org.eclipse.qvt.declarative.editor.model.edit does not exist",1267623066138
+error,log,,,"org.eclipse.qvt.declarative.editor.ocl.ui does not exist",1267623066166
+error,log,,,"org.eclipse.qvt.declarative.editor.model.editor does not exist",1267623066196
+error,log,,,"org.eclipse.qvt.declarative.parser does not exist",1267623066235
+activated,editor,org.eclipse.emf.codegen.ecore.ui,2.5.0.v200906151043,"org.eclipse.emf.codegen.ecore.genmodel.presentation.GenModelEditorID",1267623067896
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623071538
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623487875
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623492833
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267623492980

@@ -1,0 +1,9 @@
+Bundle-Version: 1.0.0
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Eclipse-AutoStart: true
+Bundle-SymbolicName: CleanUp;singleton=true
+Require-Bundle: OntoUML;bundle-version="1.1.0",
+ net.sourceforge.lpg.lpgjavaruntime.source;bundle-version="1.1.0",
+ org.eclipse.emf.ecore.source;bundle-version="2.5.0"
+Import-Package: org.eclipse.emf.ecore.xmi.impl

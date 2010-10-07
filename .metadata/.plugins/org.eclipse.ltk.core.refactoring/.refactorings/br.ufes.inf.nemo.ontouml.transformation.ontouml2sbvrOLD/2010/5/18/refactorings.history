@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;clean2english.Node.getMyClass()&apos; to &apos;getRelatedClass&apos;&#x0D;&#x0A;- Original project: &apos;Clean2English&apos;&#x0D;&#x0A;- Original element: &apos;clean2english.Node.getMyClass()&apos;&#x0D;&#x0A;- Renamed element: &apos;clean2english.Node.getRelatedClass()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;getMyClass&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;clean2english{Node.java[Node~getMyClass" name="getRelatedClass" references="true" stamp="1272807969431" version="1.0"/>
+</session>

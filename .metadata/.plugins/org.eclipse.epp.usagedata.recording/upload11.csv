@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196802442
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196803735
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196805616
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196810302
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196814223
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196819411
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196825232
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196827714
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196829583
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196831491
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196833935
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196836110
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196837391
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196841118
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196847552
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196853437
+activated,editor,org.eclipse.emf.codegen.ecore.ui,2.5.0.v200906151043,"org.eclipse.emf.codegen.ecore.genmodel.presentation.GenModelEditorID",1267196858126
+closed,editor,org.eclipse.pde.ui,3.5.0.v20090821,"org.eclipse.pde.ui.manifestEditor",1267196858173
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267196859644
+opened,editor,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1267196865165
+activated,editor,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1267196865359
+started,bundle,org.eclipse.jdt.junit,3.5.1.r351_v20090708-0800,"org.eclipse.jdt.junit",1267196869459
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196886123
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196886291
+error,log,,,"Problems occurred when invoking code from plug-in: ""org.eclipse.core.resources"".",1267196887112

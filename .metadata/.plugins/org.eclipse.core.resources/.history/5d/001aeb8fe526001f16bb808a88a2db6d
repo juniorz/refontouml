@@ -1,0 +1,476 @@
+package cleanup;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Collections;
+import java.util.LinkedList;
+
+import org.eclipse.emf.ecore.*;
+
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+public class Transformation
+{
+	// Creates CleanUML Objects
+	CleanUML.CleanUMLFactory myfactory;
+	// The master container that engulfs all CleanUML Objects
+	CleanUML.Model mymodel;
+	// Maps OntoUML Elements in CleanUML Elements (auxiliar for Properties, Generalizations and GeneralizationSets)  
+	HashMap<OntoUML.Element, CleanUML.Element> mymap;
+	// Things that (sometimes) can't be processed until I've read all the objects in the file
+	LinkedList<OntoUML.Element> todolist;
+	
+	// Constructor
+	public Transformation()
+	{
+		myfactory = CleanUML.CleanUMLFactory.eINSTANCE;
+		myfactory.createModel();
+		
+		mymodel = myfactory.createModel();
+		mymodel.setName("MyModel");
+		
+		mymap = new HashMap<OntoUML.Element, CleanUML.Element>();
+		
+		todolist = new LinkedList<OntoUML.Element>();
+	}
+	
+	// Saves the model in to a file
+	public void save(String filename)
+	{
+		// Create a resource set.
+		ResourceSet rs = new ResourceSetImpl();
+
+		// Register the default resource factory -- only needed for stand-alone!
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put
+		(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+
+		// Get the URI of the model file.
+		URI fileURI = URI.createFileURI(new File(filename).getAbsolutePath());
+
+		// Create a resource for this file.
+		Resource r = rs.createResource(fileURI);
+		
+		r.getContents().add(mymodel);
+				
+		try
+		{
+			r.save(Collections.EMPTY_MAP);
+		}
+		catch (Exception e) {}
+	}
+			
+	public void ProcessEObject (EObject obj)
+	{
+		// A ordem de processamento: Classes, DataTypes / Associations / Generalizations, Outros (?) / GeneralizationSets 
+		
+		if (obj instanceof OntoUML.Class || obj instanceof OntoUML.Datatype)
+		{
+			DealEObject (obj);
+		}
+		else
+		{
+			if (obj instanceof OntoUML.GeneralizationSet)
+			{
+				// GeneralizationSets no final
+				todolist.addLast((OntoUML.Element) obj);
+			}
+			else
+			{
+				if (obj instanceof OntoUML.Association)
+				{
+					// Associations no inicio
+					todolist.addFirst((OntoUML.Element) obj);
+				}
+				else
+				{
+					// Qualquer outra coisa, depois das Associations
+					int i = 0;
+					for (Iterator<OntoUML.Element> it = todolist.iterator(); it.hasNext();)
+					{
+						if (it.next() instanceof OntoUML.Association)
+							i++;
+						else
+							break;
+					}
+					
+					todolist.add(i, (OntoUML.Element) obj);
+				}
+			}
+			// talvez o melhor mesmo seja uma lista para cada tipo de Elemento e depois percorrer cada lista na ordem correta de processamento
+			// ou colocar em uma lista unica e depois dar um Sort baseado no instanceof 
+		}
+	}
+	
+	public void ProcessAll()
+	{
+		for (Iterator<OntoUML.Element> it = todolist.iterator(); it.hasNext();)
+		{
+			DealEObject (it.next());
+		}
+	}
+	
+	// Deals with Alessander's OntoUML Objects
+	private void DealEObject (EObject obj)
+	{
+		// TODO: Datatypes
+		// TODO: Attributes
+		// TODO: Generalization Set	
+		//System.out.println(obj.toString());
+
+		// Find the leaf metaclass
+		
+		// Classes
+		if (obj instanceof OntoUML.Kind)
+		{
+			DealKind((OntoUML.Kind) obj);
+		}
+		else if (obj instanceof OntoUML.SubKind)
+		{
+			DealSubKind((OntoUML.SubKind) obj);
+		}
+		else if (obj instanceof OntoUML.Role)
+		{
+			DealRole((OntoUML.Role) obj);
+		}
+		else if (obj instanceof OntoUML.Phase)
+		{
+			DealPhase((OntoUML.Phase) obj);
+		}
+		else if (obj instanceof OntoUML.Category)
+		{
+			DealCategory((OntoUML.Category) obj);
+		}
+		else if (obj instanceof OntoUML.Relator)
+		{
+			DealRelator((OntoUML.Relator) obj);
+		}
+		
+		// Associations
+		else if (obj instanceof OntoUML.MaterialAssociation)
+		{
+			DealMaterialAssociation((OntoUML.MaterialAssociation) obj);			
+		}
+		else if (obj instanceof OntoUML.FormalAssociation)
+		{
+			DealFormalAssociation((OntoUML.FormalAssociation) obj);
+		}
+		
+		// Meroynimc
+		else if (obj instanceof OntoUML.componentOf)
+		{
+			DealComponentOf((OntoUML.componentOf) obj);
+		}
+		
+		// DependencyRelationship
+		else if (obj instanceof OntoUML.Mediation)
+		{
+			DealMediation((OntoUML.Mediation) obj);
+		}
+		else if (obj instanceof OntoUML.Derivation)
+		{
+			DealDerivation((OntoUML.Derivation) obj);
+		}
+		
+		// Generalization
+		else if (obj instanceof OntoUML.Generalization)
+		{
+			DealGeneralization((OntoUML.Generalization) obj);
+		}
+		else if (obj instanceof OntoUML.GeneralizationSet)
+		{	
+			DealGeneralizationSet((OntoUML.GeneralizationSet) obj);
+		}
+	}
+	
+	// Add the packageable element to the model
+	public void AddPackageableElement (CleanUML.PackageableElement pe)
+	{
+		mymodel.getPackagedElement().add(pe);
+	}
+	
+	// TODO: nao esquecer de usar esse metodo com DataTypes, Meronymic, DependencyRelationship
+	public void RelateElements (OntoUML.Element c1, CleanUML.Element c2)
+	{
+		mymap.put(c1, c2);
+	}
+	
+	public void DealNamedElement (OntoUML.NamedElement ne1, CleanUML.NamedElement ne2)
+	{
+		ne2.setName(ne1.getName());
+	}
+	
+	public void DealClassifier (OntoUML.Classifier c1, CleanUML.Classifier c2)
+	{
+		DealNamedElement (c1, c2);
+		AddPackageableElement (c2);
+		// Important for Generalization, Property
+		RelateElements (c1, c2);
+		
+		c2.setIsAbstract(c1.isIsAbstract());
+	}
+	
+	public void DealKind (OntoUML.Kind k1)
+	{
+		System.out.println("<kind> " + k1.getName());
+		CleanUML.Kind k2 = myfactory.createKind(); // TODO: tentar usar um factory generico para modularizar esses metodos
+		
+		DealClassifier (k1, k2);
+	}
+	
+	public void DealSubKind (OntoUML.SubKind sk1)
+	{
+		System.out.println("<subkind> " + sk1.getName());
+		CleanUML.SubKind sk2 = myfactory.createSubKind();
+		
+		DealClassifier (sk1, sk2);		
+	}
+	
+	public void DealRole (OntoUML.Role r1)
+	{
+		System.out.println("<role> " + r1.getName());
+		CleanUML.Role r2 = myfactory.createRole();
+		
+		DealClassifier (r1, r2);
+	}
+	
+	public void DealPhase (OntoUML.Phase ph1)
+	{
+		System.out.println("<phase> " + ph1.getName());
+		CleanUML.Phase ph2 = myfactory.createPhase();
+		
+		DealClassifier (ph1, ph2);
+	}
+	
+	public void DealCategory (OntoUML.Category ct1)
+	{
+		System.out.println("<category> " + ct1.getName());
+		CleanUML.Category ct2 = myfactory.createCategory();
+		
+		DealClassifier (ct1, ct2);		
+	}
+	
+	public void DealRelator (OntoUML.Relator r1)
+	{
+		System.out.println("<relator> " + r1.getName());
+		CleanUML.Relator r2 = myfactory.createRelator();
+		
+		DealClassifier (r1, r2);
+	}
+		
+	public void DealProperty (OntoUML.Property p1, CleanUML.Property p2)
+	{
+		System.out.println("Property (" + p1.getEndType().getName() + "): " + p1.getLower() + " " + p1.getUpper() + " " + p1.getName() + " ");
+		System.out.println();
+		
+		DealNamedElement (p1, p2);
+		// isLeaf (RedefinableElement)
+		p2.setIsLeaf(p1.isIsLeaf());
+		// isStatic (Feature)
+		p2.setIsStatic(p1.isIsStatic());
+		// isReadOnly (StructuralFeature)
+		p2.setIsReadOnly(p1.isIsReadOnly());
+		
+		// lower, upper (MultiplicityElement)
+		CleanUML.LiteralInteger lowerValue = myfactory.createLiteralInteger();
+		CleanUML.LiteralUnlimitedNatural upperValue = myfactory.createLiteralUnlimitedNatural();
+		lowerValue.setValue(p1.getLower());
+		upperValue.setValue(p1.getUpper()); // FIXME: check the upper
+		
+		p2.setLowerValue(lowerValue);
+		p2.setUpperValue(upperValue);
+			
+		// Type (TypedElement)
+		CleanUML.Type t2 = (CleanUML.Type) mymap.get(p1.getEndType()); // NOTE: p1.getType() doesn't work
+				
+		if (t2 != null)
+		{
+			p2.setType(t2);
+		}
+		else
+		{
+			System.err.println("Why is this class null? [property's type]");
+		}
+		
+		// isDerived, isNavigable, Type
+		p2.setIsDerived(p1.isIsDerived());
+		//p2.setIsNavigable(p1.isIsNavigable()); // FIXME: isso tem no metamodelo do Alessander como atributo de Property mas nao tem no meu.
+		
+		// FIXME: check the many other relations in the CleanUML metamodel
+	}
+	
+	public void DealAssociation (OntoUML.Association assoc, CleanUML.Association assoc2)
+	{
+		DealClassifier(assoc, assoc2);
+				
+		EList<OntoUML.Property> ael = assoc.getAssociationEnd();
+		CleanUML.Property p2;
+		
+		for (Iterator<OntoUML.Property> it = ael.iterator(); it.hasNext();)
+		{
+			p2 = myfactory.createProperty();
+			DealProperty(it.next(), p2);
+			
+			// ownedEnd, memberEnd (NOTE: not doing navigableOwnedEnd)
+			assoc2.getOwnedEnd().add(p2);
+			assoc2.getMemberEnd().add(p2);
+			// (property's) association
+			p2.setAssociation(assoc2);
+			
+			// FIXME: endType [assoc2.getEndType().add();]
+		}
+	}
+	
+	public void DealMaterialAssociation (OntoUML.MaterialAssociation material1)
+	{
+		System.out.println("<material> " + material1.getName());		
+		CleanUML.MaterialAssociation material2 = myfactory.createMaterialAssociation();
+		DealAssociation (material1, material2);
+	}
+	
+	public void DealFormalAssociation (OntoUML.FormalAssociation formal1)
+	{
+		System.out.println("<formal> " + formal1.getName());		
+		CleanUML.FormalAssociation formal2 = myfactory.createFormalAssociation();
+		DealAssociation (formal1, formal2);
+	}
+	
+	public void DealDirectedBinaryRelationship (OntoUML.DirectedBinaryRelationship dbr, CleanUML.DirectedBinaryAssociation dba)
+	{
+		dba.setName(dbr.getName());
+		
+		// NOTE: DirectedBinaryRelationships are always between Properties (specific Elements)
+		
+		// source
+		OntoUML.Property p1 = (OntoUML.Property) dbr.getSource().get(0);					
+		CleanUML.Property p2 = myfactory.createProperty();
+		DealProperty(p1, p2);
+		// ownedEnd, memberEnd (NOTE: not doing navigableOwnedEnd)
+		dba.getOwnedEnd().add(p2);
+		dba.getMemberEnd().add(p2);
+		// (property's) association
+		p2.setAssociation(dba);
+		// FIXME: endType [assoc2.getEndType().add();]
+		
+		// target
+		p1 = (OntoUML.Property) dbr.getTarget().get(0);
+		p2 = myfactory.createProperty();
+		DealProperty(p1, p2);
+		// ownedEnd, memberEnd (NOTE: not doing navigableOwnedEnd)
+		dba.getOwnedEnd().add(p2);
+		dba.getMemberEnd().add(p2);
+		// (property's) association
+		p2.setAssociation(dba);
+		// FIXME: endType [assoc2.getEndType().add();]
+				
+		// Important for Generalization
+		RelateElements (dbr, dba);
+		// Don't forget it
+		AddPackageableElement (dba);
+	}
+	
+	public void DealComponentOf (OntoUML.componentOf cmpOf1)
+	{
+		System.out.println("<componentOf> " + cmpOf1.getName());
+		CleanUML.componentOf cmpOf2 = myfactory.createcomponentOf();
+		DealDirectedBinaryRelationship (cmpOf1, cmpOf2);
+	}
+	
+	public void DealMediation (OntoUML.Mediation mediation1)
+	{
+		System.out.println("<mediation> " + mediation1.getName());
+		CleanUML.Mediation mediation2 = myfactory.createMediation();
+		DealDirectedBinaryRelationship (mediation1, mediation2);
+	}
+	
+	public void DealDerivation (OntoUML.Derivation derivation1)
+	{
+		System.out.println("<derivation> " + derivation1.getName());		
+		CleanUML.Derivation derivation2 = myfactory.createDerivation();
+		DealDirectedBinaryRelationship (derivation1, derivation2);
+	}
+	
+	public void DealGeneralization (OntoUML.Generalization gen1)
+	{
+		// FIXME: source, target, etc em Generalization
+		// NOTE: Generalizations are always between Classifiers (a subset of Elements)
+		System.out.print("[Generalization]: ");		
+		CleanUML.Generalization gen2 = myfactory.createGeneralization();
+		
+		// NOTE: O metamodelo do Alessander nao esta de acordo com a especificacao da UML
+		// source do generalization *deveria* ser o Specific Classifier
+		// target do generalization *deveria* ser o General Classifier
+		
+		// source (Specific)
+		OntoUML.Classifier e1 = (OntoUML.Classifier) gen1.getTarget().get(0); 
+		CleanUML.Classifier e2 = (CleanUML.Classifier) mymap.get(e1);
+		System.out.print(e1.getName() + " -> ");
+				
+		if (e2 != null)
+		{			
+			gen2.setSpecific(e2); // TODO: verificar se precisa setar o EOpposite (chamado generalization em Classifier)
+			// O Specific tem posse do generalization
+			e2.getGeneralization().add(gen2);
+		}
+		else
+		{
+			System.err.println("Why is this class null?");
+		}
+		
+		// target (General)
+		e1 = (OntoUML.Classifier) gen1.getSource().get(0); 
+		e2 = (CleanUML.Classifier) mymap.get(e1);
+		System.out.println(e1.getName());
+		
+		if (e2 != null)
+		{
+			// gen2.getTarget().add(e2); // derived nao implementado
+			gen2.setGeneral(e2);			
+		}
+		else
+		{
+			System.err.println("Why is this class null?"); // TODO: perhaps eval()?
+		}
+		
+		// Important for GeneralizationSet
+		RelateElements (gen1, gen2);
+	}
+	
+	public void DealGeneralizationSet (OntoUML.GeneralizationSet gs1)
+	{
+		System.out.println("[Generalization Set] " + gs1.getName() + ": ");
+		CleanUML.GeneralizationSet gs2 = myfactory.createGeneralizationSet();
+				
+		// FIXME: make sure all generalizations were processed before treating the first generalization set
+		// Add all the generalizations
+		for  (Iterator<OntoUML.Generalization> it = gs1.getGeneralization().iterator(); it.hasNext();)
+		{
+			CleanUML.Generalization gen = (CleanUML.Generalization) mymap.get(it.next());
+			
+			if (gen != null)
+			{
+				gs2.getGeneralization().add(gen);
+				gen.getGeneralizationSet().add(gs2); // TODO: the opposite - is this line necessary or automatic? Also, will this make effect? Since I already added this element to the resource set
+			}
+			else
+			{
+				System.err.println("Why is this class null? generalization of gs " + gs1.getName());
+			}
+		}
+		
+		// isCovering, is Disjoint
+		gs2.setIsCovering(gs1.isIsCovering());
+		gs2.setIsDisjoint(gs1.isIsDisjoint());
+		
+		// They are PackageableElements, don't forget it
+		AddPackageableElement (gs2);
+		DealNamedElement(gs1, gs2);
+	}
+}

@@ -1,0 +1,21 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Formal Association</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getFormalAssociation()
+ * @model
+ * @generated
+ */
+public interface FormalAssociation extends Association {
+} // FormalAssociation

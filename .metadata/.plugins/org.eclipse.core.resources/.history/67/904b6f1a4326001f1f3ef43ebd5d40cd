@@ -1,0 +1,98 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML.tests;
+
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import junit.textui.TestRunner;
+
+/**
+ * <!-- begin-user-doc -->
+ * A test suite for the '<em><b>CleanUML</b></em>' package.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class CleanUMLTests extends TestSuite {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args) {
+		TestRunner.run(suite());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static Test suite() {
+		TestSuite suite = new CleanUMLTests("CleanUML Tests");
+		suite.addTestSuite(CommentTest.class);
+		suite.addTestSuite(PackageTest.class);
+		suite.addTestSuite(DependencyTest.class);
+		suite.addTestSuite(ElementImportTest.class);
+		suite.addTestSuite(PackageImportTest.class);
+		suite.addTestSuite(Constraint_Test.class);
+		suite.addTestSuite(AssociationTest.class);
+		suite.addTestSuite(GeneralizationTest.class);
+		suite.addTestSuite(GeneralizationSetTest.class);
+		suite.addTestSuite(OpaqueExpressionTest.class);
+		suite.addTestSuite(PropertyTest.class);
+		suite.addTestSuite(ClassTest.class);
+		suite.addTestSuite(ModelTest.class);
+		suite.addTestSuite(DataTypeTest.class);
+		suite.addTestSuite(StringExpressionTest.class);
+		suite.addTestSuite(ExpressionTest.class);
+		suite.addTestSuite(PackageMergeTest.class);
+		suite.addTestSuite(EnumerationTest.class);
+		suite.addTestSuite(EnumerationLiteralTest.class);
+		suite.addTestSuite(InstanceSpecificationTest.class);
+		suite.addTestSuite(SlotTest.class);
+		suite.addTestSuite(PrimitiveTypeTest.class);
+		suite.addTestSuite(LiteralIntegerTest.class);
+		suite.addTestSuite(LiteralStringTest.class);
+		suite.addTestSuite(LiteralBooleanTest.class);
+		suite.addTestSuite(LiteralNullTest.class);
+		suite.addTestSuite(InstanceValueTest.class);
+		suite.addTestSuite(LiteralUnlimitedNaturalTest.class);
+		suite.addTestSuite(SubKindTest.class);
+		suite.addTestSuite(KindTest.class);
+		suite.addTestSuite(QuantityTest.class);
+		suite.addTestSuite(CollectiveTest.class);
+		suite.addTestSuite(PhaseTest.class);
+		suite.addTestSuite(RoleTest.class);
+		suite.addTestSuite(CategoryTest.class);
+		suite.addTestSuite(RoleMixinTest.class);
+		suite.addTestSuite(MixinTest.class);
+		suite.addTestSuite(ModeTest.class);
+		suite.addTestSuite(RelatorTest.class);
+		suite.addTestSuite(subQuantityOfTest.class);
+		suite.addTestSuite(subCollectionOfTest.class);
+		suite.addTestSuite(memberOfTest.class);
+		suite.addTestSuite(componentOfTest.class);
+		suite.addTestSuite(CharacterizationTest.class);
+		suite.addTestSuite(MediationTest.class);
+		suite.addTestSuite(DerivationTest.class);
+		suite.addTestSuite(FormalAssociationTest.class);
+		suite.addTestSuite(MaterialAssociationTest.class);
+		return suite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CleanUMLTests(String name) {
+		super(name);
+	}
+
+} //CleanUMLTests

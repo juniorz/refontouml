@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;OntoUML2English&apos; to &apos;Clean2English&apos;&#x0D;&#x0A;- Original element: &apos;OntoUML2English&apos;&#x0D;&#x0A;- Renamed element: &apos;OntoUML2English&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;OntoUML2English&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=OntoUML2English" name="Clean2English" references="true" stamp="1271420568355" version="1.0"/>
+</session>

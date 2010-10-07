@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Metamodels/model&apos; to &apos;old_model&apos;" description="Rename resource &apos;model&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="model" name="old_model" stamp="1282685992055" updateReferences="true"/>
+</session>

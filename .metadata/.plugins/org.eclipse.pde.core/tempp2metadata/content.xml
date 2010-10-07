@@ -1,0 +1,524 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?metadataRepository version='1.1.0'?>
+<repository name='file:/C:/Users/Roberto/workspace/.metadata/.plugins/org.eclipse.pde.core/tempp2metadata - metadata' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1.0.0'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1286384877003'/>
+    <property name='p2.compressed' value='false'/>
+  </properties>
+  <units size='15'>
+    <unit id='OntoUML.diagram' version='1.0.0.200906182002'>
+      <update id='OntoUML.diagram' range='[0.0.0,1.0.0.200906182002)' severity='0'/>
+      <properties size='5'>
+        <property name='df_LT.providerName' value='Sample Plugin Provider, Inc'/>
+        <property name='df_LT.pluginName' value='OntoUML Plugin'/>
+        <property name='org.eclipse.equinox.p2.name' value='%pluginName'/>
+        <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='OntoUML.diagram' version='1.0.0.200906182002'/>
+        <provided namespace='osgi.bundle' name='OntoUML.diagram' version='1.0.0.200906182002'/>
+        <provided namespace='java.package' name='OntoUML.diagram.edit.parts' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.diagram.part' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.diagram.providers' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+      </provides>
+      <requires size='29'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.expressions' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.views' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.commands.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.render' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='OntoUML' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='OntoUML.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.validation' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.draw2d.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.draw2d' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gef' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.notation' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='OntoUML.diagram' version='1.0.0.200906182002'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Export-Package: OntoUML.diagram.edit.parts,OntoUML.diagram.part,OntoUML.diagram.providers&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.core.expressions,org.eclipse.jface,org.eclipse.ui.ide,org.eclipse.ui.views,org.eclipse.ui.navigator,org.eclipse.ui.navigator.resources,org.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi,org.eclipse.emf.edit.ui,org.eclipse.gmf.runtime.emf.core,org.eclipse.gmf.runtime.emf.commands.core,org.eclipse.gmf.runtime.emf.ui.properties,org.eclipse.gmf.runtime.diagram.ui,org.eclipse.gmf.runtime.diagram.ui.properties,org.eclipse.gmf.runtime.diagram.ui.providers,org.eclipse.gmf.runtime.diagram.ui.providers.ide,org.eclipse.gmf.runtime.diagram.ui.render,org.eclipse.gmf.runtime.diagram.ui.resources.editor,org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,OntoUML;visibility:=reexport,OntoUML.edit;visibility:=reexport,org.eclipse.ocl.ecore;visibility:=reexport,org.eclipse.emf.validation;visibility:=reexport,org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,org.eclipse.draw2d;visibility:=reexport,org.eclipse.gef;visibility:=reexport,org.eclipse.gmf.runtime.notation;visibility:=reexport&#xA;Bundle-Activator: OntoUML.diagram.part.OntoUMLDiagramEditorPlugin&#xA;Bundle-Name: %pluginName&#xA;Bundle-Version: 1.0.0.200906182002&#xA;Bundle-Vendor: %providerName&#xA;Bundle-SymbolicName: OntoUML.diagram; singleton:=true&#xA;Bundle-ClassPath: .&#xA;Manifest-Version: 1.0&#xA;Eclipse-LazyStart: true&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='OntoUML' version='1.1.0.v200906182002'>
+      <update id='OntoUML' range='[0.0.0,1.1.0.v200906182002)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Editor'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Alessander Botti Benevides'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='9'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='OntoUML' version='1.1.0.v200906182002'/>
+        <provided namespace='osgi.bundle' name='OntoUML' version='1.1.0.v200906182002'/>
+        <provided namespace='java.package' name='OntoUML' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.impl' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.util' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.URML' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.URML.impl' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.URML.util' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='3'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='OntoUML' version='1.1.0.v200906182002'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Export-Package: OntoUML,OntoUML.impl,OntoUML.util,OntoUML.URML,OntoUML.URML.impl,OntoUML.URML.util&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.ocl.ecore;visibility:=reexport&#xA;Bundle-Name: OntoUML Editor&#xA;Bundle-Version: 1.1.0.v200906182002&#xA;Bundle-Vendor: Alessander Botti Benevides&#xA;Bundle-SymbolicName: OntoUML;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-ClassPath: .&#xA;Manifest-Version: 1.0&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='OntoUML.edit' version='1.1.0.v200906182002'>
+      <update id='OntoUML.edit' range='[0.0.0,1.1.0.v200906182002)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Editor'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Alessander Botti Benevides'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='OntoUML.edit' version='1.1.0.v200906182002'/>
+        <provided namespace='osgi.bundle' name='OntoUML.edit' version='1.1.0.v200906182002'/>
+        <provided namespace='java.package' name='OntoUML.URML.provider' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.provider' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='3'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='OntoUML' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='OntoUML.edit' version='1.1.0.v200906182002'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Name: OntoUML Editor&#xA;Bundle-Activator: OntoUML.provider.OntoUMLEditPlugin$Implementation&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: Alessander Botti Benevides&#xA;Bundle-ClassPath: .&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: OntoUML.edit;singleton:=true&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.1.0.v200906182002&#xA;Bundle-Localization: plugin&#xA;Export-Package: OntoUML.URML.provider,OntoUML.provider&#xA;Require-Bundle: org.eclipse.core.runtime,OntoUML;visibility:=reexport,org.eclipse.emf.edit;visibility:=reexport&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.inf.ufes.nemo.rcarraretto.feature.jar' version='1.0.0.201010061407'>
+      <properties size='4'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Infrastructure'/>
+        <property name='org.eclipse.equinox.p2.description' value='The OntoUML infrastructure.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='http://nemo.inf.ufes.br/'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Roberto Carraretto'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.inf.ufes.nemo.rcarraretto.feature.jar' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='feature' version='1.0.0'/>
+        <provided namespace='org.eclipse.update.feature' name='br.inf.ufes.nemo.rcarraretto' version='1.0.0.201010061407'/>
+      </provides>
+      <filter>
+        (org.eclipse.update.install.features=true)
+      </filter>
+      <artifacts size='1'>
+        <artifact classifier='org.eclipse.update.feature' id='br.inf.ufes.nemo.rcarraretto' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='zipped'>
+            true
+          </instruction>
+        </instructions>
+      </touchpointData>
+      <licenses size='1'>
+        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
+          [Enter License Description here.]
+        </license>
+      </licenses>
+      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
+        [Enter Copyright Description here.]
+      </copyright>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.refontouml' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.refontouml' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Reference Metamodel'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' version='1.0.0.201010061407'/>
+        <provided namespace='java.package' name='RefOntoUML' version='0.0.0'/>
+        <provided namespace='java.package' name='RefOntoUML.util' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='1.3.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.refontouml' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Export-Package: RefOntoUML,RefOntoUML.util&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Localization: plugin&#xA;Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,org.eclipse.ocl.ecore;bundle-version=&quot;1.3.0&quot;&#xA;Bundle-Name: OntoUML Reference Metamodel&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-Vendor: NEMO&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-ClassPath: .&#xA;Manifest-Version: 1.0
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='2'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML to SBVR'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='4'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' range='1.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.5.1'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,br.ufes.inf.nemo.ontouml.refontouml;bundle-version=&quot;1.0.0&quot;,org.eclipse.core.resources;bundle-version=&quot;3.5.1&quot;&#xA;Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr.Activator&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: OntoUML to SBVR&#xA;Bundle-Vendor: NEMO
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.refontouml.edit' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.refontouml.edit' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Reference Metamodel Edit'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.edit' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml.edit' version='1.0.0.201010061407'/>
+        <provided namespace='java.package' name='RefOntoUML.provider' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='3'>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='3.5.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.refontouml.edit' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Name: OntoUML Reference Metamodel Edit&#xA;Bundle-Activator: RefOntoUML.provider.RefOntoUMLEditPlugin$Implementation&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: NEMO&#xA;Bundle-ClassPath: .&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml.edit;singleton:=true&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-Localization: plugin&#xA;Export-Package: RefOntoUML.provider&#xA;Require-Bundle: br.ufes.inf.nemo.ontouml.refontouml;visibility:=reexport,org.eclipse.emf.ecore.edit;visibility:=reexport,org.eclipse.core.runtime;bundle-version=&quot;3.5.0&quot;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='OntoUML.editor' version='1.1.0.v200906182002'>
+      <update id='OntoUML.editor' range='[0.0.0,1.1.0.v200906182002)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Editor'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Alessander Botti Benevides'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='5'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='OntoUML.editor' version='1.1.0.v200906182002'/>
+        <provided namespace='osgi.bundle' name='OntoUML.editor' version='1.1.0.v200906182002'/>
+        <provided namespace='java.package' name='OntoUML.URML.presentation' version='0.0.0'/>
+        <provided namespace='java.package' name='OntoUML.presentation' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='6'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='OntoUML.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='OntoUML.editor' version='1.1.0.v200906182002'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Name: OntoUML Editor&#xA;Bundle-Activator: OntoUML.presentation.OntoUMLEditorPlugin$Implementation&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: Alessander Botti Benevides&#xA;Bundle-ClassPath: .&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: OntoUML.editor;singleton:=true&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.1.0.v200906182002&#xA;Bundle-Localization: plugin&#xA;Export-Package: OntoUML.URML.presentation,OntoUML.presentation&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources;visibility:=reexport,OntoUML.edit;visibility:=reexport,org.eclipse.emf.ecore.xmi;visibility:=reexport,org.eclipse.emf.edit.ui;visibility:=reexport,org.eclipse.ui.ide;visibility:=reexport&#xA;
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='2'>
+        <property name='org.eclipse.equinox.p2.name' value='RC Front-End to Reference OntoUML'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.uml2.uml' range='3.0.1'/>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' range='1.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.5.1'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.uml2.uml;bundle-version=&quot;3.0.1&quot;,br.ufes.inf.nemo.ontouml.refontouml;bundle-version=&quot;1.0.0&quot;,org.eclipse.core.resources;bundle-version=&quot;3.5.1&quot;&#xA;Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.rcfront2ref.Activator&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.rcfront2ref;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: RC Front-End to Reference OntoUML&#xA;Bundle-Vendor: NEMO
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.inf.ufes.nemo.rcarraretto.feature.group' version='1.0.0.201010061407' singleton='false'>
+      <update id='br.inf.ufes.nemo.rcarraretto.feature.group' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='5'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Infrastructure'/>
+        <property name='org.eclipse.equinox.p2.description' value='The OntoUML infrastructure.'/>
+        <property name='org.eclipse.equinox.p2.description.url' value='http://nemo.inf.ufes.br/'/>
+        <property name='org.eclipse.equinox.p2.provider' value='Roberto Carraretto'/>
+        <property name='org.eclipse.equinox.p2.type.group' value='true'/>
+      </properties>
+      <provides size='1'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.inf.ufes.nemo.rcarraretto.feature.group' version='1.0.0.201010061407'/>
+      </provides>
+      <requires size='14'>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.rcfrontend' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.edit' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.editor' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.interpreter' range='[1.3.0.201010061407,1.3.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.rcfront2ref' range='[1.0.0.201010061407,1.0.0.201010061407]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='OntoUML' range='[1.1.0.v200906182002,1.1.0.v200906182002]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='OntoUML.diagram' range='[1.0.0.200906182002,1.0.0.200906182002]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='OntoUML.edit' range='[1.1.0.v200906182002,1.1.0.v200906182002]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='OntoUML.editor' range='[1.1.0.v200906182002,1.1.0.v200906182002]'/>
+        <required namespace='org.eclipse.equinox.p2.iu' name='br.inf.ufes.nemo.rcarraretto.feature.jar' range='[1.0.0.201010061407,1.0.0.201010061407]'>
+          <filter>
+            (org.eclipse.update.install.features=true)
+          </filter>
+        </required>
+      </requires>
+      <touchpoint id='null' version='0.0.0'/>
+      <licenses size='1'>
+        <license uri='http://www.example.com/license' url='http://www.example.com/license'>
+          [Enter License Description here.]
+        </license>
+      </licenses>
+      <copyright uri='http://www.example.com/copyright' url='http://www.example.com/copyright'>
+        [Enter Copyright Description here.]
+      </copyright>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='2'>
+        <property name='org.eclipse.equinox.p2.name' value='AB Front-End to Reference OntoUML'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='OntoUML' range='1.1.0'/>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' range='1.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.5.1'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.transformation.abfront2ref' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,OntoUML;bundle-version=&quot;1.1.0&quot;,br.ufes.inf.nemo.ontouml.refontouml;bundle-version=&quot;1.0.0&quot;,org.eclipse.core.resources;bundle-version=&quot;3.5.1&quot;&#xA;Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.abfront2ref.Activator&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.abfront2ref;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: AB Front-End to Reference OntoUML&#xA;Bundle-Vendor: NEMO
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.refontouml.interpreter' version='1.3.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.refontouml.interpreter' range='[0.0.0,1.3.0.201010061407)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Reference Metamodel OCL Interpreter'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='8'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.interpreter' version='1.3.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml.interpreter' version='1.3.0.201010061407'/>
+        <provided namespace='java.package' name='org.eclipse.emf.ocl.examples.interpreter' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.emf.ocl.examples.interpreter.actions' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.emf.ocl.examples.interpreter.console' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.emf.ocl.examples.interpreter.console.text' version='0.0.0'/>
+        <provided namespace='java.package' name='org.eclipse.emf.ocl.examples.interpreter.internal.l10n' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='7'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='[3.2.0,4.0.0)'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.console' range='[3.1.0,4.0.0)'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface.text' range='[3.2.0,4.0.0)'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='[1.1.0,2.0.0)'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.uml' range='[2.0.0,3.0.0)' optional='true'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.edit' range='[2.3.0,3.0.0)'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='[2.3.0,3.0.0)'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.refontouml.interpreter' version='1.3.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-Name: OntoUML Reference Metamodel OCL Interpreter&#xA;Bundle-ClassPath: .&#xA;Bundle-Version: 1.3.0.201010061407&#xA;Eclipse-LazyStart: true&#xA;Bundle-Activator: org.eclipse.emf.ocl.examples.interpreter.OCLExamplePlugin&#xA;Bundle-Vendor: NEMO&#xA;Require-Bundle: org.eclipse.core.runtime;bundle-version=&quot;[3.2.0,4.0.0)&quot;,org.eclipse.ui.console;bundle-version=&quot;[3.1.0,4.0.0)&quot;,org.eclipse.jface.text;bundle-version=&quot;[3.2.0,4.0.0)&quot;,org.eclipse.ocl.ecore;bundle-version=&quot;[1.1.0,2.0.0)&quot;,org.eclipse.ocl.uml;bundle-version=&quot;[2.0.0,3.0.0)&quot;;resolution:=optional,org.eclipse.emf.ecore.edit;bundle-version=&quot;[2.3.0,3.0.0)&quot;,org.eclipse.emf.edit.ui;bundle-version=&quot;[2.3.0,3.0.0)&quot;&#xA;Export-Package: org.eclipse.emf.ocl.examples.interpreter,org.eclipse.emf.ocl.examples.interpreter.actions,org.eclipse.emf.ocl.examples.interpreter.console,org.eclipse.emf.ocl.examples.interpreter.console.text,org.eclipse.emf.ocl.examples.interpreter.internal.l10n;x-internal:=true&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml.interpreter;singleton:=true&#xA;Manifest-Version: 1.0&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='2'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML to OWL'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml' range='1.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='3.5.1'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='1.3.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.transformation.ontouml2owl' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,br.ufes.inf.nemo.ontouml.refontouml;bundle-version=&quot;1.0.0&quot;,org.eclipse.core.resources;bundle-version=&quot;3.5.1&quot;,org.eclipse.ocl.ecore;bundle-version=&quot;1.3.0&quot;&#xA;Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.plugin.Activator&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.ontouml2owl;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: OntoUML to OWL&#xA;Bundle-Vendor: NEMO
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.refontouml.editor' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.refontouml.editor' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='3'>
+        <property name='org.eclipse.equinox.p2.name' value='OntoUML Reference Metamodel Editor'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+        <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      </properties>
+      <provides size='4'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.refontouml.editor' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml.editor' version='1.0.0.201010061407'/>
+        <provided namespace='java.package' name='RefOntoUML.presentation' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='5'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.refontouml.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.refontouml.editor' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Bundle-Name: OntoUML Reference Metamodel Editor&#xA;Bundle-Activator: RefOntoUML.presentation.RefOntoUMLEditorPlugin$Implementation&#xA;Manifest-Version: 1.0&#xA;Bundle-Vendor: NEMO&#xA;Bundle-ClassPath: .&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml.editor;singleton:=true&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-Localization: plugin&#xA;Export-Package: RefOntoUML.presentation&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources;visibility:=reexport,br.ufes.inf.nemo.ontouml.refontouml.edit;visibility:=reexport,org.eclipse.emf.edit.ui;visibility:=reexport,org.eclipse.ui.ide;visibility:=reexport
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='br.ufes.inf.nemo.ontouml.rcfrontend' version='1.0.0.201010061407'>
+      <update id='br.ufes.inf.nemo.ontouml.rcfrontend' range='[0.0.0,1.0.0.201010061407)' severity='0'/>
+      <properties size='2'>
+        <property name='org.eclipse.equinox.p2.name' value='RC Front-End Profile'/>
+        <property name='org.eclipse.equinox.p2.provider' value='NEMO'/>
+      </properties>
+      <provides size='3'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='br.ufes.inf.nemo.ontouml.rcfrontend' version='1.0.0.201010061407'/>
+        <provided namespace='osgi.bundle' name='br.ufes.inf.nemo.ontouml.rcfrontend' version='1.0.0.201010061407'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      </provides>
+      <requires size='2'>
+        <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='br.ufes.inf.nemo.ontouml.rcfrontend' version='1.0.0.201010061407'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: JavaSE-1.6&#xA;Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime&#xA;Bundle-Activator: br.ufes.inf.nemo.ontouml.rcfrontend.Activator&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.201010061407&#xA;Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.rcfrontend;singleton:=true&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: RC Front-End Profile&#xA;Bundle-Vendor: NEMO
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+  </units>
+</repository>

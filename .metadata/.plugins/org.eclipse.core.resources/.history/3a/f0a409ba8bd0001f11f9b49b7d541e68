@@ -1,0 +1,318 @@
+package br.ufes.inf.nemo.ontouml.transformation.ontouml2owl;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MemberOfRelation;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.OntoUMLModel;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.tree.ChildPartition;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.tree.Node;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.tree.TreeProcessor;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose.DomainVerbose;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose.FileManager;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose.MainVerbose;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose.MetaVerbose;
+
+import RefOntoUML.Class;
+import RefOntoUML.Classifier;
+import RefOntoUML.Collective;
+import RefOntoUML.Generalization;
+import RefOntoUML.GeneralizationSet;
+import RefOntoUML.Meronymic;
+import RefOntoUML.Package;
+import RefOntoUML.Kind;
+import RefOntoUML.Role;
+import RefOntoUML.SubKind;
+import RefOntoUML.Category;
+import RefOntoUML.Relator;
+import RefOntoUML.Association;
+import RefOntoUML.SubstanceSortal;
+import RefOntoUML.componentOf;
+import RefOntoUML.memberOf;
+import RefOntoUML.subCollectionOf;
+import RefOntoUML.subQuantityOf;
+
+public class Transformation
+{
+	FileManager myfile;
+	TreeProcessor mytree;
+	OntoUMLModel mymodel;
+	List<RelatorStructure> relatorStructures;
+	
+	public Transformation (String modelName, String outName)
+	{
+		myfile = new FileManager(outName);
+		MainVerbose.setModelId(modelName);
+	}
+	
+	public void Transform (EObject o)
+	{		
+		if (!(o instanceof Package))
+			return;
+		Package p = (Package) o;
+		
+		mytree = new TreeProcessor(p);
+		mymodel = new OntoUMLModel(p);
+		processRelators();
+		
+		myfile.write(MainVerbose.initialVerbose());
+		myfile.write(MetaVerbose.allMetaVerbose());
+
+		// All Kinds
+		dealAllKinds();
+		
+		// All Collectives
+		dealAllCollectives();
+		
+		// For each Kind
+		for (Kind k : mymodel.kinds)		
+			dealKind(k);
+		
+		// For each SubKind
+		for (SubKind sk : mymodel.subKinds)
+			dealSubKind(sk);
+		
+		// For each Category
+		for (Category cat : mymodel.categories)
+			dealCategory(cat);
+		
+		// For each Relator
+		for (RelatorStructure rs : relatorStructures)
+			dealRelator(rs);
+		
+		// For each Collective
+		for (Collective col : mymodel.collectives)
+			dealCollective(col);
+		
+		// For each Role
+		for (Role role : mymodel.roles)
+			dealRole(role);
+		
+		// For each Meronymic
+		for (Meronymic m : mymodel.meronymics)
+			dealMeronymic(m);
+						
+		myfile.done();
+	}
+	
+	private void processRelators ()
+	{
+		relatorStructures = new LinkedList<RelatorStructure>();
+		
+		for (Relator r : mymodel.relators)
+		{
+			Node n = mytree.getNode(r);
+			RelatorStructure rs = new RelatorStructure(n);
+			relatorStructures.add(rs);
+		}
+	}
+	
+	private void dealAllKinds ()
+	{
+		List<String> names = new LinkedList<String>();
+		
+		for (Kind k : mymodel.kinds)
+			names.add(k.getName());
+		
+		myfile.write(DomainVerbose.allKinds(names));
+	}
+	
+	private void dealAllCollectives ()
+	{
+		List<String> names = new LinkedList<String>();
+		
+		for (Collective c : mymodel.collectives)
+			names.add(c.getName());
+		
+		myfile.write(DomainVerbose.allCollectives(names));
+	}
+	
+	private List<String> getDisjointClasses (Class c)
+	{
+		List<String> disjointClasses = new LinkedList<String>();
+		
+		EList<Generalization> mygeneralizations = c.getGeneralization();
+		
+		for (Generalization g : mygeneralizations)
+		{
+			EList<GeneralizationSet> gsets = g.getGeneralizationSet();
+			
+			// Partition found
+			if (gsets.size() > 0)
+			{
+				GeneralizationSet gs = gsets.get(0);
+				// TODO: Check if the gset is Disjoint
+				EList<Generalization> brotherGeneralizations = gs.getGeneralization();
+				
+				//List<String> brothers = new LinkedList<String>();
+				
+				for (Generalization bg : brotherGeneralizations)
+				{
+					if (bg != g)
+						disjointClasses.add(bg.getSpecific().getName());
+				}
+			}
+		}
+		
+		return disjointClasses;
+	}
+	
+	private List<List<String>> getChildrenByCompletePartition (Node n, boolean forKinds)
+	{
+		List<List<String>> childrenByPartition = new LinkedList<List<String>>();
+		
+		List<ChildPartition> partitions = n.getChildPartitions();
+		for (ChildPartition cp : partitions)
+		{
+			// Only the Complete Generalization Sets
+			if (cp.getGS().isIsCovering())
+			{
+				List<String> names = new LinkedList<String>();
+				
+				boolean allSubKinds = true;
+				
+				// Children in the Generalization Set
+				for (Node child : cp.getChildren())
+				{
+					Class childClass = child.getRelatedClass();
+					if (forKinds && !(childClass instanceof SubKind))
+						
+					
+					names.add(childClass.getName());
+				}
+				
+				childrenByPartition.add(names);
+			}
+		}
+		
+		return childrenByPartition;
+	}
+	
+	private void dealCategory (Category cat)
+	{
+		Node kn = mytree.getNode(cat);
+		List<List<String>> childrenByPartition;
+				
+		// Children Grouped by (Complete) Generalization Sets
+		childrenByPartition = getChildrenByCompletePartition(kn);
+				
+		myfile.write(DomainVerbose.category(cat.getName(), childrenByPartition));
+	}
+	
+	private void dealKind (Kind k)
+	{
+		Node kn = mytree.getNode(k);
+		List<List<String>> childrenByPartition;
+		List<String> disjointClasses;
+		
+		// Children Grouped by (Complete) Generalization Sets
+		childrenByPartition = getChildrenByCompletePartition(kn);
+		
+		// As a Child in a Generalzations Sets
+		disjointClasses = getDisjointClasses(k);
+		
+		myfile.write(DomainVerbose.kind(k.getName(), childrenByPartition, disjointClasses));
+	}
+	
+	private void dealCollective (Collective col)
+	{
+		Node n = mytree.getNode(col);
+		
+		List<MemberOfRelation> memberOfRelations = new LinkedList<MemberOfRelation>();
+		
+		for (Association a : n.getOwnedAssociations())
+		{
+			if (a instanceof memberOf)
+			{
+				memberOf mo = (memberOf) a;
+				
+				MemberOfRelation aux = new MemberOfRelation();
+				aux.resourceName = "memberOf" + mo.part().getName() + mo.whole().getName();
+				aux.partName = mo.part().getName();
+				
+				memberOfRelations.add(aux);
+			}
+		}
+		
+		myfile.write(DomainVerbose.collective(col.getName(), memberOfRelations));
+	}
+	
+	private void dealSubKind (SubKind sk)
+	{	
+		List<String> disjointClasses;
+		disjointClasses = getDisjointClasses(sk);
+				
+		myfile.write(DomainVerbose.subKind(sk.getName(), sk.parents().get(0).getName(), disjointClasses));
+	}
+	
+	private void dealRole (Role role)
+	{
+		RelatorStructure relatorStructure = null;
+		boolean found = false;
+		
+		for (RelatorStructure rs : relatorStructures)
+		{
+			if (found)
+				break;
+			
+			for (Classifier anotherRole : rs.mediatedRoles)
+			{
+				if (role == anotherRole)
+				{
+					relatorStructure = rs;
+					found = true;
+					break;
+				}
+			}
+		}
+		
+		// Connected Roles
+		List<String> connectedRoles = new LinkedList<String>();
+		for (Classifier anotherRole : relatorStructure.mediatedRoles)
+		{
+			if (anotherRole != role)
+				connectedRoles.add(anotherRole.getName());
+		}
+		
+		// Substance Sortal
+		String substanceSortalName = "";
+		for (Classifier parent : role.parents())
+		{
+			if (parent instanceof SubstanceSortal)
+			{
+				substanceSortalName = parent.getName();
+				break;
+			}
+		}
+		
+		myfile.write
+		(
+			DomainVerbose.role(role.getName(), relatorStructure.relator.getName(), substanceSortalName, connectedRoles)
+		);
+	}
+	
+	private void dealRelator (RelatorStructure rs)
+	{		
+		myfile.write(DomainVerbose.relator(rs.relator.getName(), rs.getMediatedEnds()));
+	}
+	
+	private void dealMeronymic (Meronymic m)
+	{
+		String type = "";
+		if (m instanceof componentOf)
+			return;
+		else if (m instanceof subCollectionOf)
+			return;		
+		else if (m instanceof subQuantityOf)
+			return;			
+		else if (m instanceof memberOf)
+			type = "memberOf";
+		else
+			return;
+				
+		myfile.write(DomainVerbose.meronymic(type, m.part().getName(), m.whole().getName(), m.isIsShareable(), m.isIsInseparable()));
+	}
+}

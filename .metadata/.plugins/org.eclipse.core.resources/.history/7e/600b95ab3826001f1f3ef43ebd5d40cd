@@ -1,0 +1,499 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML.tests;
+
+import CleanUML.CleanUMLFactory;
+import CleanUML.Property;
+
+import junit.textui.TestRunner;
+
+/**
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b>Property</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are tested:
+ * <ul>
+ *   <li>{@link CleanUML.Property#getClass_() <em>Class</em>}</li>
+ *   <li>{@link CleanUML.Property#getDefault() <em>Default</em>}</li>
+ *   <li>{@link CleanUML.Property#isIsComposite() <em>Is Composite</em>}</li>
+ *   <li>{@link CleanUML.Property#getOpposite() <em>Opposite</em>}</li>
+ * </ul>
+ * </p>
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ *   <li>{@link CleanUML.Property#multiplicity_of_composite(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Multiplicity of composite</em>}</li>
+ *   <li>{@link CleanUML.Property#subsetting_context_conforms(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetting context conforms</em>}</li>
+ *   <li>{@link CleanUML.Property#redefined_property_inherited(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Redefined property inherited</em>}</li>
+ *   <li>{@link CleanUML.Property#subsetting_rules(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetting rules</em>}</li>
+ *   <li>{@link CleanUML.Property#navigable_readonly(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Navigable readonly</em>}</li>
+ *   <li>{@link CleanUML.Property#derived_union_is_derived(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Derived union is derived</em>}</li>
+ *   <li>{@link CleanUML.Property#derived_union_is_read_only(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Derived union is read only</em>}</li>
+ *   <li>{@link CleanUML.Property#subsetted_property_names(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetted property names</em>}</li>
+ *   <li>{@link CleanUML.Property#deployment_target(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Deployment target</em>}</li>
+ *   <li>{@link CleanUML.Property#binding_to_attribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Binding to attribute</em>}</li>
+ *   <li>{@link CleanUML.Property#setIsNavigable(boolean) <em>Set Is Navigable</em>}</li>
+ *   <li>{@link CleanUML.Property#getOtherEnd() <em>Get Other End</em>}</li>
+ *   <li>{@link CleanUML.Property#setBooleanDefaultValue(boolean) <em>Set Boolean Default Value</em>}</li>
+ *   <li>{@link CleanUML.Property#setIntegerDefaultValue(int) <em>Set Integer Default Value</em>}</li>
+ *   <li>{@link CleanUML.Property#setStringDefaultValue(java.lang.String) <em>Set String Default Value</em>}</li>
+ *   <li>{@link CleanUML.Property#setUnlimitedNaturalDefaultValue(int) <em>Set Unlimited Natural Default Value</em>}</li>
+ *   <li>{@link CleanUML.Property#setNullDefaultValue() <em>Set Null Default Value</em>}</li>
+ *   <li>{@link CleanUML.Property#isAttribute(CleanUML.Property) <em>Is Attribute</em>}</li>
+ *   <li>{@link CleanUML.Property#isComposite() <em>Is Composite</em>}</li>
+ *   <li>{@link CleanUML.Property#subsettingContext() <em>Subsetting Context</em>}</li>
+ *   <li>{@link CleanUML.Property#isNavigable() <em>Is Navigable</em>}</li>
+ * </ul>
+ * </p>
+ * @generated
+ */
+public class PropertyTest extends StructuralFeatureTest {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static void main(String[] args) {
+		TestRunner.run(PropertyTest.class);
+	}
+
+	/**
+	 * Constructs a new Property test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PropertyTest(String name) {
+		super(name);
+	}
+
+	/**
+	 * Returns the fixture for this Property test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Property getFixture() {
+		return (Property)fixture;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#setUp()
+	 * @generated
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		setFixture(CleanUMLFactory.eINSTANCE.createProperty());
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see junit.framework.TestCase#tearDown()
+	 * @generated
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		setFixture(null);
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#getClass_() <em>Class</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#getClass_()
+	 * @generated
+	 */
+	public void testGetClass_() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#getDefault() <em>Default</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#getDefault()
+	 * @generated
+	 */
+	public void testGetDefault() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setDefault(java.lang.String) <em>Default</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setDefault(java.lang.String)
+	 * @generated
+	 */
+	public void testSetDefault() {
+		// TODO: implement this feature setter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#unsetDefault() <em>unsetDefault()</em>}' method.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#unsetDefault()
+	 * @generated
+	 */
+	public void testUnsetDefault() {
+		// TODO: implement this test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#isSetDefault() <em>isSetDefault()</em>}' method.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#isSetDefault()
+	 * @generated
+	 */
+	public void testIsSetDefault() {
+		// TODO: implement this test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#isIsComposite() <em>Is Composite</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#isIsComposite()
+	 * @generated
+	 */
+	public void testIsIsComposite() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setIsComposite(boolean) <em>Is Composite</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setIsComposite(boolean)
+	 * @generated
+	 */
+	public void testSetIsComposite() {
+		// TODO: implement this feature setter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#getOpposite() <em>Opposite</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#getOpposite()
+	 * @generated
+	 */
+	public void testGetOpposite() {
+		// TODO: implement this feature getter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setOpposite(CleanUML.Property) <em>Opposite</em>}' feature setter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setOpposite(CleanUML.Property)
+	 * @generated
+	 */
+	public void testSetOpposite() {
+		// TODO: implement this feature setter test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#multiplicity_of_composite(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Multiplicity of composite</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#multiplicity_of_composite(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testMultiplicity_of_composite__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#subsetting_context_conforms(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetting context conforms</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#subsetting_context_conforms(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testSubsetting_context_conforms__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#redefined_property_inherited(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Redefined property inherited</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#redefined_property_inherited(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testRedefined_property_inherited__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#subsetting_rules(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetting rules</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#subsetting_rules(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testSubsetting_rules__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#navigable_readonly(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Navigable readonly</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#navigable_readonly(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testNavigable_readonly__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#derived_union_is_derived(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Derived union is derived</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#derived_union_is_derived(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testDerived_union_is_derived__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#derived_union_is_read_only(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Derived union is read only</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#derived_union_is_read_only(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testDerived_union_is_read_only__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#subsetted_property_names(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subsetted property names</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#subsetted_property_names(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testSubsetted_property_names__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#deployment_target(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Deployment target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#deployment_target(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testDeployment_target__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#binding_to_attribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Binding to attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#binding_to_attribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	public void testBinding_to_attribute__DiagnosticChain_Map() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setIsNavigable(boolean) <em>Set Is Navigable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setIsNavigable(boolean)
+	 * @generated
+	 */
+	public void testSetIsNavigable__boolean() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#getOtherEnd() <em>Get Other End</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#getOtherEnd()
+	 * @generated
+	 */
+	public void testGetOtherEnd() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setBooleanDefaultValue(boolean) <em>Set Boolean Default Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setBooleanDefaultValue(boolean)
+	 * @generated
+	 */
+	public void testSetBooleanDefaultValue__boolean() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setIntegerDefaultValue(int) <em>Set Integer Default Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setIntegerDefaultValue(int)
+	 * @generated
+	 */
+	public void testSetIntegerDefaultValue__int() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setStringDefaultValue(java.lang.String) <em>Set String Default Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setStringDefaultValue(java.lang.String)
+	 * @generated
+	 */
+	public void testSetStringDefaultValue__String() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setUnlimitedNaturalDefaultValue(int) <em>Set Unlimited Natural Default Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setUnlimitedNaturalDefaultValue(int)
+	 * @generated
+	 */
+	public void testSetUnlimitedNaturalDefaultValue__int() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#setNullDefaultValue() <em>Set Null Default Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#setNullDefaultValue()
+	 * @generated
+	 */
+	public void testSetNullDefaultValue() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#isAttribute(CleanUML.Property) <em>Is Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#isAttribute(CleanUML.Property)
+	 * @generated
+	 */
+	public void testIsAttribute__Property() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#isComposite() <em>Is Composite</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#isComposite()
+	 * @generated
+	 */
+	public void testIsComposite() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#subsettingContext() <em>Subsetting Context</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#subsettingContext()
+	 * @generated
+	 */
+	public void testSubsettingContext() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+	/**
+	 * Tests the '{@link CleanUML.Property#isNavigable() <em>Is Navigable</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see CleanUML.Property#isNavigable()
+	 * @generated
+	 */
+	public void testIsNavigable() {
+		// TODO: implement this operation test method
+		// Ensure that you remove @generated or mark it @generated NOT
+		fail();
+	}
+
+} //PropertyTest

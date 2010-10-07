@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_AQAdsC3wEd-5a6sUF9rWsA" name="Reverse2">
+  <elementImport xmi:id="_AQ5OgC3wEd-5a6sUF9rWsA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_AQ5OgS3wEd-5a6sUF9rWsA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_AQ5Ogi3wEd-5a6sUF9rWsA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_AQ5Ogy3wEd-5a6sUF9rWsA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_Bo-bwC3wEd-5a6sUF9rWsA" name="VisibilityKind">
+    <ownedComment xmi:id="_hNFFcC4hEd-td8THv-YD5A" annotatedElement="_Bo-bwC3wEd-5a6sUF9rWsA">
+      <ownedComment xmi:id="_McmYwC4kEd-td8THv-YD5A" annotatedElement="_hNFFcC4hEd-td8THv-YD5A">
+        <body>This is a comment about a comment. Pretty pathologic.</body>
+      </ownedComment>
+      <body>This enumeration is very cool</body>
+    </ownedComment>
+    <ownedAttribute xmi:id="_NbZg8C3wEd-5a6sUF9rWsA" name="size" aggregation="composite">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedLiteral xmi:id="_C3rDgC3wEd-5a6sUF9rWsA" name="public"/>
+    <ownedLiteral xmi:id="_HOB_wC3wEd-5a6sUF9rWsA" name="private"/>
+    <ownedLiteral xmi:id="_IU_n0C3wEd-5a6sUF9rWsA" name="protected"/>
+    <ownedLiteral xmi:id="_MUI98C3wEd-5a6sUF9rWsA" name="package"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_zTzS4C4kEd-td8THv-YD5A" name="Animal">
+    <ownedComment xmi:id="_7LGmUC4kEd-td8THv-YD5A" annotatedElement="_0CXpEC4kEd-td8THv-YD5A _4tG54C4kEd-td8THv-YD5A">
+      <body>This is a comment about dogs and cats</body>
+    </ownedComment>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0CXpEC4kEd-td8THv-YD5A" name="Dog" clientDependency="_wDGvcC4qEd-td8THv-YD5A">
+    <generalization xmi:id="_2dirAC4kEd-td8THv-YD5A" general="_zTzS4C4kEd-td8THv-YD5A" generalizationSet="_52mRgC4kEd-td8THv-YD5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4tG54C4kEd-td8THv-YD5A" name="Cat">
+    <generalization xmi:id="_53MucC4kEd-td8THv-YD5A" general="_zTzS4C4kEd-td8THv-YD5A" generalizationSet="_52mRgC4kEd-td8THv-YD5A"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:GeneralizationSet" xmi:id="_52mRgC4kEd-td8THv-YD5A" generalization="_2dirAC4kEd-td8THv-YD5A _53MucC4kEd-td8THv-YD5A">
+    <ownedComment xmi:id="_A1NpcC4lEd-td8THv-YD5A" annotatedElement="_52mRgC4kEd-td8THv-YD5A">
+      <body>Wow I can comment on Generalization Sets!</body>
+    </ownedComment>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_vMWtoC4qEd-td8THv-YD5A" name="Person"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_wDGvcC4qEd-td8THv-YD5A" name="stupid" supplier="_vMWtoC4qEd-td8THv-YD5A" client="_0CXpEC4kEd-td8THv-YD5A"/>
+</uml:Package>

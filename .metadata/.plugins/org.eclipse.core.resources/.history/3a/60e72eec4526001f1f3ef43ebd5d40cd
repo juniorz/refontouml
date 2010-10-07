@@ -1,0 +1,21 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>sub Collection Of</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getsubCollectionOf()
+ * @model
+ * @generated
+ */
+public interface subCollectionOf extends Meronymic {
+} // subCollectionOf

@@ -1,0 +1,1450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="CleanUML"
+    nsURI="CleanUML" nsPrefix="CleanUML">
+  <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="UnlimitedNatural" instanceClassName="int"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" ordered="false" eType="#//String"
+        unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="annotatedElement" ordered="false"
+        upperBound="-1" eType="#//Element"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
+    <eOperations name="not_own_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="has_owner" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="destroy" ordered="false" lowerBound="1"/>
+    <eOperations name="hasKeyword" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="keyword" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getKeywords" ordered="false" upperBound="-1" eType="#//String"/>
+    <eOperations name="addKeyword" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="keyword" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="removeKeyword" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="keyword" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getNearestPackage" ordered="false" eType="#//Package"/>
+    <eOperations name="getModel" ordered="false" eType="#//Model"/>
+    <eOperations name="getApplicableStereotype" ordered="false">
+      <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getStereotypeApplications" ordered="false" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eOperations name="getRequiredStereotype" ordered="false">
+      <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getAppliedStereotype" ordered="false">
+      <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="createEAnnotation" ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAnnotation">
+      <eParameters name="source" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getRelationships" ordered="false" upperBound="-1" eType="#//Relationship"/>
+    <eOperations name="getRelationships" ordered="false" upperBound="-1" eType="#//Relationship">
+      <eParameters name="eClass" ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="getSourceDirectedRelationships" ordered="false" upperBound="-1"
+        eType="#//DirectedRelationship"/>
+    <eOperations name="getSourceDirectedRelationships" ordered="false" upperBound="-1"
+        eType="#//DirectedRelationship">
+      <eParameters name="eClass" ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="getTargetDirectedRelationships" ordered="false" upperBound="-1"
+        eType="#//DirectedRelationship"/>
+    <eOperations name="getTargetDirectedRelationships" ordered="false" upperBound="-1"
+        eType="#//DirectedRelationship">
+      <eParameters name="eClass" ordered="false" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eOperations>
+    <eOperations name="allOwnedElements" ordered="false" upperBound="-1" eType="#//Element"/>
+    <eOperations name="mustBeOwned" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedElement" ordered="false"
+        upperBound="-1" eType="#//Element" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//Element/owner">
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="Set {}"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owner" ordered="false"
+        eType="#//Element" changeable="false" volatile="true" transient="true" derived="true"
+        eOpposite="#//Element/ownedElement">
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="null"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedComment" ordered="false"
+        upperBound="-1" eType="#//Comment" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Package" eSuperTypes="#//Namespace #//PackageableElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="mustBeOwned" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//Element/mustBeOwned"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="elements_public_or_private" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="createOwnedClass" ordered="false" lowerBound="1" eType="#//Class">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+      <eParameters name="isAbstract" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="createOwnedEnumeration" ordered="false" lowerBound="1" eType="#//Enumeration">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="createOwnedPrimitiveType" ordered="false" lowerBound="1" eType="#//PrimitiveType">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="createOwnedInterface" ordered="false" lowerBound="1">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getAppliedProfile" ordered="false">
+      <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="getAppliedProfile" ordered="false">
+      <eParameters name="qualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+      <eParameters name="recurse" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="isModelLibrary" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="visibleMembers" ordered="false" upperBound="-1" eType="#//PackageableElement"/>
+    <eOperations name="makesVisible" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="el" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedType" ordered="false"
+        upperBound="-1" eType="#//Type" volatile="true" transient="true" derived="true"
+        eOpposite="#//Type/package">
+      <eAnnotations source="subsets" references="#//Package/packagedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packageMerge" ordered="false"
+        upperBound="-1" eType="#//PackageMerge" containment="true" eOpposite="#//PackageMerge/receivingPackage">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packagedElement" ordered="false"
+        upperBound="-1" eType="#//PackageableElement" containment="true">
+      <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPackage" ordered="false"
+        upperBound="-1" eType="#//Package" volatile="true" transient="true" derived="true"
+        eOpposite="#//Package/nestingPackage">
+      <eAnnotations source="subsets" references="#//Package/packagedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestingPackage" ordered="false"
+        eType="#//Package" volatile="true" transient="true" derived="true" eOpposite="#//Package/nestedPackage">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageableElement" abstract="true"
+      eSuperTypes="#//NamedElement">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="visibility" ordered="false" eType="#//VisibilityKind"
+          defaultValueLiteral="public">
+        <eAnnotations source="redefines" references="#//NamedElement/visibility"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//Element">
+    <eOperations name="has_no_qualified_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="has_qualified_name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="visibility_needs_ownership" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="createDependency" ordered="false" lowerBound="1" eType="#//Dependency">
+      <eParameters name="supplier" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+    </eOperations>
+    <eOperations name="getLabel" ordered="false" eType="#//String"/>
+    <eOperations name="getLabel" ordered="false" eType="#//String">
+      <eParameters name="localize" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="createUsage" ordered="false" lowerBound="1">
+      <eParameters name="supplier" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+    </eOperations>
+    <eOperations name="getQualifiedName" ordered="false" lowerBound="1" eType="#//String"/>
+    <eOperations name="allNamespaces" upperBound="-1" eType="#//Namespace"/>
+    <eOperations name="isDistinguishableFrom" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="n" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+      <eParameters name="ns" ordered="false" lowerBound="1" eType="#//Namespace"/>
+    </eOperations>
+    <eOperations name="separator" ordered="false" lowerBound="1" eType="#//String"/>
+    <eOperations name="allOwningPackages" ordered="false" upperBound="-1" eType="#//Package"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" eType="#//String"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        eType="#//VisibilityKind" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"
+        eType="#//String" changeable="false" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="null"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clientDependency" ordered="false"
+        upperBound="-1" eType="#//Dependency" eOpposite="#//Dependency/client"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="namespace" ordered="false"
+        eType="#//Namespace" changeable="false" volatile="true" transient="true" derived="true"
+        eOpposite="#//Namespace/ownedMember">
+      <eAnnotations source="subsets" references="#//Element/owner"/>
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="null"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nameExpression" ordered="false"
+        eType="#//StringExpression" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="VisibilityKind">
+    <eLiterals name="public"/>
+    <eLiterals name="private" value="1"/>
+    <eLiterals name="protected" value="2"/>
+    <eLiterals name="package" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Dependency" eSuperTypes="#//PackageableElement #//DirectedRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="supplier" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//NamedElement">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="client" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//NamedElement" eOpposite="#//NamedElement/clientDependency">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/source"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DirectedRelationship" abstract="true"
+      eSuperTypes="#//Relationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Element" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="if self.oclIsKindOf(Generalization) then&#xD;&#xA;&#x9;Set{self.oclAsType(Generalization).specific}&#xD;&#xA;else&#xD;&#xA;&#x9;null&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Element" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="if self.oclIsKindOf(Generalization) then&#xD;&#xA;&#x9;Set{self.oclAsType(Generalization).general}&#xD;&#xA;else&#xD;&#xA;&#x9;null&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Relationship" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="relatedElement" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Element" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="if self.oclIsKindOf(DirectedRelationship) then&#xD;&#xA;&#x9;self.oclAsType(DirectedRelationship).source->union(self.oclAsType(DirectedRelationship).target)&#xD;&#xA;else&#xD;&#xA;&#x9;null&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Namespace" abstract="true" eSuperTypes="#//NamedElement">
+    <eOperations name="members_distinguishable" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="createElementImport" ordered="false" lowerBound="1" eType="#//ElementImport">
+      <eParameters name="element" ordered="false" lowerBound="1" eType="#//PackageableElement"/>
+      <eParameters name="visibility" ordered="false" lowerBound="1" eType="#//VisibilityKind"/>
+    </eOperations>
+    <eOperations name="createPackageImport" ordered="false" lowerBound="1" eType="#//PackageImport">
+      <eParameters name="package_" ordered="false" lowerBound="1" eType="#//Package"/>
+      <eParameters name="visibility" ordered="false" lowerBound="1" eType="#//VisibilityKind"/>
+    </eOperations>
+    <eOperations name="getImportedElements" ordered="false" upperBound="-1" eType="#//PackageableElement"/>
+    <eOperations name="getImportedPackages" ordered="false" upperBound="-1" eType="#//Package"/>
+    <eOperations name="getImportedMembers" ordered="false" upperBound="-1" eType="#//PackageableElement"/>
+    <eOperations name="getNamesOfMember" ordered="false" upperBound="-1" eType="#//String">
+      <eParameters name="element" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+    </eOperations>
+    <eOperations name="membersAreDistinguishable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="importMembers" ordered="false" upperBound="-1" eType="#//PackageableElement">
+      <eParameters name="imps" ordered="false" upperBound="-1" eType="#//PackageableElement"/>
+    </eOperations>
+    <eOperations name="excludeCollisions" ordered="false" upperBound="-1" eType="#//PackageableElement">
+      <eParameters name="imps" ordered="false" upperBound="-1" eType="#//PackageableElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elementImport" ordered="false"
+        upperBound="-1" eType="#//ElementImport" containment="true" eOpposite="#//ElementImport/importingNamespace">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="packageImport" ordered="false"
+        upperBound="-1" eType="#//PackageImport" containment="true" eOpposite="#//PackageImport/importingNamespace">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedRule" ordered="false"
+        upperBound="-1" eType="#//Constraintx" containment="true" eOpposite="#//Constraintx/context">
+      <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="member" ordered="false"
+        upperBound="-1" eType="#//NamedElement" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedMember" ordered="false"
+        upperBound="-1" eType="#//PackageableElement" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="subsets" references="#//Namespace/member"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedMember" ordered="false"
+        upperBound="-1" eType="#//NamedElement" changeable="false" volatile="true"
+        transient="true" derived="true" eOpposite="#//NamedElement/namespace">
+      <eAnnotations source="subsets" references="#//Namespace/member #//Element/ownedElement"/>
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementImport" eSuperTypes="#//DirectedRelationship">
+    <eOperations name="visibility_public_or_private" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="imported_element_is_public" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getName" ordered="false" lowerBound="1" eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        lowerBound="1" eType="#//VisibilityKind" defaultValueLiteral="public"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" ordered="false"
+        eType="#//String" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedElement" ordered="false"
+        lowerBound="1" eType="#//PackageableElement">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingNamespace" ordered="false"
+        lowerBound="1" eType="#//Namespace" eOpposite="#//Namespace/elementImport">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/source #//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageImport" eSuperTypes="#//DirectedRelationship">
+    <eOperations name="public_or_private" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" ordered="false"
+        lowerBound="1" eType="#//VisibilityKind" defaultValueLiteral="public"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importedPackage" ordered="false"
+        lowerBound="1" eType="#//Package">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importingNamespace" ordered="false"
+        lowerBound="1" eType="#//Namespace" eOpposite="#//Namespace/packageImport">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/source #//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraintx" eSuperTypes="#//PackageableElement">
+    <eOperations name="not_apply_to_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="value_specification_boolean" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="boolean_value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="no_side_effects" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="not_applied_to_self" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainedElement" upperBound="-1"
+        eType="#//Element"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" ordered="false"
+        lowerBound="1" eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+        eType="#//Namespace" eOpposite="#//Namespace/ownedRule">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true"
+      eSuperTypes="#//PackageableElement #//TypedElement">
+    <eAnnotations source="duplicates"/>
+    <eOperations name="isComputable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="integerValue" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="booleanValue" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="stringValue" ordered="false" lowerBound="1" eType="#//String"/>
+    <eOperations name="unlimitedValue" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eOperations name="isNull" ordered="false" lowerBound="1" eType="#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" eType="#//Type"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//PackageableElement">
+    <eOperations name="createAssociation" ordered="false" lowerBound="1" eType="#//Association">
+      <eParameters name="end1IsNavigable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+      <eParameters name="end1Aggregation" ordered="false" lowerBound="1" eType="#//AggregationKind"/>
+      <eParameters name="end1Name" ordered="false" lowerBound="1" eType="#//String"/>
+      <eParameters name="end1Lower" ordered="false" lowerBound="1" eType="#//Integer"/>
+      <eParameters name="end1Upper" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+      <eParameters name="end1Type" ordered="false" lowerBound="1" eType="#//Type"/>
+      <eParameters name="end2IsNavigable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+      <eParameters name="end2Aggregation" ordered="false" lowerBound="1" eType="#//AggregationKind"/>
+      <eParameters name="end2Name" ordered="false" lowerBound="1" eType="#//String"/>
+      <eParameters name="end2Lower" ordered="false" lowerBound="1" eType="#//Integer"/>
+      <eParameters name="end2Upper" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    </eOperations>
+    <eOperations name="getAssociations" ordered="false" upperBound="-1" eType="#//Association"/>
+    <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="other" ordered="false" lowerBound="1" eType="#//Type"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="package" ordered="false"
+        eType="#//Package" volatile="true" transient="true" derived="true" eOpposite="#//Package/ownedType">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Classifier #//Relationship">
+    <eOperations name="specialized_end_number" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="specialized_end_types" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="binary_associations" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="association_ends" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="isBinary" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="getEndTypes" upperBound="-1" eType="#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedEnd" upperBound="-1"
+        eType="#//Property" containment="true" eOpposite="#//Property/owningAssociation">
+      <eAnnotations source="subsets" references="#//Association/memberEnd #//Classifier/feature #//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="memberEnd" lowerBound="2"
+        upperBound="-1" eType="#//Property" eOpposite="#//Property/association">
+      <eAnnotations source="subsets" references="#//Namespace/member"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endType" lowerBound="1"
+        upperBound="-1" eType="#//Type" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="subsets" references="#//Relationship/relatedElement"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="self.memberEnd->collect(e | e.type)"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navigableOwnedEnd" ordered="false"
+        upperBound="-1" eType="#//Property">
+      <eAnnotations source="subsets" references="#//Association/ownedEnd"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Classifier" abstract="true" eSuperTypes="#//Namespace #//RedefinableElement #//Type">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="isTemplate" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="no_cycles_in_generalization" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="generalization_hierarchies" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="specialize_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="maps_to_generalization_set" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getAllAttributes" ordered="false" upperBound="-1" eType="#//Property"/>
+    <eOperations name="getGenerals" ordered="false" upperBound="-1" eType="#//Classifier"/>
+    <eOperations name="getInheritedMembers" ordered="false" upperBound="-1" eType="#//NamedElement"/>
+    <eOperations name="allFeatures" ordered="false" upperBound="-1" eType="#//Feature"/>
+    <eOperations name="parents" ordered="false" upperBound="-1" eType="#//Classifier"/>
+    <eOperations name="inheritableMembers" ordered="false" upperBound="-1" eType="#//NamedElement">
+      <eParameters name="c" ordered="false" lowerBound="1" eType="#//Classifier"/>
+    </eOperations>
+    <eOperations name="hasVisibilityOf" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="n" ordered="false" lowerBound="1" eType="#//NamedElement"/>
+    </eOperations>
+    <eOperations name="conformsTo" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eAnnotations source="redefines" references="#//Type/conformsTo"/>
+      <eParameters name="other" ordered="false" lowerBound="1" eType="#//Classifier"/>
+    </eOperations>
+    <eOperations name="inherit" ordered="false" upperBound="-1" eType="#//NamedElement">
+      <eParameters name="inhs" ordered="false" upperBound="-1" eType="#//NamedElement"/>
+    </eOperations>
+    <eOperations name="maySpecializeType" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="c" ordered="false" lowerBound="1" eType="#//Classifier"/>
+    </eOperations>
+    <eOperations name="allParents" ordered="false" upperBound="-1" eType="#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
+        upperBound="-1" eType="#//Generalization" containment="true" eOpposite="#//Generalization/specific">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powertypeExtent" ordered="false"
+        upperBound="-1" eType="#//GeneralizationSet" eOpposite="#//GeneralizationSet/powertype"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" ordered="false"
+        upperBound="-1" eType="#//Feature" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//Feature/featuringClassifier">
+      <eAnnotations source="subsets" references="#//Namespace/member"/>
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inheritedMember" ordered="false"
+        upperBound="-1" eType="#//NamedElement" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="subsets" references="#//Namespace/member"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedClassifier" ordered="false"
+        upperBound="-1" eType="#//Classifier">
+      <eAnnotations source="subsets" references="#//RedefinableElement/redefinedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
+        upperBound="-1" eType="#//Classifier" volatile="true" transient="true" derived="true">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="if self.generalization->notEmpty() then&#xD;&#xA;&#x9;Set&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;self.generalization->collect(x | x.general),&#xD;&#xA;&#x9;&#x9;self.generalization->collect(x | x.general.general)&#xD;&#xA;&#x9;}->flatten()&#xD;&#xA;else&#xD;&#xA;&#x9;Set {}&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" ordered="false"
+        upperBound="-1" eType="#//Property" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="subsets" references="#//Classifier/feature"/>
+      <eAnnotations source="union"/>
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="derive" value="if self.oclIsKindOf(Class) then&#xD;&#xA;&#x9;self.oclAsType(Class).ownedAttribute&#xD;&#xA;else&#xD;&#xA;&#x9;-- Tratar Associations&#xD;&#xA;&#x9;null&#xD;&#xA;endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RedefinableElement" abstract="true"
+      eSuperTypes="#//NamedElement">
+    <eOperations name="redefinition_context_valid" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="redefinition_consistent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="isConsistentWith" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="redefinee" ordered="false" lowerBound="1" eType="#//RedefinableElement"/>
+    </eOperations>
+    <eOperations name="isRedefinitionContextValid" ordered="false" lowerBound="1"
+        eType="#//Boolean">
+      <eParameters name="redefined" ordered="false" lowerBound="1" eType="#//RedefinableElement"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isLeaf" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedElement" ordered="false"
+        upperBound="-1" eType="#//RedefinableElement" changeable="false" volatile="true"
+        transient="true" derived="true">
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefinitionContext" ordered="false"
+        upperBound="-1" eType="#//Classifier" changeable="false" volatile="true" transient="true"
+        derived="true">
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Generalization" eSuperTypes="#//DirectedRelationship">
+    <eOperations name="generalization_same_classifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isSubstitutable" ordered="false"
+        eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="general" ordered="false"
+        lowerBound="1" eType="#//Classifier">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generalizationSet" ordered="false"
+        upperBound="-1" eType="#//GeneralizationSet" eOpposite="#//GeneralizationSet/generalization"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
+        lowerBound="1" eType="#//Classifier" eOpposite="#//Classifier/generalization">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/source #//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GeneralizationSet" eSuperTypes="#//PackageableElement">
+    <eOperations name="generalization_same_classifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="maps_to_generalization_set" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCovering" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDisjoint" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powertype" ordered="false"
+        eType="#//Classifier" eOpposite="#//Classifier/powertypeExtent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
+        upperBound="-1" eType="#//Generalization" eOpposite="#//Generalization/generalizationSet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//RedefinableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="featuringClassifier" ordered="false"
+        upperBound="-1" eType="#//Classifier" changeable="false" volatile="true" transient="true"
+        derived="true" eOpposite="#//Classifier/feature">
+      <eAnnotations source="union"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueExpression" eSuperTypes="#//ValueSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="language_body_size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="only_return_result_parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="one_return_result_parameter" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getResult" ordered="false"/>
+    <eOperations name="value" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="isIntegral" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="isPositive" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="isNonNegative" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="body" unique="false" upperBound="-1"
+        eType="#//String" unsettable="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="element"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" upperBound="-1"
+        eType="#//String" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultiplicityElement" abstract="true"
+      eSuperTypes="#//Element">
+    <eOperations name="lower_ge_0" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="upper_ge_lower" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="value_specification_no_side_effects" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="value_specification_constant" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="setLower" ordered="false" lowerBound="1">
+      <eParameters name="newLower" ordered="false" lowerBound="1" eType="#//Integer"/>
+    </eOperations>
+    <eOperations name="setUpper" ordered="false" lowerBound="1">
+      <eParameters name="newUpper" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    </eOperations>
+    <eOperations name="getLower" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="getUpper" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eOperations name="isMultivalued" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="includesCardinality" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="C" ordered="false" lowerBound="1" eType="#//Integer"/>
+    </eOperations>
+    <eOperations name="includesMultiplicity" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="M" ordered="false" lowerBound="1" eType="#//MultiplicityElement"/>
+    </eOperations>
+    <eOperations name="lowerBound" ordered="false" lowerBound="1" eType="#//Integer"/>
+    <eOperations name="upperBound" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    <eOperations name="compatibleWith" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="other" ordered="false" lowerBound="1" eType="#//MultiplicityElement"/>
+    </eOperations>
+    <eOperations name="is" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="lowerbound" ordered="false" lowerBound="1" eType="#//Integer"/>
+      <eParameters name="upperbound" ordered="false" lowerBound="1" eType="#//Integer"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isOrdered" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isUnique" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper" ordered="false"
+        eType="#//UnlimitedNatural" volatile="true" transient="true" defaultValueLiteral="1"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower" ordered="false"
+        eType="#//Integer" volatile="true" transient="true" defaultValueLiteral="1"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="upperValue" ordered="false"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lowerValue" ordered="false"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//StructuralFeature">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="isConsistentWith" ordered="false"
+          lowerBound="1" eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//RedefinableElement/isConsistentWith"/>
+        <eParameters name="redefinee" ordered="false" lowerBound="1" eType="#//RedefinableElement"/>
+      </contents>
+      <contents xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false" lowerBound="1"
+          eType="#//Boolean" defaultValueLiteral="false">
+        <eAnnotations source="redefines" references="#//StructuralFeature/isReadOnly"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="multiplicity_of_composite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="subsetting_context_conforms" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="redefined_property_inherited" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="subsetting_rules" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="navigable_readonly" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="derived_union_is_derived" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="derived_union_is_read_only" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="subsetted_property_names" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="deployment_target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="binding_to_attribute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getDefault" ordered="false" eType="#//String"/>
+    <eOperations name="isSetDefault" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="setDefault" ordered="false" lowerBound="1">
+      <eParameters name="newDefault" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="setIsComposite" ordered="false" lowerBound="1">
+      <eParameters name="newIsComposite" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="setOpposite" ordered="false" lowerBound="1">
+      <eParameters name="newOpposite" ordered="false" lowerBound="1" eType="#//Property"/>
+    </eOperations>
+    <eOperations name="unsetDefault" ordered="false" lowerBound="1"/>
+    <eOperations name="setIsNavigable" ordered="false" lowerBound="1">
+      <eParameters name="isNavigable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="getOtherEnd" ordered="false" eType="#//Property"/>
+    <eOperations name="setBooleanDefaultValue" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    </eOperations>
+    <eOperations name="setIntegerDefaultValue" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//Integer"/>
+    </eOperations>
+    <eOperations name="setStringDefaultValue" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//String"/>
+    </eOperations>
+    <eOperations name="setUnlimitedNaturalDefaultValue" ordered="false" lowerBound="1">
+      <eParameters name="value" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    </eOperations>
+    <eOperations name="setNullDefaultValue" ordered="false" lowerBound="1"/>
+    <eOperations name="isAttribute" ordered="false" lowerBound="1" eType="#//Boolean">
+      <eParameters name="p" ordered="false" lowerBound="1" eType="#//Property"/>
+    </eOperations>
+    <eOperations name="getOpposite" ordered="false" lowerBound="1" eType="#//Property"/>
+    <eOperations name="isComposite" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eOperations name="subsettingContext" ordered="false" upperBound="-1" eType="#//Type"/>
+    <eOperations name="isNavigable" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="class" ordered="false"
+        eType="#//Class" changeable="false" transient="true" eOpposite="#//Class/ownedAttribute">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace #//Feature/featuringClassifier"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="datatype" ordered="false"
+        eType="#//DataType" eOpposite="#//DataType/ownedAttribute">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace #//Feature/featuringClassifier"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerived" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isDerivedUnion" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" ordered="false"
+        eType="#//String" volatile="true" transient="true" unsettable="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="aggregation" ordered="false"
+        lowerBound="1" eType="#//AggregationKind" defaultValueLiteral="none"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isComposite" ordered="false"
+        lowerBound="1" eType="#//Boolean" volatile="true" transient="true" defaultValueLiteral="false"
+        derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="redefinedProperty" ordered="false"
+        upperBound="-1" eType="#//Property">
+      <eAnnotations source="subsets" references="#//RedefinableElement/redefinedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningAssociation" ordered="false"
+        eType="#//Association" eOpposite="#//Association/ownedEnd">
+      <eAnnotations source="subsets" references="#//Property/association #//NamedElement/namespace #//Feature/featuringClassifier"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultValue" ordered="false"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opposite" ordered="false"
+        eType="#//Property" volatile="true" transient="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsettedProperty" ordered="false"
+        upperBound="-1" eType="#//Property"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="association" ordered="false"
+        eType="#//Association" eOpposite="#//Association/memberEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" upperBound="-1"
+        eType="#//Property" containment="true" eOpposite="#//Property/associationEnd">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="associationEnd" ordered="false"
+        eType="#//Property" eOpposite="#//Property/qualifier">
+      <eAnnotations source="subsets" references="#//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Classifier">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="inherit" ordered="false" upperBound="-1"
+          eType="#//NamedElement">
+        <eAnnotations source="redefines" references="#//Classifier/inherit"/>
+        <eParameters name="inhs" ordered="false" upperBound="-1" eType="#//NamedElement"/>
+      </contents>
+      <contents xsi:type="ecore:EAttribute" name="isAbstract" ordered="false" lowerBound="1"
+          eType="#//Boolean" defaultValueLiteral="false">
+        <eAnnotations source="redefines" references="#//Classifier/isAbstract"/>
+      </contents>
+      <contents xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
+          eType="#//Property" containment="true" eOpposite="#//Property/class">
+        <eAnnotations source="redefines"/>
+        <eAnnotations source="subsets" references="#//Classifier/attribute #//Namespace/ownedMember"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="passive_class" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="createOwnedOperation" ordered="false" lowerBound="1">
+      <eParameters name="name" ordered="false" eType="#//String"/>
+      <eParameters name="parameterNames" ordered="false" upperBound="-1" eType="#//String"/>
+      <eParameters name="parameterTypes" ordered="false" upperBound="-1" eType="#//Type"/>
+      <eParameters name="returnType" ordered="false" eType="#//Type"/>
+    </eOperations>
+    <eOperations name="isMetaclass" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nestedClassifier" upperBound="-1"
+        eType="#//Classifier" containment="true">
+      <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superClass" ordered="false"
+        upperBound="-1" eType="#//Class" volatile="true" transient="true" derived="true">
+      <eAnnotations source="redefines" references="#//Classifier/general"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isActive" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
+        eType="#//Property" containment="true" eOpposite="#//Property/class"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" eSuperTypes="#//Package">
+    <eOperations name="isMetamodel" ordered="false" lowerBound="1" eType="#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewpoint" ordered="false"
+        eType="#//String" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Classifier">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="inherit" ordered="false" upperBound="-1"
+          eType="#//NamedElement">
+        <eAnnotations source="redefines" references="#//Classifier/inherit"/>
+        <eParameters name="inhs" ordered="false" upperBound="-1" eType="#//NamedElement"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="createOwnedOperation" ordered="false" lowerBound="1">
+      <eParameters name="name" ordered="false" eType="#//String"/>
+      <eParameters name="parameterNames" ordered="false" upperBound="-1" eType="#//String"/>
+      <eParameters name="parameterTypes" ordered="false" upperBound="-1" eType="#//Type"/>
+      <eParameters name="returnType" ordered="false" eType="#//Type"/>
+    </eOperations>
+    <eOperations name="createOwnedAttribute" ordered="false" lowerBound="1" eType="#//Property">
+      <eParameters name="name" ordered="false" eType="#//String"/>
+      <eParameters name="type" ordered="false" eType="#//Type"/>
+      <eParameters name="lower" ordered="false" lowerBound="1" eType="#//Integer"/>
+      <eParameters name="upper" ordered="false" lowerBound="1" eType="#//UnlimitedNatural"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedAttribute" upperBound="-1"
+        eType="#//Property" containment="true" eOpposite="#//Property/datatype">
+      <eAnnotations source="subsets" references="#//Classifier/attribute #//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StructuralFeature" abstract="true" eSuperTypes="#//Feature #//TypedElement #//MultiplicityElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isReadOnly" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AggregationKind">
+    <eLiterals name="none"/>
+    <eLiterals name="shared" value="1"/>
+    <eLiterals name="composite" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringExpression" eSuperTypes="#//Expression">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eOperations name="operands" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="subexpressions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subExpression" ordered="false"
+        upperBound="-1" eType="#//StringExpression" containment="true" eOpposite="#//StringExpression/owningExpression">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningExpression" ordered="false"
+        eType="#//StringExpression" eOpposite="#//StringExpression/subExpression">
+      <eAnnotations source="subsets" references="#//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//ValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
+        eType="#//String" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" upperBound="-1"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageMerge" eSuperTypes="#//DirectedRelationship">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergedPackage" ordered="false"
+        lowerBound="1" eType="#//Package">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="receivingPackage" ordered="false"
+        lowerBound="1" eType="#//Package" eOpposite="#//Package/packageMerge">
+      <eAnnotations source="subsets" references="#//DirectedRelationship/source #//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Enumeration" eSuperTypes="#//DataType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLiteral" upperBound="-1"
+        eType="#//EnumerationLiteral" containment="true" eOpposite="#//EnumerationLiteral/enumeration">
+      <eAnnotations source="subsets" references="#//Namespace/ownedMember"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnumerationLiteral" eSuperTypes="#//InstanceSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumeration" ordered="false"
+        eType="#//Enumeration" eOpposite="#//Enumeration/ownedLiteral">
+      <eAnnotations source="subsets" references="#//NamedElement/namespace"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceSpecification" eSuperTypes="#//PackageableElement">
+    <eOperations name="defining_feature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="structural_feature" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="deployment_target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="deployment_artifact" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
+      <eParameters name="context">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classifier" ordered="false"
+        upperBound="-1" eType="#//Classifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slot" ordered="false" upperBound="-1"
+        eType="#//Slot" containment="true" eOpposite="#//Slot/owningInstance">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specification" ordered="false"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slot" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definingFeature" ordered="false"
+        lowerBound="1" eType="#//StructuralFeature"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
+        eType="#//ValueSpecification" containment="true">
+      <eAnnotations source="subsets" references="#//Element/ownedElement"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningInstance" ordered="false"
+        lowerBound="1" eType="#//InstanceSpecification" eOpposite="#//InstanceSpecification/slot">
+      <eAnnotations source="subsets" references="#//Element/owner"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralSpecification" abstract="true"
+      eSuperTypes="#//ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralInteger" eSuperTypes="#//LiteralSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="isComputable" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isComputable"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="integerValue" ordered="false" lowerBound="1"
+          eType="#//Integer">
+        <eAnnotations source="redefines" references="#//ValueSpecification/integerValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="#//Integer" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralString" eSuperTypes="#//LiteralSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="integerValue" ordered="false" lowerBound="1"
+          eType="#//Integer">
+        <eAnnotations source="redefines" references="#//ValueSpecification/integerValue"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="unlimitedValue" ordered="false"
+          lowerBound="1" eType="#//UnlimitedNatural">
+        <eAnnotations source="redefines" references="#//ValueSpecification/unlimitedValue"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="isComputable" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isComputable"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        eType="#//String" unsettable="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralBoolean" eSuperTypes="#//LiteralSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="isComputable" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isComputable"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="booleanValue" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/booleanValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralNull" eSuperTypes="#//LiteralSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="isComputable" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isComputable"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="isNull" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isNull"/>
+      </contents>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceValue" eSuperTypes="#//ValueSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" ordered="false"
+        lowerBound="1" eType="#//InstanceSpecification"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralUnlimitedNatural" eSuperTypes="#//LiteralSpecification">
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
+          eType="#//String">
+        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="isComputable" ordered="false" lowerBound="1"
+          eType="#//Boolean">
+        <eAnnotations source="redefines" references="#//ValueSpecification/isComputable"/>
+      </contents>
+      <contents xsi:type="ecore:EOperation" name="unlimitedValue" ordered="false"
+          lowerBound="1" eType="#//UnlimitedNatural">
+        <eAnnotations source="redefines" references="#//ValueSpecification/unlimitedValue"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        lowerBound="1" eType="#//UnlimitedNatural" defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectClass" abstract="true" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MomentClass" abstract="true" eSuperTypes="#//Class"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SortalClass" abstract="true" eSuperTypes="#//ObjectClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MixinClass" abstract="true" eSuperTypes="#//ObjectClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RigidSortalClass" abstract="true" eSuperTypes="#//SortalClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AntiRigidSortalClass" abstract="true"
+      eSuperTypes="#//SortalClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SubstanceSortal" abstract="true" eSuperTypes="#//RigidSortalClass">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="testrule"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+      <details key="testrule" value="self.oclAsType(NamedElement).name &lt;> 'Brain'"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubKind" eSuperTypes="#//RigidSortalClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Kind" eSuperTypes="#//SubstanceSortal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Quantity" eSuperTypes="#//SubstanceSortal"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Collective" eSuperTypes="#//SubstanceSortal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isExtensional" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Phase" eSuperTypes="#//AntiRigidSortalClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//AntiRigidSortalClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RigidMixinClass" abstract="true" eSuperTypes="#//MixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NonRigidMixinClass" abstract="true"
+      eSuperTypes="#//MixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//RigidMixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AntiRigidMixinClass" abstract="true"
+      eSuperTypes="#//NonRigidMixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SemiRigidMixinClass" abstract="true"
+      eSuperTypes="#//NonRigidMixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RoleMixin" eSuperTypes="#//AntiRigidMixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mixin" eSuperTypes="#//SemiRigidMixinClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mode" eSuperTypes="#//MomentClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Relator" eSuperTypes="#//MomentClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DirectedBinaryAssociation" abstract="true"
+      eSuperTypes="#//Association"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Meronymic" abstract="true" eSuperTypes="#//DirectedBinaryAssociation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isShareable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isEssential" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isInseparable" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="subQuantityOf" eSuperTypes="#//Meronymic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="subCollectionOf" eSuperTypes="#//Meronymic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="memberOf" eSuperTypes="#//Meronymic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="componentOf" eSuperTypes="#//Meronymic"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DependencyRelationship" abstract="true"
+      eSuperTypes="#//DirectedBinaryAssociation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Characterization" eSuperTypes="#//DependencyRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mediation" eSuperTypes="#//DependencyRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Derivation" eSuperTypes="#//DependencyRelationship"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FormalAssociation" eSuperTypes="#//Association"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MaterialAssociation" eSuperTypes="#//Association"/>
+</ecore:EPackage>

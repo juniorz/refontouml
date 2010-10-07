@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+processors,sysinfo,,,"2",1267201535238
+java.runtime.name,sysinfo,,,"Java(TM) SE Runtime Environment",1267201535238
+java.runtime.version,sysinfo,,,"1.6.0_17-b04",1267201535238
+java.specification.name,sysinfo,,,"Java Platform API Specification",1267201535238
+java.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201535238
+java.specification.version,sysinfo,,,"1.6",1267201535238
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201535238
+java.version,sysinfo,,,"1.6.0_17",1267201535238
+java.vm.info,sysinfo,,,"mixed mode",1267201535238
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1267201535238
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1267201535238
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201535238
+java.vm.specification.version,sysinfo,,,"1.0",1267201535238
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201535238
+java.vm.version,sysinfo,,,"14.3-b01",1267201535238
+started,bundle,org.eclipse.emf.mapping.ecore2xml,2.5.0.v200906151043,"org.eclipse.emf.mapping.ecore2xml",1267201536143
+started,bundle,org.eclipse.xtend.typesystem.uml2.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.uml2.ui",1267201536143
+started,bundle,org.eclipse.xsd,2.5.0.v200906151043,"org.eclipse.xsd",1267201536159
+started,bundle,org.eclipse.xtend.typesystem.xsd.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.xsd.ui",1267201536174
+started,bundle,org.eclipse.xtend.shared.ui,0.7.2.v200908120436,"org.eclipse.xtend.shared.ui",1267201536174
+started,bundle,org.eclipse.xtend.typesystem.emf.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.emf.ui",1267201536174
+closed,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267201537079
+stopped,bundle,org.eclipse.emf.teneo.eclipselink.ui,1.0.0.v200909151729,"org.eclipse.emf.teneo.eclipselink.ui",1267201537688
+stopped,bundle,org.eclipse.emf.teneo.eclipselink,1.0.0.v200909151729,"org.eclipse.emf.teneo.eclipselink",1267201537688
+stopped,bundle,org.eclipse.emf.ecoretools.diagram,0.9.0.v200906221231,"org.eclipse.emf.ecoretools.diagram",1267201537688

@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201031859
+java.version,sysinfo,,,"1.6.0_17",1267201031859
+java.vm.info,sysinfo,,,"mixed mode",1267201031859
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1267201031859
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1267201031859
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201031859
+java.vm.specification.version,sysinfo,,,"1.0",1267201031859
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1267201031859
+java.vm.version,sysinfo,,,"14.3-b01",1267201031859
+started,bundle,org.eclipse.emf.validation,1.3.0.v200901271722,"org.eclipse.emf.validation",1267201032329
+started,bundle,org.eclipse.update.scheduler,3.2.200.v20081127,"org.eclipse.update.scheduler",1267201032357
+started,bundle,org.eclipse.update.core,3.2.300.v20090525,"org.eclipse.update.core",1267201032363
+started,bundle,org.eclipse.emf.mapping.ecore2xml,2.5.0.v200906151043,"org.eclipse.emf.mapping.ecore2xml",1267201032447
+started,bundle,org.eclipse.xtend.typesystem.uml2.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.uml2.ui",1267201032449
+started,bundle,org.eclipse.xsd,2.5.0.v200906151043,"org.eclipse.xsd",1267201032450
+started,bundle,org.eclipse.xtend.typesystem.xsd.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.xsd.ui",1267201032455
+started,bundle,org.eclipse.xtend.shared.ui,0.7.2.v200908120436,"org.eclipse.xtend.shared.ui",1267201032456
+started,bundle,org.eclipse.xtend.typesystem.emf.ui,0.7.2.v200908120436,"org.eclipse.xtend.typesystem.emf.ui",1267201032464
+started,bundle,org.eclipse.jdt.apt.core,3.3.201.R35x_v20090818-0235,"org.eclipse.jdt.apt.core",1267201032837
+started,bundle,org.eclipse.jdt.apt.pluggable.core,1.0.201.R35x_v20090818-0225,"org.eclipse.jdt.apt.pluggable.core",1267201032848
+started,bundle,org.eclipse.core.variables,3.2.200.v20090521,"org.eclipse.core.variables",1267201032897
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267201034256
+activated,editor,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.CompilationUnitEditor",1267201040843
+started,bundle,org.eclipse.emf.common.ui,2.5.0.v200906151043,"org.eclipse.emf.common.ui",1267201040876
+started,bundle,org.eclipse.emf.edit,2.5.0.v200906151043,"org.eclipse.emf.edit",1267201040880

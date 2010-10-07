@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468693191
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468719194
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267468731706
+executed,command,org.eclipse.pde.ui,3.5.0.v20090821,"org.eclipse.pde.ui.runtimeWorkbenchShortcut.run",1267468735115
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468735873
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468785572
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468785597
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468785676
+activated,editor,org.eclipse.emf.ecore.editor,2.5.0.v200906151043,"org.eclipse.emf.ecore.presentation.EcoreEditorID",1267468789108
+activated,view,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views.PropertySheet",1267468807090
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468808819
+no handler,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.undo",1267468867006
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.cut",1267468870513
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468872391
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468873456
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468873541
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.file.save",1267468873546
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267468875488
+executed,command,org.eclipse.pde.ui,3.5.0.v20090821,"org.eclipse.pde.ui.runtimeWorkbenchShortcut.run",1267468880068
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468880761
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468901981
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468902048
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267468902083
+activated,editor,org.eclipse.emf.ecore.editor,2.5.0.v200906151043,"org.eclipse.emf.ecore.presentation.EcoreEditorID",1267468904292
+activated,view,org.eclipse.ui.views,3.4.1.M20090826-0800,"org.eclipse.ui.views.PropertySheet",1267468905723

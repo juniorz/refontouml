@@ -1,0 +1,40 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML.tests;
+
+import CleanUML.SubstanceSortal;
+
+/**
+ * <!-- begin-user-doc -->
+ * A test case for the model object '<em><b>Substance Sortal</b></em>'.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public abstract class SubstanceSortalTest extends RigidSortalClassTest {
+
+	/**
+	 * Constructs a new Substance Sortal test case with the given name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SubstanceSortalTest(String name) {
+		super(name);
+	}
+
+	/**
+	 * Returns the fixture for this Substance Sortal test case.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected SubstanceSortal getFixture() {
+		return (SubstanceSortal)fixture;
+	}
+
+} //SubstanceSortalTest

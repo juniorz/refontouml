@@ -1,0 +1,21 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>sub Quantity Of</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getsubQuantityOf()
+ * @model
+ * @generated
+ */
+public interface subQuantityOf extends Meronymic {
+} // subQuantityOf

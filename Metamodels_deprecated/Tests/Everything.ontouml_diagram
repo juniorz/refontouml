@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:OntoUML="OntoUML" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_Q9YX0CqsEd-vxvy2XZmhaQ" type="OntoUML" name="Everything.ontouml_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_UfEV4CqsEd-vxvy2XZmhaQ" type="2011">
+    <children xmi:type="notation:Node" xmi:id="_UfOG4CqsEd-vxvy2XZmhaQ" type="5021"/>
+    <children xmi:type="notation:Node" xmi:id="_UfOG4SqsEd-vxvy2XZmhaQ" type="5022"/>
+    <children xmi:type="notation:Node" xmi:id="_UfOG4iqsEd-vxvy2XZmhaQ" visible="false" type="7011">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_UfOG4yqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_UfOG5CqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_UfOG5SqsEd-vxvy2XZmhaQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_UfEV4SqsEd-vxvy2XZmhaQ" fontName="Segoe UI"/>
+    <element xmi:type="OntoUML:SimpleDatatype" href="default.ontouml#//@InstanciarElement.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UfEV4iqsEd-vxvy2XZmhaQ" x="275" y="90"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_dDAF0CqsEd-vxvy2XZmhaQ" type="2012">
+    <children xmi:type="notation:Node" xmi:id="_dDAF0yqsEd-vxvy2XZmhaQ" type="5023"/>
+    <children xmi:type="notation:Node" xmi:id="_dDAF1CqsEd-vxvy2XZmhaQ" type="5024"/>
+    <children xmi:type="notation:Node" xmi:id="_dDAF1SqsEd-vxvy2XZmhaQ" visible="false" type="7012">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_dDAF1iqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_dDAF1yqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_dDAF2CqsEd-vxvy2XZmhaQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_dDAF0SqsEd-vxvy2XZmhaQ" fontName="Segoe UI"/>
+    <element xmi:type="OntoUML:StructuralDatatype" href="default.ontouml#//@InstanciarElement.1"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dDAF0iqsEd-vxvy2XZmhaQ" x="250" y="245"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_7yYkQCqsEd-vxvy2XZmhaQ" type="2003">
+    <children xmi:type="notation:Node" xmi:id="_7yYkQyqsEd-vxvy2XZmhaQ" type="5005"/>
+    <children xmi:type="notation:Node" xmi:id="_7yYkRCqsEd-vxvy2XZmhaQ" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_7yYkRSqsEd-vxvy2XZmhaQ" visible="false" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_7yYkRiqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7yYkRyqsEd-vxvy2XZmhaQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7yYkSCqsEd-vxvy2XZmhaQ"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_7yYkQSqsEd-vxvy2XZmhaQ" fontName="Segoe UI"/>
+    <element xmi:type="OntoUML:Kind" href="default.ontouml#//@InstanciarElement.2"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7yYkQiqsEd-vxvy2XZmhaQ" x="540" y="91"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Q9YX0SqsEd-vxvy2XZmhaQ"/>
+  <element xmi:type="OntoUML:Container" href="default.ontouml#/"/>
+</notation:Diagram>

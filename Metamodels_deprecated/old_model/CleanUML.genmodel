@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/RefOntoUML/src"
+    modelPluginID="RefOntoUML" templateDirectory="/RefOntoUML/templates" dynamicTemplates="true"
+    modelName="CleanUML" importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>CleanUML.ecore</foreignModel>
+  <modelPluginVariables>OCL_ECORE=org.eclipse.ocl.ecore</modelPluginVariables>
+  <genPackages prefix="CleanUML" resource="XML" disposableProviderFactory="true" loadInitialization="true"
+      literalsInterface="false" ecorePackage="CleanUML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CleanUML.ecore#//VisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//VisibilityKind/public"/>
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//VisibilityKind/private"/>
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//VisibilityKind/protected"/>
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//VisibilityKind/package"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CleanUML.ecore#//AggregationKind">
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//AggregationKind/none"/>
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//AggregationKind/shared"/>
+      <genEnumLiterals ecoreEnumLiteral="CleanUML.ecore#//AggregationKind/composite"/>
+    </genEnums>
+    <genDataTypes ecoreDataType="CleanUML.ecore#//Integer"/>
+    <genDataTypes ecoreDataType="CleanUML.ecore#//Boolean"/>
+    <genDataTypes ecoreDataType="CleanUML.ecore#//String"/>
+    <genDataTypes ecoreDataType="CleanUML.ecore#//UnlimitedNatural"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Comment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Comment/body"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Comment/annotatedElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Element">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Element/ownedElement"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Element/owner"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Element/ownedComment"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/not_own_self">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/not_own_self/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/not_own_self/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/has_owner">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/has_owner/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/has_owner/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/destroy"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/hasKeyword">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/hasKeyword/keyword"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getKeywords"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/addKeyword">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/addKeyword/keyword"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/removeKeyword">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/removeKeyword/keyword"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getNearestPackage"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getModel"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getApplicableStereotype">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getApplicableStereotype/qualifiedName"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getStereotypeApplications"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getRequiredStereotype">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getRequiredStereotype/qualifiedName"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getAppliedStereotype">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getAppliedStereotype/qualifiedName"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/createEAnnotation">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/createEAnnotation/source"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getRelationships"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getRelationships.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getRelationships.1/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getSourceDirectedRelationships"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getSourceDirectedRelationships.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getSourceDirectedRelationships.1/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getTargetDirectedRelationships"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/getTargetDirectedRelationships.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//Element/getTargetDirectedRelationships.1/eClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/allOwnedElements"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Element/mustBeOwned"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Package">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Package/ownedType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Package/packageMerge"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Package/packagedElement"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Package/nestedPackage"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Package/nestingPackage"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/elements_public_or_private">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/elements_public_or_private/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/elements_public_or_private/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/createOwnedClass">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/createOwnedClass/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/createOwnedClass/isAbstract"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/createOwnedEnumeration">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/createOwnedEnumeration/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/createOwnedPrimitiveType">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/createOwnedPrimitiveType/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/createOwnedInterface">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/createOwnedInterface/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/getAppliedProfile">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/getAppliedProfile/qualifiedName"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/getAppliedProfile.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/getAppliedProfile.1/qualifiedName"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/getAppliedProfile.1/recurse"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/isModelLibrary"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/visibleMembers"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Package/makesVisible">
+        <genParameters ecoreParameter="CleanUML.ecore#//Package/makesVisible/el"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//PackageableElement"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//NamedElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//NamedElement/visibility"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//NamedElement/qualifiedName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//NamedElement/clientDependency"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//NamedElement/namespace"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//NamedElement/nameExpression"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/has_no_qualified_name">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/has_no_qualified_name/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/has_no_qualified_name/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/has_qualified_name">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/has_qualified_name/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/has_qualified_name/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/visibility_needs_ownership">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/visibility_needs_ownership/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/visibility_needs_ownership/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/createDependency">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/createDependency/supplier"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/getLabel"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/getLabel.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/getLabel.1/localize"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/createUsage">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/createUsage/supplier"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/getQualifiedName"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/allNamespaces"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/isDistinguishableFrom">
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/isDistinguishableFrom/n"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//NamedElement/isDistinguishableFrom/ns"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/separator"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//NamedElement/allOwningPackages"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Dependency">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Dependency/supplier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Dependency/client"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//DirectedRelationship">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//DirectedRelationship/source"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//DirectedRelationship/target"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Relationship">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Relationship/relatedElement"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Namespace">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/elementImport"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/packageImport"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/ownedRule"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/member"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/importedMember"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Namespace/ownedMember"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/members_distinguishable">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/members_distinguishable/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/members_distinguishable/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/createElementImport">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/createElementImport/element"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/createElementImport/visibility"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/createPackageImport">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/createPackageImport/package_"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/createPackageImport/visibility"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/getImportedElements"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/getImportedPackages"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/getImportedMembers"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/getNamesOfMember">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/getNamesOfMember/element"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/membersAreDistinguishable"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/importMembers">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/importMembers/imps"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Namespace/excludeCollisions">
+        <genParameters ecoreParameter="CleanUML.ecore#//Namespace/excludeCollisions/imps"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//ElementImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//ElementImport/visibility"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//ElementImport/alias"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//ElementImport/importedElement"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//ElementImport/importingNamespace"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ElementImport/visibility_public_or_private">
+        <genParameters ecoreParameter="CleanUML.ecore#//ElementImport/visibility_public_or_private/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//ElementImport/visibility_public_or_private/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//ElementImport/imported_element_is_public">
+        <genParameters ecoreParameter="CleanUML.ecore#//ElementImport/imported_element_is_public/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//ElementImport/imported_element_is_public/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//ElementImport/getName"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//PackageImport">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//PackageImport/visibility"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//PackageImport/importedPackage"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//PackageImport/importingNamespace"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//PackageImport/public_or_private">
+        <genParameters ecoreParameter="CleanUML.ecore#//PackageImport/public_or_private/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//PackageImport/public_or_private/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Constraint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Constraint/constrainedElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Constraint/specification"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Constraint/context"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Constraint/not_apply_to_self">
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/not_apply_to_self/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/not_apply_to_self/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Constraint/value_specification_boolean">
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/value_specification_boolean/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/value_specification_boolean/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Constraint/boolean_value">
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/boolean_value/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/boolean_value/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Constraint/no_side_effects">
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/no_side_effects/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/no_side_effects/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Constraint/not_applied_to_self">
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/not_applied_to_self/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Constraint/not_applied_to_self/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//ValueSpecification">
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/isComputable"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/integerValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/booleanValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/stringValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/unlimitedValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//ValueSpecification/isNull"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//TypedElement">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//TypedElement/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Type">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Type/package"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Type/createAssociation">
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1IsNavigable"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1Aggregation"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1Name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1Lower"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1Upper"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end1Type"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end2IsNavigable"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end2Aggregation"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end2Name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end2Lower"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/createAssociation/end2Upper"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Type/getAssociations"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Type/conformsTo">
+        <genParameters ecoreParameter="CleanUML.ecore#//Type/conformsTo/other"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Association">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Association/ownedEnd"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Association/memberEnd"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Association/isDerived"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Association/endType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Association/navigableOwnedEnd"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/specialized_end_number">
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/specialized_end_number/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/specialized_end_number/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/specialized_end_types">
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/specialized_end_types/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/specialized_end_types/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/binary_associations">
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/binary_associations/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/binary_associations/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/association_ends">
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/association_ends/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Association/association_ends/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/isBinary"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Association/getEndTypes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Classifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Classifier/isAbstract"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/generalization"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/powertypeExtent"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/feature"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/inheritedMember"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/redefinedClassifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/general"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Classifier/attribute"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/no_cycles_in_generalization">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/no_cycles_in_generalization/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/no_cycles_in_generalization/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/generalization_hierarchies">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/generalization_hierarchies/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/generalization_hierarchies/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/specialize_type">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/specialize_type/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/specialize_type/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/maps_to_generalization_set">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/maps_to_generalization_set/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/maps_to_generalization_set/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/getAllAttributes"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/getOperation">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation/parameterNames"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation/parameterTypes"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/getOperation.1">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation.1/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation.1/parameterNames"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation.1/parameterTypes"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/getOperation.1/ignoreCase"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/getGenerals"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/getInheritedMembers"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/allFeatures"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/parents"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/inheritableMembers">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/inheritableMembers/c"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/hasVisibilityOf">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/hasVisibilityOf/n"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/conformsTo">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/conformsTo/other"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/inherit">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/inherit/inhs"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/maySpecializeType">
+        <genParameters ecoreParameter="CleanUML.ecore#//Classifier/maySpecializeType/c"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Classifier/allParents"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//RedefinableElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//RedefinableElement/isLeaf"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//RedefinableElement/redefinedElement"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//RedefinableElement/redefinitionContext"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//RedefinableElement/redefinition_context_valid">
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/redefinition_context_valid/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/redefinition_context_valid/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//RedefinableElement/redefinition_consistent">
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/redefinition_consistent/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/redefinition_consistent/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//RedefinableElement/isConsistentWith">
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/isConsistentWith/redefinee"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//RedefinableElement/isRedefinitionContextValid">
+        <genParameters ecoreParameter="CleanUML.ecore#//RedefinableElement/isRedefinitionContextValid/redefined"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Generalization">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Generalization/isSubstitutable"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Generalization/general"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Generalization/generalizationSet"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Generalization/specific"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Generalization/generalization_same_classifier">
+        <genParameters ecoreParameter="CleanUML.ecore#//Generalization/generalization_same_classifier/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Generalization/generalization_same_classifier/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//GeneralizationSet">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//GeneralizationSet/isCovering"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//GeneralizationSet/isDisjoint"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//GeneralizationSet/powertype"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//GeneralizationSet/generalization"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//GeneralizationSet/generalization_same_classifier">
+        <genParameters ecoreParameter="CleanUML.ecore#//GeneralizationSet/generalization_same_classifier/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//GeneralizationSet/generalization_same_classifier/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//GeneralizationSet/maps_to_generalization_set">
+        <genParameters ecoreParameter="CleanUML.ecore#//GeneralizationSet/maps_to_generalization_set/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//GeneralizationSet/maps_to_generalization_set/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Feature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Feature/isStatic"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Feature/featuringClassifier"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//OpaqueExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//OpaqueExpression/body"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//OpaqueExpression/language"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/language_body_size">
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/language_body_size/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/language_body_size/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/only_return_result_parameters">
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/only_return_result_parameters/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/only_return_result_parameters/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/one_return_result_parameter">
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/one_return_result_parameter/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//OpaqueExpression/one_return_result_parameter/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/getResult"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/value"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/isIntegral"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/isPositive"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//OpaqueExpression/isNonNegative"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//MultiplicityElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//MultiplicityElement/isOrdered"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//MultiplicityElement/isUnique"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//MultiplicityElement/upper"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//MultiplicityElement/lower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//MultiplicityElement/upperValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//MultiplicityElement/lowerValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/lower_ge_0">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/lower_ge_0/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/lower_ge_0/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/upper_ge_lower">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/upper_ge_lower/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/upper_ge_lower/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/value_specification_no_side_effects">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/value_specification_no_side_effects/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/value_specification_no_side_effects/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/value_specification_constant">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/value_specification_constant/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/value_specification_constant/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/setLower">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/setLower/newLower"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/setUpper">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/setUpper/newUpper"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/getLower"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/getUpper"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/isMultivalued"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/includesCardinality">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/includesCardinality/C"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/includesMultiplicity">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/includesMultiplicity/M"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/lowerBound"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/upperBound"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/compatibleWith">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/compatibleWith/other"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//MultiplicityElement/is">
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/is/lowerbound"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//MultiplicityElement/is/upperbound"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Property">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/class"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/datatype"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Property/isDerived"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Property/isDerivedUnion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Property/default"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Property/aggregation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Property/isComposite.1"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/redefinedProperty"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/owningAssociation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/defaultValue"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/opposite"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/subsettedProperty"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/association"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/qualifier"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Property/associationEnd"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/multiplicity_of_composite">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/multiplicity_of_composite/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/multiplicity_of_composite/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/subsetting_context_conforms">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetting_context_conforms/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetting_context_conforms/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/redefined_property_inherited">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/redefined_property_inherited/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/redefined_property_inherited/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/subsetting_rules">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetting_rules/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetting_rules/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/navigable_readonly">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/navigable_readonly/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/navigable_readonly/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/derived_union_is_derived">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/derived_union_is_derived/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/derived_union_is_derived/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/derived_union_is_read_only">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/derived_union_is_read_only/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/derived_union_is_read_only/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/subsetted_property_names">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetted_property_names/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/subsetted_property_names/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/deployment_target">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/deployment_target/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/deployment_target/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/binding_to_attribute">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/binding_to_attribute/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/binding_to_attribute/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/getDefault"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/isSetDefault"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setDefault">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setDefault/newDefault"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setIsComposite">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setIsComposite/newIsComposite"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setOpposite">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setOpposite/newOpposite"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/unsetDefault"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setIsNavigable">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setIsNavigable/isNavigable"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/getOtherEnd"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setBooleanDefaultValue">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setBooleanDefaultValue/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setIntegerDefaultValue">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setIntegerDefaultValue/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setStringDefaultValue">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setStringDefaultValue/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setUnlimitedNaturalDefaultValue">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/setUnlimitedNaturalDefaultValue/value"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/setNullDefaultValue"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/isAttribute">
+        <genParameters ecoreParameter="CleanUML.ecore#//Property/isAttribute/p"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/getOpposite"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/isComposite"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/subsettingContext"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Property/isNavigable"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Class/nestedClassifier"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Class/superClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Class/isActive"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Class/passive_class">
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/passive_class/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/passive_class/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Class/createOwnedOperation">
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/createOwnedOperation/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/createOwnedOperation/parameterNames"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/createOwnedOperation/parameterTypes"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//Class/createOwnedOperation/returnType"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//Class/isMetaclass"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Model/viewpoint"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//Model/isMetamodel"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//DataType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//DataType/ownedAttribute"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//DataType/createOwnedOperation">
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedOperation/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedOperation/parameterNames"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedOperation/parameterTypes"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedOperation/returnType"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//DataType/createOwnedAttribute">
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedAttribute/name"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedAttribute/type"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedAttribute/lower"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//DataType/createOwnedAttribute/upper"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//StructuralFeature">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//StructuralFeature/isReadOnly"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//StringExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//StringExpression/subExpression"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//StringExpression/owningExpression"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//StringExpression/operands">
+        <genParameters ecoreParameter="CleanUML.ecore#//StringExpression/operands/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//StringExpression/operands/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//StringExpression/subexpressions">
+        <genParameters ecoreParameter="CleanUML.ecore#//StringExpression/subexpressions/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//StringExpression/subexpressions/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Expression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Expression/symbol"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Expression/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//PackageMerge">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//PackageMerge/mergedPackage"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//PackageMerge/receivingPackage"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Enumeration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Enumeration/ownedLiteral"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//EnumerationLiteral">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//EnumerationLiteral/enumeration"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//InstanceSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//InstanceSpecification/classifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//InstanceSpecification/slot"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//InstanceSpecification/specification"/>
+      <genOperations ecoreOperation="CleanUML.ecore#//InstanceSpecification/defining_feature">
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/defining_feature/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/defining_feature/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//InstanceSpecification/structural_feature">
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/structural_feature/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/structural_feature/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//InstanceSpecification/deployment_target">
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/deployment_target/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/deployment_target/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="CleanUML.ecore#//InstanceSpecification/deployment_artifact">
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/deployment_artifact/diagnostics"/>
+        <genParameters ecoreParameter="CleanUML.ecore#//InstanceSpecification/deployment_artifact/context"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Slot">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Slot/definingFeature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CleanUML.ecore#//Slot/value"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CleanUML.ecore#//Slot/owningInstance"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//PrimitiveType"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//LiteralSpecification"/>
+    <genClasses ecoreClass="CleanUML.ecore#//LiteralInteger">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//LiteralInteger/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//LiteralString">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//LiteralString/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//LiteralBoolean">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//LiteralBoolean/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//LiteralNull"/>
+    <genClasses ecoreClass="CleanUML.ecore#//InstanceValue">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CleanUML.ecore#//InstanceValue/instance"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//LiteralUnlimitedNatural">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//LiteralUnlimitedNatural/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//ObjectClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//MomentClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//SortalClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//MixinClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//RigidSortalClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//AntiRigidSortalClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//SubstanceSortal"/>
+    <genClasses ecoreClass="CleanUML.ecore#//SubKind"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Kind"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Quantity"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Collective">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Collective/isExtensional"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//Phase"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Role"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//RigidMixinClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//NonRigidMixinClass"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Category"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//AntiRigidMixinClass"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//SemiRigidMixinClass"/>
+    <genClasses ecoreClass="CleanUML.ecore#//RoleMixin"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Mixin"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Mode"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Relator"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//DirectedBinaryAssociation"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//Meronymic">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Meronymic/isShareable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Meronymic/isEssential"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CleanUML.ecore#//Meronymic/isInseparable"/>
+    </genClasses>
+    <genClasses ecoreClass="CleanUML.ecore#//subQuantityOf"/>
+    <genClasses ecoreClass="CleanUML.ecore#//subCollectionOf"/>
+    <genClasses ecoreClass="CleanUML.ecore#//memberOf"/>
+    <genClasses ecoreClass="CleanUML.ecore#//componentOf"/>
+    <genClasses image="false" ecoreClass="CleanUML.ecore#//DependencyRelationship"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Characterization"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Mediation"/>
+    <genClasses ecoreClass="CleanUML.ecore#//Derivation"/>
+    <genClasses ecoreClass="CleanUML.ecore#//FormalAssociation"/>
+    <genClasses ecoreClass="CleanUML.ecore#//MaterialAssociation"/>
+  </genPackages>
+</genmodel:GenModel>

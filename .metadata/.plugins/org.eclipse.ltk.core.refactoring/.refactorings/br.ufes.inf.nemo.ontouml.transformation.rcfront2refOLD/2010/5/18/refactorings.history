@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 1 elements(s) to &apos;Clean2English&apos;&#x0D;&#x0A;- Original project: &apos;Profile2Clean&apos;&#x0D;&#x0A;- Destination element: &apos;Clean2English&apos;&#x0D;&#x0A;- Original element: &apos;Reverse.cleanuml&apos;" description="Copy file" destination="=Clean2English" element1="Reverse.cleanuml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1272805825114" units="0" version="1.0"/>
+</session>

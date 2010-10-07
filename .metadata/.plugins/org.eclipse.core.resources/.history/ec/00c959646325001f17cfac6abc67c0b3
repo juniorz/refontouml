@@ -1,0 +1,939 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML.impl;
+
+import CleanUML.AggregationKind;
+import CleanUML.Association;
+import CleanUML.Classifier;
+import CleanUML.CleanUMLPackage;
+import CleanUML.Feature;
+import CleanUML.Generalization;
+import CleanUML.GeneralizationSet;
+import CleanUML.NamedElement;
+import CleanUML.PackageableElement;
+import CleanUML.Property;
+import CleanUML.RedefinableElement;
+import CleanUML.Type;
+
+import CleanUML.util.CleanUMLValidator;
+
+import java.util.Collection;
+import java.util.Map;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Classifier</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#isIsLeaf <em>Is Leaf</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getRedefinedElement <em>Redefined Element</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getRedefinitionContext <em>Redefinition Context</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#isIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getGeneralization <em>Generalization</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getPowertypeExtent <em>Powertype Extent</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getInheritedMember <em>Inherited Member</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getRedefinedClassifier <em>Redefined Classifier</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getGeneral <em>General</em>}</li>
+ *   <li>{@link CleanUML.impl.ClassifierImpl#getAttribute <em>Attribute</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public abstract class ClassifierImpl extends NamespaceImpl implements Classifier {
+	/**
+	 * The default value of the '{@link #isIsLeaf() <em>Is Leaf</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsLeaf()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_LEAF_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsLeaf() <em>Is Leaf</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsLeaf()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isLeaf = IS_LEAF_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ABSTRACT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsAbstract() <em>Is Abstract</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsAbstract()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getGeneralization() <em>Generalization</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGeneralization()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Generalization> generalization;
+
+	/**
+	 * The cached value of the '{@link #getPowertypeExtent() <em>Powertype Extent</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPowertypeExtent()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<GeneralizationSet> powertypeExtent;
+
+	/**
+	 * The cached value of the '{@link #getRedefinedClassifier() <em>Redefined Classifier</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRedefinedClassifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Classifier> redefinedClassifier;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ClassifierImpl() {
+		super();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return CleanUMLPackage.eINSTANCE.getClassifier();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsLeaf() {
+		return isLeaf;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsLeaf(boolean newIsLeaf) {
+		boolean oldIsLeaf = isLeaf;
+		isLeaf = newIsLeaf;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CleanUMLPackage.CLASSIFIER__IS_LEAF, oldIsLeaf, isLeaf));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<RedefinableElement> getRedefinedElement() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getRedefinitionContext() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CleanUML.Package getPackage() {
+		CleanUML.Package package_ = basicGetPackage();
+		return package_ != null && package_.eIsProxy() ? (CleanUML.Package)eResolveProxy((InternalEObject)package_) : package_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public CleanUML.Package basicGetPackage() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPackage(CleanUML.Package newPackage) {
+		// TODO: implement this method to set the 'Package' reference
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsAbstract() {
+		return isAbstract;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsAbstract(boolean newIsAbstract) {
+		boolean oldIsAbstract = isAbstract;
+		isAbstract = newIsAbstract;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CleanUMLPackage.CLASSIFIER__IS_ABSTRACT, oldIsAbstract, isAbstract));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Generalization> getGeneralization() {
+		if (generalization == null) {
+			generalization = new EObjectContainmentWithInverseEList<Generalization>(Generalization.class, this, CleanUMLPackage.CLASSIFIER__GENERALIZATION, CleanUMLPackage.GENERALIZATION__SPECIFIC);
+		}
+		return generalization;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GeneralizationSet> getPowertypeExtent() {
+		if (powertypeExtent == null) {
+			powertypeExtent = new EObjectWithInverseResolvingEList<GeneralizationSet>(GeneralizationSet.class, this, CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT, CleanUMLPackage.GENERALIZATION_SET__POWERTYPE);
+		}
+		return powertypeExtent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> getFeature() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedElement> getInheritedMember() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getRedefinedClassifier() {
+		if (redefinedClassifier == null) {
+			redefinedClassifier = new EObjectResolvingEList<Classifier>(Classifier.class, this, CleanUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER);
+		}
+		return redefinedClassifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getGeneral() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Property> getAttribute() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean no_cycles_in_generalization(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.CLASSIFIER__NO_CYCLES_IN_GENERALIZATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "no_cycles_in_generalization", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean generalization_hierarchies(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.CLASSIFIER__GENERALIZATION_HIERARCHIES,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "generalization_hierarchies", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean specialize_type(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.CLASSIFIER__SPECIALIZE_TYPE,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "specialize_type", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean maps_to_generalization_set(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.CLASSIFIER__MAPS_TO_GENERALIZATION_SET,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "maps_to_generalization_set", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Property> getAllAttributes() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void getOperation(String name, EList<String> parameterNames, EList<Type> parameterTypes) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void getOperation(String name, EList<String> parameterNames, EList<Type> parameterTypes, boolean ignoreCase) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getGenerals() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedElement> getInheritedMembers() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Feature> allFeatures() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> parents() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedElement> inheritableMembers(Classifier c) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean hasVisibilityOf(NamedElement n) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean conformsTo(Classifier other) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<NamedElement> inherit(EList<NamedElement> inhs) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean maySpecializeType(Classifier c) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> allParents() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Association createAssociation(boolean end1IsNavigable, AggregationKind end1Aggregation, String end1Name, int end1Lower, int end1Upper, Type end1Type, boolean end2IsNavigable, AggregationKind end2Aggregation, String end2Name, int end2Lower, int end2Upper) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Association> getAssociations() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean conformsTo(Type other) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean redefinition_context_valid(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT_VALID,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "redefinition_context_valid", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean redefinition_consistent(DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostics != null) {
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 CleanUMLValidator.DIAGNOSTIC_SOURCE,
+						 CleanUMLValidator.REDEFINABLE_ELEMENT__REDEFINITION_CONSISTENT,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "redefinition_consistent", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isConsistentWith(RedefinableElement redefinee) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isRedefinitionContextValid(RedefinableElement redefined) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGeneralization()).basicAdd(otherEnd, msgs);
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPowertypeExtent()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				return ((InternalEList<?>)getGeneralization()).basicRemove(otherEnd, msgs);
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				return ((InternalEList<?>)getPowertypeExtent()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__IS_LEAF:
+				return isIsLeaf();
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_ELEMENT:
+				return getRedefinedElement();
+			case CleanUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT:
+				return getRedefinitionContext();
+			case CleanUMLPackage.CLASSIFIER__PACKAGE:
+				if (resolve) return getPackage();
+				return basicGetPackage();
+			case CleanUMLPackage.CLASSIFIER__IS_ABSTRACT:
+				return isIsAbstract();
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				return getGeneralization();
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				return getPowertypeExtent();
+			case CleanUMLPackage.CLASSIFIER__FEATURE:
+				return getFeature();
+			case CleanUMLPackage.CLASSIFIER__INHERITED_MEMBER:
+				return getInheritedMember();
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER:
+				return getRedefinedClassifier();
+			case CleanUMLPackage.CLASSIFIER__GENERAL:
+				return getGeneral();
+			case CleanUMLPackage.CLASSIFIER__ATTRIBUTE:
+				return getAttribute();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__IS_LEAF:
+				setIsLeaf((Boolean)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__PACKAGE:
+				setPackage((CleanUML.Package)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__IS_ABSTRACT:
+				setIsAbstract((Boolean)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				getGeneralization().clear();
+				getGeneralization().addAll((Collection<? extends Generalization>)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				getPowertypeExtent().clear();
+				getPowertypeExtent().addAll((Collection<? extends GeneralizationSet>)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER:
+				getRedefinedClassifier().clear();
+				getRedefinedClassifier().addAll((Collection<? extends Classifier>)newValue);
+				return;
+			case CleanUMLPackage.CLASSIFIER__GENERAL:
+				getGeneral().clear();
+				getGeneral().addAll((Collection<? extends Classifier>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__IS_LEAF:
+				setIsLeaf(IS_LEAF_EDEFAULT);
+				return;
+			case CleanUMLPackage.CLASSIFIER__PACKAGE:
+				setPackage((CleanUML.Package)null);
+				return;
+			case CleanUMLPackage.CLASSIFIER__IS_ABSTRACT:
+				setIsAbstract(IS_ABSTRACT_EDEFAULT);
+				return;
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				getGeneralization().clear();
+				return;
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				getPowertypeExtent().clear();
+				return;
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER:
+				getRedefinedClassifier().clear();
+				return;
+			case CleanUMLPackage.CLASSIFIER__GENERAL:
+				getGeneral().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case CleanUMLPackage.CLASSIFIER__IS_LEAF:
+				return isLeaf != IS_LEAF_EDEFAULT;
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_ELEMENT:
+				return !getRedefinedElement().isEmpty();
+			case CleanUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT:
+				return !getRedefinitionContext().isEmpty();
+			case CleanUMLPackage.CLASSIFIER__PACKAGE:
+				return basicGetPackage() != null;
+			case CleanUMLPackage.CLASSIFIER__IS_ABSTRACT:
+				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case CleanUMLPackage.CLASSIFIER__GENERALIZATION:
+				return generalization != null && !generalization.isEmpty();
+			case CleanUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
+				return powertypeExtent != null && !powertypeExtent.isEmpty();
+			case CleanUMLPackage.CLASSIFIER__FEATURE:
+				return !getFeature().isEmpty();
+			case CleanUMLPackage.CLASSIFIER__INHERITED_MEMBER:
+				return !getInheritedMember().isEmpty();
+			case CleanUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER:
+				return redefinedClassifier != null && !redefinedClassifier.isEmpty();
+			case CleanUMLPackage.CLASSIFIER__GENERAL:
+				return !getGeneral().isEmpty();
+			case CleanUMLPackage.CLASSIFIER__ATTRIBUTE:
+				return !getAttribute().isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == RedefinableElement.class) {
+			switch (derivedFeatureID) {
+				case CleanUMLPackage.CLASSIFIER__IS_LEAF: return CleanUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF;
+				case CleanUMLPackage.CLASSIFIER__REDEFINED_ELEMENT: return CleanUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT;
+				case CleanUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT: return CleanUMLPackage.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
+				default: return -1;
+			}
+		}
+		if (baseClass == PackageableElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Type.class) {
+			switch (derivedFeatureID) {
+				case CleanUMLPackage.CLASSIFIER__PACKAGE: return CleanUMLPackage.TYPE__PACKAGE;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == RedefinableElement.class) {
+			switch (baseFeatureID) {
+				case CleanUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF: return CleanUMLPackage.CLASSIFIER__IS_LEAF;
+				case CleanUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT: return CleanUMLPackage.CLASSIFIER__REDEFINED_ELEMENT;
+				case CleanUMLPackage.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return CleanUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT;
+				default: return -1;
+			}
+		}
+		if (baseClass == PackageableElement.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
+		if (baseClass == Type.class) {
+			switch (baseFeatureID) {
+				case CleanUMLPackage.TYPE__PACKAGE: return CleanUMLPackage.CLASSIFIER__PACKAGE;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isLeaf: ");
+		result.append(isLeaf);
+		result.append(", isAbstract: ");
+		result.append(isAbstract);
+		result.append(')');
+		return result.toString();
+	}
+
+} //ClassifierImpl

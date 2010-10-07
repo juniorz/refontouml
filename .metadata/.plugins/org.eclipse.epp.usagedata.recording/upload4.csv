@@ -1,0 +1,26 @@
+what,kind,bundleId,bundleVersion,description,time
+java.vm.info,sysinfo,,,"mixed mode",1267196212172
+java.vm.name,sysinfo,,,"Java HotSpot(TM) Client VM",1267196212172
+java.vm.specification.name,sysinfo,,,"Java Virtual Machine Specification",1267196212172
+java.vm.specification.vendor,sysinfo,,,"Sun Microsystems Inc.",1267196212172
+java.vm.specification.version,sysinfo,,,"1.0",1267196212172
+java.vm.vendor,sysinfo,,,"Sun Microsystems Inc.",1267196212172
+java.vm.version,sysinfo,,,"14.3-b01",1267196212172
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267196212350
+activated,view,org.eclipse.jdt.ui,3.5.1.r351_v20090821-0800,"org.eclipse.jdt.ui.PackageExplorer",1267196212374
+closed,view,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.internal.introview",1267196212400
+started,bundle,org.eclipse.debug.core,3.5.0.v20090526-1600,"org.eclipse.debug.core",1267196215441
+started,bundle,org.eclipse.jdt.launching,3.5.0.v20090527,"org.eclipse.jdt.launching",1267196215443
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196216421
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196227690
+started,bundle,org.eclipse.gmf.xpand.migration,1.0.0.v20090608-0720,"org.eclipse.gmf.xpand.migration",1267196227748
+started,bundle,org.eclipse.jdt.apt.core,3.3.201.R35x_v20090818-0235,"org.eclipse.jdt.apt.core",1267196227784
+started,bundle,org.eclipse.jdt.apt.pluggable.core,1.0.201.R35x_v20090818-0225,"org.eclipse.jdt.apt.pluggable.core",1267196227806
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196231410
+activated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196235400
+executed,command,org.eclipse.ui,3.5.1.M20090902-1000,"org.eclipse.ui.edit.paste",1267196237578
+started,bundle,org.eclipse.ltk.core.refactoring,3.5.0.v20090513-2000,"org.eclipse.ltk.core.refactoring",1267196239923
+started,bundle,org.eclipse.pde.core,3.5.100.v20090821,"org.eclipse.pde.core",1267196240495
+started,bundle,org.eclipse.ltk.ui.refactoring,3.4.100.v20090604,"org.eclipse.ltk.ui.refactoring",1267196240499
+started,bundle,org.eclipse.compare,3.5.0.I20090514-0808,"org.eclipse.compare",1267196240549
+deactivated,workbench,org.eclipse.ui.workbench,3.5.1.M20090826-0800a,"",1267196243027

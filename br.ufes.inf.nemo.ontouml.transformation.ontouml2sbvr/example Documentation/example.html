@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<title>SBVR Documentation: example</title>
+
+<style type='text/css'>
+	div { margin-bottom:2px; margin-top:2px; float:left; }
+	div#container { margin:auto; width:85%; float:none; }
+	div.headerdiv { clear:left; }
+	div.leftdiv { width:200px; margin-left:25px; clear:left; }
+	div.rightdiv { }
+	div.collapsible { clear:left; display:none; padding:10px; margin-left:25px; }
+	div.sectiondiv { clear:left; border:3px double black; padding:10px; }
+	div.breaker { clear:left; height:25px; }
+	font { font-family:arial; font-size:medium; }
+	font.title { font-size:large; }
+	font.term { color:teal; text-decoration:underline; }
+	font.verb { color:blue; }
+	font.keyword { color:#FF6500; }
+	font.cs { color:teal; }
+	sub { vertical-align: -0.35em; }
+	.double { border-bottom: 3px double teal; line-height: 1.7em;}
+	img { border:none; }
+</style>
+
+<script type='text/javascript'>
+function toggle(name, anchor)
+{
+	if (document.getElementById(name).style.display == 'block')
+	{
+		document.getElementById(name).style.display = 'none';
+		anchor.innerHTML = "<img src='show.png'></img>" 
+	}
+	else
+	{
+		document.getElementById(name).style.display = 'block';
+		anchor.innerHTML = "<img src='hide.png'></img>" 
+	}
+}
+</script>
+</head>
+
+<body>
+<div id='container'>
+<div id='Person_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Person', this);"><img src='show.png'></img></a> <font class='term title'>Person</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>fundamental concept</font></div>
+<div id='Person' class='collapsible'>
+<div class='headerdiv'><span class='double'><font class='cs title'>G2</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>Person</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G2</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>DeceasedPerson</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>LivingPerson</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='LivingPerson_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('LivingPerson', this);"><img src='show.png'></img></a> <font class='term title'>LivingPerson</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Person</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>LivingPerson</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G2</font></span></div>
+<div id='LivingPerson' class='collapsible'>
+<div class='headerdiv'><span class='double'><font class='cs title'>G3</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G3</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>Child</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>Teenager</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>Adult</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='Child_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>Child</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>Child</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G3</font></span></div>
+</div>
+<div class='breaker'></div>
+
+<div id='Teenager_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>Teenager</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>Teenager</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G3</font></span></div>
+</div>
+<div class='breaker'></div>
+
+<div id='Adult_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>Adult</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>Adult</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G3</font></span></div>
+</div>
+<div class='breaker'></div>
+
+<div id='Student_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Student', this);"><img src='show.png'></img></a> <font class='term title'>Student</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div id='Student' class='collapsible'>
+<div class='headerdiv'><font class='term title'>Student</font> <font class='verb title'>study</font> <font class='term title'>School</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Student</font> <font class='verb'>study</font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>School</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>School</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Student</font></div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><font class='term title'>Enrollment</font> <font class='verb title'>mediates</font> <font class='term title'>Student</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Enrollment</font> <font class='verb'>mediates</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>Student</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Student</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Enrollment</font></div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><font class='term title'>FunctionalHeart</font> <font class='verb title'>is component of</font> <font class='term title'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>partitive fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>FunctionalHeart</font> <font class='verb'>is component of</font> <font class='keyword'><font class='keyword'>at most one</font></font> <font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>LivingPerson</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>FunctionalHeart</font></div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><font class='term title'>FunctionalBrain</font> <font class='verb title'>is component of</font> <font class='term title'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>partitive fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>FunctionalBrain</font> <font class='verb'>is component of</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>LivingPerson</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>FunctionalBrain</font></div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='DeceasedPerson_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>DeceasedPerson</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Person</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>DeceasedPerson</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G2</font></span></div>
+</div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><span class='double'><font class='cs title'>G1</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>Person</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G1</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>Man</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>Woman</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='Woman_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>Woman</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Person</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>object type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>Woman</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G1</font></span></div>
+</div>
+<div class='breaker'></div>
+
+<div id='Man_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>Man</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Person</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>object type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>Man</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G1</font></span></div>
+</div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='Enrollment_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Enrollment', this);"><img src='show.png'></img></a> <font class='term title'>Enrollment</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>object type</font></div>
+<div id='Enrollment' class='collapsible'>
+<div class='headerdiv'><font class='term title'>Enrollment</font> <font class='verb title'>mediates</font> <font class='term title'>School</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Enrollment</font> <font class='verb'>mediates</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>School</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>School</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Enrollment</font></div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><font class='term title'>Enrollment</font> <font class='verb title'>mediates</font> <font class='term title'>Student</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Enrollment</font> <font class='verb'>mediates</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>Student</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Student</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Enrollment</font></div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='Organization_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Organization', this);"><img src='show.png'></img></a> <font class='term title'>Organization</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>fundamental concept</font></div>
+<div id='Organization' class='collapsible'>
+<div class='headerdiv'><span class='double'><font class='cs title'>G6</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>Organization</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G6</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>ActiveOrganization</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>ExtinctOrganization</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='ActiveOrganization_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('ActiveOrganization', this);"><img src='show.png'></img></a> <font class='term title'>ActiveOrganization</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Organization</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>ActiveOrganization</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G6</font></span></div>
+<div id='ActiveOrganization' class='collapsible'>
+<div id='School_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('School', this);"><img src='show.png'></img></a> <font class='term title'>School</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>ActiveOrganization</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div id='School' class='collapsible'>
+<div class='headerdiv'><font class='term title'>Student</font> <font class='verb title'>study</font> <font class='term title'>School</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Student</font> <font class='verb'>study</font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>School</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>School</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Student</font></div>
+<div class='breaker'></div>
+
+<div class='headerdiv'><font class='term title'>Enrollment</font> <font class='verb title'>mediates</font> <font class='term title'>School</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>associative fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>Enrollment</font> <font class='verb'>mediates</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>School</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>School</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>at least one</font></font> <font class='term'>Enrollment</font></div>
+</div>
+</div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='ExtinctOrganization_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>ExtinctOrganization</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Organization</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>ExtinctOrganization</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G6</font></span></div>
+</div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='BiologicalOrgan_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('BiologicalOrgan', this);"><img src='show.png'></img></a> <font class='term title'>BiologicalOrgan</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>object type</font></div>
+<div id='BiologicalOrgan' class='collapsible'>
+<div id='Brain_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Brain', this);"><img src='show.png'></img></a> <font class='term title'>Brain</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>BiologicalOrgan</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>fundamental concept</font></div>
+<div id='Brain' class='collapsible'>
+<div class='headerdiv'><span class='double'><font class='cs title'>G5</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>Brain</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G5</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>FunctionalBrain</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>NonfunctionalBrain</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='FunctionalBrain_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('FunctionalBrain', this);"><img src='show.png'></img></a> <font class='term title'>FunctionalBrain</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Brain</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>FunctionalBrain</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G5</font></span></div>
+<div id='FunctionalBrain' class='collapsible'>
+<div class='headerdiv'><font class='term title'>FunctionalBrain</font> <font class='verb title'>is component of</font> <font class='term title'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>partitive fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>FunctionalBrain</font> <font class='verb'>is component of</font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>LivingPerson</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>FunctionalBrain</font></div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='NonfunctionalBrain_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>NonfunctionalBrain</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Brain</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>NonfunctionalBrain</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G5</font></span></div>
+</div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='Heart_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('Heart', this);"><img src='show.png'></img></a> <font class='term title'>Heart</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>BiologicalOrgan</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>fundamental concept</font></div>
+<div id='Heart' class='collapsible'>
+<div class='headerdiv'><span class='double'><font class='cs title'>G4</font></span></div>
+<div class='leftdiv'><font>Definition:</font></div><div class='rightdiv'><font class='term'>segmentation</font> <font class='keyword'>that</font> <font class='verb'>is for</font> <font class='term'>Heart</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><span class='double'><font class='cs'>G4</font></span> <font class='verb'>contains</font> <font class='keyword'>the</font> <font class='term'>categories</font> <font class='keyword'>'</font><font class='term'>FunctionalHeart</font><font class='keyword'>'</font> <font class='keyword'>and</font> <font class='keyword'>'</font><font class='term'>NonfunctionalHeart</font><font class='keyword'>'</font></div>
+<div class='breaker'></div>
+
+<div id='FunctionalHeart_Section' class='sectiondiv'>
+<div class='headerdiv'><a href='javascript:;' onclick="toggle('FunctionalHeart', this);"><img src='show.png'></img></a> <font class='term title'>FunctionalHeart</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Heart</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>FunctionalHeart</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G4</font></span></div>
+<div id='FunctionalHeart' class='collapsible'>
+<div class='headerdiv'><font class='term title'>FunctionalHeart</font> <font class='verb title'>is component of</font> <font class='term title'>LivingPerson</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>partitive fact type</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>FunctionalHeart</font> <font class='verb'>is component of</font> <font class='keyword'><font class='keyword'>at most one</font></font> <font class='term'>LivingPerson</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>Each </font><font class='term'>LivingPerson</font> <font class='verb'>is related to </font> <font class='keyword'><font class='keyword'>one</font></font> <font class='term'>FunctionalHeart</font></div>
+</div>
+</div>
+<div class='breaker'></div>
+
+<div id='NonfunctionalHeart_Section' class='sectiondiv'>
+<div class='headerdiv'><font class='term title'>NonfunctionalHeart</font></div>
+<div class='leftdiv'><font>General Concept:</font></div><div class='rightdiv'><font class='term'>Heart</font></div>
+<div class='leftdiv'><font>Concept Type:</font></div><div class='rightdiv'><font class='term'>role</font></div>
+<div class='leftdiv'><font>Necessity:</font></div><div class='rightdiv'><font class='keyword'>The</font> <font class='term'>concept</font> <font class='term'>NonfunctionalHeart</font> <font class='verb'>is included in</font> <span class='double'><font class='cs'>G4</font></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class='breaker'></div>
+
+</div>
+</body>
+</html>

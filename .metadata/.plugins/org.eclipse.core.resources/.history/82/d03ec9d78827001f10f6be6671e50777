@@ -1,0 +1,21 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Category</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getCategory()
+ * @model
+ * @generated
+ */
+public interface Category extends RigidMixinClass {
+} // Category

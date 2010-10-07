@@ -1,0 +1,23 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Substance Sortal</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ *
+ * @see CleanUML.CleanUMLPackage#getSubstanceSortal()
+ * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='SubstanceSortalInheritsSubstanceSortal'"
+ *        annotation="http://www.eclipse.org/ocl/examples/OCL SubstanceSortalInheritsSubstanceSortal='self.general->select(x | x.oclIsKindOf(RigidSortalClass))->isEmpty()'"
+ * @generated
+ */
+public interface SubstanceSortal extends RigidSortalClass {
+} // SubstanceSortal

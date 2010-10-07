@@ -1,0 +1,110 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package CleanUML;
+
+
+/**
+ * <!-- begin-user-doc -->
+ * A representation of the model object '<em><b>Meronymic</b></em>'.
+ * <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link CleanUML.Meronymic#isIsShareable <em>Is Shareable</em>}</li>
+ *   <li>{@link CleanUML.Meronymic#isIsEssential <em>Is Essential</em>}</li>
+ *   <li>{@link CleanUML.Meronymic#isIsInseparable <em>Is Inseparable</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @see CleanUML.CleanUMLPackage#getMeronymic()
+ * @model abstract="true"
+ * @generated
+ */
+public interface Meronymic extends DirectedBinaryAssociation {
+	/**
+	 * Returns the value of the '<em><b>Is Shareable</b></em>' attribute.
+	 * The default value is <code>"true"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Shareable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Shareable</em>' attribute.
+	 * @see #setIsShareable(boolean)
+	 * @see CleanUML.CleanUMLPackage#getMeronymic_IsShareable()
+	 * @model default="true" required="true"
+	 * @generated
+	 */
+	boolean isIsShareable();
+
+	/**
+	 * Sets the value of the '{@link CleanUML.Meronymic#isIsShareable <em>Is Shareable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Shareable</em>' attribute.
+	 * @see #isIsShareable()
+	 * @generated
+	 */
+	void setIsShareable(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Essential</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Essential</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Essential</em>' attribute.
+	 * @see #setIsEssential(boolean)
+	 * @see CleanUML.CleanUMLPackage#getMeronymic_IsEssential()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isIsEssential();
+
+	/**
+	 * Sets the value of the '{@link CleanUML.Meronymic#isIsEssential <em>Is Essential</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Essential</em>' attribute.
+	 * @see #isIsEssential()
+	 * @generated
+	 */
+	void setIsEssential(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Inseparable</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Inseparable</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Inseparable</em>' attribute.
+	 * @see #setIsInseparable(boolean)
+	 * @see CleanUML.CleanUMLPackage#getMeronymic_IsInseparable()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isIsInseparable();
+
+	/**
+	 * Sets the value of the '{@link CleanUML.Meronymic#isIsInseparable <em>Is Inseparable</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Inseparable</em>' attribute.
+	 * @see #isIsInseparable()
+	 * @generated
+	 */
+	void setIsInseparable(boolean value);
+
+} // Meronymic

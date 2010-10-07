@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<CleanUML:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:CleanUML="CleanUML" name="Basic Example" visibility="public">
+  <packagedElement xsi:type="CleanUML:Kind" name="Person" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:Kind" name="University" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Man" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.12"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:SubKind" name="Woman" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.12"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Phase" name="Living Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.11"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Phase" name="Deceased Person" visibility="public">
+    <generalization general="//@packagedElement.0" generalizationSet="//@packagedElement.11"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Role" name="Student" visibility="public">
+    <generalization general="//@packagedElement.0"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Relator" name="Enrollment" visibility="public"/>
+  <packagedElement xsi:type="CleanUML:MaterialAssociation" name="attends" visibility="public" memberEnd="//@packagedElement.8/@ownedEnd.0 //@packagedElement.8/@ownedEnd.1" isDerived="true">
+    <ownedEnd name="" visibility="public" type="//@packagedElement.6" association="//@packagedElement.8">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.1" association="//@packagedElement.8">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Mediation" visibility="public" memberEnd="//@packagedElement.9/@ownedEnd.0 //@packagedElement.9/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.7" association="//@packagedElement.9">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.6" isReadOnly="true" association="//@packagedElement.9">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:Mediation" visibility="public" memberEnd="//@packagedElement.10/@ownedEnd.0 //@packagedElement.10/@ownedEnd.1">
+    <name xsi:nil="true"/>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.7" association="//@packagedElement.10">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="-1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+    <ownedEnd name="" visibility="public" type="//@packagedElement.1" isReadOnly="true" association="//@packagedElement.10">
+      <upperValue xsi:type="CleanUML:LiteralUnlimitedNatural" value="1"/>
+      <lowerValue xsi:type="CleanUML:LiteralInteger" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.5/@generalization.0 //@packagedElement.4/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+  <packagedElement xsi:type="CleanUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.3/@generalization.0 //@packagedElement.2/@generalization.0">
+    <name xsi:nil="true"/>
+  </packagedElement>
+</CleanUML:Package>
