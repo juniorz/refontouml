@@ -4,6 +4,7 @@ import java.util.List;
 
 import RefOntoUML.Property;
 import RefOntoUML.Type;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MandatoryAssociationStructure;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MediatedEnd;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MemberOfRelation;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.tree.Node;
@@ -115,65 +116,131 @@ public class DomainVerbose
 		MainVerbose.sectionBreak();
 	}
 	
-	//vcz
-	public static String  kind (String kindName, List<List<String>> subKindPartitions, List<String> disjointClasses)
+	private static String dealMandatoryAssociations (List<MandatoryAssociationStructure> mandatoryAssociations)
 	{
-		String out1 = "";
-		String out2 = "";
+		String mandatoryAssociationsString = "";
 		
+		OWLVerbose.increaseIdent();
+		for (MandatoryAssociationStructure mas : mandatoryAssociations)
+		{
+			mandatoryAssociationsString += OWLVerbose.openSubClassOf();
+			mandatoryAssociationsString += OWLVerbose.openRestriction();
+			
+			// Source or Destination?
+			if (mas.isSource)
+			{
+				mandatoryAssociationsString += OWLVerbose.openCloseOnProperty(mas.associationName);
+			}
+			else
+			{
+				mandatoryAssociationsString += OWLVerbose.openOnProperty();
+				mandatoryAssociationsString += OWLVerbose.openObjectProperty();
+				mandatoryAssociationsString += OWLVerbose.openCloseInverseOf(mas.associationName);
+				mandatoryAssociationsString += OWLVerbose.closeObjectProperty();
+				mandatoryAssociationsString += OWLVerbose.closeOnProperty();
+			}
+			
+			// Opposite Class
+			mandatoryAssociationsString += OWLVerbose.openCloseOnClass(mas.oppositeName);
+						
+			// Cardinalities
+			if (mas.minCardinality == mas.maxCardinality)
+			{
+				mandatoryAssociationsString += OWLVerbose.openCloseQualifiedCardinality(Integer.toString(mas.minCardinality));
+			}
+			else
+			{
+				mandatoryAssociationsString += OWLVerbose.openCloseMinQualifiedCardinality(Integer.toString(mas.minCardinality));
+				// TODO: What if maxCardinality is Infinite?
+				if (mas.maxCardinality != -1)
+					mandatoryAssociationsString += OWLVerbose.openCloseMaxQualifiedCardinality(Integer.toString(mas.maxCardinality));
+			}
+			
+			mandatoryAssociationsString += OWLVerbose.closeRestriction();
+			mandatoryAssociationsString += OWLVerbose.closeSubClassOf();
+		}
+		OWLVerbose.decreaseIdent();
+		
+		return mandatoryAssociationsString;
+	}
+	
+	//vcz
+	public static String  kind (String kindName, List<List<String>> subKindPartitions, List<String> disjointClasses,
+								List<MandatoryAssociationStructure> mandatoryAssociations)
+	{
+		String partitionsString = "";
+		String dijointClassesString = "";
+		String mandatoryAssociationsString = "";
+		
+		// Partitions
 		for (List<String> partition : subKindPartitions)
 		{
 			OWLVerbose.increaseIdent();
 			
-			out1 += OWLVerbose.openEquivalentClass();
-			out1 += OWLVerbose.openClass();
-			out1 += OWLVerbose.openUnionOf("Collection");
+			partitionsString += OWLVerbose.openEquivalentClass();
+			partitionsString += OWLVerbose.openClass();
+			partitionsString += OWLVerbose.openUnionOf("Collection");
 			
 			for (String subclass : partition)
 			{
-				out1 += OWLVerbose.openCloseDescription(subclass);
+				partitionsString += OWLVerbose.openCloseDescription(subclass);
 			}
 			
-			out1 += OWLVerbose.closeUnionOf();
-			out1 += OWLVerbose.closeClass();
-			out1 += OWLVerbose.closeEquivalentClass();
+			partitionsString += OWLVerbose.closeUnionOf();
+			partitionsString += OWLVerbose.closeClass();
+			partitionsString += OWLVerbose.closeEquivalentClass();
 			
 			OWLVerbose.decreaseIdent();
 		}
 		
+		// Disjoint Classes
 		OWLVerbose.increaseIdent();
 		for (String dclass : disjointClasses)
 		{
-			out2 += OWLVerbose.openCloseDisjointWith(dclass);
+			dijointClassesString += OWLVerbose.openCloseDisjointWith(dclass);
 		}
 		OWLVerbose.decreaseIdent();
+		
+		// Mandatory Associations
+		mandatoryAssociationsString = dealMandatoryAssociations (mandatoryAssociations);
 		
 		return
 		MainVerbose.header(kindName) +
 		OWLVerbose.openClass(kindName) +
-			out1 +
+			// SubKind partitions
+			partitionsString +
+			// SubClass of FunctionalComplex
 			OWLVerbose.openCloseSubClassOf("FunctionalComplex") +
-			out2 +
+			// Disjoint from other Kinds
+			dijointClassesString +
+			// Mandatory Associations
+			mandatoryAssociationsString +
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
 	
-	public static String subKind (String subKindName, String kindName, List<String> disjointClasses)
+	public static String subKind (String subKindName, String kindName, List<String> disjointClasses,
+									List<MandatoryAssociationStructure> mandatoryAssociations)
 	{
-		String out2 = "";
+		String disjointClassesString = "";
 		
+		// Disjoint Classes
 		OWLVerbose.increaseIdent();
 		for (String dclass : disjointClasses)
 		{
-			out2 += OWLVerbose.openCloseDisjointWith(dclass);
+			disjointClassesString += OWLVerbose.openCloseDisjointWith(dclass);
 		}
 		OWLVerbose.decreaseIdent();
+		
+		// Mandatory Associations
+		String mandatoryAssociationsString = dealMandatoryAssociations (mandatoryAssociations);
 		
 		return
 		MainVerbose.header(subKindName) +
 		OWLVerbose.openClass(subKindName) +
 			OWLVerbose.openCloseSubClassOf(kindName) +
-			out2 +
+			disjointClassesString +
+			mandatoryAssociationsString +
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}

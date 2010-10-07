@@ -5,6 +5,7 @@ import java.util.List;
 
 import RefOntoUML.Category;
 import RefOntoUML.Collective;
+import RefOntoUML.FormalAssociation;
 import RefOntoUML.Kind;
 import RefOntoUML.Meronymic;
 import RefOntoUML.Package;
@@ -22,6 +23,7 @@ public class OntoUMLModel
 	public List<Role> roles;
 	public List<Relator> relators;
 	public List<Meronymic> meronymics;
+	public List<FormalAssociation> formalAssociations;
 	
 	public OntoUMLModel (Package p)
 	{
@@ -31,7 +33,8 @@ public class OntoUMLModel
 		subKinds = new LinkedList<SubKind>();
 		roles = new LinkedList<Role>();
 		relators = new LinkedList<Relator>();
-		meronymics = new LinkedList<Meronymic>();		
+		meronymics = new LinkedList<Meronymic>();
+		formalAssociations = new LinkedList<FormalAssociation>();
 		
 		for (PackageableElement pe : p.getPackagedElement())
 		{
@@ -49,6 +52,8 @@ public class OntoUMLModel
 				relators.add((Relator) pe);
 			else if (pe instanceof Meronymic)
 				meronymics.add((Meronymic) pe);
+			else if (pe instanceof FormalAssociation)
+				formalAssociations.add((FormalAssociation)pe);
 		}
 	}
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MandatoryAssociationStructure;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MemberOfRelation;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.OntoUMLModel;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.RelatorStructure;
@@ -20,6 +21,7 @@ import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose.MetaVerbose;
 import RefOntoUML.Class;
 import RefOntoUML.Classifier;
 import RefOntoUML.Collective;
+import RefOntoUML.FormalAssociation;
 import RefOntoUML.Generalization;
 import RefOntoUML.GeneralizationSet;
 import RefOntoUML.Meronymic;
@@ -98,6 +100,10 @@ public class Transformation
 		// For each Meronymic
 		for (Meronymic m : mymodel.meronymics)
 			dealMeronymic(m);
+		
+		// For each Formal Association
+		for (FormalAssociation fa : mymodel.formalAssociations)
+			dealFormalAssociation(fa);
 		
 		myfile.write(MainVerbose.finalVerbose());
 		myfile.done();
@@ -210,20 +216,63 @@ public class Transformation
 		myfile.write(DomainVerbose.category(cat.getName(), childrenByPartition));
 	}
 	
+	private List<MandatoryAssociationStructure> dealMandatoryAssociations (Node kn)
+	{
+		List<MandatoryAssociationStructure> mandatoryAssociations = new LinkedList<MandatoryAssociationStructure>();
+				
+		// For every MANDATORY BINARY FORMAL association relating this Kind/SubKind
+		for (Association a : kn.getAssociations())
+		{
+			//System.out.println(a.getName()
+				//	+ " " + a.getMemberEnd().get(0).getType().getName()
+				//	+ " " + a.getMemberEnd().get(1).getType().getName());
+			
+			if ((a instanceof FormalAssociation) && (a.getMemberEnd().size() == 2))
+			{
+				Property p1, p2, myend, oppositeEnd; 				
+				p1 = a.getMemberEnd().get(0);
+				p2 = a.getMemberEnd().get(1);
+				
+				if (p1.getType() == kn.getRelatedClass())
+				{
+					// Kind/SubKind is the source
+					myend = p1;
+					oppositeEnd = p2;
+				}
+				else
+				{
+					// Kind/SubKind is the destination
+					myend = p2;
+					oppositeEnd = p1;
+				}
+				
+				// Mandatory Associations only
+				if (p1.getLower() > 0 || p2.getLower() > 0)
+				{
+					MandatoryAssociationStructure mas = new MandatoryAssociationStructure();
+					mas.associationName = a.getName(); // FIXME: specialized associations receive a different name
+					mas.isSource = (myend == p1);
+					mas.minCardinality = oppositeEnd.getLower();
+					mas.maxCardinality = oppositeEnd.getUpper();
+					mas.oppositeName = oppositeEnd.getType().getName();
+					mandatoryAssociations.add(mas);
+				}
+			}
+		}
+		
+		return mandatoryAssociations;
+	}
+	
 	private void dealKind (Kind k, List<Kind> kinds)
 	{
 		Node kn = mytree.getNode(k);
 		List<List<String>> childrenByPartition;
 		List<String> disjointClasses;
-		//Property p1, p2; 
-		//Type t1, t2; 
 		
 		// Children Grouped by (Complete) Generalization Sets
 		childrenByPartition = getChildrenByCompletePartition(kn, true);
 		
-		// (old) As a Child in a Generalzations Sets (/old)
-		// (old) disjointClasses = getDisjointClasses(k); (/old)
-		// (new)
+		// Disjoint from all the other Kinds
 		disjointClasses = new LinkedList<String>();
 		for (Kind other : kinds)
 		{
@@ -231,34 +280,10 @@ public class Transformation
 				disjointClasses.add(other.getName());
 		}
 		
-		// vcz
-		// For every association of this kind
-		/*for (Association a : kn.getAssociations())
-		{
-			// just binary associations (not treating derivation)
-			if (a.getMemberEnd().size() == 2)
-			{
-			
-			p1 = a.getMemberEnd().get(0);
-			t1 = p1.getType();
-			p2 = a.getMemberEnd().get(1);
-			t2 = p2.getType();
-			// check if the kind is the source of the association
-			if (t1.getName() == k.getName())
-				// just mandatory associations
-				// se a card min do dst for 1 entao
-					// se a card min = max
-				   		// subClass [assoc] exactly [minCard] DstClass
-			//otherwise, the kind is the destination
-			else
-			{
-			}
-
-			}
-		}
-		*/	
-		
-		myfile.write(DomainVerbose.kind(k.getName(), childrenByPartition, disjointClasses));
+		// Mandatory Associations
+		List<MandatoryAssociationStructure> mandatoryAssociations = dealMandatoryAssociations(kn);
+				
+		myfile.write(DomainVerbose.kind(k.getName(), childrenByPartition, disjointClasses, mandatoryAssociations));
 	}
 	
 	private void dealCollective (Collective col)
@@ -286,6 +311,8 @@ public class Transformation
 	
 	private void dealSubKind (SubKind sk)
 	{
+		Node skn = mytree.getNode(sk);
+		
 		// Disjoint Brothers
 		List<String> disjointClasses = getDisjointClasses(sk);
 		
@@ -298,8 +325,11 @@ public class Transformation
 			if (parent instanceof SortalClass)
 				immediateSortal = parent.getName();
 		}
-				
-		myfile.write(DomainVerbose.subKind(sk.getName(), immediateSortal, disjointClasses));
+			
+		// Mandatory Associations
+		List<MandatoryAssociationStructure> mandatoryAssociations = dealMandatoryAssociations(skn);
+		
+		myfile.write(DomainVerbose.subKind(sk.getName(), immediateSortal, disjointClasses, mandatoryAssociations));
 	}
 	
 	private void dealRole (Role role)
@@ -368,5 +398,10 @@ public class Transformation
 			return;
 				
 		myfile.write(DomainVerbose.meronymic(type, m.part().getName(), m.whole().getName(), m.isIsShareable(), m.isIsInseparable()));
+	}
+	
+	private void dealFormalAssociation (FormalAssociation fa)
+	{
+		// TODO
 	}
 }
