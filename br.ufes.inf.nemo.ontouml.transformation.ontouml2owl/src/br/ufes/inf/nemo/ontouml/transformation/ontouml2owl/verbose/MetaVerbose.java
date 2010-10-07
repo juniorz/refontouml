@@ -11,7 +11,10 @@ public class MetaVerbose
 	public static String allMetaVerbose ()
 	{
 		return
+		
+		MainVerbose.commentBlock("NonChangeable Structural Object Properties") +
 		existentiallyDependentOf() +
+		invExistentiallyDependentOf() +
 		hasTimeExtent() +
 		inheres() +
 		inseparablePartOf() +
@@ -19,20 +22,36 @@ public class MetaVerbose
 		memberOf() +
 		partOf() +
 		subCollectionOf() +
+		componentOf() +
+
+		MainVerbose.commentBlock("NonChangeable Structural Classes") +
 		individual() +
-		temporalExtent() +
+		object() +
+		moment() +
+		mode() +
+		relator() +
 		quaIndividual() +
-		relator();
+		temporalExtent();
 	}
 	
 	private static String existentiallyDependentOf()
 	{
 		return
 		MainVerbose.header("existentiallyDependentOf") + 
-		OWLVerbose.openCloseObjectProperty("existentiallyDependentOf") +
+		OWLVerbose.openObjectProperty("existentiallyDependentOf") +
+		OWLVerbose.openCloseInverseOf("invExistentiallyDependentOf") +
+		OWLVerbose.closeObjectProperty() +
 		MainVerbose.sectionBreak();
 	}
 	
+	private static String invExistentiallyDependentOf()
+	{
+		return
+		MainVerbose.header("invExistentiallyDependentOf") + 
+		OWLVerbose.openCloseObjectProperty("invExistentiallyDependentOf") +
+		MainVerbose.sectionBreak();
+	}
+
 	private static String hasTimeExtent()
 	{
 		return
@@ -122,21 +141,98 @@ public class MetaVerbose
 		MainVerbose.sectionBreak();
 	}
 	
+	private static String componentOf()
+	{
+		return
+		MainVerbose.header("componentOf") +
+		OWLVerbose.openObjectProperty("componentOf") +
+			OWLVerbose.openCloseRange("FunctionalComplex") +
+			OWLVerbose.openCloseDomain("FunctionalComplex") +
+			OWLVerbose.openCloseSubPropertyOf("partOf") +
+		OWLVerbose.closeObjectProperty() +
+		MainVerbose.sectionBreak();
+	}
+	
 	private static String individual()
 	{
 		return
 		MainVerbose.header("Individual") +
 		OWLVerbose.openClass("Individual") +
+			OWLVerbose.openEquivalentClass() +
+			OWLVerbose.openClass() +
+				OWLVerbose.openUnionOf("Collection") +
+				OWLVerbose.openCloseDescription("Object") +
+				OWLVerbose.openCloseDescription("Moment") +
+				OWLVerbose.closeUnionOf() +
+			OWLVerbose.closeClass() +
+			OWLVerbose.closeEquivalentClass() +
+		
 			OWLVerbose.openCloseDisjointWith("TemporalExtent") +
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
 	
+	private static String object()
+	{
+		return
+		MainVerbose.header("Object") +
+		OWLVerbose.openClass("Object") +
+			OWLVerbose.openCloseSubClassOf("Individual") +
+
+			OWLVerbose.openEquivalentClass() +
+			OWLVerbose.openClass() +
+				OWLVerbose.openUnionOf("Collection") +
+				OWLVerbose.openCloseDescription("FunctionalComplex") +
+				OWLVerbose.openCloseDescription("Collective") +
+//				OWLVerbose.openCloseDescription("Quantity") +
+				OWLVerbose.closeUnionOf() +
+			OWLVerbose.closeClass() +
+			OWLVerbose.closeEquivalentClass() +
+
+			OWLVerbose.openCloseDisjointWith("Moment") +
+		OWLVerbose.closeClass() +
+		MainVerbose.sectionBreak();
+	}
+
+	private static String moment()
+	{
+		return
+		MainVerbose.header("Moment") +
+		OWLVerbose.openClass("Moment") +
+			OWLVerbose.openCloseSubClassOf("Individual") +
+
+			OWLVerbose.openEquivalentClass() +
+			OWLVerbose.openClass() +
+				OWLVerbose.openUnionOf("Collection") +
+				OWLVerbose.openCloseDescription("Mode") +
+				OWLVerbose.openCloseDescription("Relator") +
+				OWLVerbose.closeUnionOf() +
+			OWLVerbose.closeClass() +
+			OWLVerbose.closeEquivalentClass() +
+
+			OWLVerbose.openCloseDisjointWith("Object") +
+		OWLVerbose.closeClass() +
+		MainVerbose.sectionBreak();
+	}
+
+	private static String mode()
+	{
+		return
+		MainVerbose.header("Mode") +
+		OWLVerbose.openClass("Mode") +
+			OWLVerbose.openCloseSubClassOf("Moment") +
+			OWLVerbose.openCloseDisjointWith("Relator") +
+		OWLVerbose.closeClass() +
+		MainVerbose.sectionBreak();
+	}
+
 	private static String temporalExtent()
 	{
 		return
 		MainVerbose.header("TemporalExtent") +
-		OWLVerbose.openCloseClass("TemporalExtent") +
+		OWLVerbose.openClass("TemporalExtent") +
+		OWLVerbose.openCloseDisjointWith("Individual") +
+		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
 		
@@ -146,7 +242,7 @@ public class MetaVerbose
 		MainVerbose.header("QuaIndividual") +
 		OWLVerbose.openClass("QuaIndividual") +
 		 
-			OWLVerbose.openCloseSubClassOf("Individual") +
+			OWLVerbose.openCloseSubClassOf("Mode") +
 			 
 			 OWLVerbose.openSubClassOf() +
 			 	OWLVerbose.openRestriction() +
@@ -179,16 +275,16 @@ public class MetaVerbose
 		MainVerbose.header("Relator") +
 		OWLVerbose.openClass("Relator") +
 		
-			OWLVerbose.openEquivalentClass() +
+		OWLVerbose.openCloseSubClassOf("Moment") +
+
+		OWLVerbose.openEquivalentClass() +
 				OWLVerbose.openRestriction() +
 					OWLVerbose.openCloseOnProperty("mediates") +
 					OWLVerbose.openCloseOnClass("Individual") +
 					OWLVerbose.openCloseMinQualifiedCardinality("2") +
 				OWLVerbose.closeRestriction() +
 			OWLVerbose.closeEquivalentClass() +
-			
-			OWLVerbose.openCloseSubClassOf("Individual") +
-			
+						
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}

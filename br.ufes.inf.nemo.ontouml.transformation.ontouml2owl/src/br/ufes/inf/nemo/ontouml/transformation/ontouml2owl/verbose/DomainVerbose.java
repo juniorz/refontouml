@@ -2,8 +2,11 @@ package br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.verbose;
 
 import java.util.List;
 
+import RefOntoUML.Property;
+import RefOntoUML.Type;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MediatedEnd;
 import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.auxiliary.MemberOfRelation;
+import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.tree.Node;
 
 public class DomainVerbose
 {
@@ -44,7 +47,9 @@ public class DomainVerbose
 				OWLVerbose.closeClass() +
 			OWLVerbose.closeEquivalentClass() +
 			
-			OWLVerbose.openCloseSubClassOf("Individual") +
+			OWLVerbose.openCloseSubClassOf("Object") +
+			OWLVerbose.openCloseDisjointWith("Collective") +
+			//OWLVerbose.openCloseDisjointWith("Quantity") +
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
@@ -102,12 +107,15 @@ public class DomainVerbose
 			OWLVerbose.closeEquivalentClass() +
 			
 			// SubClassOf
-			OWLVerbose.openCloseSubClassOf("Individual") +
+			OWLVerbose.openCloseSubClassOf("Object") +
+			OWLVerbose.openCloseDisjointWith("FunctionalComplex") +
+			//OWLVerbose.openCloseDisjointWith("Quantity") +
 			
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
 	
+	//vcz
 	public static String  kind (String kindName, List<List<String>> subKindPartitions, List<String> disjointClasses)
 	{
 		String out1 = "";
@@ -198,7 +206,7 @@ public class DomainVerbose
 		MainVerbose.header(categoryName) +
 		OWLVerbose.openClass(categoryName) +
 			out1 +
-			OWLVerbose.openCloseSubClassOf("Individual") +
+			OWLVerbose.openCloseSubClassOf("Object") +
 		OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
@@ -467,7 +475,7 @@ public class DomainVerbose
 		
 		for (String name : connectedRoles)
 		{
-			out += OWLVerbose.openCloseDisjointWith(name);
+			out += OWLVerbose.openCloseDisjointWith("Qua" + name);
 		}
 		
 		return out;

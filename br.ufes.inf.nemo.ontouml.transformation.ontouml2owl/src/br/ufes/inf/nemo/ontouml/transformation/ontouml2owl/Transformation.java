@@ -25,6 +25,7 @@ import RefOntoUML.GeneralizationSet;
 import RefOntoUML.Meronymic;
 import RefOntoUML.Package;
 import RefOntoUML.Kind;
+import RefOntoUML.Property;
 import RefOntoUML.Role;
 import RefOntoUML.SortalClass;
 import RefOntoUML.SubKind;
@@ -32,6 +33,7 @@ import RefOntoUML.Category;
 import RefOntoUML.Relator;
 import RefOntoUML.Association;
 import RefOntoUML.SubstanceSortal;
+import RefOntoUML.Type;
 import RefOntoUML.componentOf;
 import RefOntoUML.memberOf;
 import RefOntoUML.subCollectionOf;
@@ -86,8 +88,8 @@ public class Transformation
 			dealRelator(rs);
 		
 		// For each Collective
-		//for (Collective col : mymodel.collectives)
-			//dealCollective(col);
+		for (Collective col : mymodel.collectives)
+			dealCollective(col);
 		
 		// For each Role
 		for (Role role : mymodel.roles)
@@ -213,6 +215,8 @@ public class Transformation
 		Node kn = mytree.getNode(k);
 		List<List<String>> childrenByPartition;
 		List<String> disjointClasses;
+		//Property p1, p2; 
+		//Type t1, t2; 
 		
 		// Children Grouped by (Complete) Generalization Sets
 		childrenByPartition = getChildrenByCompletePartition(kn, true);
@@ -226,6 +230,33 @@ public class Transformation
 			if (other != k)
 				disjointClasses.add(other.getName());
 		}
+		
+		// vcz
+		// For every association of this kind
+		/*for (Association a : kn.getAssociations())
+		{
+			// just binary associations (not treating derivation)
+			if (a.getMemberEnd().size() == 2)
+			{
+			
+			p1 = a.getMemberEnd().get(0);
+			t1 = p1.getType();
+			p2 = a.getMemberEnd().get(1);
+			t2 = p2.getType();
+			// check if the kind is the source of the association
+			if (t1.getName() == k.getName())
+				// just mandatory associations
+				// se a card min do dst for 1 entao
+					// se a card min = max
+				   		// subClass [assoc] exactly [minCard] DstClass
+			//otherwise, the kind is the destination
+			else
+			{
+			}
+
+			}
+		}
+		*/	
 		
 		myfile.write(DomainVerbose.kind(k.getName(), childrenByPartition, disjointClasses));
 	}
@@ -326,7 +357,7 @@ public class Transformation
 	{
 		String type = "";
 		if (m instanceof componentOf)
-			return;
+			type = "componentOf";
 		else if (m instanceof subCollectionOf)
 			return;		
 		else if (m instanceof subQuantityOf)
