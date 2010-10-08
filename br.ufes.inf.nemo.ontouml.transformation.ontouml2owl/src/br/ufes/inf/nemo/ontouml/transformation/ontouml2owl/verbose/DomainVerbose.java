@@ -582,4 +582,21 @@ public class DomainVerbose
 			OWLVerbose.closeClass() +
 		MainVerbose.sectionBreak();
 	}
+	
+	public static String formalAssociation (String associationName, String sourceName, String targetName,
+											boolean isSourceReadOnly, boolean isTargetReadOnly, String superAssociationName)
+	{
+		return
+		MainVerbose.header(associationName) +
+		OWLVerbose.openObjectProperty(associationName) +
+			// FIXME: Range == Target?
+			OWLVerbose.openCloseRange(targetName) +
+			// FIXME: Domain == Source?
+			OWLVerbose.openCloseDomain(sourceName) +
+			(superAssociationName != null ? OWLVerbose.openCloseSubPropertyOf(superAssociationName) : "") +
+			(isSourceReadOnly ? OWLVerbose.openCloseSubPropertyOf("invExistentiallyDependentOf") : "") +
+			(isTargetReadOnly ? OWLVerbose.openCloseSubPropertyOf("existentiallyDependentOf") : "") +
+		OWLVerbose.closeObjectProperty() +
+		MainVerbose.sectionBreak();
+	}
 }

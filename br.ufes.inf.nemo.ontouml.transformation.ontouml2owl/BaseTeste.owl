@@ -320,6 +320,13 @@
 		<owl:disjointWith rdf:resource="#Organization"/>
 		<owl:disjointWith rdf:resource="#Dog"/>
 		<owl:disjointWith rdf:resource="#Heart"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#owns"/>
+				<owl:onClass rdf:resource="#Dog"/>
+				<owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:minQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 	</owl:Class>
 
 
@@ -342,6 +349,17 @@
 		<owl:disjointWith rdf:resource="#Person"/>
 		<owl:disjointWith rdf:resource="#Organization"/>
 		<owl:disjointWith rdf:resource="#Heart"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#owns"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#Person"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 	</owl:Class>
 
 
@@ -379,6 +397,17 @@
 
 	<owl:Class rdf:about="#SpecialDog">
 		<rdfs:subClassOf rdf:resource="#Dog"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#owns"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#SpecialPerson"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 	</owl:Class>
 
 
@@ -387,6 +416,13 @@
 
 	<owl:Class rdf:about="#SpecialPerson">
 		<rdfs:subClassOf rdf:resource="#Person"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#owns"/>
+				<owl:onClass rdf:resource="#SpecialDog"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
 	</owl:Class>
 
 
@@ -625,6 +661,27 @@
 		<rdfs:domain rdf:resource="#Agent"/>
 		<rdfs:range rdf:resource="#Group"/>
 		<rdfs:subPropertyOf rdf:resource="#memberOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#owns -->
+
+	<owl:ObjectProperty rdf:about="#owns">
+		<rdfs:range rdf:resource="#Dog"/>
+		<rdfs:domain rdf:resource="#Person"/>
+		<rdfs:subPropertyOf rdf:resource="#invExistentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- http://www.semanticweb.org/ontologies/2010/10/BaseTeste.owl#ownsSpecialPersonSpecialDog -->
+
+	<owl:ObjectProperty rdf:about="#ownsSpecialPersonSpecialDog">
+		<rdfs:range rdf:resource="#SpecialDog"/>
+		<rdfs:domain rdf:resource="#SpecialPerson"/>
+		<rdfs:subPropertyOf rdf:resource="#owns"/>
+		<rdfs:subPropertyOf rdf:resource="#invExistentiallyDependentOf"/>
 	</owl:ObjectProperty>
 
 

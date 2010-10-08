@@ -402,6 +402,40 @@ public class Transformation
 	
 	private void dealFormalAssociation (FormalAssociation fa)
 	{
-		// TODO
+		// Only BINARY Formal Associations
+		if (fa.getMemberEnd().size() != 2)
+			return;
+		
+		String associationName = null;
+		String superAssociationName = null;		
+		Property sourceEnd = fa.getMemberEnd().get(0); 
+		Property targetEnd = fa.getMemberEnd().get(1);
+		String sourceName = sourceEnd.getType().getName();
+		String targetName = targetEnd.getType().getName();
+		
+		for (Classifier parent : fa.parents())
+		{
+			// Arbitrary choice of parent...
+			if (parent instanceof FormalAssociation)
+			{
+				superAssociationName = parent.getName();
+				break;
+			}
+		}
+		
+		if (superAssociationName == null)
+			associationName = fa.getName();
+		else
+			associationName = fa.getName() + sourceName + targetName;
+		
+		myfile.write
+		(
+			DomainVerbose.formalAssociation
+			(
+				associationName,
+				sourceName, targetName, sourceEnd.isIsReadOnly(), targetEnd.isIsReadOnly(),
+				superAssociationName
+			)
+		);
 	}
 }
