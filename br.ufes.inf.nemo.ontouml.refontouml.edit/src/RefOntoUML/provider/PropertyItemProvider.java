@@ -367,12 +367,29 @@ public class PropertyItemProvider
 	{
 		Property p = (Property) object;
 		String label = p.getName();
-		String type = p.getType().getName();
-		String cardinality = "[" + p.getLower() + ", " + (p.getUpper() != -1 ? p.getUpper() : "*") + "]";		
+		String type = null;
+		String cardinality = "[" + p.getLower() + ", " + (p.getUpper() != -1 ? p.getUpper() : "*") + "]";
 		
-		return label == null || label.length() == 0 ?
-			getString("_UI_Property_type") + " " + type + " " + cardinality :
-			getString("_UI_Property_type") + " " + type + " (" + label + ") " + cardinality;
+		// Checking if Type is NULL because an attribute may have a Primitive Type as a Type
+		// There is a bug related to Primitive Types in the official eclipse metamodel
+		// Bug 262140 -  UML primitive types cannot be accessed
+		if (p.getType() != null)
+			type = p.getType().getName(); 
+		
+		if (label == null || label.length() == 0)
+		{
+			if (type == null || type.length() == 0)
+				return getString("_UI_Property_type") + " " + cardinality;
+			else
+				return getString("_UI_Property_type") + " " + type + " " + cardinality;
+		}
+		else
+		{
+			if (type == null || type.length() == 0) 
+				return getString("_UI_Property_type") + " " + "(" + label + ") " + cardinality;
+			else
+				return getString("_UI_Property_type") + " " + type + " (" + label + ") " + cardinality;
+		}			
 	}
 
 	/**

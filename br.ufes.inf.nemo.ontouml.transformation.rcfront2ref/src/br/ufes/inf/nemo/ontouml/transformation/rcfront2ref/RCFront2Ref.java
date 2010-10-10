@@ -17,6 +17,11 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class RCFront2Ref
 {
+	public static void main (String[] args)
+	{
+		Transformation (args[0]);
+	}
+	
 	public static void Transformation (String fileName)
 	{		
 		// Configure ResourceSet
