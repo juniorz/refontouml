@@ -26,8 +26,8 @@ package RefOntoUML;
  * @see RefOntoUML.RefOntoUMLPackage#getMeronymic()
  * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MeronymicConstraint1 MeronymicConstraint2a MeronymicConstraint2b'"
- *        annotation="http://www.eclipse.org/ocl/examples/OCL MeronymicConstraint1='Meronymic.allInstances()->select( x | x.whole() = whole() )->collect( y | y.partEnd().lower )->sum() >= 2' MeronymicConstraint2a='whole().oclIsKindOf (AntiRigidSortalClass) or whole().oclIsKindOf (AntiRigidMixinClass) implies not isEssential' MeronymicConstraint2b='true -- isEssential implies isImmutable'"
- *        annotation="Comments MeronymicConstraint1='The sum of the minimum cardinalities of the parts must be greater or equal to 2' MeronymicConstraint2a='AntiRigid whole implies that specific part dependence with de re modality is not possible' MeronymicConstraint2b='(Deactivated) Specific dependence with de re modality implies specific dependence with de dicto modality'"
+ *        annotation="http://www.eclipse.org/ocl/examples/OCL MeronymicConstraint1='Meronymic.allInstances()->select( x | x.whole() = whole() )->collect( y | y.partEnd().lower )->sum() >= 2' MeronymicConstraint2a='whole().oclIsKindOf (AntiRigidSortalClass) or whole().oclIsKindOf (AntiRigidMixinClass) implies not isEssential' MeronymicConstraint2b='true -- isEssential implies isImmutablePart' MeronymicConstraint3='true -- isInseparable implies isImmutableWhole'"
+ *        annotation="Comments MeronymicConstraint1='The sum of the minimum cardinalities of the parts must be greater or equal to 2' MeronymicConstraint2a='AntiRigid whole implies that specific part dependence with de re modality is not possible' MeronymicConstraint2b='(Deactivated) Specific part dependence with de re modality implies specific part dependence with de dicto modality' MeronymicConstraint3='(Deactivated) Specific whole dependence with de re modality implies specific whole dependence with de dicto modality'"
  * @generated
  */
 public interface Meronymic extends DirectedBinaryAssociation
