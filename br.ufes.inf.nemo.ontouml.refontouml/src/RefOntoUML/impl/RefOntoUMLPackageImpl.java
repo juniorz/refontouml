@@ -2808,9 +2808,19 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getMeronymic_IsImmutable()
+	public EAttribute getMeronymic_IsImmutablePart()
 	{
         return (EAttribute)getMeronymic().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getMeronymic_IsImmutableWhole()
+	{
+        return (EAttribute)getMeronymic().getEStructuralFeatures().get(4);
 	}
 
 	/**

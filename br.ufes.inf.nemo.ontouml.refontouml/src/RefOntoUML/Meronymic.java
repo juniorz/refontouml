@@ -18,7 +18,8 @@ package RefOntoUML;
  *   <li>{@link RefOntoUML.Meronymic#isIsShareable <em>Is Shareable</em>}</li>
  *   <li>{@link RefOntoUML.Meronymic#isIsEssential <em>Is Essential</em>}</li>
  *   <li>{@link RefOntoUML.Meronymic#isIsInseparable <em>Is Inseparable</em>}</li>
- *   <li>{@link RefOntoUML.Meronymic#isIsImmutable <em>Is Immutable</em>}</li>
+ *   <li>{@link RefOntoUML.Meronymic#isIsImmutablePart <em>Is Immutable Part</em>}</li>
+ *   <li>{@link RefOntoUML.Meronymic#isIsImmutableWhole <em>Is Immutable Whole</em>}</li>
  * </ul>
  * </p>
  *
@@ -113,31 +114,58 @@ public interface Meronymic extends DirectedBinaryAssociation
 	void setIsInseparable(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Immutable</b></em>' attribute.
+	 * Returns the value of the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Immutable</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Is Immutable Part</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Immutable</em>' attribute.
-	 * @see #setIsImmutable(boolean)
-	 * @see RefOntoUML.RefOntoUMLPackage#getMeronymic_IsImmutable()
+	 * @return the value of the '<em>Is Immutable Part</em>' attribute.
+	 * @see #setIsImmutablePart(boolean)
+	 * @see RefOntoUML.RefOntoUMLPackage#getMeronymic_IsImmutablePart()
 	 * @model default="false" required="true"
 	 * @generated
 	 */
-	boolean isIsImmutable();
+	boolean isIsImmutablePart();
 
 	/**
-	 * Sets the value of the '{@link RefOntoUML.Meronymic#isIsImmutable <em>Is Immutable</em>}' attribute.
+	 * Sets the value of the '{@link RefOntoUML.Meronymic#isIsImmutablePart <em>Is Immutable Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Immutable</em>' attribute.
-	 * @see #isIsImmutable()
+	 * @param value the new value of the '<em>Is Immutable Part</em>' attribute.
+	 * @see #isIsImmutablePart()
 	 * @generated
 	 */
-	void setIsImmutable(boolean value);
+	void setIsImmutablePart(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Immutable Whole</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Immutable Whole</em>' attribute.
+	 * @see #setIsImmutableWhole(boolean)
+	 * @see RefOntoUML.RefOntoUMLPackage#getMeronymic_IsImmutableWhole()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isIsImmutableWhole();
+
+	/**
+	 * Sets the value of the '{@link RefOntoUML.Meronymic#isIsImmutableWhole <em>Is Immutable Whole</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Immutable Whole</em>' attribute.
+	 * @see #isIsImmutableWhole()
+	 * @generated
+	 */
+	void setIsImmutableWhole(boolean value);
 
 	/**
 	 * <!-- begin-user-doc -->

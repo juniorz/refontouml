@@ -444,7 +444,8 @@ public class Transformation
 		m2.setIsShareable(m1.isIsShareable());
 		m2.setIsEssential(m1.isIsEssential());
 		m2.setIsInseparable(m1.isIsInseparable());
-		m2.setIsImmutable(m1.isIsImmutablePart());
+		m2.setIsImmutablePart(m1.isIsImmutablePart());
+		m2.setIsImmutableWhole(m1.isIsImmutableWhole());
 	}
 	
 	public void DealComponentOf (OntoUML.componentOf cmpOf1)

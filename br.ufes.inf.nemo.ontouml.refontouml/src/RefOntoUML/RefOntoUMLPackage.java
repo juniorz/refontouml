@@ -14189,13 +14189,22 @@ public interface RefOntoUMLPackage extends EPackage
 	int MERONYMIC__IS_INSEPARABLE = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Is Immutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MERONYMIC__IS_IMMUTABLE = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 3;
+	int MERONYMIC__IS_IMMUTABLE_PART = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERONYMIC__IS_IMMUTABLE_WHOLE = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Meronymic</em>' class.
@@ -14204,7 +14213,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MERONYMIC_FEATURE_COUNT = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 4;
+	int MERONYMIC_FEATURE_COUNT = DIRECTED_BINARY_ASSOCIATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link RefOntoUML.impl.subQuantityOfImpl <em>sub Quantity Of</em>}' class.
@@ -14550,13 +14559,22 @@ public interface RefOntoUMLPackage extends EPackage
 	int SUB_QUANTITY_OF__IS_INSEPARABLE = MERONYMIC__IS_INSEPARABLE;
 
 	/**
-	 * The feature id for the '<em><b>Is Immutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUB_QUANTITY_OF__IS_IMMUTABLE = MERONYMIC__IS_IMMUTABLE;
+	int SUB_QUANTITY_OF__IS_IMMUTABLE_PART = MERONYMIC__IS_IMMUTABLE_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_QUANTITY_OF__IS_IMMUTABLE_WHOLE = MERONYMIC__IS_IMMUTABLE_WHOLE;
 
 	/**
 	 * The number of structural features of the '<em>sub Quantity Of</em>' class.
@@ -14911,13 +14929,22 @@ public interface RefOntoUMLPackage extends EPackage
 	int SUB_COLLECTION_OF__IS_INSEPARABLE = MERONYMIC__IS_INSEPARABLE;
 
 	/**
-	 * The feature id for the '<em><b>Is Immutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUB_COLLECTION_OF__IS_IMMUTABLE = MERONYMIC__IS_IMMUTABLE;
+	int SUB_COLLECTION_OF__IS_IMMUTABLE_PART = MERONYMIC__IS_IMMUTABLE_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUB_COLLECTION_OF__IS_IMMUTABLE_WHOLE = MERONYMIC__IS_IMMUTABLE_WHOLE;
 
 	/**
 	 * The number of structural features of the '<em>sub Collection Of</em>' class.
@@ -15272,13 +15299,22 @@ public interface RefOntoUMLPackage extends EPackage
 	int MEMBER_OF__IS_INSEPARABLE = MERONYMIC__IS_INSEPARABLE;
 
 	/**
-	 * The feature id for the '<em><b>Is Immutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MEMBER_OF__IS_IMMUTABLE = MERONYMIC__IS_IMMUTABLE;
+	int MEMBER_OF__IS_IMMUTABLE_PART = MERONYMIC__IS_IMMUTABLE_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMBER_OF__IS_IMMUTABLE_WHOLE = MERONYMIC__IS_IMMUTABLE_WHOLE;
 
 	/**
 	 * The number of structural features of the '<em>member Of</em>' class.
@@ -15633,13 +15669,22 @@ public interface RefOntoUMLPackage extends EPackage
 	int COMPONENT_OF__IS_INSEPARABLE = MERONYMIC__IS_INSEPARABLE;
 
 	/**
-	 * The feature id for the '<em><b>Is Immutable</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Immutable Part</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_OF__IS_IMMUTABLE = MERONYMIC__IS_IMMUTABLE;
+	int COMPONENT_OF__IS_IMMUTABLE_PART = MERONYMIC__IS_IMMUTABLE_PART;
+
+	/**
+	 * The feature id for the '<em><b>Is Immutable Whole</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_OF__IS_IMMUTABLE_WHOLE = MERONYMIC__IS_IMMUTABLE_WHOLE;
 
 	/**
 	 * The number of structural features of the '<em>component Of</em>' class.
@@ -19605,15 +19650,26 @@ public interface RefOntoUMLPackage extends EPackage
 	EAttribute getMeronymic_IsInseparable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link RefOntoUML.Meronymic#isIsImmutable <em>Is Immutable</em>}'.
+	 * Returns the meta object for the attribute '{@link RefOntoUML.Meronymic#isIsImmutablePart <em>Is Immutable Part</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Immutable</em>'.
-	 * @see RefOntoUML.Meronymic#isIsImmutable()
+	 * @return the meta object for the attribute '<em>Is Immutable Part</em>'.
+	 * @see RefOntoUML.Meronymic#isIsImmutablePart()
 	 * @see #getMeronymic()
 	 * @generated
 	 */
-	EAttribute getMeronymic_IsImmutable();
+	EAttribute getMeronymic_IsImmutablePart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link RefOntoUML.Meronymic#isIsImmutableWhole <em>Is Immutable Whole</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Immutable Whole</em>'.
+	 * @see RefOntoUML.Meronymic#isIsImmutableWhole()
+	 * @see #getMeronymic()
+	 * @generated
+	 */
+	EAttribute getMeronymic_IsImmutableWhole();
 
 	/**
 	 * Returns the meta object for class '{@link RefOntoUML.subQuantityOf <em>sub Quantity Of</em>}'.

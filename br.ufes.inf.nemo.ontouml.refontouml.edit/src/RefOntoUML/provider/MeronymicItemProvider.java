@@ -68,7 +68,8 @@ public class MeronymicItemProvider
 			addIsShareablePropertyDescriptor(object);
 			addIsEssentialPropertyDescriptor(object);
 			addIsInseparablePropertyDescriptor(object);
-			addIsImmutablePropertyDescriptor(object);
+			addIsImmutablePartPropertyDescriptor(object);
+			addIsImmutableWholePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -143,20 +144,43 @@ public class MeronymicItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Is Immutable feature.
+	 * This adds a property descriptor for the Is Immutable Part feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsImmutablePropertyDescriptor(Object object)
+	protected void addIsImmutablePartPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Meronymic_isImmutable_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Meronymic_isImmutable_feature", "_UI_Meronymic_type"),
-				 RefOntoUMLPackage.eINSTANCE.getMeronymic_IsImmutable(),
+				 getString("_UI_Meronymic_isImmutablePart_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Meronymic_isImmutablePart_feature", "_UI_Meronymic_type"),
+				 RefOntoUMLPackage.eINSTANCE.getMeronymic_IsImmutablePart(),
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Is Immutable Whole feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIsImmutableWholePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Meronymic_isImmutableWhole_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Meronymic_isImmutableWhole_feature", "_UI_Meronymic_type"),
+				 RefOntoUMLPackage.eINSTANCE.getMeronymic_IsImmutableWhole(),
 				 true,
 				 false,
 				 false,
@@ -197,7 +221,8 @@ public class MeronymicItemProvider
 			case RefOntoUMLPackage.MERONYMIC__IS_SHAREABLE:
 			case RefOntoUMLPackage.MERONYMIC__IS_ESSENTIAL:
 			case RefOntoUMLPackage.MERONYMIC__IS_INSEPARABLE:
-			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE:
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART:
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

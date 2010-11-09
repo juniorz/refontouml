@@ -37,7 +37,8 @@ import org.eclipse.ocl.expressions.OCLExpression;
  *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsShareable <em>Is Shareable</em>}</li>
  *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsEssential <em>Is Essential</em>}</li>
  *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsInseparable <em>Is Inseparable</em>}</li>
- *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsImmutable <em>Is Immutable</em>}</li>
+ *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsImmutablePart <em>Is Immutable Part</em>}</li>
+ *   <li>{@link RefOntoUML.impl.MeronymicImpl#isIsImmutableWhole <em>Is Immutable Whole</em>}</li>
  * </ul>
  * </p>
  *
@@ -106,24 +107,44 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	protected boolean isInseparable = IS_INSEPARABLE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsImmutable() <em>Is Immutable</em>}' attribute.
+	 * The default value of the '{@link #isIsImmutablePart() <em>Is Immutable Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsImmutable()
+	 * @see #isIsImmutablePart()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_IMMUTABLE_EDEFAULT = false;
+	protected static final boolean IS_IMMUTABLE_PART_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsImmutable() <em>Is Immutable</em>}' attribute.
+	 * The cached value of the '{@link #isIsImmutablePart() <em>Is Immutable Part</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsImmutable()
+	 * @see #isIsImmutablePart()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isImmutable = IS_IMMUTABLE_EDEFAULT;
+	protected boolean isImmutablePart = IS_IMMUTABLE_PART_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsImmutableWhole() <em>Is Immutable Whole</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImmutableWhole()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_IMMUTABLE_WHOLE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsImmutableWhole() <em>Is Immutable Whole</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsImmutableWhole()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isImmutableWhole = IS_IMMUTABLE_WHOLE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,9 +241,9 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsImmutable()
+	public boolean isIsImmutablePart()
 	{
-		return isImmutable;
+		return isImmutablePart;
 	}
 
 	/**
@@ -230,12 +251,35 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsImmutable(boolean newIsImmutable)
+	public void setIsImmutablePart(boolean newIsImmutablePart)
 	{
-		boolean oldIsImmutable = isImmutable;
-		isImmutable = newIsImmutable;
+		boolean oldIsImmutablePart = isImmutablePart;
+		isImmutablePart = newIsImmutablePart;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE, oldIsImmutable, isImmutable));
+			eNotify(new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART, oldIsImmutablePart, isImmutablePart));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isIsImmutableWhole()
+	{
+		return isImmutableWhole;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsImmutableWhole(boolean newIsImmutableWhole)
+	{
+		boolean oldIsImmutableWhole = isImmutableWhole;
+		isImmutableWhole = newIsImmutableWhole;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE, oldIsImmutableWhole, isImmutableWhole));
 	}
 
 	/**
@@ -362,8 +406,10 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 				return isIsEssential();
 			case RefOntoUMLPackage.MERONYMIC__IS_INSEPARABLE:
 				return isIsInseparable();
-			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE:
-				return isIsImmutable();
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART:
+				return isIsImmutablePart();
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE:
+				return isIsImmutableWhole();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -387,8 +433,11 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 			case RefOntoUMLPackage.MERONYMIC__IS_INSEPARABLE:
 				setIsInseparable((Boolean)newValue);
 				return;
-			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE:
-				setIsImmutable((Boolean)newValue);
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART:
+				setIsImmutablePart((Boolean)newValue);
+				return;
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE:
+				setIsImmutableWhole((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -413,8 +462,11 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 			case RefOntoUMLPackage.MERONYMIC__IS_INSEPARABLE:
 				setIsInseparable(IS_INSEPARABLE_EDEFAULT);
 				return;
-			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE:
-				setIsImmutable(IS_IMMUTABLE_EDEFAULT);
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART:
+				setIsImmutablePart(IS_IMMUTABLE_PART_EDEFAULT);
+				return;
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE:
+				setIsImmutableWhole(IS_IMMUTABLE_WHOLE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -436,8 +488,10 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 				return isEssential != IS_ESSENTIAL_EDEFAULT;
 			case RefOntoUMLPackage.MERONYMIC__IS_INSEPARABLE:
 				return isInseparable != IS_INSEPARABLE_EDEFAULT;
-			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE:
-				return isImmutable != IS_IMMUTABLE_EDEFAULT;
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_PART:
+				return isImmutablePart != IS_IMMUTABLE_PART_EDEFAULT;
+			case RefOntoUMLPackage.MERONYMIC__IS_IMMUTABLE_WHOLE:
+				return isImmutableWhole != IS_IMMUTABLE_WHOLE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -459,8 +513,10 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 		result.append(isEssential);
 		result.append(", isInseparable: ");
 		result.append(isInseparable);
-		result.append(", isImmutable: ");
-		result.append(isImmutable);
+		result.append(", isImmutablePart: ");
+		result.append(isImmutablePart);
+		result.append(", isImmutableWhole: ");
+		result.append(isImmutableWhole);
 		result.append(')');
 		return result.toString();
 	}
