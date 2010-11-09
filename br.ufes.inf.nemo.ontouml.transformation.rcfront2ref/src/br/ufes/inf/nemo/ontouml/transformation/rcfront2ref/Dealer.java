@@ -284,10 +284,14 @@ public class Dealer
 				boolean isShareable = (Boolean) a1.getValue(s, "isShareable");
 				boolean isEssential = (Boolean) a1.getValue(s, "isEssential");
 				boolean isInseparable = (Boolean) a1.getValue(s, "isInseparable");
+				boolean isImmutablePart = (Boolean) a1.getValue(s, "isImmutablePart");
+				boolean isImmutableWhole = (Boolean) a1.getValue(s, "isImmutableWhole");
 				
 				((RefOntoUML.Meronymic) a2).setIsShareable(isShareable);
 				((RefOntoUML.Meronymic) a2).setIsEssential(isEssential);
 				((RefOntoUML.Meronymic) a2).setIsInseparable(isInseparable);
+				((RefOntoUML.Meronymic) a2).setIsImmutablePart(isImmutablePart);
+				((RefOntoUML.Meronymic) a2).setIsImmutableWhole(isImmutableWhole);
 			}
 		}
 		else if (a1.getAppliedStereotypes().size() == 0)
