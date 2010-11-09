@@ -804,6 +804,14 @@
         <element xmi:type="uml:Property" href="OntoUML.uml#_By7QkLyzEd6uC-wpv4dakg"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_BzOLgbyzEd6uC-wpv4dakg"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_TwROkOwtEd-Om5NhgnBzlQ" type="3001">
+        <element xmi:type="uml:Property" href="OntoUML.uml#_TuLj4OwtEd-Om5NhgnBzlQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_TwROkewtEd-Om5NhgnBzlQ"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_Y4P1AOwtEd-Om5NhgnBzlQ" type="3001">
+        <element xmi:type="uml:Property" href="OntoUML.uml#_Y37E4OwtEd-Om5NhgnBzlQ"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_Y4P1AewtEd-Om5NhgnBzlQ"/>
+      </children>
       <styles xmi:type="notation:TitleStyle" xmi:id="_HA2OVbywEd6uC-wpv4dakg" showTitle="true"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_HA2OVrywEd6uC-wpv4dakg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_HA2OV7ywEd6uC-wpv4dakg"/>
