@@ -3495,12 +3495,14 @@
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
       <details key="MeronymicConstraint1" value="Meronymic.allInstances()->select( x | x.whole() = whole() )->collect( y | y.partEnd().lower )->sum() >= 2"/>
       <details key="MeronymicConstraint2a" value="whole().oclIsKindOf (AntiRigidSortalClass) or whole().oclIsKindOf (AntiRigidMixinClass) implies not isEssential"/>
-      <details key="MeronymicConstraint2b" value="true -- isEssential implies isImmutable"/>
+      <details key="MeronymicConstraint2b" value="true -- isEssential implies isImmutablePart"/>
+      <details key="MeronymicConstraint3" value="true -- isInseparable implies isImmutableWhole"/>
     </eAnnotations>
     <eAnnotations source="Comments">
       <details key="MeronymicConstraint1" value="The sum of the minimum cardinalities of the parts must be greater or equal to 2"/>
       <details key="MeronymicConstraint2a" value="AntiRigid whole implies that specific part dependence with de re modality is not possible"/>
-      <details key="MeronymicConstraint2b" value="(Deactivated) Specific dependence with de re modality implies specific dependence with de dicto modality"/>
+      <details key="MeronymicConstraint2b" value="(Deactivated) Specific part dependence with de re modality implies specific part dependence with de dicto modality"/>
+      <details key="MeronymicConstraint3" value="(Deactivated) Specific whole dependence with de re modality implies specific whole dependence with de dicto modality"/>
     </eAnnotations>
     <eOperations name="wholeEnd" eType="#//Property">
       <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
