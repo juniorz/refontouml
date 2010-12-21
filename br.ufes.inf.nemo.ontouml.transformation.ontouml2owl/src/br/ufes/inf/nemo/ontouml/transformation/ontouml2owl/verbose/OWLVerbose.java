@@ -67,6 +67,19 @@ public class OWLVerbose
 		return tab() + "</rdfs:domain>\n";
 	}
 	
+	public static String openRange()
+	{
+		String out = tab() + "<rdfs:range>\n";
+		increaseIdent();
+		return out;
+	}
+	
+	public static String closeRange()
+	{
+		decreaseIdent();
+		return tab() + "</rdfs:range>\n";
+	}
+
 	public static String openCloseDomain (String resource)
 	{
 		return tab() + "<rdfs:domain rdf:resource=\"#" + resource + "\"/>\n";
@@ -74,7 +87,9 @@ public class OWLVerbose
 	
 	public static String openCloseRange (String resource)
 	{
-		return tab() + "<rdfs:range rdf:resource=\"#" + resource + "\"/>\n";
+		if (!resource.contains("&xsd;")) //then it is not a datatype
+			resource = "#" + resource;
+		return tab() + "<rdfs:range rdf:resource=\"" + resource + "\"/>\n";
 	}
 	
 	public static String openCloseSubPropertyOf (String resource)
@@ -140,7 +155,9 @@ public class OWLVerbose
 	
 	public static String openCloseDescription (String about)
 	{
-		return tab() + "<rdf:Description rdf:about=\"#" + about + "\"/>\n";
+		if (!about.contains("&xsd;")) //then it is not a datatype
+			about = "#" + about;
+		return tab() + "<rdf:Description rdf:about=\"" + about + "\"/>\n";
 	}
 	
 	public static String openCloseDisjointWith (String resource)
@@ -181,7 +198,9 @@ public class OWLVerbose
 	
 	public static String openCloseSomeValuesFrom (String resource)
 	{
-		return tab() + "<owl:someValuesFrom rdf:resource=\"#" + resource + "\"/>\n";
+		if (!resource.contains("&xsd;")) //then it is not a datatype
+			resource = "#" + resource;
+		return tab() + "<owl:someValuesFrom rdf:resource=\"" + resource + "\"/>\n";
 	}
 	
 	public static String openSomeValuesFrom()
@@ -245,7 +264,7 @@ public class OWLVerbose
 	
 	public static String openCloseMaxQualifiedCardinality (String value)
 	{
-		return tab() + "<owl:minQualifiedCardinality rdf:datatype=\"&xsd;nonNegativeInteger\">" + value + "</owl:maxQualifiedCardinality>\n";
+		return tab() + "<owl:maxQualifiedCardinality rdf:datatype=\"&xsd;nonNegativeInteger\">" + value + "</owl:maxQualifiedCardinality>\n";
 	}
 	
 	public static String openCloseInverseOf (String resource)
@@ -265,4 +284,51 @@ public class OWLVerbose
 		decreaseIdent();
 		return  tab() + "</owl:intersectionOf>\n";
 	}
+
+	public static String openOnClass() 
+	{
+		String out = tab() + "<owl:onClass>\n";
+		increaseIdent();
+		return out;
+	}
+	
+	public static String closeOnClass()
+	{
+		decreaseIdent();
+		return tab() + "</owl:onClass>\n";
+	}
+
+	public static String openPropChain (String parseType)
+	{
+		String out = tab() + "<owl:propertyChainAxiom rdf:parseType=\"" + parseType + "\">\n";
+		increaseIdent();
+		return out;
+	}
+	
+	public static String closePropChain()
+	{
+		decreaseIdent();
+		return tab() + "</owl:propertyChainAxiom>\n";
+	}
+
+	public static String openDataTypeProperty(String about)
+	{
+		String out = tab() + "<owl:DatatypeProperty rdf:about=\"#" + about + "\">\n";
+		increaseIdent();
+		return out;
+	}
+	
+	public static String openDataTypeProperty()
+	{
+		String out = tab() + "<owl:DatatypeProperty>\n";
+		increaseIdent();
+		return out;
+	}
+	
+	public static String closeDataTypeProperty ()
+	{
+		decreaseIdent();
+		return tab() + "</owl:DatatypeProperty>\n";
+	}	
+
 }

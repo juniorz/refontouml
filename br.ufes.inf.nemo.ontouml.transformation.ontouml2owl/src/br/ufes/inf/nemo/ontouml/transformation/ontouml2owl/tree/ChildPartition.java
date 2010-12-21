@@ -7,20 +7,20 @@ import RefOntoUML.*;
 public class ChildPartition
 {
 	GeneralizationSet gs;
-	LinkedList<Node> children;	
+	LinkedList<NodeClass> children;	
 		
 	public ChildPartition(GeneralizationSet gset)
 	{
 		gs = gset;
-		children = new LinkedList<Node>();
+		children = new LinkedList<NodeClass>();
 	}
 	
-	public void addChild (Node child)
+	public void addChild (NodeClass child)
 	{
 		children.add(child);
 	}
 	
-	public LinkedList<Node> getChildren()
+	public LinkedList<NodeClass> getChildren()
 	{
 		return children;
 	}

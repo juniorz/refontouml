@@ -10,86 +10,122 @@ import RefOntoUML.Package;
 
 public class TreeProcessor
 {
-	LinkedList<Node> nodes;
-	LinkedList<Node> mainNodes;
-	HashMap<Class, Node> class2node;
-	HashMap<String, Classifier> associationRoles;
-	
+	public LinkedList<NodeClass> nodes;
+	public List<NodeBinAssociation> assocNodes;
+	static HashMap<Class, NodeClass> class2node;
+	public static List<String> kindsNames = null;
+	public static List<String> collectivesNames = null;
+	public static List<String> quantitiesNames = null;
+	public static List<String> relatorsNames = null;
+	public static List<String> modesNames = null;
+	public static List<String> qualitiesNames = null;
+	public static List<String> relationalquasNames = null;
+	public static List<String> phasedquasNames = null;
+
 	public TreeProcessor (Package p)
 	{
-		nodes = new LinkedList<Node>();
-		mainNodes = new LinkedList<Node>();
-		class2node = new HashMap<Class, Node>();
-		associationRoles = new HashMap<String, Classifier>();
+		nodes = new LinkedList<NodeClass>();
+		class2node = new HashMap<Class, NodeClass>();
+		assocNodes = new LinkedList<NodeBinAssociation>();
 
-		// Pre Process all classes
+		// Pre Process
 		for (PackageableElement pe : p.getPackagedElement())
 		{			
 			if (pe instanceof Class)
-			{
 				ProcessClass((Class) pe);
-			}
-		}
-		
-		// Process all associations
-		for (PackageableElement pe : p.getPackagedElement())
-		{			
 			if (pe instanceof Association)
-			{
 				ProcessAssociation((Association) pe);
-			}
 		}
-		
+
 		// Set up the specialization tree
 		ProcessNodes();		
+				
 	}
-	
+
 	private void ProcessClass (Class c)
 	{
-		Node n = new Node(c);
+		NodeClass n = new NodeClass(c);
 		nodes.add(n);
 		class2node.put(c, n);
-	}
-	
-	private void ProcessAssociation (Association a)
-	{
-		// just binary associations (not treating derivation)
-		if (a.getMemberEnd().size() != 2) return;
 		
-		Property p1, p2;
-		Type t1, t2;
-		Node n1, n2;
-		
-		p1 = a.getMemberEnd().get(0);
-		p2 = a.getMemberEnd().get(1);
-		t1 = p1.getType();
-		t2 = p2.getType();
-		
-		if (t1 instanceof Class)
+		if (c instanceof Kind)
 		{
-			n1 = class2node.get((Class)t1);	
-			n1.addAssociation(a);
-			n1.addOwnedAssociation(a);
-						
-			if (t2 instanceof Class)
-			{
-				n2 = class2node.get((Class)t2);
-				if (n1.getRelatedClass() != n2.getRelatedClass())
-					n2.addAssociation(a);
-			}
-			
-			if ((p1.getName() != null) && (p1.getName().length() != 0))
-				associationRoles.put(p1.getName(), (Classifier)t1);
-									
-			if ((p2.getName() != null) && (p2.getName().length() != 0))
-				associationRoles.put(p2.getName(), (Classifier)t2);
+			if (kindsNames == null)
+				kindsNames = new LinkedList<String>();
+			kindsNames.add(c.getName());
+		}
+		else if (c instanceof Collective)
+		{
+			if (collectivesNames == null)
+				collectivesNames = new LinkedList<String>();
+			collectivesNames.add(c.getName());
+		}
+		else if (c instanceof Quantity)
+		{
+			if (quantitiesNames == null)
+				quantitiesNames = new LinkedList<String>();
+			quantitiesNames.add(c.getName());
+		}
+		else if (c instanceof Relator)
+		{
+			if (relatorsNames == null)
+				relatorsNames = new LinkedList<String>();
+			relatorsNames.add(c.getName());
+		}
+		else if (c instanceof Mode)
+		{
+			if (modesNames == null)
+				modesNames = new LinkedList<String>();
+			modesNames.add(c.getName());
+		}
+	}
+
+	private void ProcessAssociation(Association a) 
+	{
+		NodeBinAssociation na = new NodeBinAssociation(a);
+		assocNodes.add(na);
+		String 	domain = na.getDomain().getName(),
+				range = na.getRange().getName();
+		
+		if (a instanceof MaterialAssociation)
+		{
+			na.mappingName = a.getName() + domain + range;
+			na.addSuperAssociation(a.getName());
+		} 
+		else if (a instanceof FormalAssociation)
+		{
+			na.mappingName = a.getName() + domain + range;
+			na.addSuperAssociation(a.getName());
+		}
+		else if (a instanceof Meronymic)
+		{
+			if (a instanceof componentOf)
+				na.mappingName = "componentOf";
+			else if (a instanceof subCollectionOf)
+				na.mappingName = "subCollectionOf";
+			else if (a instanceof subQuantityOf)
+				na.mappingName = "subQuantityOf";
+			else if (a instanceof memberOf)
+				na.mappingName = "memberOf";
+			//adding superProperty
+			na.addSuperAssociation(na.mappingName);
+			//renaming association
+			na.mappingName += domain + range;
+		}
+		else if (a instanceof DependencyRelationship)
+		{
+			//na.mappingName = null => the property is not created
+			if (a instanceof Mediation)
+				na.addSuperAssociation("mediates"); //to be restricted
+			else if (a instanceof Characterization)
+				na.addSuperAssociation("inheresIn"); //to be restricted
 		}
 	}
 	
 	private void ProcessNodes ()
 	{
 		// For every node, add children and child partitions
-		for (Node n : nodes)
+		for (NodeClass n : nodes)
 		{
 			// Get the related class
 			Class c = n.getRelatedClass();
@@ -100,7 +136,7 @@ public class TreeProcessor
 				// Get the parent
 				Classifier parent = g.getGeneral();
 				// Get the parent's node
-				Node parentNode = class2node.get(parent);
+				NodeClass parentNode = class2node.get(parent);
 				// Add the node as a child of the parent
 				parentNode.addChild(n);
 				
@@ -118,35 +154,28 @@ public class TreeProcessor
 					parentNode.addSChild(n);
 				}
 			}
-		}
-		
-		// For every node, get the toplevel ones
-		for (Node n : nodes)
-		{
-			if (!n.hasParents())
+			
+			if (n.isUltimateSortal())
 			{
-				mainNodes.add(n);
+				if (c instanceof Kind)
+					n.setDisjointSiblingsNames(kindsNames);
+				else if (c instanceof Quantity)
+					n.setDisjointSiblingsNames(quantitiesNames);
+				else if (c instanceof Collective)
+					n.setDisjointSiblingsNames(collectivesNames);
 			}
 		}
+		
 	}
-	
-	public List<Node> getNodes()
+
+	public List<NodeClass> getNodes()
 	{
 		return nodes;
 	}
 	
-	public List<Node> getMainNodes()
-	{
-		return mainNodes;
-	}
-	
-	public HashMap<String, Classifier> getAssociationRoles()
-	{
-		return associationRoles;
-	}
-	
-	public Node getNode (Class c)
+	public static NodeClass getNode (Class c)
 	{
 		return class2node.get(c);
-	}
+	}		
+
 }
