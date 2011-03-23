@@ -1,0 +1,1333 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY default "http://www.semanticweb.org/ontologies/2011/1/default.owl#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/ontologies/2011/1/default.owl#"
+     xml:base="http://www.semanticweb.org/ontologies/2011/1/default.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:default="http://www.semanticweb.org/ontologies/2011/1/default.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about=""/>
+
+
+
+    <!-- null#existentiallyDependentOf -->
+
+	<owl:ObjectProperty rdf:about="#existentiallyDependentOf">
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+		<owl:inverseOf rdf:resource="#invExistentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#invExistentiallyDependentOf -->
+
+	<owl:ObjectProperty rdf:about="#invExistentiallyDependentOf">
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+		<owl:inverseOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#partOf -->
+
+	<owl:ObjectProperty rdf:about="#partOf">
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdf:type rdf:resource="&owl;IrreflexiveProperty"/>
+		<rdfs:domain rdf:resource="#TimeSlice"/>
+		<rdfs:range rdf:resource="#TimeSlice"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#hasTemporalExtent -->
+
+	<owl:ObjectProperty rdf:about="#hasTemporalExtent">
+		<rdfs:domain rdf:resource="#TimeSlice"/>
+		<rdfs:range rdf:resource="#TemporalExtent"/>
+		<owl:propertyChainAxiom rdf:parseType="Collection">
+			<rdf:Description rdf:about="#objPropertyTS"/>
+			<rdf:Description rdf:about="#hasTemporalExtent"/>
+		</owl:propertyChainAxiom>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#timeSliceOf -->
+
+	<owl:ObjectProperty rdf:about="#timeSliceOf">
+		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
+		<rdfs:domain rdf:resource="#TimeSlice"/>
+		<rdfs:range rdf:resource="#IndividualConcept"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#objPropertyTS -->
+
+	<owl:ObjectProperty rdf:about="#objPropertyTS">
+		<rdf:type rdf:resource="&owl;SymmetricProperty"/>
+		<rdfs:domain rdf:resource="#TimeSlice"/>
+		<rdfs:range rdf:resource="#TimeSlice"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#inheresIn -->
+
+	<owl:ObjectProperty rdf:about="#inheresIn">
+		<rdf:type rdf:resource="&owl;FunctionalProperty"/>
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdfs:domain rdf:resource="#ModeTS"/>
+		<rdfs:range rdf:resource="#TimeSlice"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#mediates -->
+
+	<owl:ObjectProperty rdf:about="#mediates">
+		<rdf:type rdf:resource="&owl;AsymmetricProperty"/>
+		<rdfs:domain rdf:resource="#RelatorTS"/>
+		<rdfs:range rdf:resource="#TimeSlice"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#inseparablePartOf -->
+
+	<owl:ObjectProperty rdf:about="#inseparablePartOf">
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#essentialPartOf -->
+
+	<owl:ObjectProperty rdf:about="#essentialPartOf">
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+		<rdfs:subPropertyOf rdf:resource="#invExistentiallyDependentOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#componentOf -->
+
+	<owl:ObjectProperty rdf:about="#componentOf">
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#FunctionalComplex"/>
+					<rdf:Description rdf:about="#FunctionalComplexTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#FunctionalComplex"/>
+					<rdf:Description rdf:about="#FunctionalComplexTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#memberOf -->
+
+	<owl:ObjectProperty rdf:about="#memberOf">
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#FunctionalComplex"/>
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#FunctionalComplexTS"/>
+					<rdf:Description rdf:about="#CollectiveTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#CollectiveTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#subCollectionOf -->
+
+	<owl:ObjectProperty rdf:about="#subCollectionOf">
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#CollectiveTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#CollectiveTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:subPropertyOf rdf:resource="#partOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#subQuantityOf -->
+
+	<owl:ObjectProperty rdf:about="#subQuantityOf">
+		<rdfs:domain>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Quantity"/>
+					<rdf:Description rdf:about="#QuantityTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:domain>
+		<rdfs:range>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Quantity"/>
+					<rdf:Description rdf:about="#QuantityTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</rdfs:range>
+		<rdfs:subPropertyOf rdf:resource="#essentialPartOf"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#contractsCompleteCardiacElectricalImpulseCompletelyFunctioningHeart -->
+
+	<owl:ObjectProperty rdf:about="#contractsCompleteCardiacElectricalImpulseCompletelyFunctioningHeart">
+		<rdfs:domain rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+		<rdfs:range rdf:resource="#CompletelyFunctioningHeartTS"/>
+		<rdfs:subPropertyOf rdf:resource="#contracts"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#contractsPartialCardiacElectricalImpulsePartiallyFunctioningHeart -->
+
+	<owl:ObjectProperty rdf:about="#contractsPartialCardiacElectricalImpulsePartiallyFunctioningHeart">
+		<rdfs:domain rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+		<rdfs:range rdf:resource="#PartiallyFunctioningHeartTS"/>
+		<rdfs:subPropertyOf rdf:resource="#contracts"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#belongsToECGRecordPerson -->
+
+	<owl:ObjectProperty rdf:about="#belongsToECGRecordPerson">
+		<rdfs:domain rdf:resource="#ECGRecordTS"/>
+		<rdfs:range rdf:resource="#PersonTS"/>
+		<rdfs:subPropertyOf rdf:resource="#belongsTo"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#mapsCycleCardiacElectricalImpulse -->
+
+	<owl:ObjectProperty rdf:about="#mapsCycleCardiacElectricalImpulse">
+		<rdfs:domain rdf:resource="#CycleTS"/>
+		<rdfs:range rdf:resource="#CardiacElectricalImpulseTS"/>
+		<rdfs:subPropertyOf rdf:resource="#maps"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#mapsCompleteCycleCompleteCardiacElectricalImpulse -->
+
+	<owl:ObjectProperty rdf:about="#mapsCompleteCycleCompleteCardiacElectricalImpulse">
+		<rdfs:domain rdf:resource="#CompleteCycleTS"/>
+		<rdfs:range rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+		<rdfs:subPropertyOf rdf:resource="#maps"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#mapsPartialCyclePartialCardiacElectricalImpulse -->
+
+	<owl:ObjectProperty rdf:about="#mapsPartialCyclePartialCardiacElectricalImpulse">
+		<rdfs:domain rdf:resource="#PartialCycleTS"/>
+		<rdfs:range rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+		<rdfs:subPropertyOf rdf:resource="#maps"/>
+		<rdfs:subPropertyOf rdf:resource="#existentiallyDependentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+    <!-- null#componentOfHeartPerson -->
+
+	<owl:ObjectProperty rdf:about="#componentOfHeartPerson">
+		<rdfs:domain rdf:resource="#HeartTS"/>
+		<rdfs:range rdf:resource="#PersonTS"/>
+		<rdfs:subPropertyOf rdf:resource="#componentOf"/>
+		<rdfs:subPropertyOf rdf:resource="#objPropertyTS"/>
+	</owl:ObjectProperty>
+
+
+
+
+    <!-- null#IndividualConcept -->
+
+	<owl:Class rdf:about="#IndividualConcept">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Object"/>
+					<rdf:Description rdf:about="#Moment"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:disjointWith rdf:resource="#TimeSlice"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:someValuesFrom rdf:resource="#TimeSlice"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#TimeSlice -->
+
+	<owl:Class rdf:about="#TimeSlice">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#FunctionalComplexTS"/>
+					<rdf:Description rdf:about="#CollectiveTS"/>
+					<rdf:Description rdf:about="#QuantityTS"/>
+					<rdf:Description rdf:about="#ModeTS"/>
+					<rdf:Description rdf:about="#RelatorTS"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<owl:disjointWith rdf:resource="#IndividualConcept"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#hasTemporalExtent"/>
+				<owl:someValuesFrom rdf:resource="#TemporalExtent"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:onClass rdf:resource="#IndividualConcept"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#TemporalExtent -->
+
+	<owl:Class rdf:about="#TemporalExtent">
+		<owl:disjointWith rdf:resource="#IndividualConcept"/>
+		<owl:disjointWith rdf:resource="#TimeSlice"/>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Object -->
+
+	<owl:Class rdf:about="#Object">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#FunctionalComplex"/>
+					<rdf:Description rdf:about="#Collective"/>
+					<rdf:Description rdf:about="#Quantity"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#IndividualConcept"/>
+		<owl:disjointWith rdf:resource="#Moment"/>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Moment -->
+
+	<owl:Class rdf:about="#Moment">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Mode"/>
+					<rdf:Description rdf:about="#Relator"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#IndividualConcept"/>
+		<owl:disjointWith rdf:resource="#Object"/>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#FunctionalComplex -->
+
+	<owl:Class rdf:about="#FunctionalComplex">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Heart"/>
+					<rdf:Description rdf:about="#Person"/>
+					<rdf:Description rdf:about="#ECGRecord"/>
+					<rdf:Description rdf:about="#CardiacElectricalImpulse"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Object"/>
+		<owl:disjointWith rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Collective"/>
+		<owl:disjointWith rdf:resource="#Quantity"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#FunctionalComplexTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Collective -->
+
+	<owl:Class rdf:about="#Collective">
+		<rdfs:subClassOf rdf:resource="#Object"/>
+		<owl:disjointWith rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Collective"/>
+		<owl:disjointWith rdf:resource="#Quantity"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CollectiveTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Quantity -->
+
+	<owl:Class rdf:about="#Quantity">
+		<rdfs:subClassOf rdf:resource="#Object"/>
+		<owl:disjointWith rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Collective"/>
+		<owl:disjointWith rdf:resource="#Quantity"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#QuantityTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#FunctionalComplexTS -->
+
+	<owl:Class rdf:about="#FunctionalComplexTS">
+		<rdfs:subClassOf rdf:resource="#TimeSlice"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#FunctionalComplex"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CollectiveTS -->
+
+	<owl:Class rdf:about="#CollectiveTS">
+		<rdfs:subClassOf rdf:resource="#TimeSlice"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Collective"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#QuantityTS -->
+
+	<owl:Class rdf:about="#QuantityTS">
+		<rdfs:subClassOf rdf:resource="#TimeSlice"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Quantity"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Relator -->
+
+	<owl:Class rdf:about="#Relator">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#CompleteHeartContraction"/>
+					<rdf:Description rdf:about="#PartialHeartContraction"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Moment"/>
+		<owl:disjointWith rdf:resource="#Mode"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#RelatorTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#RelatorTS -->
+
+	<owl:Class rdf:about="#RelatorTS">
+		<rdfs:subClassOf rdf:resource="#TimeSlice"/>
+		<owl:disjointWith rdf:resource="#ModeTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Relator"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:someValuesFrom rdf:resource="#TimeSlice"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#TimeSlice"/>
+				<owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Mode -->
+
+	<owl:Class rdf:about="#Mode">
+		<owl:equivalentClass>
+			<owl:Class>
+				<owl:unionOf rdf:parseType="Collection">
+					<rdf:Description rdf:about="#Cycle"/>
+					<rdf:Description rdf:about="#CompleteCycle"/>
+					<rdf:Description rdf:about="#PartialCycle"/>
+				</owl:unionOf>
+			</owl:Class>
+		</owl:equivalentClass>
+		<rdfs:subClassOf rdf:resource="#Moment"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#ModeTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#ModeTS -->
+
+	<owl:Class rdf:about="#ModeTS">
+		<rdfs:subClassOf rdf:resource="#TimeSlice"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Mode"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#HeartTS -->
+
+	<owl:Class rdf:about="#HeartTS">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplexTS"/>
+		<owl:disjointWith rdf:resource="#PersonTS"/>
+		<owl:disjointWith rdf:resource="#ECGRecordTS"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulseTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Heart"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#componentOfHeartPerson"/>
+				<owl:onClass rdf:resource="#PersonTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#componentOf"/>
+				<owl:onClass rdf:resource="#PersonTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Heart -->
+
+	<owl:Class rdf:about="#Heart">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Person"/>
+		<owl:disjointWith rdf:resource="#ECGRecord"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#HeartTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PersonTS -->
+
+	<owl:Class rdf:about="#PersonTS">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplexTS"/>
+		<owl:disjointWith rdf:resource="#HeartTS"/>
+		<owl:disjointWith rdf:resource="#ECGRecordTS"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulseTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Person"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#belongsToECGRecordPerson"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#ECGRecordTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#componentOfHeartPerson"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#HeartTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Person -->
+
+	<owl:Class rdf:about="#Person">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Heart"/>
+		<owl:disjointWith rdf:resource="#ECGRecord"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#PersonTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#ECGRecordTS -->
+
+	<owl:Class rdf:about="#ECGRecordTS">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplexTS"/>
+		<owl:disjointWith rdf:resource="#HeartTS"/>
+		<owl:disjointWith rdf:resource="#PersonTS"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulseTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#ECGRecord"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#inheresIn"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CycleTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#belongsToECGRecordPerson"/>
+				<owl:onClass rdf:resource="#PersonTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#ECGRecord -->
+
+	<owl:Class rdf:about="#ECGRecord">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Heart"/>
+		<owl:disjointWith rdf:resource="#Person"/>
+		<owl:disjointWith rdf:resource="#CardiacElectricalImpulse"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#ECGRecordTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CardiacElectricalImpulseTS -->
+
+	<owl:Class rdf:about="#CardiacElectricalImpulseTS">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplexTS"/>
+		<owl:disjointWith rdf:resource="#HeartTS"/>
+		<owl:disjointWith rdf:resource="#PersonTS"/>
+		<owl:disjointWith rdf:resource="#ECGRecordTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#CardiacElectricalImpulse"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mapsCycleCardiacElectricalImpulse"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CycleTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CardiacElectricalImpulse -->
+
+	<owl:Class rdf:about="#CardiacElectricalImpulse">
+		<rdfs:subClassOf rdf:resource="#FunctionalComplex"/>
+		<owl:disjointWith rdf:resource="#Heart"/>
+		<owl:disjointWith rdf:resource="#Person"/>
+		<owl:disjointWith rdf:resource="#ECGRecord"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CardiacElectricalImpulseTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteCardiacElectricalImpulseTS -->
+
+	<owl:Class rdf:about="#CompleteCardiacElectricalImpulseTS">
+		<rdfs:subClassOf rdf:resource="#CardiacElectricalImpulseTS"/>
+		<owl:disjointWith rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#CompleteCardiacElectricalImpulse"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#contractsCompleteCardiacElectricalImpulseCompletelyFunctioningHeart"/>
+				<owl:onClass rdf:resource="#CompletelyFunctioningHeartTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mediates"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CompleteHeartContractionTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mapsCompleteCycleCompleteCardiacElectricalImpulse"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CompleteCycleTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteCardiacElectricalImpulse -->
+
+	<owl:Class rdf:about="#CompleteCardiacElectricalImpulse">
+		<rdfs:subClassOf rdf:resource="#CardiacElectricalImpulse"/>
+		<owl:disjointWith rdf:resource="#PartialCardiacElectricalImpulse"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialCardiacElectricalImpulseTS -->
+
+	<owl:Class rdf:about="#PartialCardiacElectricalImpulseTS">
+		<rdfs:subClassOf rdf:resource="#CardiacElectricalImpulseTS"/>
+		<owl:disjointWith rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#PartialCardiacElectricalImpulse"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#contractsPartialCardiacElectricalImpulsePartiallyFunctioningHeart"/>
+				<owl:onClass rdf:resource="#PartiallyFunctioningHeartTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mediates"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#PartialHeartContractionTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mapsPartialCyclePartialCardiacElectricalImpulse"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#PartialCycleTS"/>
+				<owl:maxQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxQualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialCardiacElectricalImpulse -->
+
+	<owl:Class rdf:about="#PartialCardiacElectricalImpulse">
+		<rdfs:subClassOf rdf:resource="#CardiacElectricalImpulse"/>
+		<owl:disjointWith rdf:resource="#CompleteCardiacElectricalImpulse"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompletelyFunctioningHeartTS -->
+
+	<owl:Class rdf:about="#CompletelyFunctioningHeartTS">
+		<rdfs:subClassOf rdf:resource="#HeartTS"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#contractsCompleteCardiacElectricalImpulseCompletelyFunctioningHeart"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mediates"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#CompleteHeartContractionTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartiallyFunctioningHeartTS -->
+
+	<owl:Class rdf:about="#PartiallyFunctioningHeartTS">
+		<rdfs:subClassOf rdf:resource="#HeartTS"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#contractsPartialCardiacElectricalImpulsePartiallyFunctioningHeart"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#mediates"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:onClass rdf:resource="#PartialHeartContractionTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteHeartContractionTS -->
+
+	<owl:Class rdf:about="#CompleteHeartContractionTS">
+		<rdfs:subClassOf rdf:resource="#RelatorTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#CompleteHeartContraction"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#CompletelyFunctioningHeartTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteHeartContraction -->
+
+	<owl:Class rdf:about="#CompleteHeartContraction">
+		<rdfs:subClassOf rdf:resource="#Relator"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CompleteHeartContractionTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialHeartContractionTS -->
+
+	<owl:Class rdf:about="#PartialHeartContractionTS">
+		<rdfs:subClassOf rdf:resource="#RelatorTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#PartialHeartContraction"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mediates"/>
+				<owl:onClass rdf:resource="#PartiallyFunctioningHeartTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialHeartContraction -->
+
+	<owl:Class rdf:about="#PartialHeartContraction">
+		<rdfs:subClassOf rdf:resource="#Relator"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#PartialHeartContractionTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CycleTS -->
+
+	<owl:Class rdf:about="#CycleTS">
+		<rdfs:subClassOf rdf:resource="#ModeTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#Cycle"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#inheresIn"/>
+				<owl:onClass rdf:resource="#ECGRecordTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mapsCycleCardiacElectricalImpulse"/>
+				<owl:onClass rdf:resource="#CardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#Cycle -->
+
+	<owl:Class rdf:about="#Cycle">
+		<rdfs:subClassOf rdf:resource="#Mode"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CycleTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteCycleTS -->
+
+	<owl:Class rdf:about="#CompleteCycleTS">
+		<rdfs:subClassOf rdf:resource="#ModeTS"/>
+		<rdfs:subClassOf rdf:resource="#CycleTS"/>
+		<owl:disjointWith rdf:resource="#PartialCycleTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#CompleteCycle"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mapsCompleteCycleCompleteCardiacElectricalImpulse"/>
+				<owl:onClass rdf:resource="#CompleteCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#CompleteCycle -->
+
+	<owl:Class rdf:about="#CompleteCycle">
+		<rdfs:subClassOf rdf:resource="#Mode"/>
+		<rdfs:subClassOf rdf:resource="#Cycle"/>
+		<owl:disjointWith rdf:resource="#PartialCycle"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#CompleteCycleTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialCycleTS -->
+
+	<owl:Class rdf:about="#PartialCycleTS">
+		<rdfs:subClassOf rdf:resource="#ModeTS"/>
+		<rdfs:subClassOf rdf:resource="#CycleTS"/>
+		<owl:disjointWith rdf:resource="#CompleteCycleTS"/>
+		<owl:equivalentClass>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#timeSliceOf"/>
+				<owl:someValuesFrom rdf:resource="#PartialCycle"/>
+			</owl:Restriction>
+		</owl:equivalentClass>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty rdf:resource="#mapsPartialCyclePartialCardiacElectricalImpulse"/>
+				<owl:onClass rdf:resource="#PartialCardiacElectricalImpulseTS"/>
+				<owl:qualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:qualifiedCardinality>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+
+    <!-- null#PartialCycle -->
+
+	<owl:Class rdf:about="#PartialCycle">
+		<rdfs:subClassOf rdf:resource="#Mode"/>
+		<rdfs:subClassOf rdf:resource="#Cycle"/>
+		<owl:disjointWith rdf:resource="#CompleteCycle"/>
+		<rdfs:subClassOf>
+			<owl:Restriction>
+				<owl:onProperty>
+					<owl:ObjectProperty>
+						<owl:inverseOf rdf:resource="#timeSliceOf"/>
+					</owl:ObjectProperty>
+				</owl:onProperty>
+				<owl:allValuesFrom rdf:resource="#PartialCycleTS"/>
+			</owl:Restriction>
+		</rdfs:subClassOf>
+	</owl:Class>
+
+
+
+
+</rdf:RDF>
+
+<!-- Generated by OntoUML2OWL Eclipse Plugin by NEMO (http://nemo.inf.ufes.br/) -->
+

@@ -56,9 +56,8 @@ public class OntoUML2OWL
 			TreeProcessor tp = new TreeProcessor(p);
 
 			// mapping the OntoUML-based structure into an OWL-based structure
-			// according to a certain dynamic view dv
-			// (if dv is null, then it maps into a static view)
-			map2OWLStructure(tp, MappingType.WORM_VIEW_A1);
+			// according to a certain mapping type
+			map2OWLStructure(tp, MappingType.WORM_VIEW_A0);
 			
 			// Writing transformed model into owl file 
 			myfile = new FileManager(modelName);
