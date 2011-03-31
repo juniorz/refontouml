@@ -5,10 +5,10 @@ Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.abfront2ref;singlet
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.abfront2ref.Activator
 Bundle-Vendor: NEMO
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: br.ufes.inf.nemo.ontouml.refontouml;bundle-version="1.0.0",
+ br.ufes.inf.nemo.ontouml.abontouml;bundle-version="1.2.0",
+ org.eclipse.ui,
  org.eclipse.core.runtime,
- OntoUML;bundle-version="1.1.0",
- br.ufes.inf.nemo.ontouml.refontouml;bundle-version="1.0.0",
  org.eclipse.core.resources;bundle-version="3.5.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
