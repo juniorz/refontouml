@@ -2,7 +2,7 @@
 <feature
       id="br.inf.ufes.nemo.rcarraretto"
       label="OntoUML Infrastructure"
-      version="1.0.0.qualifier"
+      version="1.0.0.1"
       provider-name="Roberto Carraretto">
 
    <description url="http://nemo.inf.ufes.br/">
@@ -75,34 +75,6 @@
 
    <plugin
          id="br.ufes.inf.nemo.ontouml.transformation.rcfront2ref"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="OntoUML"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="OntoUML.diagram"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="OntoUML.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="OntoUML.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
