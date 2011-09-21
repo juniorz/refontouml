@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="br.inf.ufes.nemo.rcarraretto.owl"
-      label="OWL Feature"
+      label="OntoUML to OWL"
       version="1.0.0.qualifier"
       provider-name="Veruska Zamborlini &amp; Roberto Carraretto">
 
@@ -9,12 +9,12 @@
       OntoUML to OWL transformation.
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright>
+      For more information see http://code.google.com/p/rcarraretto/
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license>
+      For more information see http://code.google.com/p/rcarraretto/
    </license>
 
    <plugin
