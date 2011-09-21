@@ -26,9 +26,11 @@ public class OntoUML2OWL
 	 */
 	public static void main(String[] args)
 	{
-		String fileAbsolutePath = args[0];
-		String modelName = args[0].replace(".refontouml", ".owl");
-		
+		OntoUML2OWL.Transformation(args[0], args[0].replace(".refontouml", ".owl"));
+	}
+	
+	public static void Transformation (String fileAbsolutePath, String modelName)
+	{
 		// Configure ResourceSet
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
@@ -60,7 +62,7 @@ public class OntoUML2OWL
 			map2OWLStructure(tp, MappingType.WORM_VIEW_A0);
 			
 			// Writing transformed model into owl file 
-			myfile = new FileManager(modelName);
+			myfile = new FileManager(fileAbsolutePath.replace(".refontouml", ".owl"));
 			myfile.write(owl.verbose(modelName));
 			myfile.done();
 
@@ -76,5 +78,4 @@ public class OntoUML2OWL
 		owl = new OWLStructure(mt);
 		owl.map(tp);
 	}
-
 }
