@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.qualifier">
+      <category name="transformation"/>
+   </feature>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.owl_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.owl" version="1.0.0.qualifier">
+      <category name="transformation"/>
+   </feature>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.sbvr_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.sbvr" version="1.0.0.qualifier">
+      <category name="transformation"/>
+   </feature>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.qualifier">
+      <category name="metamodel"/>
+   </feature>
+   <category-def name="transformation" label="Transformation"/>
+   <category-def name="metamodel" label="Metamodel"/>
+</site>
