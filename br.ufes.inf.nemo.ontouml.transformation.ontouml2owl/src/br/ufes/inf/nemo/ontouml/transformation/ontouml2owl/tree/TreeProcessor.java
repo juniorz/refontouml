@@ -33,7 +33,7 @@ public class TreeProcessor
 		{			
 			if (pe instanceof Class)
 				ProcessClass((Class) pe);
-			if (pe instanceof Association)
+			if (pe instanceof Association && !(pe instanceof Derivation))
 				ProcessAssociation((Association) pe);
 		}
 
