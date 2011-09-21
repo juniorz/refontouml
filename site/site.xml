@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto_1.0.0.201109201825.jar" id="br.inf.ufes.nemo.rcarraretto" version="1.0.0.201109201825">
-      <category name="br.ufes.inf.nemo.ontouml.infrastructure"/>
-   </feature>
-   <category-def name="br.ufes.inf.nemo.ontouml.infrastructure" label="OntoUML Infrastructure"/>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.qualifier"/>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.owl_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.owl" version="1.0.0.qualifier"/>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.qualifier"/>
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.sbvr_1.0.0.qualifier.jar" id="br.inf.ufes.nemo.rcarraretto.sbvr" version="1.0.0.qualifier"/>
 </site>

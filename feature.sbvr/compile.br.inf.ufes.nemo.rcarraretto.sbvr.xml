@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Compile br.inf.ufes.nemo.rcarraretto.sbvr" default="main">
+	<target name="main">
+		<ant antfile="build.xml" dir="../br.ufes.inf.nemo.ontouml.transformation.ontouml2sbvr" target="build.jars"/>
+	</target>
+</project>
