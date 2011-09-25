@@ -59,7 +59,6 @@ public class ClassifierItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -68,17 +67,18 @@ public class ClassifierItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addIsLeafPropertyDescriptor(object);
-			addRedefinedElementPropertyDescriptor(object);
-			addRedefinitionContextPropertyDescriptor(object);
+			// rcarraretto
+			//addIsLeafPropertyDescriptor(object);
+			//addRedefinedElementPropertyDescriptor(object);
+			//addRedefinitionContextPropertyDescriptor(object);
 			addPackagePropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
-			addPowertypeExtentPropertyDescriptor(object);
-			addFeaturePropertyDescriptor(object);
-			addInheritedMemberPropertyDescriptor(object);
-			addRedefinedClassifierPropertyDescriptor(object);
+			//addPowertypeExtentPropertyDescriptor(object);
+			//addFeaturePropertyDescriptor(object);
+			//addInheritedMemberPropertyDescriptor(object);
+			//addRedefinedClassifierPropertyDescriptor(object);
 			addGeneralPropertyDescriptor(object);
-			addAttributePropertyDescriptor(object);
+			//addAttributePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

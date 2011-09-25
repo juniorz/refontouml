@@ -69,8 +69,8 @@ public class StructuralFeatureItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
-			addIsOrderedPropertyDescriptor(object);
-			addIsUniquePropertyDescriptor(object);
+			//addIsOrderedPropertyDescriptor(object);
+			//addIsUniquePropertyDescriptor(object);
 			addUpperPropertyDescriptor(object);
 			addLowerPropertyDescriptor(object);
 			addIsReadOnlyPropertyDescriptor(object);

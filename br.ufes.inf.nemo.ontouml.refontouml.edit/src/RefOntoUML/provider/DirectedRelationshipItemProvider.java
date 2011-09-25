@@ -53,7 +53,6 @@ public class DirectedRelationshipItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -62,8 +61,9 @@ public class DirectedRelationshipItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addSourcePropertyDescriptor(object);
-			addTargetPropertyDescriptor(object);
+			// rcarraretto
+			//addSourcePropertyDescriptor(object);
+			//addTargetPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

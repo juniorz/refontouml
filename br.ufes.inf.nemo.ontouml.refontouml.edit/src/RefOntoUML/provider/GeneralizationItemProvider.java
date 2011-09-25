@@ -57,7 +57,6 @@ public class GeneralizationItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -66,7 +65,8 @@ public class GeneralizationItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addIsSubstitutablePropertyDescriptor(object);
+			// rcarraretto
+			//addIsSubstitutablePropertyDescriptor(object);
 			addGeneralPropertyDescriptor(object);
 			addGeneralizationSetPropertyDescriptor(object);
 		}

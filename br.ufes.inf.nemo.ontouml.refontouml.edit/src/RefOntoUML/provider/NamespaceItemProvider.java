@@ -58,7 +58,6 @@ public class NamespaceItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -67,9 +66,10 @@ public class NamespaceItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addMemberPropertyDescriptor(object);
-			addImportedMemberPropertyDescriptor(object);
-			addOwnedMemberPropertyDescriptor(object);
+			// rcarraretto
+			//addMemberPropertyDescriptor(object);
+			//addImportedMemberPropertyDescriptor(object);
+			//addOwnedMemberPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

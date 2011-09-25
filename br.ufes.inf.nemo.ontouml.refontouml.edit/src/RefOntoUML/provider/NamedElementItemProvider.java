@@ -59,7 +59,6 @@ public class NamedElementItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -68,11 +67,12 @@ public class NamedElementItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			// rcarraretto
 			addNamePropertyDescriptor(object);
-			addVisibilityPropertyDescriptor(object);
-			addQualifiedNamePropertyDescriptor(object);
-			addClientDependencyPropertyDescriptor(object);
-			addNamespacePropertyDescriptor(object);
+			//addVisibilityPropertyDescriptor(object);
+			//addQualifiedNamePropertyDescriptor(object);
+			//addClientDependencyPropertyDescriptor(object);
+			//addNamespacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

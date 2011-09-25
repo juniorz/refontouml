@@ -59,7 +59,6 @@ public class PropertyItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -68,16 +67,17 @@ public class PropertyItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
+			// rcarraretto
 			addClassPropertyDescriptor(object);
-			addIsDerivedPropertyDescriptor(object);
-			addIsDerivedUnionPropertyDescriptor(object);
-			addDefaultPropertyDescriptor(object);
+			//addIsDerivedPropertyDescriptor(object);
+			//addIsDerivedUnionPropertyDescriptor(object);
+			//addDefaultPropertyDescriptor(object);
 			addAggregationPropertyDescriptor(object);
-			addIsCompositePropertyDescriptor(object);
-			addRedefinedPropertyPropertyDescriptor(object);
-			addOppositePropertyDescriptor(object);
-			addSubsettedPropertyPropertyDescriptor(object);
-			addAssociationPropertyDescriptor(object);
+			//addIsCompositePropertyDescriptor(object);
+			//addRedefinedPropertyPropertyDescriptor(object);
+			//addOppositePropertyDescriptor(object);
+			//addSubsettedPropertyPropertyDescriptor(object);
+			//addAssociationPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

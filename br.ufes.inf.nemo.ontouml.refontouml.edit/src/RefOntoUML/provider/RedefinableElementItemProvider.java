@@ -56,7 +56,6 @@ public class RedefinableElementItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -65,9 +64,10 @@ public class RedefinableElementItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addIsLeafPropertyDescriptor(object);
-			addRedefinedElementPropertyDescriptor(object);
-			addRedefinitionContextPropertyDescriptor(object);
+			// rcarraretto
+			//addIsLeafPropertyDescriptor(object);
+			//addRedefinedElementPropertyDescriptor(object);
+			//addRedefinitionContextPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

@@ -59,7 +59,6 @@ public class AssociationItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -68,11 +67,12 @@ public class AssociationItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addRelatedElementPropertyDescriptor(object);
-			addMemberEndPropertyDescriptor(object);
+			// rcarraretto
+			//addRelatedElementPropertyDescriptor(object);
+			//addMemberEndPropertyDescriptor(object);
 			addIsDerivedPropertyDescriptor(object);
-			addEndTypePropertyDescriptor(object);
-			addNavigableOwnedEndPropertyDescriptor(object);
+			//addEndTypePropertyDescriptor(object);
+			//addNavigableOwnedEndPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

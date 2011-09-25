@@ -98,9 +98,11 @@ import org.eclipse.ui.views.contentoutline.ContentOutline;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
+import org.eclipse.ui.views.properties.IPropertySheetEntry;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.eclipse.ui.views.properties.PropertySheetSorter;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
@@ -1547,11 +1549,52 @@ public class RefOntoUMLEditor
 	 * This accesses a cached version of the property sheet.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
+	// rcarraretto
+	private class MyExtendedPropertySheetPage extends ExtendedPropertySheetPage
+	{
+		private class MyPropertySheetSorter extends PropertySheetSorter
+		{
+			@Override
+			public void sort(IPropertySheetEntry[] entries) {
+				// do nothing;
+			}
+		}
+
+		public MyExtendedPropertySheetPage(AdapterFactoryEditingDomain editingDomain)
+		{
+			super(editingDomain);
+			setSorter(new MyPropertySheetSorter());
+		}
+
+		@Override
+		public void setSelectionToViewer(List<?> selection)
+		{
+			RefOntoUMLEditor.this.setSelectionToViewer(selection);
+			RefOntoUMLEditor.this.setFocus();
+		}
+
+		@Override
+		public void setActionBars(IActionBars actionBars)
+		{
+			super.setActionBars(actionBars);
+			getActionBarContributor().shareGlobalActions(this, actionBars);
+		}
+
+		@Override
+		protected void setSorter(PropertySheetSorter sorter)
+		{
+			if (!(sorter instanceof MyPropertySheetSorter))
+				sorter = new MyPropertySheetSorter();
+
+			super.setSorter(sorter);
+		}
+	}
+	
+	// rcarraretto
 	public IPropertySheetPage getPropertySheetPage()
 	{
-		if (propertySheetPage == null)
+		/*if (propertySheetPage == null)
 		{
 			propertySheetPage =
 				new ExtendedPropertySheetPage(editingDomain)
@@ -1570,6 +1613,13 @@ public class RefOntoUMLEditor
 						getActionBarContributor().shareGlobalActions(this, actionBars);
 					}
 				};
+			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+		}
+
+		return propertySheetPage;*/
+		if (propertySheetPage == null)
+		{
+			propertySheetPage = new MyExtendedPropertySheetPage(editingDomain);
 			propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
 		}
 

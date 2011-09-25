@@ -62,7 +62,6 @@ public class ElementItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -71,8 +70,9 @@ public class ElementItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addOwnedElementPropertyDescriptor(object);
-			addOwnerPropertyDescriptor(object);
+			// rcarraretto
+			//addOwnedElementPropertyDescriptor(object);
+			//addOwnerPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

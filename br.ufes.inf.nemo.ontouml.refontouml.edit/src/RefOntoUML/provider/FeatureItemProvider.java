@@ -56,7 +56,6 @@ public class FeatureItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -65,8 +64,9 @@ public class FeatureItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addIsStaticPropertyDescriptor(object);
-			addFeaturingClassifierPropertyDescriptor(object);
+			// rcarraretto
+			//addIsStaticPropertyDescriptor(object);
+			//addFeaturingClassifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
