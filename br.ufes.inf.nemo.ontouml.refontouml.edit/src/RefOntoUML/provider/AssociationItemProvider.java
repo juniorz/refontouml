@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
+import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
@@ -42,7 +43,8 @@ public class AssociationItemProvider
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
 		IItemLabelProvider,
-		IItemPropertySource
+		IItemPropertySource,
+		ITableItemLabelProvider
 {
 	/**
 	 * This constructs an instance from a factory and a notifier.
@@ -293,5 +295,18 @@ public class AssociationItemProvider
 				(RefOntoUMLPackage.eINSTANCE.getAssociation_OwnedEnd(),
 				 RefOntoUMLFactory.eINSTANCE.createProperty()));
 	}
-
+	
+	public String getColumnText (Object o, int index)
+	{
+        if(index == 0)
+        {
+            return getText(o);
+	    }
+        else
+        {
+        	RefOntoUML.Association a = (RefOntoUML.Association) o;
+        	return a.getMemberEnd().get(index-1).getType().getName();
+        }
+	    //return "unknown";
+	}
 }

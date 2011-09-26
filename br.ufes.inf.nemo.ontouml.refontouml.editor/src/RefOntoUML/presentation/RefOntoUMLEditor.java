@@ -17,6 +17,7 @@ import java.util.EventObject;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -159,6 +160,9 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 
+import RefOntoUML.Kind;
+import RefOntoUML.PackageableElement;
+import RefOntoUML.RefOntoUMLFactory;
 import RefOntoUML.provider.RefOntoUMLItemProviderAdapterFactory;
 
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
@@ -1110,6 +1114,43 @@ public class RefOntoUMLEditor
 		}
 	}
 
+	public class RCAdapterFactoryContentProvider extends AdapterFactoryContentProvider {
+		public RCAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
+			super(adapterFactory);
+		}
+
+		public Object [] getElements(Object object) {
+			Resource a = (Resource) super.getElements(object)[0];
+			RefOntoUML.Package p = (RefOntoUML.Package) a.getContents().get(0);
+			
+			List<Object> out = new LinkedList<Object>();
+			
+			for (PackageableElement pe : p.getPackagedElement())
+			{
+				if (pe instanceof RefOntoUML.Association)
+					out.add(pe);
+			}
+			
+			return out.toArray();
+		}
+
+		public Object [] getChildren(Object object) {
+			Kind k = RefOntoUMLFactory.eINSTANCE.createKind();
+			k.setName("Juquinha");
+			Object[] a = new Object[1];
+			a[0] = k;
+			return a;
+		}
+
+		public boolean hasChildren(Object object) {
+			return true;
+		}
+
+		public Object getParent(Object object) {
+			return null;
+		}
+	}
+	
 	/**
 	 * This is the method used by the framework to install your own controls.
 	 * <!-- begin-user-doc -->
@@ -1283,21 +1324,28 @@ public class RefOntoUMLEditor
 
 				TableColumn objectColumn = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(3, 100, true));
-				objectColumn.setText(getString("_UI_ObjectColumn_label"));
+				objectColumn.setText("Relation");
 				objectColumn.setResizable(true);
 
-				TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+				TableColumn column2 = new TableColumn(table, SWT.NONE);
 				layout.addColumnData(new ColumnWeightData(2, 100, true));
-				selfColumn.setText(getString("_UI_SelfColumn_label"));
-				selfColumn.setResizable(true);
+				column2.setText("Source");
+				column2.setResizable(true);
 
-				tableViewer.setColumnProperties(new String [] {"a", "b"});
-				tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+				TableColumn column3 = new TableColumn(table, SWT.NONE);
+				layout.addColumnData(new ColumnWeightData(2, 100, true));
+				column3.setText("Target");
+				column3.setResizable(true);
+
+				tableViewer.setColumnProperties(new String [] {"a", "b", "c"});
+				tableViewer.setContentProvider(new RCAdapterFactoryContentProvider(adapterFactory));
 				tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
 
+				tableViewer.setInput(editingDomain.getResourceSet());
+				
 				createContextMenuFor(tableViewer);
 				int pageIndex = addPage(viewerPane.getControl());
-				setPageText(pageIndex, getString("_UI_TablePage_label"));
+				setPageText(pageIndex, "Relations");
 			}
 
 			// This is the page for the table tree viewer.
