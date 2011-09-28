@@ -160,7 +160,7 @@ public class RefOntoUMLActionBarContributor
 	 * This creates an instance of the contributor.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public RefOntoUMLActionBarContributor()
 	{
@@ -190,7 +190,7 @@ public class RefOntoUMLActionBarContributor
 	 * as well as the sub-menus for object creation items.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void contributeToMenu(IMenuManager menuManager)
