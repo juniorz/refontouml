@@ -1600,6 +1600,7 @@ public class RefOntoUMLEditor
 	 * <!-- end-user-doc -->
 	 */
 	// rcarraretto
+	// This PropertySheetPage does not sort the properties of a metaclass in alphabetical order
 	private class MyExtendedPropertySheetPage extends ExtendedPropertySheetPage
 	{
 		private class MyPropertySheetSorter extends PropertySheetSorter
@@ -2067,6 +2068,9 @@ public class RefOntoUMLEditor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	// rcarraretto
+	// Every right click in a tree element entails a call to this method
+	// The getActionBarContributor() returns the RefOntoUMLActionBarContributor
 	public void menuAboutToShow(IMenuManager menuManager)
 	{
 		((IMenuListener)getEditorSite().getActionBarContributor()).menuAboutToShow(menuManager);
