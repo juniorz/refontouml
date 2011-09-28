@@ -165,9 +165,11 @@ public class RefOntoUMLActionBarContributor
 	public RefOntoUMLActionBarContributor()
 	{
 		super(ADDITIONS_LAST_STYLE);
-		loadResourceAction = new LoadResourceAction();
+		// rcarraretto
+		//loadResourceAction = new LoadResourceAction();
 		validateAction = new ValidateAction();
-		controlAction = new ControlAction();
+		// rcarraretto
+		//controlAction = new ControlAction();
 	}
 
 	/**
@@ -223,7 +225,8 @@ public class RefOntoUMLActionBarContributor
 				 }
 			 });
 
-		addGlobalActions(submenuManager);
+		// rcarraretto
+		//addGlobalActions(submenuManager);
 	}
 
 	/**

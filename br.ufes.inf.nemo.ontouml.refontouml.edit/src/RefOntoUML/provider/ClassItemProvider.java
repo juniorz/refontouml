@@ -210,14 +210,15 @@ public class ClassItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object)
 	{
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
+		// rcarraretto
+		/*newChildDescriptors.add
 			(createChildParameter
 				(RefOntoUMLPackage.eINSTANCE.getClass_NestedClassifier(),
 				 RefOntoUMLFactory.eINSTANCE.createAssociation()));
@@ -340,7 +341,7 @@ public class ClassItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RefOntoUMLPackage.eINSTANCE.getClass_NestedClassifier(),
-				 RefOntoUMLFactory.eINSTANCE.createMaterialAssociation()));
+				 RefOntoUMLFactory.eINSTANCE.createMaterialAssociation()));*/
 
 		newChildDescriptors.add
 			(createChildParameter
