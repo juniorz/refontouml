@@ -449,6 +449,7 @@ public class RefOntoUMLActionBarContributor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	// rcarraretto: this method will be called by super.menuAboutToShow().
 	@Override
 	protected void addGlobalActions(IMenuManager menuManager)
 	{
