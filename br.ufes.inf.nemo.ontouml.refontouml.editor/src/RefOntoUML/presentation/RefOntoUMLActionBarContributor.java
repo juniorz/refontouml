@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -167,7 +169,22 @@ public class RefOntoUMLActionBarContributor
 		super(ADDITIONS_LAST_STYLE);
 		// rcarraretto
 		//loadResourceAction = new LoadResourceAction();
-		validateAction = new ValidateAction();
+		validateAction = new ValidateAction()
+		{
+			@Override
+			protected void handleDiagnostic(Diagnostic diagnostic)
+			{
+				BasicDiagnostic d1 = new BasicDiagnostic(diagnostic.getSeverity(), diagnostic.getSource(), diagnostic.getCode(), diagnostic.getMessage(), diagnostic.getData().toArray());
+ 
+				for (Diagnostic d : diagnostic.getChildren())
+				{
+					//Diagnostic d2 = new BasicDiagnostic(d.getSeverity(), d.getSource(), d.getCode(), d.getMessage().replace("MaterialConstraint1", "explanation"), d.getData().toArray());
+					Diagnostic d2 = new BasicDiagnostic(d.getSeverity(), d.getSource(), d.getCode(), d.getMessage(), d.getData().toArray());
+					d1.add(d2);
+				}
+				super.handleDiagnostic(d1);
+			}
+		};
 		// rcarraretto
 		//controlAction = new ControlAction();
 	}
