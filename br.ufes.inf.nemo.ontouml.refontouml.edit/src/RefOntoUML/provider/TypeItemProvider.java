@@ -54,7 +54,7 @@ public class TypeItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -63,7 +63,8 @@ public class TypeItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addPackagePropertyDescriptor(object);
+			// This relation is derived and I didn't implement it
+			////addPackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}

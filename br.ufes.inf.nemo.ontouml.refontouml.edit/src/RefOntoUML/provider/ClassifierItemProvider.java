@@ -71,7 +71,8 @@ public class ClassifierItemProvider
 			//addIsLeafPropertyDescriptor(object);
 			//addRedefinedElementPropertyDescriptor(object);
 			//addRedefinitionContextPropertyDescriptor(object);
-			addPackagePropertyDescriptor(object);
+			// I have no idea where this comes from
+			////addPackagePropertyDescriptor(object);
 			addIsAbstractPropertyDescriptor(object);
 			//addPowertypeExtentPropertyDescriptor(object);
 			//addFeaturePropertyDescriptor(object);

@@ -57,7 +57,7 @@ public class PackageItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object)
@@ -66,9 +66,10 @@ public class PackageItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addOwnedTypePropertyDescriptor(object);
-			addNestedPackagePropertyDescriptor(object);
-			addNestingPackagePropertyDescriptor(object);
+			// Non-implemented derived attributes
+			//addOwnedTypePropertyDescriptor(object);
+			//addNestedPackagePropertyDescriptor(object);
+			//addNestingPackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
