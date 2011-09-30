@@ -45,6 +45,8 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
+import RefOntoUML.util.ValidationMessage;
+
 /**
  * This is the action bar contributor for the RefOntoUML model editor.
  * <!-- begin-user-doc -->
@@ -179,7 +181,10 @@ public class RefOntoUMLActionBarContributor
 				for (Diagnostic d : diagnostic.getChildren())
 				{
 					//Diagnostic d2 = new BasicDiagnostic(d.getSeverity(), d.getSource(), d.getCode(), d.getMessage().replace("MaterialConstraint1", "explanation"), d.getData().toArray());
-					Diagnostic d2 = new BasicDiagnostic(d.getSeverity(), d.getSource(), d.getCode(), d.getMessage(), d.getData().toArray());
+					Diagnostic d2 = new BasicDiagnostic
+						(d.getSeverity(), d.getSource(), d.getCode(),
+						ValidationMessage.getFinalMessage(d.getMessage()),
+						d.getData().toArray());
 					d1.add(d2);
 				}
 				super.handleDiagnostic(d1);
