@@ -8,14 +8,19 @@ package RefOntoUML.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
@@ -34,16 +39,22 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.dialogs.MessageDialog;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 import RefOntoUML.util.ValidationMessage;
 
@@ -187,7 +198,80 @@ public class RefOntoUMLActionBarContributor
 						d.getData().toArray());
 					d1.add(d2);
 				}
-				super.handleDiagnostic(d1);
+				
+				//super.handleDiagnostic(d1);
+				diagnostic = d1;
+				
+				// Exact copy of super.handleDiagnostic();
+			    int severity = diagnostic.getSeverity();
+			    String title = null;
+			    String message = null;
+
+			    if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING)
+			    {
+			      title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title");
+			      message = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message");
+			    }
+			    else
+			    {
+			      title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationResults_title");
+			      message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message");
+			    }
+
+			    int result = 0;
+			    if (diagnostic.getSeverity() == Diagnostic.OK)
+			    {
+			      MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
+			      result = Window.CANCEL;
+			    }
+			    else
+			    {
+			    	result = DiagnosticDialog.open
+			        (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
+			    	
+			    	/*Shell s = new Shell();
+			    	s.setSize(1024, 768);
+			    	DiagnosticDialog dialog = new DiagnosticDialog(s, title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+			    	result = dialog.open();*/
+			    }
+
+			    Resource resource = eclipseResourcesUtil != null ? domain.getResourceSet().getResources().get(0) : null;
+			    if (resource != null)
+			    {
+			      eclipseResourcesUtil.deleteMarkers(resource);
+			    }
+			    
+			    if (result == Window.OK)
+			    {
+			      if (!diagnostic.getChildren().isEmpty())
+			      {
+			        List<?> data = (diagnostic.getChildren().get(0)).getData();
+			        if (!data.isEmpty() && data.get(0) instanceof EObject)
+			        {
+			          Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+			          if (part instanceof ISetSelectionTarget)
+			          {
+			            ((ISetSelectionTarget)part).selectReveal(new StructuredSelection(data.get(0)));
+			          }
+			          else if (part instanceof IViewerProvider)
+			          {
+			            Viewer viewer = ((IViewerProvider)part).getViewer();
+			            if (viewer != null)
+			            {
+			              viewer.setSelection(new StructuredSelection(data.get(0)), true);
+			            }
+			          }
+			        }
+			      }
+			    
+			      if (resource != null)
+			      {
+			        for (Diagnostic childDiagnostic : diagnostic.getChildren())
+			        {
+			          eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
+			        }
+			      }
+			    }
 			}
 		};
 		// rcarraretto
