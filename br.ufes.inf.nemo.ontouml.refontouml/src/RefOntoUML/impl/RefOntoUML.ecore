@@ -1631,7 +1631,7 @@
       <details key="constraints" value="PhaseConstraint2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-      <details key="PhaseConstraint2" value="let&#xD;&#xA;&#x9;gsets : Bag(GeneralizationSet) = generalization->select( x | x.general.oclIsKindOf(SubstanceSortal) ).generalizationSet&#xD;&#xA;in&#xD;&#xA;&#x9;if gsets->size() = 1 then&#xD;&#xA;&#x9;&#x9;let&#xD;&#xA;&#x9;&#x9;&#x9;gs : GeneralizationSet = gsets->any(true)&#xD;&#xA;&#x9;&#x9;in&#xD;&#xA;&#x9;&#x9;&#x9;gs.generalization.specific->forAll( x | x.oclIsKindOf(Phase) ) and gs.generalization->size() > 1 and gs.isDisjoint and gs.isCovering&#xD;&#xA;&#x9;else&#xD;&#xA;&#x9;&#x9;false&#xD;&#xA;&#x9;endif"/>
+      <details key="PhaseConstraint2" value="let&#xD;&#xA;&#x9;gsets : Bag(GeneralizationSet) = generalization.generalizationSet&#xD;&#xA;in&#xD;&#xA;&#x9;if gsets->size() = 1 then&#xD;&#xA;&#x9;&#x9;let&#xD;&#xA;&#x9;&#x9;&#x9;gs : GeneralizationSet = gsets->any(true)&#xD;&#xA;&#x9;&#x9;in&#xD;&#xA;&#x9;&#x9;&#x9;gs.generalization.specific->forAll( x | x.oclIsKindOf(Phase) ) and gs.generalization->size() > 1 and gs.isDisjoint and gs.isCovering&#xD;&#xA;&#x9;else&#xD;&#xA;&#x9;&#x9;false&#xD;&#xA;&#x9;endif"/>
     </eAnnotations>
     <eAnnotations source="Comments">
       <details key="PhaseConstraint2" value="A Phase of a Substance Sortal must be grouped in exactly one {disjoint, complete} Generalization Set with other Phases"/>
