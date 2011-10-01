@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
-// TODO: Attributes (DealClass, DealDataType)
+// TODO: Class Attributes? (Similar to DataTypes)
 
 public class Transformation
 {
@@ -42,6 +42,10 @@ public class Transformation
 		if (obj instanceof OntoUML.Class || obj instanceof OntoUML.Datatype)
 		{
 			DealEObject (obj);
+			
+			// I have to process attributes later
+			if (obj instanceof OntoUML.Datatype)
+				todolist.addLast((OntoUML.Element) obj);
 		}
 		else
 		{
@@ -79,9 +83,12 @@ public class Transformation
 	
 	public void ProcessAll()
 	{
-		for (Iterator<OntoUML.Element> it = todolist.iterator(); it.hasNext();)
+		for (OntoUML.Element el : todolist)
 		{
-			DealEObject (it.next());
+			if (el instanceof OntoUML.Datatype)
+				ProcessDataTypeAttributes ((OntoUML.Datatype)el);
+			else
+				DealEObject (el);
 		}
 	}
 	
@@ -204,8 +211,13 @@ public class Transformation
 		{
 			DealDataType ((OntoUML.Datatype) obj);
 		}
+		// DatatypeRelationship (it doesn't exist in UML)
+		else if (obj instanceof OntoUML.DatatypeRelationship)
+		{
+			DealDataTypeRelationship ((OntoUML.DatatypeRelationship) obj);
+		}
 				
-		// Generalization (o container do Alessander permite isso) 
+		// Generalization (apenas o container do Alessander permite isso) 
 		else if (obj instanceof OntoUML.Generalization)
 		{
 			DealGeneralization((OntoUML.Generalization) obj);
@@ -335,7 +347,21 @@ public class Transformation
 		RefOntoUML.DataType dt2 = myfactory.createDataType();
 		DealClassifier (dt1, dt2);
 	}
+
+	public void ProcessDataTypeAttributes (OntoUML.Datatype dt1)
+	{
+		System.out.println("batata");
+		RefOntoUML.DataType dt2 = (RefOntoUML.DataType) mymap.get(dt1);
 		
+		// All owned attributes of the DataType
+		for (OntoUML.Property attr1 : dt1.getAttribute())
+		{	
+			RefOntoUML.Property attr2 = myfactory.createProperty();
+			DealProperty(attr1, attr2);
+			dt2.getOwnedAttribute().add(attr2);
+		}
+	}
+	
 	public void DealProperty (OntoUML.Property p1, RefOntoUML.Property p2)
 	{
 		System.out.println("    Property (" + p1.getEndType().getName() + "): " + p1.getLower() + " " + p1.getUpper() + " ");
@@ -495,6 +521,26 @@ public class Transformation
 		System.out.print("<characterization> ");
 		RefOntoUML.Characterization c2 = myfactory.createCharacterization();
 		DealDirectedBinaryRelationship (c1, c2);
+	}
+	
+	public void DealDataTypeRelationship (OntoUML.DatatypeRelationship dtr1)
+	{
+		System.out.print("<dataTypeRelationship> ");
+		RefOntoUML.Association a2 = myfactory.createAssociation();
+		
+		DealClassifier (dtr1, a2);
+		
+		// source
+		OntoUML.Property p1 = (OntoUML.Property) dtr1.getSource().get(0);					
+		RefOntoUML.Property p2 = myfactory.createProperty();
+		DealProperty(p1, p2);
+		BindPropertyToAssociation (p2, a2, p1.isIsNavigable());
+		
+		// target
+		p1 = (OntoUML.Property) dtr1.getTarget().get(0);
+		p2 = myfactory.createProperty();
+		DealProperty(p1, p2);
+		BindPropertyToAssociation (p2, a2, p1.isIsNavigable());
 	}
 	
 	public void DealGeneralization (OntoUML.Generalization gen1)
