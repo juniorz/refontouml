@@ -3,7 +3,7 @@
    <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201109272254.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201109272254">
       <category name="metamodel"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201109251510.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201109251510">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201110011841.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201110011841">
       <category name="transformation"/>
    </feature>
    <feature url="features/br.inf.ufes.nemo.rcarraretto.owl_1.0.0.201109251510.jar" id="br.inf.ufes.nemo.rcarraretto.owl" version="1.0.0.201109251510">
