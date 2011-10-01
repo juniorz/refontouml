@@ -226,7 +226,7 @@ public class RefOntoUMLActionBarContributor
 			    }
 			    else
 			    {
-			    	result = DiagnosticDialog.open
+			    	result = RCDiagnosticDialog.open
 			        (PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
 			    	
 			    	/*Shell s = new Shell();
