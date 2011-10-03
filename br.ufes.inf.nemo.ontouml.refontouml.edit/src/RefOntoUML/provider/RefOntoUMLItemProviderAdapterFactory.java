@@ -67,7 +67,7 @@ public class RefOntoUMLItemProviderAdapterFactory extends RefOntoUMLAdapterFacto
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public RefOntoUMLItemProviderAdapterFactory()
 	{

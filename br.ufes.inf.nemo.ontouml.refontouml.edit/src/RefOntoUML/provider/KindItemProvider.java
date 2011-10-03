@@ -27,7 +27,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link RefOntoUML.Kind} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class KindItemProvider
 	extends SubstanceSortalItemProvider
