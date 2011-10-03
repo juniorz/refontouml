@@ -317,8 +317,8 @@ public class RefOntoUMLActionBarContributor
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(RefOntoUMLEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-		submenuManager.insertBefore("additions", createSiblingMenuManager);
+		//createSiblingMenuManager = new MenuManager(RefOntoUMLEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+		//submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
 		//
