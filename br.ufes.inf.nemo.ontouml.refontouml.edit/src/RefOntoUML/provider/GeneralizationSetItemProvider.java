@@ -182,6 +182,7 @@ public class GeneralizationSetItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object)
@@ -191,38 +192,44 @@ public class GeneralizationSetItemProvider
 		int i = 0;
 		boolean sameGeneral = true;
 		
-		for (i = 0; i < gs.getGeneralization().size()-1; i++)
-		{			
-			if (gs.getGeneralization().get(i).getGeneral() != gs.getGeneralization().get(i+1).getGeneral())
-			{
-				sameGeneral = false;
-				break;
-			}
-		}
-		
-		if (sameGeneral)
-			gens += gs.getGeneralization().get(0).getGeneral().getName() + " {";
-		
-		i = 0;
-		for (Generalization g : gs.getGeneralization())
+		if (gs.getGeneralization().size() > 0)
 		{
+			// Check if the generalizations have the same parent
+			for (i = 0; i < gs.getGeneralization().size()-1; i++)
+			{			
+				if (gs.getGeneralization().get(i).getGeneral() != gs.getGeneralization().get(i+1).getGeneral())
+				{
+					sameGeneral = false;
+					break;
+				}
+			}
+			
+			// Put the parent name
 			if (sameGeneral)
+				gens += gs.getGeneralization().get(0).getGeneral().getName() + " {";
+			
+			// Put the names of the children
+			i = 0;
+			for (Generalization g : gs.getGeneralization())
 			{
-				gens += g.getSpecific().getName();
-			}
-			else
-			{
-				gens += g.getSpecific().getName() + " -> " + g.getGeneral().getName();
+				if (sameGeneral)
+				{
+					gens += g.getSpecific().getName();
+				}
+				else
+				{
+					gens += g.getSpecific().getName() + " -> " + g.getGeneral().getName();
+				}
+				
+				if (i != gs.getGeneralization().size()-1)
+					gens += ", ";
+				
+				i++;
 			}
 			
-			if (i != gs.getGeneralization().size()-1)
-				gens += ", ";
-			
-			i++;
+			if (sameGeneral)
+				gens += "}";
 		}
-		
-		if (sameGeneral)
-			gens += "}";
 		
 		String label = gs.getName();
 		return label == null || label.length() == 0 ?
