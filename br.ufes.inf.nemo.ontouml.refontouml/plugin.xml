@@ -9,6 +9,14 @@
 -->
 
 <plugin>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="RefOntoUML.RefOntoUMLPackage"
+            genModel="model/RefOntoUML.genmodel"
+            uri="http://nemo.inf.ufes.br/ontouml/refontouml">
+      </package>
+   </extension>
 
 
 
