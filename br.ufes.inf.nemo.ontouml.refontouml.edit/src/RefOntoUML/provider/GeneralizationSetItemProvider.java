@@ -192,6 +192,7 @@ public class GeneralizationSetItemProvider
 		int i = 0;
 		boolean sameGeneral = true;
 		
+		// If there is any Generalization in the GSet
 		if (gs.getGeneralization().size() > 0)
 		{
 			// Check if the generalizations have the same parent
@@ -230,11 +231,24 @@ public class GeneralizationSetItemProvider
 			if (sameGeneral)
 				gens += "}";
 		}
+			
+		String label = "";
 		
-		String label = gs.getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GeneralizationSet_type") + " " + gens :
-			getString("_UI_GeneralizationSet_type") + " " + label + " / " + gens;
+		if (gs.getName() == null || gs.getName().length() == 0)
+		{
+			label = getString("_UI_GeneralizationSet_type");
+			if (gs.getGeneralization().size() > 0)
+				label += " " + gens;
+		}
+		else
+		{
+			
+			label = getString("_UI_GeneralizationSet_type") + " " + gs.getName();
+			if (gs.getGeneralization().size() > 0)
+				label += " / " + gens;
+			
+		}
+		return label;
 	}
 
 	/**
