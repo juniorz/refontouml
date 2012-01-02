@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Eclipse-SourceBundle: br.ufes.inf.nemo.ontouml.transformation.ref2uml;
+ version="1.0.0.201112161919";roots:="."
+Bundle-Version: 1.0.0.201112161919
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.ref2uml.s
+ ource
+
