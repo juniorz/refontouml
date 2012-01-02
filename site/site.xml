@@ -3,7 +3,7 @@
    <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201110051713.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201110051713">
       <category name="metamodel"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201110011841.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201110011841">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201201021333.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201201021333">
       <category name="transformation"/>
    </feature>
    <feature url="features/br.inf.ufes.nemo.rcarraretto.owl_1.0.0.201109251510.jar" id="br.inf.ufes.nemo.rcarraretto.owl" version="1.0.0.201109251510">
@@ -12,7 +12,7 @@
    <feature url="features/br.inf.ufes.nemo.rcarraretto.sbvr_1.0.0.201109251510.jar" id="br.inf.ufes.nemo.rcarraretto.sbvr" version="1.0.0.201109251510">
       <category name="transformation"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201201021316.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201201021316">
+   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201201021334.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201201021334">
       <category name="transformation"/>
    </feature>
    <category-def name="metamodel" label="Metamodel">
