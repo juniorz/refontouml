@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
-
+/** SVN Test */
 public class Ref2UML {
 
 	public static Resource Transformation (String refontoumlPath, boolean debug)
