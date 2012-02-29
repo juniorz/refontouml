@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="feature.ref2uml"
+      id="br.inf.ufes.nemo.johnguerson.ref2uml"
       label="OntoUML to UML"
       version="1.0.0.qualifier"
-      provider-name="NEMO">
+      provider-name="John Guerson">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="http://nemo.inf.ufes.br/">
+      OntoUML to UML Transformation
    </description>
 
-   <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+   <copyright>
+      For more information see http://code.google.com/p/rcarraretto/
    </copyright>
-
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
-   </license>
 
    <plugin
          id="br.ufes.inf.nemo.ontouml.transformation.ref2uml"
