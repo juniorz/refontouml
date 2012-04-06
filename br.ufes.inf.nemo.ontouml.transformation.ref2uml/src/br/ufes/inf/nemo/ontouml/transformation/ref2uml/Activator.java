@@ -9,7 +9,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "br.ufes.inf.nemo.ontouml.transformation.ref2uml"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "br.ufes.inf.nemo.ontouml.transformation.ref2uml";
 
 	// The shared instance
 	private static Activator plugin;
