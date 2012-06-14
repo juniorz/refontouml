@@ -15,6 +15,9 @@
    <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201204061106.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201204061106">
       <category name="transformation"/>
    </feature>
+   <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201206141725.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201206141725">
+      <category name="metamodel"/>
+   </feature>
    <category-def name="metamodel" label="Metamodel">
       <description>
          All OntoUML metamodels.
