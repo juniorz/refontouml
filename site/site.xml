@@ -12,10 +12,10 @@
    <feature url="features/br.inf.ufes.nemo.rcarraretto.sbvr_1.0.0.201109251510.jar" id="br.inf.ufes.nemo.rcarraretto.sbvr" version="1.0.0.201109251510">
       <category name="transformation"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201206141924.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201206141924">
+   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201206141935.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201206141935">
       <category name="transformation"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201206141725.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201206141725">
+   <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201206141935.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201206141935">
       <category name="metamodel"/>
    </feature>
    <category-def name="metamodel" label="Metamodel">

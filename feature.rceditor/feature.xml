@@ -6,9 +6,12 @@
       provider-name="Roberto Carraretto">
 
    <description url="http://code.google.com/p/rcarraretto/">
-      Includes:
+      OntoUML profile for the Eclipse UML Class Diagram Editor, plus a Transformation to Reference OntoUML.
+
+Includes:
 - RC Editor (creates UML diagrams with an OntoUML Profile)
-- Transformation from RC Editor Model (.uml) to Reference OntoUML Model (.refontouml)
+- Transformation from RC Editor Model (.uml) to Reference OntoUML
+Model (.refontouml)
    </description>
 
    <copyright url="http://www.example.com/copyright">
