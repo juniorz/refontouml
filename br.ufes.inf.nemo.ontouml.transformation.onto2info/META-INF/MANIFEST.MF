@@ -1,10 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Domain Ontology to Information Model
-Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.onto2info
+Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.transformation.onto2info;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.onto2info.Activator
+Bundle-Activator: br.ufes.inf.nemo.ontouml.transformation.onto2info.plugin.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ br.ufes.inf.nemo.ontouml.refontouml,
+ br.ufes.inf.nemo.ontouml.refontouml.util
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

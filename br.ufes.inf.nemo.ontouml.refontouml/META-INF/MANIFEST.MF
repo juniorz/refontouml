@@ -4,7 +4,7 @@ Bundle-Name: OntoUML Reference Metamodel
 Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Vendor: NEMO
+Bundle-Vendor: Roberto Carraretto
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,

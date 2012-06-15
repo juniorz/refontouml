@@ -14,7 +14,6 @@ import br.ufes.inf.nemo.ontouml.transformation.ontouml2owl.OntoUML2OWL;
 
 public class Handler extends AbstractHandler
 {
-
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{

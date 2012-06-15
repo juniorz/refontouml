@@ -1,4 +1,4 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.plugin;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

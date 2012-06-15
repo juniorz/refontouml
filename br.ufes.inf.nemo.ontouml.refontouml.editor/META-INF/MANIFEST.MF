@@ -5,7 +5,7 @@ Bundle-SymbolicName: br.ufes.inf.nemo.ontouml.refontouml.editor;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: RefOntoUML.presentation.RefOntoUMLEditorPlugin$Implementation
-Bundle-Vendor: NEMO
+Bundle-Vendor: Roberto Carraretto
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: RefOntoUML.presentation
