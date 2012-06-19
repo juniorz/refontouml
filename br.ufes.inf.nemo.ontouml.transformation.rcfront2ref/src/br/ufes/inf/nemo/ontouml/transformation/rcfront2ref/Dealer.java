@@ -6,9 +6,9 @@ public class Dealer
 {
 	// Creates RefOntoUML Objects
 	RefOntoUML.RefOntoUMLFactory myfactory;
-	// Maps UML Elements to RefOntoUML Elements (auxiliar for Properties, Generalizations and GeneralizationSets)  
+	// Maps UML Elements to RefOntoUML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
 	HashMap<org.eclipse.uml2.uml.Element, RefOntoUML.Element> mymap;
-	
+
 	public Dealer()
 	{
 		myfactory = RefOntoUML.RefOntoUMLFactory.eINSTANCE;
@@ -60,6 +60,7 @@ public class Dealer
 		System.out.print("    Property (" + p1.getType().getName() + "): " + p1.getLower() + " " + p1.getUpper() + " ");
 		
 		DealNamedElement (p1, p2);
+		
 		// isLeaf (RedefinableElement)
 		p2.setIsLeaf(p1.isLeaf());
 		// isStatic (Feature)
