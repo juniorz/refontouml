@@ -1638,7 +1638,16 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AntiRigidSortalClass" abstract="true"
-      eSuperTypes="#//SortalClass"/>
+      eSuperTypes="#//SortalClass">
+    <eOperations name="rigidParent" ordered="false" eType="#//RigidSortalClass">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="if parents()->exists ( oclIsKindOf(RigidSortalClass) ) then&#xD;&#xA;&#x9;parents()->any ( oclIsKindOf(RigidSortalClass) )&#xD;&#xA;else&#xD;&#xA;&#x9;parents()->select ( oclIsKindOf(AntiRigidSortalClass) ).oclAsType(AntiRigidSortalClass).rigidParent()->any(true)&#xD;&#xA;endif"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="rigidParent" value="Returns the first rigid parent."/>
+      </eAnnotations>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubstanceSortal" abstract="true" eSuperTypes="#//RigidSortalClass">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="SubstanceSortalConstraint2b"/>

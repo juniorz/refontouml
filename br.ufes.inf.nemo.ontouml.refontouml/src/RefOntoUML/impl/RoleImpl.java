@@ -9,6 +9,7 @@ package RefOntoUML.impl;
 import RefOntoUML.Mediation;
 import RefOntoUML.RefOntoUMLPackage;
 import RefOntoUML.Relator;
+import RefOntoUML.RigidSortalClass;
 import RefOntoUML.Role;
 
 import org.eclipse.emf.ecore.EAnnotation;
