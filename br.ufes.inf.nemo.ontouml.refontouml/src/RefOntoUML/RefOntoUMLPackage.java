@@ -45,7 +45,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "RefOntoUML";
+	String eNS_URI = "http://nemo.inf.ufes.br/ontouml/refontouml";
 
 	/**
 	 * The package namespace name.

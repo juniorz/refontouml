@@ -84,7 +84,7 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	{
 		try
 		{
-			RefOntoUMLFactory theRefOntoUMLFactory = (RefOntoUMLFactory)EPackage.Registry.INSTANCE.getEFactory("RefOntoUML"); 
+			RefOntoUMLFactory theRefOntoUMLFactory = (RefOntoUMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://nemo.inf.ufes.br/ontouml/refontouml"); 
 			if (theRefOntoUMLFactory != null)
 			{
 				return theRefOntoUMLFactory;

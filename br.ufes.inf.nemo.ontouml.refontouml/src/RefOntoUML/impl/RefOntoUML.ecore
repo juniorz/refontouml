@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RefOntoUML"
-    nsURI="RefOntoUML" nsPrefix="RefOntoUML">
+    nsURI="http://nemo.inf.ufes.br/ontouml/refontouml" nsPrefix="RefOntoUML">
   <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
   <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
@@ -717,6 +717,30 @@
         <details key="body" value="if oclIsKindOf (SortalClass) then&#xD;&#xA;&#x9;hasCollectiveAncestor()&#xD;&#xA;else&#xD;&#xA;&#x9;if oclIsKindOf (MixinClass) then&#xD;&#xA;&#x9;&#x9;hasCollectiveOffspring()&#xD;&#xA;&#x9;else&#xD;&#xA;&#x9;&#x9;false&#xD;&#xA;&#x9;endif&#xD;&#xA;endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="children" ordered="false" upperBound="-1" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="Generalization.allInstances()->select (g | g.general = self.oclAsType(Classifier)).specific"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="children" value="This is NOT from the UML specification. Gets the immediate children."/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="allChildren" ordered="false" upperBound="-1" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="self.children()->union(self.children()->collect(c | c.allChildren()))"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="allChildren" value="This is NOT from the UML specification. Gets all children."/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="partitions" upperBound="-1" eType="#//GeneralizationSet">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="GeneralizationSet.allInstances()->select (gs | gs.parent() = self)"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="partitions" value="This is NOT from the UML specification. Gets all the GeneralizationSets in which this Classifier acts as a parent."/>
+      </eAnnotations>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
@@ -858,6 +882,22 @@
           <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eGenericType>
       </eParameters>
+    </eOperations>
+    <eOperations name="parent" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="generalization.general->any(true)"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="parent" value="This is NOT from the UML specification."/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="children" ordered="false" lowerBound="1" upperBound="-1" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="generalization.specific"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="children" value="This is NOT from the UML specification."/>
+      </eAnnotations>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isCovering" ordered="false"
         lowerBound="1" eType="#//Boolean" defaultValueLiteral="false"/>
@@ -1647,6 +1687,16 @@
     <eAnnotations source="Comments">
       <details key="RoleConstraint2" value="A Role must be connected (directly or indirectly) to a Mediation"/>
     </eAnnotations>
+    <eOperations name="mediation" ordered="false" eType="#//Mediation">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="Mediation.allInstances()->any( m | m.mediated() = self )"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="relator" ordered="false" eType="#//Relator">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="if mediation()->notEmpty() then mediation().relator() else null endif"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RigidMixinClass" abstract="true" eSuperTypes="#//MixinClass"/>
   <eClassifiers xsi:type="ecore:EClass" name="NonRigidMixinClass" abstract="true"
@@ -1676,6 +1726,16 @@
     <eAnnotations source="Comments">
       <details key="RoleMixinConstraint1" value="A RoleMixin must be connected (directly or indirectly) to a Mediation"/>
     </eAnnotations>
+    <eOperations name="mediation" ordered="false" eType="#//Mediation">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="Mediation.allInstances()->any( m | m.mediated() = self )"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="relator" ordered="false" eType="#//Relator">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="if mediation()->notEmpty() then mediation().relator() else null endif"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mixin" eSuperTypes="#//SemiRigidMixinClass">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -1711,6 +1771,16 @@
       <details key="RelatorConstraint1" value="A Relator must be connected (directly or indirectly) to a Mediation"/>
       <details key="RelatorConstraint2" value="The sum of the minimum cardinalities of the mediated ends must be greater or equal to 2"/>
     </eAnnotations>
+    <eOperations name="mediations" upperBound="-1" eType="#//Mediation">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="Mediation.allInstances()->select( x | x.relator() = self )"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="mediated" upperBound="-1" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="mediations().mediated()"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectedBinaryAssociation" abstract="true"
       eSuperTypes="#//Association">

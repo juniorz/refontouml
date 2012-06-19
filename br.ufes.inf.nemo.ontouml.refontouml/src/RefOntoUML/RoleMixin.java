@@ -20,4 +20,22 @@ package RefOntoUML;
  */
 public interface RoleMixin extends AntiRigidMixinClass
 {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='Mediation.allInstances()->any( m | m.mediated() = self )'"
+	 * @generated
+	 */
+	Mediation mediation();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='if mediation()->notEmpty() then mediation().relator() else null endif'"
+	 * @generated
+	 */
+	Relator relator();
 } // RoleMixin

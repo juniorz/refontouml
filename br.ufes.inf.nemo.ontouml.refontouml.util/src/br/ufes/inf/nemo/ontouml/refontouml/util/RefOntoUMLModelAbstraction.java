@@ -15,23 +15,49 @@ public class RefOntoUMLModelAbstraction
 {
 	public RefOntoUML.Model model;
 	
-	public List<RefOntoUML.Kind> kinds;
-	public List<RefOntoUML.Quantity> quantity;
-	public List<RefOntoUML.Collective> collective;
-	public List<RefOntoUML.SubKind> subKinds;
+	// Any non-moment
+	public List<RefOntoUML.ObjectClass> objects;
 	
+	// Kind + Quantity + Collective + SubKind
+	public List<RefOntoUML.RigidSortalClass> rigidSortals;
+	public List<RefOntoUML.Kind> kinds;
+	public List<RefOntoUML.Quantity> quantities;
+	public List<RefOntoUML.Collective> collectives;
+	public List<RefOntoUML.SubKind> subKinds;
+
+	// Phases + Roles
+	public List<RefOntoUML.AntiRigidSortalClass> antiRigidSortals;
 	public List<RefOntoUML.Role> roles;
 	public List<RefOntoUML.Phase> phases;
-	
+		
+	// Category + SemiMixin + RoleMixin
+	public List<RefOntoUML.MixinClass> allMixins;
 	public List<RefOntoUML.Category> categories;
 	public List<RefOntoUML.Mixin> semiMixins;
 	public List<RefOntoUML.RoleMixin> roleMixins;
 	
-	
+	public List<RefOntoUML.Relator> relators;
 
 	public RefOntoUMLModelAbstraction ()
 	{
+		objects = new LinkedList<RefOntoUML.ObjectClass>();
 		
+		rigidSortals = new LinkedList<RefOntoUML.RigidSortalClass>();
+		kinds = new LinkedList<RefOntoUML.Kind>();
+		quantities = new LinkedList<RefOntoUML.Quantity>();
+		collectives = new LinkedList<RefOntoUML.Collective>();
+		subKinds = new LinkedList<RefOntoUML.SubKind>();
+		
+		antiRigidSortals = new LinkedList<RefOntoUML.AntiRigidSortalClass>();
+		roles = new LinkedList<RefOntoUML.Role>();
+		phases = new LinkedList<RefOntoUML.Phase>();
+		
+		allMixins = new LinkedList<RefOntoUML.MixinClass>();
+		categories = new LinkedList<RefOntoUML.Category>();
+		semiMixins = new LinkedList<RefOntoUML.Mixin>();
+		roleMixins = new LinkedList<RefOntoUML.RoleMixin>();
+		
+		relators = new LinkedList<RefOntoUML.Relator>();
 	}
 	
 	public boolean load (String fileAbsolutePath)
@@ -63,5 +89,85 @@ public class RefOntoUMLModelAbstraction
 		
 		model = null;
 		return false;
+	}
+	
+	public boolean process ()
+	{
+		if (model == null)
+			return false;
+		
+		for (RefOntoUML.PackageableElement pe : model.getPackagedElement())
+		{
+			if (pe instanceof RefOntoUML.ObjectClass)
+			{
+				objects.add((RefOntoUML.ObjectClass)pe);
+				
+				if (pe instanceof RefOntoUML.SortalClass)
+				{
+					if (pe instanceof RefOntoUML.RigidSortalClass)
+					{
+						rigidSortals.add((RefOntoUML.RigidSortalClass)pe);
+						
+						if (pe instanceof RefOntoUML.Kind)
+						{
+							kinds.add((RefOntoUML.Kind)pe);
+						}
+						else if (pe instanceof RefOntoUML.Quantity)
+						{
+							quantities.add((RefOntoUML.Quantity)pe);
+						}
+						else if (pe instanceof RefOntoUML.Collective)
+						{
+							collectives.add((RefOntoUML.Collective)pe);
+						}
+						else if (pe instanceof RefOntoUML.SubKind)
+						{
+							subKinds.add((RefOntoUML.SubKind)pe);
+						}
+					}
+					else if (pe instanceof RefOntoUML.AntiRigidSortalClass)
+					{
+						antiRigidSortals.add((RefOntoUML.AntiRigidSortalClass)pe);
+						
+						if (pe instanceof RefOntoUML.Role)
+						{
+							roles.add((RefOntoUML.Role)pe);
+						}
+						else if (pe instanceof RefOntoUML.Phase)
+						{
+							phases.add((RefOntoUML.Phase)pe);
+						}
+					}
+				}
+				else if (pe instanceof RefOntoUML.MixinClass)
+				{
+					allMixins.add((RefOntoUML.MixinClass)pe);
+					
+					if (pe instanceof RefOntoUML.Category)
+					{
+						categories.add((RefOntoUML.Category)pe);
+					}
+					else if (pe instanceof RefOntoUML.RoleMixin)
+					{
+						roleMixins.add((RefOntoUML.RoleMixin)pe);
+					}
+					else if (pe instanceof RefOntoUML.Mixin)
+					{
+						semiMixins.add((RefOntoUML.Mixin)pe);
+					}
+				}
+			}
+			else if (pe instanceof RefOntoUML.MomentClass)
+			{
+				// TODO: Quality and Mode
+				if (pe instanceof RefOntoUML.Relator)
+				{
+					relators.add((RefOntoUML.Relator)pe);
+				}
+			}
+			// TODO: Associations
+		}
+		
+		return true;
 	}
 }

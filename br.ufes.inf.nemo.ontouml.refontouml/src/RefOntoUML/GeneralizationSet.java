@@ -160,4 +160,23 @@ public interface GeneralizationSet extends PackageableElement
 	 */
 	boolean maps_to_generalization_set(DiagnosticChain diagnostics, Map<Object, Object> context);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='generalization.general->any(true)'"
+	 *        annotation="Comments parent='This is NOT from the UML specification.'"
+	 * @generated
+	 */
+	Classifier parent();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='generalization.specific'"
+	 *        annotation="Comments children='This is NOT from the UML specification.'"
+	 * @generated
+	 */
+	EList<Classifier> children();
+
 } // GeneralizationSet

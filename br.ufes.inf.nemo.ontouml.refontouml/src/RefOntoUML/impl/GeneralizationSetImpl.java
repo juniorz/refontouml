@@ -20,11 +20,15 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,6 +38,10 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.Query;
+import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -323,6 +331,62 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Classifier parent()
+	{
+		if (parentBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getGeneralizationSet().getEOperations().get(2);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getGeneralizationSet(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				parentBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(parentBodyOCL);
+	
+		return (Classifier) query.evaluate(this);
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> children()
+	{
+		if (childrenBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getGeneralizationSet().getEOperations().get(3);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getGeneralizationSet(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				childrenBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(childrenBodyOCL);
+	
+		@SuppressWarnings("unchecked")
+		Collection<Classifier> result = (Collection<Classifier>) query.evaluate(this);
+		return new BasicEList.UnmodifiableEList<Classifier>(result.size(), result.toArray());
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -474,5 +538,27 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 		result.append(')');
 		return result.toString();
 	}
+
+	/**
+	 * The parsed OCL expression for the body of the '{@link #parent <em>Parent</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #parent
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> parentBodyOCL;
+
+	/**
+	 * The parsed OCL expression for the body of the '{@link #children <em>Children</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #children
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> childrenBodyOCL;
+
+	private static final String OCL_ANNOTATION_SOURCE = "http://www.eclipse.org/ocl/examples/OCL";
+
+	private static final OCL OCL_ENV = OCL.newInstance();
 
 } //GeneralizationSetImpl

@@ -452,4 +452,33 @@ public interface Classifier extends Namespace, RedefinableElement, Type
 	 */
 	boolean hasCollectiveInstances();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='Generalization.allInstances()->select (g | g.general = self.oclAsType(Classifier)).specific'"
+	 *        annotation="Comments children='This is NOT from the UML specification. Gets the immediate children.'"
+	 * @generated
+	 */
+	EList<Classifier> children();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='self.children()->union(self.children()->collect(c | c.allChildren()))'"
+	 *        annotation="Comments allChildren='This is NOT from the UML specification. Gets all children.'"
+	 * @generated
+	 */
+	EList<Classifier> allChildren();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='GeneralizationSet.allInstances()->select (gs | gs.parent() = self)'"
+	 *        annotation="Comments partitions='This is NOT from the UML specification. Gets all the GeneralizationSets in which this Classifier acts as a parent.'"
+	 * @generated
+	 */
+	EList<GeneralizationSet> partitions();
+
 } // Classifier

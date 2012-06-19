@@ -6,6 +6,8 @@
  */
 package RefOntoUML;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Relator</b></em>'.
@@ -20,4 +22,20 @@ package RefOntoUML;
  */
 public interface Relator extends MomentClass
 {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='Mediation.allInstances()->select( x | x.relator() = self )'"
+	 * @generated
+	 */
+	EList<Mediation> mediations();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='mediations().mediated()'"
+	 * @generated
+	 */
+	EList<Classifier> mediated();
 } // Relator

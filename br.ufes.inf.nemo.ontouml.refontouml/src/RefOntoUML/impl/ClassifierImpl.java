@@ -1051,6 +1051,93 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Classifier> children()
+	{
+		if (childrenBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getClassifier().getEOperations().get(24);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getClassifier(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				childrenBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(childrenBodyOCL);
+	
+		@SuppressWarnings("unchecked")
+		Collection<Classifier> result = (Collection<Classifier>) query.evaluate(this);
+		return new BasicEList.UnmodifiableEList<Classifier>(result.size(), result.toArray());
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> allChildren()
+	{
+		if (allChildrenBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getClassifier().getEOperations().get(25);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getClassifier(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				allChildrenBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(allChildrenBodyOCL);
+	
+		@SuppressWarnings("unchecked")
+		Collection<Classifier> result = (Collection<Classifier>) query.evaluate(this);
+		return new BasicEList.UnmodifiableEList<Classifier>(result.size(), result.toArray());
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<GeneralizationSet> partitions()
+	{
+		if (partitionsBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getClassifier().getEOperations().get(26);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getClassifier(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				partitionsBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(partitionsBodyOCL);
+	
+		@SuppressWarnings("unchecked")
+		Collection<GeneralizationSet> result = (Collection<GeneralizationSet>) query.evaluate(this);
+		return new BasicEList.UnmodifiableEList<GeneralizationSet>(result.size(), result.toArray());
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Association createAssociation(boolean end1IsNavigable, AggregationKind end1Aggregation, String end1Name, int end1Lower, int end1Upper, Type end1Type, boolean end2IsNavigable, AggregationKind end2Aggregation, String end2Name, int end2Lower, int end2Upper)
 	{
 		// TODO: implement this method
@@ -1550,6 +1637,33 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
 	private static OCLExpression<EClassifier> hasCollectiveInstancesBodyOCL;
 	
+	/**
+	 * The parsed OCL expression for the body of the '{@link #children <em>Children</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #children
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> childrenBodyOCL;
+
+	/**
+	 * The parsed OCL expression for the body of the '{@link #allChildren <em>All Children</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #allChildren
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> allChildrenBodyOCL;
+
+	/**
+	 * The parsed OCL expression for the body of the '{@link #partitions <em>Partitions</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #partitions
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> partitionsBodyOCL;
+
 	/**
 	 * The parsed OCL expression for the derivation of '{@link #getRedefinedElement <em>Redefined Element</em>}' property.
 	 * <!-- begin-user-doc -->
