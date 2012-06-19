@@ -44,14 +44,16 @@ public class RCFront2Ref
 		uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri.appendSegment("profiles").appendSegment(""));
 		
 		Transformation t = new Transformation();
-		RefOntoUML.Package p2 = null;
+		RefOntoUML.Model p2 = null;
 		
 		try
 		{
 			// Read the objects in the model
 			Resource sourceR = sourceRS.getResource(uri, true);			
 			EObject p1 = sourceR.getContents().get(0);
-			p2 = t.DealPackage(p1);
+			
+			if (p1 instanceof org.eclipse.uml2.uml.Package)
+				p2 = t.createModel((org.eclipse.uml2.uml.Package)p1);
 		}
 		catch (Exception e)
 		{

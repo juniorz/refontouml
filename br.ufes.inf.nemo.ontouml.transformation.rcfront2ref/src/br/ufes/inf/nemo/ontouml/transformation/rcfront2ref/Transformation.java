@@ -13,15 +13,23 @@ public class Transformation
 	{
 		mydealer = new Dealer();
 	}
-		
-	public RefOntoUML.Package DealPackage (EObject c1)
-	{	
-		if (!(c1 instanceof org.eclipse.uml2.uml.Package))
-			return null;
-		
-		org.eclipse.uml2.uml.Package p1 = (org.eclipse.uml2.uml.Package) c1;
+	
+	public RefOntoUML.Model createModel (org.eclipse.uml2.uml.Package m1)
+	{
+		RefOntoUML.Model m2 = RefOntoUML.RefOntoUMLFactory.eINSTANCE.createModel();
+		DealPackage (m1, m2);
+		return m2;
+	}
+	
+	public RefOntoUML.Package createPackage (org.eclipse.uml2.uml.Package p1)
+	{
 		RefOntoUML.Package p2 = RefOntoUML.RefOntoUMLFactory.eINSTANCE.createPackage();
-		
+		DealPackage (p1, p2);
+		return p2;
+	}
+	
+	public RefOntoUML.Package DealPackage (org.eclipse.uml2.uml.Package p1, RefOntoUML.Package p2)
+	{
 		System.out.print("<package> ");
 		mydealer.DealNamedElement(p1, p2);
 		mydealer.RelateElements(p1, p2);
@@ -117,7 +125,7 @@ public class Transformation
 		{
 			if (obj instanceof org.eclipse.uml2.uml.Package)
 			{			
-				RefOntoUML.Package son = DealPackage(obj);
+				RefOntoUML.Package son = createPackage((org.eclipse.uml2.uml.Package)obj);
 				p2.getPackagedElement().add(son);								
 			}
 		}
