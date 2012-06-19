@@ -97,7 +97,6 @@ public class UMLFactoryAbstraction
         }        
     }
 	
-	/** Classifier. */	
 	public void DealClassifier (RefOntoUML.Classifier c1, org.eclipse.uml2.uml.Classifier c2)
     {
         DealNamedElement (c1, c2);
@@ -120,6 +119,13 @@ public class UMLFactoryAbstraction
             c2.getOwnedAttributes().add(p2);
         }         
     }
+	
+	public org.eclipse.uml2.uml.Class createClass (RefOntoUML.Class c1)
+	{
+		org.eclipse.uml2.uml.Class c2 = myfactory.createClass();
+		DealClass (c1, c2);
+		return c2;
+	}
 		
 	// FIXME
 	private org.eclipse.uml2.uml.AggregationKind getAggregationKind (RefOntoUML.Property p1)
@@ -141,76 +147,49 @@ public class UMLFactoryAbstraction
     	return null;
     }
 	
-	// FIXME: Totally fix this
-	public org.eclipse.uml2.uml.Association DealAssociation (RefOntoUML.Association a1)
+	public org.eclipse.uml2.uml.Association createAssociation (RefOntoUML.Association a1)
+	{
+		org.eclipse.uml2.uml.Association a2 = myfactory.createAssociation();
+		DealAssociation(a1, a2);
+		return a2;
+	}
+	
+	public void DealAssociation (RefOntoUML.Association a1, org.eclipse.uml2.uml.Association a2)
     {
-		org.eclipse.uml2.uml.Association a2 = createAssociation(a1);
-		
         DealClassifier(a1, a2);
         
-        /* isDerived */
+        // isDerived
         a2.setIsDerived(a1.isIsDerived());        
 
         // memberEnds 
         org.eclipse.uml2.uml.Property p2;
-        for (int i = 0; i < a1.getMemberEnd().size();i++)
+        for (RefOntoUML.Property p1 : a1.getMemberEnd())
         {
-        	RefOntoUML.Property p1 = a1.getMemberEnd().get(i);
-        	p2 = a2.getMemberEnds().get(i);
+        	p2 = myfactory.createProperty();            
+            DealProperty (p1, p2);
             
-            DealNamedElement (p1, p2);
+            a2.getMemberEnds().add(p2);
+            // EOpposite
+            p2.setAssociation(a2);
             
-            /* isLeaf (RedefinableElement) */
-            p2.setIsLeaf(p1.isIsLeaf());        
-                    
-            /* isStatic (Feature) */
-            p2.setIsStatic(p1.isIsStatic());        
-            
-            /* isReadOnly (StructuralFeature) */
-            p2.setIsReadOnly(p1.isIsReadOnly());                      
-            
-            /* isDerived */
-            p2.setIsDerived(p1.isIsDerived());
-
             RelateElements(p1, p2);
         }
-        
-        return a2;
-    }
+
+		// ownedEnds
+		for (RefOntoUML.Property p1 : a1.getOwnedEnd())
+		{
+			p2 = (org.eclipse.uml2.uml.Property) GetElement(p1);
+			
+			a2.getOwnedEnds().add(p2);
+		}
 		
-	// FIXME: Totally fix this
-	public org.eclipse.uml2.uml.Association createAssociation (RefOntoUML.Association a1)	
-    {
-    	RefOntoUML.Property src = a1.getMemberEnd().get(0);
-		RefOntoUML.Property tgt = a1.getMemberEnd().get(1);
-		RefOntoUML.Type source = src.getType();
-		RefOntoUML.Type target = tgt.getType();		
-		
-		// inverse
-		org.eclipse.uml2.uml.Type sourceClass= (org.eclipse.uml2.uml.Type) GetElement(target);
-		org.eclipse.uml2.uml.Type targetClass = (org.eclipse.uml2.uml.Type)GetElement(source);	
-		
-    	boolean end1IsNavigable = true; //src.isNavigable();
-    	boolean end2IsNavigable = true; //tgt.isNavigable();
-    	
-    	String end1Name = src.getName();
-    	String end2Name = tgt.getName();
-    	
-    	int end1Lower = src.getLower();
-    	int end2Lower = tgt.getLower();
-    	int end1Upper = src.getUpper();
-    	int end2Upper = tgt.getUpper();    	
-    	
-    	org.eclipse.uml2.uml.AggregationKind ag1 = getAggregationKind(src);
-    	org.eclipse.uml2.uml.AggregationKind ag2 = getAggregationKind(tgt);
-    	
-    	/* create association */
-    	org.eclipse.uml2.uml.Association a2 = sourceClass.createAssociation(
-    		end1IsNavigable, ag1, end1Name, end1Lower, end1Upper, targetClass, 
-    		end2IsNavigable, ag2, end2Name, end2Lower, end2Upper
-    	);        
-    	
-    	return a2;
+		// navigableOwnedEnds
+		for (RefOntoUML.Property p1 : a1.getNavigableOwnedEnd())
+		{
+			p2 = (org.eclipse.uml2.uml.Property) GetElement(p1);
+			
+			a2.getNavigableOwnedEnds().add(p2);
+		}
     }
 
 	// FIXME: I won't be using DataTypes, but, as a note: John's version does not deal with PrimitiveTypes and Enumeration Literals
@@ -245,64 +224,53 @@ public class UMLFactoryAbstraction
     {	
 		org.eclipse.uml2.uml.Generalization gen2 = myfactory.createGeneralization();
             
-        /* source (Specific) */
+        // source (Specific)
         RefOntoUML.Classifier e1 = (RefOntoUML.Classifier) gen1.getSpecific();
         org.eclipse.uml2.uml.Classifier e2 = (org.eclipse.uml2.uml.Classifier) GetElement(e1);        
         
-        /* Poderia ter setado apenas um dos dois (Generalization::Specific, Classifier::Generalization), ja que sao EOpposites */
+        // Poderia ter setado apenas um dos dois (Generalization::Specific, Classifier::Generalization), ja que sao EOpposites
         gen2.setSpecific(e2);
-        /* O Specific tem posse do generalization */        
+        // O Specific tem posse do generalization        
         e2.getGeneralizations().add(gen2);
 
-        /* target (General) */
+        // target (General)
         e1 = (RefOntoUML.Classifier) gen1.getGeneral();
         e2 = (org.eclipse.uml2.uml.Classifier) GetElement(e1);        
 
         gen2.setGeneral(e2);
         
-        /* Important for GeneralizationSet */
+        // Important for GeneralizationSet
         RelateElements (gen1, gen2);
      }
 	
-	 /** Process the Generalizations of this Classifier. */	
      public void ProcessGeneralizations (RefOntoUML.Classifier c1)
      {
-        /* Generalizations */
+        // Generalizations
         for (RefOntoUML.Generalization gen : c1.getGeneralization())
         {
             DealGeneralization (gen);
         }       
      }
      
-     /** GeneralizationSet. */     
      public org.eclipse.uml2.uml.GeneralizationSet DealGeneralizationSet (RefOntoUML.GeneralizationSet gs1)
      {        
         org.eclipse.uml2.uml.GeneralizationSet gs2 = myfactory.createGeneralizationSet();
              
         DealNamedElement(gs1, gs2);
-                             
-        /* print out */
-        System.out.print("UML:GeneralizationSet :: ");
         		
-        /* Add all the generalizations */
+        // Adds all the generalizations
         for  (RefOntoUML.Generalization gen1 : gs1.getGeneralization())
         {
         	org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) GetElement(gen1);
-                     
-        	/* print out */ 
-        	System.out.print(gen2.getSpecific().getName()+"->"+gen2.getGeneral().getName()+"  "); 
-        	
-            /* Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites */
+
+        	/* Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites */
             gs2.getGeneralizations().add(gen2);
             gen2.getGeneralizationSets().add(gs2);
         }
              
-        /* isCovering, isDisjoint */
+        // isCovering, isDisjoint
         gs2.setIsCovering(gs1.isIsCovering());
         gs2.setIsDisjoint(gs1.isIsDisjoint());
-       
-        /* print out */
-        System.out.print("isCovering="+gs2.isCovering()+", isDisjoint="+gs2.isDisjoint()+"\n");
         
         /* They are PackageableElements, don't forget it */
         RelateElements (gs1, gs2);
@@ -310,23 +278,23 @@ public class UMLFactoryAbstraction
         return gs2;
      }
 	
-     /** Dependency. */     
-     public org.eclipse.uml2.uml.Dependency DealDependency (RefOntoUML.Dependency d1)
-     {             
+     // FIXME: I won't deal with Dependency
+	public org.eclipse.uml2.uml.Dependency DealDependency (RefOntoUML.Dependency d1)
+	{             
         org.eclipse.uml2.uml.Dependency d2 = myfactory.createDependency();
           
         DealNamedElement(d1, d2);
              
         org.eclipse.uml2.uml.NamedElement ne2;        
         
-        /* clients */        
+        // clients        
         for (RefOntoUML.NamedElement ne1 : d1.getClient())
         {
             ne2 = (org.eclipse.uml2.uml.NamedElement) GetElement(ne1);
             d2.getClients().add(ne2);                
         }         
         
-        /* suppliers */        
+        // suppliers        
         for (RefOntoUML.NamedElement ne1 : d1.getSupplier())
         {
             ne2 = (org.eclipse.uml2.uml.NamedElement) GetElement(ne1);
@@ -337,14 +305,15 @@ public class UMLFactoryAbstraction
         RelateElements (d1, d2);
              
         return d2;
-     }
+	}
      
-     /** Comment. */
+     // FIXME: I won't deal with Comments
      public void DealComment (RefOntoUML.Comment c1, org.eclipse.uml2.uml.Comment c2)
      {             
-        /* body */
+        // body
         c2.setBody(c1.getBody());
-        /* annotatedElements */
+        
+        // annotatedElements
         for (RefOntoUML.Element a1 : c1.getAnnotatedElement())
         {
         	 org.eclipse.uml2.uml.Element a2 = GetElement(a1);
@@ -354,7 +323,7 @@ public class UMLFactoryAbstraction
         RelateElements (c1, c2);
      }     
      
-     /** Process RefOntoUML Comments of this Element */
+     // FIXME: I won't deal with Comments
      public void ProcessComments (RefOntoUML.Element e1)
      {
     	 org.eclipse.uml2.uml.Element e2 = GetElement (e1);
@@ -369,5 +338,4 @@ public class UMLFactoryAbstraction
              e2.getOwnedComments().add(c2);
          }
      }
-    
 }
