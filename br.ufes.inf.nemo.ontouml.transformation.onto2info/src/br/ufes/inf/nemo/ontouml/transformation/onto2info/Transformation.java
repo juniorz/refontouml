@@ -12,7 +12,7 @@ public class Transformation
     	fa = new UMLFactoryAbstraction();  
     }	
 	
-	public void transform (RefOntoUMLModelAbstraction ma)
+	public org.eclipse.uml2.uml.Model transform (RefOntoUMLModelAbstraction ma)
 	{
 		RefOntoUML.Model ontoumlmodel = ma.model;            
 		org.eclipse.uml2.uml.Model umlmodel = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createModel();
@@ -20,66 +20,61 @@ public class Transformation
         fa.DealNamedElement(ontoumlmodel, umlmodel);
         fa.RelateElements(ontoumlmodel, umlmodel);
        
-        // Rigid Sortals
+        // Rigid Sortals (as long as in scope)
         for (RefOntoUML.Class obj : ma.rigidSortals)
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
         }
-        // All Mixins
+        // All Mixins (as long as in scope)
         for (RefOntoUML.Class obj : ma.allMixins)
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
         }
-        // Relators
+        // Relators (as long as in scope)
         for (RefOntoUML.Class obj : ma.relators)
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
         }
 
-        // Roles
-        for (RefOntoUML.Role role : ma.roles)
+        // FIXME Roles (Associations) (as long as in scope) (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
+        /*for (RefOntoUML.Role role : ma.roles)
         {
-        	RefOntoUML.RigidSortalClass rigidParent = role.rigidParent();
-        	RefOntoUML.Relator relator = role.relator();
-        	// TODO: next step
-        }
+        	org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (role);
+        	umlmodel.getPackagedElements().add(a2);
+        }*/
         
         // TODO: mediations
         // Associations
-        for (EObject obj : ontoumlmodel.getPackagedElement())
+        /*for (EObject obj : ontoumlmodel.getPackagedElement())
         {
-        	if(obj instanceof RefOntoUML.Derivation)
+        	if(obj instanceof RefOntoUML.Association)
         	{        		        		  
-        		org.eclipse.uml2.uml.Association assoc = fa.createAssociation ((RefOntoUML.Association) obj);
-            	umlmodel.getPackagedElements().add(assoc);
+        		org.eclipse.uml2.uml.Association a2 = fa.createAssociation ((RefOntoUML.Association) obj);
+            	umlmodel.getPackagedElements().add(a2);
             	
-        	} else if( obj instanceof RefOntoUML.Association)
-        	{        		
-        		org.eclipse.uml2.uml.Association assoc = fa.createAssociation ((RefOntoUML.Association) obj);
-            	umlmodel.getPackagedElements().add(assoc);        		
-            }
-        }
+        	}
+        }*/
             
-        // (Process) Generalizations        
-        for (EObject obj : ontoumlmodel.getPackagedElement())
+        // (Process) Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
+        for (RefOntoUML.Classifier obj : ma.rigidSortals)
         {
-            if (obj instanceof RefOntoUML.Classifier)
-            {                    	    
-                 fa.ProcessGeneralizations((RefOntoUML.Classifier)obj);
-            }
+        	// TODO: perhaps work through a list of generalizations
+			fa.ProcessGeneralizations(obj);
+        }
+        // (Process) Generalizations (All Mixins) (as long as both the specific and the general are in scope)
+        for (RefOntoUML.Classifier obj : ma.allMixins)
+        {
+			fa.ProcessGeneralizations(obj);
         }
         
-        // Generalization Sets      
-        for (EObject obj : ontoumlmodel.getPackagedElement())
+        // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
+        for (RefOntoUML.GeneralizationSet obj : ma.generalizationSets)
         {
-             if (obj instanceof RefOntoUML.GeneralizationSet)
-             {
-             	org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.DealGeneralizationSet ((RefOntoUML.GeneralizationSet) obj);        
-                umlmodel.getPackagedElements().add(gs2);
-             }
+         	org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.DealGeneralizationSet ((RefOntoUML.GeneralizationSet) obj);        
+            umlmodel.getPackagedElements().add(gs2);
         }
             
         // Non Classifiers, Non GeneralizationSet 
@@ -93,5 +88,7 @@ public class Transformation
                 System.out.println(obj);
             }
         }
+        
+        return umlmodel;
 	}
 }

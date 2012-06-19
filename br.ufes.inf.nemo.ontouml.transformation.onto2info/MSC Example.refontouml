@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<RefOntoUML:Package xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RefOntoUML="http://nemo.inf.ufes.br/ontouml/refontouml" name="MSC Example" visibility="public">
+<RefOntoUML:Model xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RefOntoUML="http://nemo.inf.ufes.br/ontouml/refontouml" name="MSC Example" visibility="public">
   <packagedElement xsi:type="RefOntoUML:Category" name="Legally Liable" visibility="public" isAbstract="true"/>
   <packagedElement xsi:type="RefOntoUML:RoleMixin" name="Customer" visibility="public" isAbstract="true"/>
   <packagedElement xsi:type="RefOntoUML:Kind" name="Person" visibility="public">
@@ -167,4 +167,4 @@
   <packagedElement xsi:type="RefOntoUML:GeneralizationSet" visibility="public" isCovering="true" isDisjoint="true" generalization="//@packagedElement.4/@generalization.0 //@packagedElement.5/@generalization.0">
     <name xsi:nil="true"/>
   </packagedElement>
-</RefOntoUML:Package>
+</RefOntoUML:Model>

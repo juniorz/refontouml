@@ -27,7 +27,7 @@ public class Handler extends AbstractHandler
 			// Check file extension
 			if (f.getFileExtension().compareTo("refontouml") == 0)
 			{
-				OntoUML2InfoUML.Transformation(f.getLocation().toString());
+				OntoUML2InfoUML.transformation(f.getLocation().toString());
 				
 				try
 				{

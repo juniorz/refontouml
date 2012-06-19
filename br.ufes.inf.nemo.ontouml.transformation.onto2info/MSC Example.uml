@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_IGWWULpkEeGNNsZvAOpdjA" name="MSC Example">
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWUbpkEeGNNsZvAOpdjA" name="Person">
+    <generalization xmi:id="_IGWWUrpkEeGNNsZvAOpdjA" general="_IGWWWbpkEeGNNsZvAOpdjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWU7pkEeGNNsZvAOpdjA" name="Organization">
+    <generalization xmi:id="_IGWWVLpkEeGNNsZvAOpdjA" general="_IGWWWbpkEeGNNsZvAOpdjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWVbpkEeGNNsZvAOpdjA" name="Man">
+    <generalization xmi:id="_IGWWVrpkEeGNNsZvAOpdjA" general="_IGWWUbpkEeGNNsZvAOpdjA" generalizationSet="_IGW9Y7pkEeGNNsZvAOpdjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWV7pkEeGNNsZvAOpdjA" name="Woman">
+    <generalization xmi:id="_IGWWWLpkEeGNNsZvAOpdjA" general="_IGWWUbpkEeGNNsZvAOpdjA" generalizationSet="_IGW9Y7pkEeGNNsZvAOpdjA"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWWbpkEeGNNsZvAOpdjA" name="Legally Liable" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWWrpkEeGNNsZvAOpdjA" name="Customer" isAbstract="true"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWW7pkEeGNNsZvAOpdjA" name="Marriage"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGWWXLpkEeGNNsZvAOpdjA" name="Pregnancy"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGW9YLpkEeGNNsZvAOpdjA" name="Employment"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGW9YbpkEeGNNsZvAOpdjA" name="Management"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_IGW9YrpkEeGNNsZvAOpdjA" name="Supply Contract"/>
+  <packagedElement xmi:type="uml:GeneralizationSet" xmi:id="_IGW9Y7pkEeGNNsZvAOpdjA" isCovering="true" isDisjoint="true" generalization="_IGWWVrpkEeGNNsZvAOpdjA _IGWWWLpkEeGNNsZvAOpdjA">
+    <name xsi:nil="true"/>
+  </packagedElement>
+</uml:Model>

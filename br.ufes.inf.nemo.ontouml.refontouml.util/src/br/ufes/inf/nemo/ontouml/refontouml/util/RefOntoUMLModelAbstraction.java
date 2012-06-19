@@ -37,6 +37,9 @@ public class RefOntoUMLModelAbstraction
 	public List<RefOntoUML.RoleMixin> roleMixins;
 	
 	public List<RefOntoUML.Relator> relators;
+	
+	public List<RefOntoUML.GeneralizationSet> generalizationSets;
+	// TODO: perhaps, a list of generalizations
 
 	public RefOntoUMLModelAbstraction ()
 	{
@@ -58,6 +61,8 @@ public class RefOntoUMLModelAbstraction
 		roleMixins = new LinkedList<RefOntoUML.RoleMixin>();
 		
 		relators = new LinkedList<RefOntoUML.Relator>();
+		
+		generalizationSets = new LinkedList<RefOntoUML.GeneralizationSet>();
 	}
 	
 	public boolean load (String fileAbsolutePath)
@@ -66,7 +71,7 @@ public class RefOntoUMLModelAbstraction
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
 		resourceSet.getPackageRegistry().put(RefOntoUML.RefOntoUMLPackage.eNS_URI,RefOntoUML.RefOntoUMLPackage.eINSTANCE);
-				
+	
 		// Open the model
 		File sourceFile = new File(fileAbsolutePath);
 		if (!sourceFile.isFile())
@@ -84,6 +89,10 @@ public class RefOntoUMLModelAbstraction
 			{
 				model = (RefOntoUML.Model) root;
 				return true;
+			}
+			else
+			{
+				System.out.println("The root element is not a RefOntoUML.Model");
 			}
 		}
 		
@@ -164,6 +173,10 @@ public class RefOntoUMLModelAbstraction
 				{
 					relators.add((RefOntoUML.Relator)pe);
 				}
+			}
+			else if (pe instanceof RefOntoUML.GeneralizationSet)
+			{
+				generalizationSets.add((RefOntoUML.GeneralizationSet)pe);
 			}
 			// TODO: Associations
 		}

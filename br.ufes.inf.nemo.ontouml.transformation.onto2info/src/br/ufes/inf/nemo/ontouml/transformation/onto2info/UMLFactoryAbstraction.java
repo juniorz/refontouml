@@ -53,7 +53,7 @@ public class UMLFactoryAbstraction
         }                
     }
     
-	public void DealProperty (RefOntoUML.Property p1, org.eclipse.uml2.uml.Property p2)
+	public void DealProperty (RefOntoUML.Property p1, org.eclipse.uml2.uml.Property p2, org.eclipse.uml2.uml.Type t2)
     {            
         DealNamedElement (p1, p2);
         
@@ -74,7 +74,7 @@ public class UMLFactoryAbstraction
         p2.setUpperValue(upperValue);
                 
         // Type (TypedElement)
-        org.eclipse.uml2.uml.Type t2 = (org.eclipse.uml2.uml.Type) GetElement(p1.getType());
+        if (t2 == null) t2 = (org.eclipse.uml2.uml.Type) GetElement(p1.getType());
         p2.setType(t2);              
         
         // isDerived
@@ -115,7 +115,7 @@ public class UMLFactoryAbstraction
         for (RefOntoUML.Property p1 : c1.getAttribute())
         {
             p2 = myfactory.createProperty();
-            DealProperty(p1, p2);       
+            DealProperty(p1, p2, null);       
             c2.getOwnedAttributes().add(p2);
         }         
     }
@@ -127,34 +127,8 @@ public class UMLFactoryAbstraction
 		return c2;
 	}
 		
-	// FIXME
-	private org.eclipse.uml2.uml.AggregationKind getAggregationKind (RefOntoUML.Property p1)
-    {
-    	RefOntoUML.AggregationKind ak1 = p1.getAggregation();
-        
-    	if (ak1.getValue() == RefOntoUML.AggregationKind.NONE_VALUE)
-    	{
-    		return org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL;                     
-    	}
-    	else if (ak1.getValue() == RefOntoUML.AggregationKind.SHARED_VALUE)
-    	{
-    		return org.eclipse.uml2.uml.AggregationKind.SHARED_LITERAL;
-    	}               
-    	else if (ak1.getValue() == RefOntoUML.AggregationKind.COMPOSITE_VALUE)
-    	{
-    		return org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL;
-    	}
-    	return null;
-    }
-	
-	public org.eclipse.uml2.uml.Association createAssociation (RefOntoUML.Association a1)
-	{
-		org.eclipse.uml2.uml.Association a2 = myfactory.createAssociation();
-		DealAssociation(a1, a2);
-		return a2;
-	}
-	
-	public void DealAssociation (RefOntoUML.Association a1, org.eclipse.uml2.uml.Association a2)
+	// FIXME: I probably won't use this method
+	private void DealAssociation (RefOntoUML.Association a1, org.eclipse.uml2.uml.Association a2)
     {
         DealClassifier(a1, a2);
         
@@ -166,7 +140,7 @@ public class UMLFactoryAbstraction
         for (RefOntoUML.Property p1 : a1.getMemberEnd())
         {
         	p2 = myfactory.createProperty();            
-            DealProperty (p1, p2);
+            DealProperty (p1, p2, null);
             
             a2.getMemberEnds().add(p2);
             // EOpposite
@@ -191,6 +165,60 @@ public class UMLFactoryAbstraction
 			a2.getNavigableOwnedEnds().add(p2);
 		}
     }
+	
+	// FIXME: I probably won't use this method
+	private org.eclipse.uml2.uml.Association createAssociation (RefOntoUML.Association a1)
+	{
+		org.eclipse.uml2.uml.Association a2 = myfactory.createAssociation();
+		DealAssociation(a1, a2);
+		return a2;
+	}
+	
+	public org.eclipse.uml2.uml.Association createAssociationRepresentingRole (RefOntoUML.Role role)
+	{
+		// This will be an association between the RelatorType and the more specific RigidParentType
+		org.eclipse.uml2.uml.Association a2 = myfactory.createAssociation();
+		
+		RefOntoUML.Mediation mediation = role.mediation();		
+		RefOntoUML.RigidSortalClass rigidParent = role.rigidParent();
+		
+		// The mapping will be between an RefOntoUML.Mediation and an UML.Association
+		DealClassifier(mediation, a2);
+		
+		// isDerived (I don't believe Mediations are ever derived)
+		a2.setIsDerived(false);        
+
+		// memberEnds
+		RefOntoUML.Property p1;
+		org.eclipse.uml2.uml.Property p2;
+
+		// Relator End
+		p1 = mediation.relatorEnd();
+		p2 = myfactory.createProperty();            
+		DealProperty (p1, p2, null);
+		a2.getMemberEnds().add(p2);
+		// EOpposite
+		p2.setAssociation(a2);
+		RelateElements(p1, p2);
+		// ownedEnd + navigableOwnedEnd
+		a2.getOwnedEnds().add(p2);
+		a2.getNavigableOwnedEnds().add(p2);
+		
+		// Relator End
+		p1 = mediation.mediatedEnd();
+		p2 = myfactory.createProperty();            
+		// RigidParentType, since there is no RoleType
+		DealProperty (p1, p2, (org.eclipse.uml2.uml.Type) GetElement(rigidParent));
+		a2.getMemberEnds().add(p2);
+		// EOpposite
+		p2.setAssociation(a2);
+		RelateElements(p1, p2);
+		// ownedEnd + navigableOwnedEnd
+		a2.getOwnedEnds().add(p2);
+		a2.getNavigableOwnedEnds().add(p2);
+
+		return a2;
+	}
 
 	// FIXME: I won't be using DataTypes, but, as a note: John's version does not deal with PrimitiveTypes and Enumeration Literals
     public org.eclipse.uml2.uml.DataType DealDataType (RefOntoUML.DataType dt1)
@@ -213,7 +241,7 @@ public class UMLFactoryAbstraction
             for (RefOntoUML.Property p1 : dt1.getAttribute())
             {
                     p2 = myfactory.createProperty();
-                    DealProperty(p1, p2);
+                    DealProperty(p1, p2, null);
                     dt2.getOwnedAttributes().add(p2);
             }
                          
@@ -263,7 +291,7 @@ public class UMLFactoryAbstraction
         {
         	org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) GetElement(gen1);
 
-        	/* Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites */
+        	// Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites
             gs2.getGeneralizations().add(gen2);
             gen2.getGeneralizationSets().add(gs2);
         }
@@ -272,70 +300,9 @@ public class UMLFactoryAbstraction
         gs2.setIsCovering(gs1.isIsCovering());
         gs2.setIsDisjoint(gs1.isIsDisjoint());
         
-        /* They are PackageableElements, don't forget it */
+        // They are PackageableElements, don't forget it
         RelateElements (gs1, gs2);
              
         return gs2;
-     }
-	
-     // FIXME: I won't deal with Dependency
-	public org.eclipse.uml2.uml.Dependency DealDependency (RefOntoUML.Dependency d1)
-	{             
-        org.eclipse.uml2.uml.Dependency d2 = myfactory.createDependency();
-          
-        DealNamedElement(d1, d2);
-             
-        org.eclipse.uml2.uml.NamedElement ne2;        
-        
-        // clients        
-        for (RefOntoUML.NamedElement ne1 : d1.getClient())
-        {
-            ne2 = (org.eclipse.uml2.uml.NamedElement) GetElement(ne1);
-            d2.getClients().add(ne2);                
-        }         
-        
-        // suppliers        
-        for (RefOntoUML.NamedElement ne1 : d1.getSupplier())
-        {
-            ne2 = (org.eclipse.uml2.uml.NamedElement) GetElement(ne1);
-            d2.getSuppliers().add(ne2);             
-        }                
-        		
-        /* They are PackageableElements, don't forget it */
-        RelateElements (d1, d2);
-             
-        return d2;
-	}
-     
-     // FIXME: I won't deal with Comments
-     public void DealComment (RefOntoUML.Comment c1, org.eclipse.uml2.uml.Comment c2)
-     {             
-        // body
-        c2.setBody(c1.getBody());
-        
-        // annotatedElements
-        for (RefOntoUML.Element a1 : c1.getAnnotatedElement())
-        {
-        	 org.eclipse.uml2.uml.Element a2 = GetElement(a1);
-             c2.getAnnotatedElements().add(a2);
-        }
-             
-        RelateElements (c1, c2);
-     }     
-     
-     // FIXME: I won't deal with Comments
-     public void ProcessComments (RefOntoUML.Element e1)
-     {
-    	 org.eclipse.uml2.uml.Element e2 = GetElement (e1);
-             
-         /* ownedComment */
-    	 org.eclipse.uml2.uml.Comment c2;
-         for (RefOntoUML.Comment c1 : e1.getOwnedComment())
-         {
-             c2 = myfactory.createComment();
-             DealComment (c1, c2);
-                     
-             e2.getOwnedComments().add(c2);
-         }
      }
 }
