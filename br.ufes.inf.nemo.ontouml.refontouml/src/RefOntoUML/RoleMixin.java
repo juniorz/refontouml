@@ -6,6 +6,8 @@
  */
 package RefOntoUML;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Role Mixin</b></em>'.
@@ -38,4 +40,14 @@ public interface RoleMixin extends AntiRigidMixinClass
 	 * @generated
 	 */
 	Relator relator();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='children()->select(oclIsTypeOf(Role)).oclAsType(Role).rigidParent()->asSet()'"
+	 *        annotation="Comments rigidSortals='Returns the more specific rigid parents underlying each Role of the RoleMixin.'"
+	 * @generated
+	 */
+	EList<RigidSortalClass> rigidSortals();
 } // RoleMixin
