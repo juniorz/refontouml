@@ -1,6 +1,8 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLFactoryAbstraction;
+
 import org.eclipse.emf.ecore.EObject;
 
 public class Transformation
@@ -25,41 +27,63 @@ public class Transformation
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
+        	// Time tracking
+        	if (obj instanceof RefOntoUML.SubstanceSortal)
+        	{
+        		if (true) // TODO: time tracking = true
+        		{
+        			fa.addStartTime(obj);
+        			fa.addEndTime(obj);
+        			fa.addDuration(obj);
+        		}
+        	}
         }
         // All Mixins (as long as in scope)
         for (RefOntoUML.Class obj : ma.allMixins)
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
+        	
+        	if (obj instanceof RefOntoUML.RoleMixin)
+        	{
+        		c2.setName("Potential".concat(c2.getName()));
+        	}
         }
         // Relators (as long as in scope)
         for (RefOntoUML.Class obj : ma.relators)
         {
         	org.eclipse.uml2.uml.Class c2 = fa.createClass(obj);
         	umlmodel.getPackagedElements().add(c2);
+        	// Time tracking
+    		if (true) // TODO: time tracking = true
+    		{
+    			fa.addStartTime(obj);
+    			fa.addEndTime(obj);
+    			fa.addDuration(obj);
+    		}
         }
 
-        // Roles (Associations) (as long as in scope) (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
+        // Roles (Associations) (as long as in scope)
+        // (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
         for (RefOntoUML.Role role : ma.roles)
         {
         	if (role.mediation() != null)
         	{
-        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (role);
+        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole(role);
         		umlmodel.getPackagedElements().add(a2);
         	}
         }     
-        // RoleMixins (Associations) (as long as in scope) (by the way, besides the RoleMixin, the Relator has to be in scope)
+        // RoleMixins (Associations) (as long as in scope)
+        // (by the way, besides the RoleMixin, the Relator has to be in scope)(and perhaps at least one rigidSortal corresponding to the RoleMixin)
         for (RefOntoUML.RoleMixin roleMixin : ma.roleMixins)
         {
         	if (roleMixin.mediation() != null)
         	{
-        		// FIXME
-        		//org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (roleMixin);
-        		//umlmodel.getPackagedElements().add(a2);
+        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRoleMixin (roleMixin);
+        		umlmodel.getPackagedElements().add(a2);
         	}
         }
         
-        // TODO: mediations
         // Associations
         /*for (EObject obj : ontoumlmodel.getPackagedElement())
         {
@@ -75,12 +99,17 @@ public class Transformation
         for (RefOntoUML.Classifier obj : ma.rigidSortals)
         {
         	// TODO: perhaps work through a list of generalizations
-			fa.ProcessGeneralizations(obj);
+			fa.createAllGeneralizations(obj);
         }
         // (Process) Generalizations (All Mixins) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier obj : ma.allMixins)
         {
-			fa.ProcessGeneralizations(obj);
+			fa.createAllGeneralizations(obj);
+        }
+        // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
+        for (RefOntoUML.RoleMixin roleMixin : ma.roleMixins)
+        {
+        	fa.createArtificialGeneralizations(roleMixin);
         }
         
         // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
@@ -101,6 +130,11 @@ public class Transformation
                 System.out.println(obj);
             }
         }
+        
+        // Time DataType
+        umlmodel.getPackagedElements().add(fa.getTimeDataType());
+        // Duration DataType
+        umlmodel.getPackagedElements().add(fa.getDurationDataType());
         
         return umlmodel;
 	}
