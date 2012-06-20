@@ -17,8 +17,8 @@ public class Transformation
 		RefOntoUML.Model ontoumlmodel = ma.model;            
 		org.eclipse.uml2.uml.Model umlmodel = org.eclipse.uml2.uml.UMLFactory.eINSTANCE.createModel();
                         
-        fa.DealNamedElement(ontoumlmodel, umlmodel);
-        fa.RelateElements(ontoumlmodel, umlmodel);
+        fa.replicateNamedElement(ontoumlmodel, umlmodel);
+        fa.relateElements(ontoumlmodel, umlmodel);
        
         // Rigid Sortals (as long as in scope)
         for (RefOntoUML.Class obj : ma.rigidSortals)
@@ -39,12 +39,25 @@ public class Transformation
         	umlmodel.getPackagedElements().add(c2);
         }
 
-        // FIXME Roles (Associations) (as long as in scope) (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
-        /*for (RefOntoUML.Role role : ma.roles)
+        // Roles (Associations) (as long as in scope) (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
+        for (RefOntoUML.Role role : ma.roles)
         {
-        	org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (role);
-        	umlmodel.getPackagedElements().add(a2);
-        }*/
+        	if (role.mediation() != null)
+        	{
+        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (role);
+        		umlmodel.getPackagedElements().add(a2);
+        	}
+        }     
+        // RoleMixins (Associations) (as long as in scope) (by the way, besides the RoleMixin, the Relator has to be in scope)
+        for (RefOntoUML.RoleMixin roleMixin : ma.roleMixins)
+        {
+        	if (roleMixin.mediation() != null)
+        	{
+        		// FIXME
+        		//org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole (roleMixin);
+        		//umlmodel.getPackagedElements().add(a2);
+        	}
+        }
         
         // TODO: mediations
         // Associations
@@ -73,7 +86,7 @@ public class Transformation
         // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
         for (RefOntoUML.GeneralizationSet obj : ma.generalizationSets)
         {
-         	org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.DealGeneralizationSet ((RefOntoUML.GeneralizationSet) obj);        
+         	org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) obj);        
             umlmodel.getPackagedElements().add(gs2);
         }
             
