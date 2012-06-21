@@ -9,67 +9,86 @@ public class UMLFactoryAbstraction
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
 	HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
 
-	org.eclipse.uml2.uml.DataType timeDataType;
-	org.eclipse.uml2.uml.DataType durationDataType;
+	org.eclipse.uml2.uml.DataType timeType;
+	org.eclipse.uml2.uml.DataType durationType;
+	org.eclipse.uml2.uml.PrimitiveType booleanType;
 	
 	public UMLFactoryAbstraction()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 		mymap = new HashMap<RefOntoUML.Element, org.eclipse.uml2.uml.Element>();
-		createTimeDataType();
-		createDurationDataType();
+		createTimeType();
+		createDurationType();
+		createBooleanType();
 	}
 
-	// The DataType that will be referred to by all time attributes
-	private void createTimeDataType ()
+	// Set the basic attributes of DataType
+	private void setBasicDataType (org.eclipse.uml2.uml.DataType dataType, String name)
 	{
-		timeDataType = myfactory.createDataType();
 		// visibility (Element)
-		timeDataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
+		dataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
 		// name (NamedElement)
-		timeDataType.setName("Time");
+		dataType.setName(name);
 		// isAbstract (Classifier)
-		timeDataType.setIsAbstract(false);
+		dataType.setIsAbstract(false);
 	}
 	
-	public org.eclipse.uml2.uml.DataType getTimeDataType ()
+	// The DataType that will be referred to by all time attributes
+	private void createTimeType ()
 	{
-		return timeDataType;
+		timeType = myfactory.createDataType();
+		setBasicDataType (timeType, "Time");
+	}
+	
+	public org.eclipse.uml2.uml.DataType getTimeType ()
+	{
+		return timeType;
 	}
 	
 	// The DataType that will be referred to by all duration attributes
-	private void createDurationDataType ()
+	private void createDurationType ()
 	{
-		durationDataType = myfactory.createDataType();
-		// visibility (Element)
-		durationDataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
-		// name (NamedElement)
-		durationDataType.setName("Duration");
-		// isAbstract (Classifier)
-		durationDataType.setIsAbstract(false);
+		durationType = myfactory.createDataType();
+		setBasicDataType (durationType, "Duration");
 	}
 	
-	public org.eclipse.uml2.uml.DataType getDurationDataType ()
+	public org.eclipse.uml2.uml.DataType getDurationType ()
 	{
-		return durationDataType;
+		return durationType;
+	}
+	
+	private void createBooleanType ()
+	{
+		booleanType = myfactory.createPrimitiveType();
+		setBasicDataType (booleanType, "Boolean");
+	}
+	
+	public org.eclipse.uml2.uml.PrimitiveType getBooleanType ()
+	{
+		return booleanType;
 	}
 	
 	public void addStartTime (RefOntoUML.Class c1)
 	{
-		addTimeRelatedAttribute (c1, "start", true, true);
+		addClassAttribute (c1, "start", timeType, true);
 	}
 	
 	public void addEndTime (RefOntoUML.Class c1)
 	{
-		addTimeRelatedAttribute (c1, "end", true, false);
+		addClassAttribute (c1, "end", timeType, false);
 	}
 	
 	public void addDuration (RefOntoUML.Class c1)
 	{
-		addTimeRelatedAttribute (c1, "duration", false, true);
+		addClassAttribute (c1, "duration", durationType, true);
 	}
 	
-	private void addTimeRelatedAttribute (RefOntoUML.Class c1, String name, boolean isTime, boolean isRequired)
+	public void addHistoryTrackingAttribute (RefOntoUML.Class c1)
+	{
+		addClassAttribute (c1, "current", booleanType, true);
+	}
+	
+	private void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
 	{
 		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) getElement (c1);
 		
@@ -93,10 +112,7 @@ public class UMLFactoryAbstraction
         p.setUpperValue(upperValue);
         
         // Type (TypedElement)
-        if (isTime)
-        	p.setType(timeDataType);
-        else
-        	p.setType(durationDataType);
+        p.setType(type);
         
         // isDerived (Property)
         p.setIsDerived(false);        
@@ -144,6 +160,14 @@ public class UMLFactoryAbstraction
         	ne2.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PACKAGE_LITERAL);
         }
     }
+	
+	public org.eclipse.uml2.uml.Model partiallyCreateModel (RefOntoUML.Model m1)
+	{
+		org.eclipse.uml2.uml.Model m2 = myfactory.createModel();
+        replicateNamedElement(m1, m2);
+        relateElements(m1, m2);
+        return m2;
+	}
     
 	public void replicateProperty (RefOntoUML.Property p1, org.eclipse.uml2.uml.Property p2)
     {            

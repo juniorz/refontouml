@@ -15,11 +15,16 @@ public class RefOntoUMLModelAbstraction
 {
 	public RefOntoUML.Model model;
 	
+	// All Classes
+	public List<RefOntoUML.Class> classes;
+	
 	// Any non-moment
 	public List<RefOntoUML.ObjectClass> objects;
 	
 	// Kind + Quantity + Collective + SubKind
 	public List<RefOntoUML.RigidSortalClass> rigidSortals;
+	// Kind + Quantity + Collective
+	public List<RefOntoUML.SubstanceSortal> substanceSortals;
 	public List<RefOntoUML.Kind> kinds;
 	public List<RefOntoUML.Quantity> quantities;
 	public List<RefOntoUML.Collective> collectives;
@@ -43,9 +48,12 @@ public class RefOntoUMLModelAbstraction
 
 	public RefOntoUMLModelAbstraction ()
 	{
+		classes = new LinkedList<RefOntoUML.Class>();
+		
 		objects = new LinkedList<RefOntoUML.ObjectClass>();
 		
 		rigidSortals = new LinkedList<RefOntoUML.RigidSortalClass>();
+		substanceSortals = new LinkedList<RefOntoUML.SubstanceSortal>();
 		kinds = new LinkedList<RefOntoUML.Kind>();
 		quantities = new LinkedList<RefOntoUML.Quantity>();
 		collectives = new LinkedList<RefOntoUML.Collective>();
@@ -107,71 +115,81 @@ public class RefOntoUMLModelAbstraction
 		
 		for (RefOntoUML.PackageableElement pe : model.getPackagedElement())
 		{
-			if (pe instanceof RefOntoUML.ObjectClass)
+			if (pe instanceof RefOntoUML.Class)
 			{
-				objects.add((RefOntoUML.ObjectClass)pe);
+				classes.add((RefOntoUML.Class)pe);
 				
-				if (pe instanceof RefOntoUML.SortalClass)
+				if (pe instanceof RefOntoUML.ObjectClass)
 				{
-					if (pe instanceof RefOntoUML.RigidSortalClass)
-					{
-						rigidSortals.add((RefOntoUML.RigidSortalClass)pe);
-						
-						if (pe instanceof RefOntoUML.Kind)
-						{
-							kinds.add((RefOntoUML.Kind)pe);
-						}
-						else if (pe instanceof RefOntoUML.Quantity)
-						{
-							quantities.add((RefOntoUML.Quantity)pe);
-						}
-						else if (pe instanceof RefOntoUML.Collective)
-						{
-							collectives.add((RefOntoUML.Collective)pe);
-						}
-						else if (pe instanceof RefOntoUML.SubKind)
-						{
-							subKinds.add((RefOntoUML.SubKind)pe);
-						}
-					}
-					else if (pe instanceof RefOntoUML.AntiRigidSortalClass)
-					{
-						antiRigidSortals.add((RefOntoUML.AntiRigidSortalClass)pe);
-						
-						if (pe instanceof RefOntoUML.Role)
-						{
-							roles.add((RefOntoUML.Role)pe);
-						}
-						else if (pe instanceof RefOntoUML.Phase)
-						{
-							phases.add((RefOntoUML.Phase)pe);
-						}
-					}
-				}
-				else if (pe instanceof RefOntoUML.MixinClass)
-				{
-					allMixins.add((RefOntoUML.MixinClass)pe);
+					objects.add((RefOntoUML.ObjectClass)pe);
 					
-					if (pe instanceof RefOntoUML.Category)
+					if (pe instanceof RefOntoUML.SortalClass)
 					{
-						categories.add((RefOntoUML.Category)pe);
+						if (pe instanceof RefOntoUML.RigidSortalClass)
+						{
+							rigidSortals.add((RefOntoUML.RigidSortalClass)pe);
+							
+							if (pe instanceof RefOntoUML.SubstanceSortal)
+							{
+								substanceSortals.add((RefOntoUML.SubstanceSortal)pe);
+								
+								if (pe instanceof RefOntoUML.Kind)
+								{
+									kinds.add((RefOntoUML.Kind)pe);
+								}
+								else if (pe instanceof RefOntoUML.Quantity)
+								{
+									quantities.add((RefOntoUML.Quantity)pe);
+								}
+								else if (pe instanceof RefOntoUML.Collective)
+								{
+									collectives.add((RefOntoUML.Collective)pe);
+								}
+							}
+							else if (pe instanceof RefOntoUML.SubKind)
+							{
+								subKinds.add((RefOntoUML.SubKind)pe);
+							}
+						}
+						else if (pe instanceof RefOntoUML.AntiRigidSortalClass)
+						{
+							antiRigidSortals.add((RefOntoUML.AntiRigidSortalClass)pe);
+							
+							if (pe instanceof RefOntoUML.Role)
+							{
+								roles.add((RefOntoUML.Role)pe);
+							}
+							else if (pe instanceof RefOntoUML.Phase)
+							{
+								phases.add((RefOntoUML.Phase)pe);
+							}
+						}
 					}
-					else if (pe instanceof RefOntoUML.RoleMixin)
+					else if (pe instanceof RefOntoUML.MixinClass)
 					{
-						roleMixins.add((RefOntoUML.RoleMixin)pe);
-					}
-					else if (pe instanceof RefOntoUML.Mixin)
-					{
-						semiMixins.add((RefOntoUML.Mixin)pe);
+						allMixins.add((RefOntoUML.MixinClass)pe);
+						
+						if (pe instanceof RefOntoUML.Category)
+						{
+							categories.add((RefOntoUML.Category)pe);
+						}
+						else if (pe instanceof RefOntoUML.RoleMixin)
+						{
+							roleMixins.add((RefOntoUML.RoleMixin)pe);
+						}
+						else if (pe instanceof RefOntoUML.Mixin)
+						{
+							semiMixins.add((RefOntoUML.Mixin)pe);
+						}
 					}
 				}
-			}
-			else if (pe instanceof RefOntoUML.MomentClass)
-			{
-				// TODO: Quality and Mode
-				if (pe instanceof RefOntoUML.Relator)
+				else if (pe instanceof RefOntoUML.MomentClass)
 				{
-					relators.add((RefOntoUML.Relator)pe);
+					// TODO: Quality and Mode
+					if (pe instanceof RefOntoUML.Relator)
+					{
+						relators.add((RefOntoUML.Relator)pe);
+					}
 				}
 			}
 			else if (pe instanceof RefOntoUML.GeneralizationSet)
