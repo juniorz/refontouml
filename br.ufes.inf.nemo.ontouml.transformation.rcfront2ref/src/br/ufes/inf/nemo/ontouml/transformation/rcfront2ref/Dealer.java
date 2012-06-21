@@ -372,7 +372,7 @@ public class Dealer
 		RefOntoUML.Generalization gen2 = myfactory.createGeneralization();
 		
 		// source (Specific)
-		org.eclipse.uml2.uml.Classifier e1 = (org.eclipse.uml2.uml.Classifier) gen1.getSpecific();
+		org.eclipse.uml2.uml.Classifier e1 = gen1.getSpecific();
 		RefOntoUML.Classifier e2 = (RefOntoUML.Classifier) GetElement(e1);
 		System.out.print(e1.getName() + " -> ");
 		
@@ -382,7 +382,7 @@ public class Dealer
 		e2.getGeneralization().add(gen2);
 
 		// target (General)
-		e1 = (org.eclipse.uml2.uml.Classifier) gen1.getGeneral();
+		e1 = gen1.getGeneral();
 		e2 = (RefOntoUML.Classifier) GetElement(e1);
 		System.out.println(e1.getName());
 
