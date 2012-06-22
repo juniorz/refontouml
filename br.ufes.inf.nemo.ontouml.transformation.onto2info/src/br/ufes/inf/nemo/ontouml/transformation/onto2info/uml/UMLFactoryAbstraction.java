@@ -5,25 +5,18 @@ import java.util.HashMap;
 public class UMLFactoryAbstraction
 {		
 	// Creates UML Objects	
-	org.eclipse.uml2.uml.UMLFactory myfactory;
+	static org.eclipse.uml2.uml.UMLFactory myfactory;
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
-	HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
-
-	org.eclipse.uml2.uml.DataType timeType;
-	org.eclipse.uml2.uml.DataType durationType;
-	org.eclipse.uml2.uml.PrimitiveType booleanType;
+	static HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
 	
 	public UMLFactoryAbstraction()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 		mymap = new HashMap<RefOntoUML.Element, org.eclipse.uml2.uml.Element>();
-		createTimeType();
-		createDurationType();
-		createBooleanType();
 	}
 
 	// Set the basic attributes of DataType
-	private void setBasicDataType (org.eclipse.uml2.uml.DataType dataType, String name)
+	private static void initializeDataType (org.eclipse.uml2.uml.DataType dataType, String name)
 	{
 		// visibility (Element)
 		dataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
@@ -33,62 +26,21 @@ public class UMLFactoryAbstraction
 		dataType.setIsAbstract(false);
 	}
 	
-	// The DataType that will be referred to by all time attributes
-	private void createTimeType ()
+	public static org.eclipse.uml2.uml.DataType createDataType (String name)
 	{
-		timeType = myfactory.createDataType();
-		setBasicDataType (timeType, "Time");
+		org.eclipse.uml2.uml.DataType dt = myfactory.createDataType();
+		initializeDataType (dt, name);
+		return dt;
 	}
 	
-	public org.eclipse.uml2.uml.DataType getTimeType ()
+	public static org.eclipse.uml2.uml.PrimitiveType createPrimitiveType (String name)
 	{
-		return timeType;
+		org.eclipse.uml2.uml.PrimitiveType pt = myfactory.createPrimitiveType();
+		initializeDataType (pt, name);
+		return pt;
 	}
-	
-	// The DataType that will be referred to by all duration attributes
-	private void createDurationType ()
-	{
-		durationType = myfactory.createDataType();
-		setBasicDataType (durationType, "Duration");
-	}
-	
-	public org.eclipse.uml2.uml.DataType getDurationType ()
-	{
-		return durationType;
-	}
-	
-	private void createBooleanType ()
-	{
-		booleanType = myfactory.createPrimitiveType();
-		setBasicDataType (booleanType, "Boolean");
-	}
-	
-	public org.eclipse.uml2.uml.PrimitiveType getBooleanType ()
-	{
-		return booleanType;
-	}
-	
-	public void addStartTime (RefOntoUML.Class c1)
-	{
-		addClassAttribute (c1, "start", timeType, true);
-	}
-	
-	public void addEndTime (RefOntoUML.Class c1)
-	{
-		addClassAttribute (c1, "end", timeType, false);
-	}
-	
-	public void addDuration (RefOntoUML.Class c1)
-	{
-		addClassAttribute (c1, "duration", durationType, true);
-	}
-	
-	public void addHistoryTrackingAttribute (RefOntoUML.Class c1)
-	{
-		addClassAttribute (c1, "current", booleanType, true);
-	}
-	
-	private void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
+		
+	public static void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
 	{
 		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) getElement (c1);
 		
@@ -125,12 +77,12 @@ public class UMLFactoryAbstraction
 	
 	// Relate Classifiers and Generalizations
 	// This is important for solving Generalizations and Properties (relating Classifiers) and GeneralizationSets (relating Generalizations)
-	public void relateElements (RefOntoUML.Element c1, org.eclipse.uml2.uml.Element c2)
+	public static void relateElements (RefOntoUML.Element c1, org.eclipse.uml2.uml.Element c2)
 	{
 		mymap.put(c1, c2);
 	}
 
-	public org.eclipse.uml2.uml.Element getElement (RefOntoUML.Element e1)
+	public static org.eclipse.uml2.uml.Element getElement (RefOntoUML.Element e1)
 	{
 		return mymap.get(e1);
 	}

@@ -16,6 +16,8 @@ public class Transformation
 	org.eclipse.uml2.uml.Model umlmodel;
 	// UML Factory (Abstraction)
 	UMLFactoryAbstraction fa;
+	// UML Handler
+	UMLHandler umlhandler;
 	
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
@@ -24,7 +26,8 @@ public class Transformation
 	
 	public Transformation()  
     { 
-    	fa = new UMLFactoryAbstraction();  
+    	fa = new UMLFactoryAbstraction();
+    	umlhandler = new UMLHandler();
     	scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
     	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
     	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
@@ -64,7 +67,7 @@ public class Transformation
         	{
 	        	if (entry.getValue().requiresAttribute())
 	        	{
-	        		fa.addHistoryTrackingAttribute(entry.getKey());
+	        		umlhandler.addHistoryTrackingAttribute(entry.getKey());
 	        	}
         	}
         }
@@ -79,11 +82,11 @@ public class Transformation
         	if (sd.scope)
         	{
 	        	if (entry.getValue().start)
-	        		fa.addStartTime(entry.getKey());
+	        		umlhandler.addStartTime(entry.getKey());
 	        	if (entry.getValue().end)
-	        		fa.addEndTime(entry.getKey());
+	        		umlhandler.addEndTime(entry.getKey());
 	        	if (entry.getValue().start)
-	        		fa.addDuration(entry.getKey());
+	        		umlhandler.addDuration(entry.getKey());
         	}
         }		
 	}
@@ -163,11 +166,11 @@ public class Transformation
 	public void addPrimitiveTypes()
 	{
         // Time DataType
-        umlmodel.getPackagedElements().add(fa.getTimeType());
+        umlmodel.getPackagedElements().add(umlhandler.getTimeType());
         // Duration DataType
-        umlmodel.getPackagedElements().add(fa.getDurationType());
+        umlmodel.getPackagedElements().add(umlhandler.getDurationType());
         // Boolean PrimitiveType
-        umlmodel.getPackagedElements().add(fa.getBooleanType());	
+        umlmodel.getPackagedElements().add(umlhandler.getBooleanType());	
 	}
 	
 	public org.eclipse.uml2.uml.Model transform (RefOntoUMLModelAbstraction ma)
