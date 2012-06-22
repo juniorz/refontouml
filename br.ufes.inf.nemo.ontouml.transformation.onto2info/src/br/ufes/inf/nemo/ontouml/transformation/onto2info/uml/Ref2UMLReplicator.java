@@ -2,77 +2,17 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
 import java.util.HashMap;
 
-public class UMLFactoryAbstraction
+public class Ref2UMLReplicator
 {		
 	// Creates UML Objects	
 	static org.eclipse.uml2.uml.UMLFactory myfactory;
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
 	static HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
 	
-	public UMLFactoryAbstraction()
+	public Ref2UMLReplicator()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 		mymap = new HashMap<RefOntoUML.Element, org.eclipse.uml2.uml.Element>();
-	}
-
-	// Set the basic attributes of DataType
-	private static void initializeDataType (org.eclipse.uml2.uml.DataType dataType, String name)
-	{
-		// visibility (Element)
-		dataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
-		// name (NamedElement)
-		dataType.setName(name);
-		// isAbstract (Classifier)
-		dataType.setIsAbstract(false);
-	}
-	
-	public static org.eclipse.uml2.uml.DataType createDataType (String name)
-	{
-		org.eclipse.uml2.uml.DataType dt = myfactory.createDataType();
-		initializeDataType (dt, name);
-		return dt;
-	}
-	
-	public static org.eclipse.uml2.uml.PrimitiveType createPrimitiveType (String name)
-	{
-		org.eclipse.uml2.uml.PrimitiveType pt = myfactory.createPrimitiveType();
-		initializeDataType (pt, name);
-		return pt;
-	}
-		
-	public static void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
-	{
-		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) getElement (c1);
-		
-		org.eclipse.uml2.uml.Property p = myfactory.createProperty();
-		
-		// name (NamedElement)
-		p.setName(name);
-        // isLeaf (RedefinableElement)
-        p.setIsLeaf(true);
-        // isStatic (Feature)
-        p.setIsStatic(false);
-        // isReadOnly (StructuralFeature)
-        p.setIsReadOnly(true);
-        
-        // lower, upper (MultiplicityElement)            
-        org.eclipse.uml2.uml.LiteralInteger lowerValue = myfactory.createLiteralInteger();
-        org.eclipse.uml2.uml.LiteralUnlimitedNatural upperValue = myfactory.createLiteralUnlimitedNatural();
-        lowerValue.setValue(isRequired ? 1 : 0);
-        upperValue.setValue(1);   
-        p.setLowerValue(lowerValue);
-        p.setUpperValue(upperValue);
-        
-        // Type (TypedElement)
-        p.setType(type);
-        
-        // isDerived (Property)
-        p.setIsDerived(false);        
-        // aggregation (Property)
-        p.setAggregation(org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL);    
-		
-        // Linking Class and Property
-		c2.getOwnedAttributes().add(p);
 	}
 	
 	// Relate Classifiers and Generalizations
@@ -362,7 +302,7 @@ public class UMLFactoryAbstraction
         relateElements (gen1, gen2);
      }
 	
-	private org.eclipse.uml2.uml.Generalization createGeneralization (RefOntoUML.Generalization gen1)
+	public org.eclipse.uml2.uml.Generalization createGeneralization (RefOntoUML.Generalization gen1)
 	{
 		org.eclipse.uml2.uml.Generalization gen2 = myfactory.createGeneralization();
         replicateGeneralization (gen1, gen2);
@@ -403,46 +343,4 @@ public class UMLFactoryAbstraction
              
         return gs2;
      }
-     
-     // Created from scratch, no mapping
-     private org.eclipse.uml2.uml.Generalization createArtificialGeneralization (RefOntoUML.RigidSortalClass rigidSortal, RefOntoUML.RoleMixin roleMixin)
-     {
-    	 org.eclipse.uml2.uml.Generalization gen = myfactory.createGeneralization();
-    	 
-    	 // specific
-    	 org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) getElement(rigidSortal);
-    	 gen.setSpecific(specific);
-    	 specific.getGeneralizations().add(gen);
-    	 
-    	 // general
-    	 org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) getElement(roleMixin);
-    	 gen.setGeneral(general);
-    	 
-    	 return gen;
-     }
-
-     // Created from scratch, no mapping
-	public void createArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
-	{
-		// FIXME: The GeneralizationSet is only necessary when there is at least two children (i.e., rigidSortals)
-		org.eclipse.uml2.uml.GeneralizationSet gset = myfactory.createGeneralizationSet();
-		// GeneralizationSet name
-		gset.setName("");
-		// GeneralizationSet visibility
-		gset.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
-		// Disjoint
-		gset.setIsDisjoint(true);
-		// Complete FIXME: not always, only when all rigidSortals are in scope
-		gset.setIsCovering(true);
-        		
-		// Artificial Generalization(s) // FIXME: depends on scope
-		org.eclipse.uml2.uml.Generalization gen;		 
-		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
-		{
-			gen = createArtificialGeneralization (rigidSortal, roleMixin);
-			// Linking the GeneralizationSet and the Generalization
-			gset.getGeneralizations().add(gen);
-            gen.getGeneralizationSets().add(gset);
-		}
-	}
 }

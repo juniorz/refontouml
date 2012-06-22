@@ -1,12 +1,14 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLFactoryAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
 
 public class Transformation
 {
@@ -15,9 +17,9 @@ public class Transformation
 	// UML Model
 	org.eclipse.uml2.uml.Model umlmodel;
 	// UML Factory (Abstraction)
-	UMLFactoryAbstraction fa;
+	Ref2UMLReplicator fa;
 	// UML Handler
-	UMLHandler umlhandler;
+	Ref2UMLCreator umlhandler;
 	
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
@@ -26,8 +28,8 @@ public class Transformation
 	
 	public Transformation()  
     { 
-    	fa = new UMLFactoryAbstraction();
-    	umlhandler = new UMLHandler();
+    	fa = new Ref2UMLReplicator();
+    	umlhandler = new Ref2UMLCreator();
     	scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
     	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
     	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
@@ -138,29 +140,103 @@ public class Transformation
 	
 	public void createGeneralizations ()
 	{
-        // (Process) Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
+		createReplicateGeneralizations();
+		createReplicateGeneralizationSets();
+        createArtificialGeneralizationsforRoleMixin();
+	}
+	
+	public void createReplicateGeneralizations ()
+	{
+        // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier obj : ontoumlmodel.rigidSortals)
         {
         	// TODO: perhaps work through a list of generalizations
-			fa.createAllGeneralizations(obj);
+			// specific in scope
+			if (scopeMap.get(obj).scope)
+			{
+				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
+				{
+					// general in scope
+					if (scopeMap.get(gen1.getGeneral()).scope)
+					{
+						fa.createGeneralization(gen1);
+					}
+				}
+			}
         }
-        // (Process) Generalizations (All Mixins) (as long as both the specific and the general are in scope)
+        // Generalizations (All Mixins) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier obj : ontoumlmodel.allMixins)
         {
-			fa.createAllGeneralizations(obj);
+			// specific in scope
+			if (scopeMap.get(obj).scope)
+			{
+				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
+				{
+					// general in scope
+					if (scopeMap.get(gen1.getGeneral()).scope)
+					{
+						fa.createGeneralization(gen1);
+					}
+				}
+			}
         }
+	}
+	
+	public void createReplicateGeneralizationSets ()
+	{
+        // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
+        for (RefOntoUML.GeneralizationSet gs1 : ontoumlmodel.generalizationSets)
+        {
+        	if (scopeMap.get(gs1.parent()).scope)
+        	{
+        		int childInScope = 0;
+        		for (RefOntoUML.Classifier child : gs1.children())
+        		{
+        			if (scopeMap.get(child).scope)
+        				childInScope++;
+        		}
+        		
+        		if (childInScope > 1)
+        		{
+        			org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
+        			umlmodel.getPackagedElements().add(gs2);
+        		}
+        	}
+        }
+	}
+	
+	public void createArtificialGeneralizationsforRoleMixin ()
+	{
         // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
         for (RefOntoUML.RoleMixin roleMixin : ontoumlmodel.roleMixins)
         {
-        	fa.createArtificialGeneralizations(roleMixin);
+        	// general (RoleMixin) in scope
+			if (scopeMap.get(roleMixin).scope)
+			{
+				List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
+	    		org.eclipse.uml2.uml.Generalization gen;
+	    		
+	    		// For each specific (RigidSortal)
+	    		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
+	    		{
+	    			// specific (RigidSortal) in scope
+	    			if (scopeMap.get(rigidSortal).scope)
+	    			{
+	    				// Create artificial Generalization (RigidSortal -> RoleMixin)
+	    				gen = umlhandler.createArtificialGeneralization (rigidSortal, roleMixin);
+	    				genlist.add(gen);
+	    			}
+	    		}
+	    		
+	    		// The GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
+	    		if (genlist.size() > 1)
+	    		{
+	    			// Linking the GeneralizationSet and the Generalizations
+	    			org.eclipse.uml2.uml.GeneralizationSet gset = umlhandler.createGeneralizationSetForRoleMixin (roleMixin, genlist);
+	    			umlmodel.getPackagedElements().add(gset);
+	    		}
+        	}
         }
-        
-        // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
-        for (RefOntoUML.GeneralizationSet obj : ontoumlmodel.generalizationSets)
-        {
-         	org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) obj);        
-            umlmodel.getPackagedElements().add(gs2);
-        }		
 	}
 	
 	public void addPrimitiveTypes()
