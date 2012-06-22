@@ -378,46 +378,6 @@ public class UMLFactoryAbstraction
         }       
      }
      
-     private org.eclipse.uml2.uml.Generalization createArtificialGeneralization (RefOntoUML.RigidSortalClass rigidSortal, RefOntoUML.RoleMixin roleMixin)
-     {
-    	 org.eclipse.uml2.uml.Generalization gen = myfactory.createGeneralization();
-    	 
-    	 // specific
-    	 org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) getElement(rigidSortal);
-    	 gen.setSpecific(specific);
-    	 specific.getGeneralizations().add(gen);
-    	 
-    	 // general
-    	 org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) getElement(roleMixin);
-    	 gen.setGeneral(general);
-    	 
-    	 return gen;
-     }
-     
-	public void createArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
-	{
-		// FIXME: The GeneralizationSet is only necessary when there is at least two children (i.e., rigidSortals)
-		org.eclipse.uml2.uml.GeneralizationSet gset = myfactory.createGeneralizationSet();
-		// GeneralizationSet name
-		gset.setName("");
-		// GeneralizationSet visibility
-		gset.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
-		// Disjoint
-		gset.setIsDisjoint(true);
-		// Complete FIXME: not always, only when all rigidSortals are in scope
-		gset.setIsCovering(true);
-        		
-		// Artificial Generalization(s) // FIXME: depends on scope
-		org.eclipse.uml2.uml.Generalization gen;		 
-		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
-		{
-			gen = createArtificialGeneralization (rigidSortal, roleMixin);
-			// Linking the GeneralizationSet and the Generalization
-			gset.getGeneralizations().add(gen);
-            gen.getGeneralizationSets().add(gset);
-		}
-	}
-
      public org.eclipse.uml2.uml.GeneralizationSet createGeneralizationSet (RefOntoUML.GeneralizationSet gs1)
      {
         org.eclipse.uml2.uml.GeneralizationSet gs2 = myfactory.createGeneralizationSet();
@@ -443,4 +403,46 @@ public class UMLFactoryAbstraction
              
         return gs2;
      }
+     
+     // Created from scratch, no mapping
+     private org.eclipse.uml2.uml.Generalization createArtificialGeneralization (RefOntoUML.RigidSortalClass rigidSortal, RefOntoUML.RoleMixin roleMixin)
+     {
+    	 org.eclipse.uml2.uml.Generalization gen = myfactory.createGeneralization();
+    	 
+    	 // specific
+    	 org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) getElement(rigidSortal);
+    	 gen.setSpecific(specific);
+    	 specific.getGeneralizations().add(gen);
+    	 
+    	 // general
+    	 org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) getElement(roleMixin);
+    	 gen.setGeneral(general);
+    	 
+    	 return gen;
+     }
+
+     // Created from scratch, no mapping
+	public void createArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
+	{
+		// FIXME: The GeneralizationSet is only necessary when there is at least two children (i.e., rigidSortals)
+		org.eclipse.uml2.uml.GeneralizationSet gset = myfactory.createGeneralizationSet();
+		// GeneralizationSet name
+		gset.setName("");
+		// GeneralizationSet visibility
+		gset.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
+		// Disjoint
+		gset.setIsDisjoint(true);
+		// Complete FIXME: not always, only when all rigidSortals are in scope
+		gset.setIsCovering(true);
+        		
+		// Artificial Generalization(s) // FIXME: depends on scope
+		org.eclipse.uml2.uml.Generalization gen;		 
+		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
+		{
+			gen = createArtificialGeneralization (rigidSortal, roleMixin);
+			// Linking the GeneralizationSet and the Generalization
+			gset.getGeneralizations().add(gen);
+            gen.getGeneralizationSets().add(gset);
+		}
+	}
 }
