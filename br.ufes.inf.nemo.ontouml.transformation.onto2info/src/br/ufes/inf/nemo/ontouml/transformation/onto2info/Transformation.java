@@ -1,13 +1,12 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLCreator;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
 
 public class Transformation
@@ -20,51 +19,23 @@ public class Transformation
 	Ref2UMLReplicator fa;
 	// UML Handler
 	Ref2UMLCreator umlhandler;
+	// Decision Handler
+	DecisionHandler dh;
 	
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
-	Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
-	Map<RefOntoUML.Class, HistoryDecision> historyMap;
-	Map<RefOntoUML.Class, TimeDecision> timeMap;
 	
 	public Transformation()  
     { 
     	fa = new Ref2UMLReplicator();
     	umlhandler = new Ref2UMLCreator();
-    	scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
-    	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
-    	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
     }
-
-	public void initializeDecisions ()
-	{
-		// Scope Decisions (OntoUML.Class)
-		for (RefOntoUML.Class c : ontoumlmodel.classes)
-		{
-			scopeMap.put(c, new ScopeDecision());
-		}
-		
-		// History and Time Tracking Decisions (OntoUML.SubstanceSortal and OntoUML.Relator)
-		for (RefOntoUML.SubstanceSortal ss : ontoumlmodel.substanceSortals)
-		{
-			historyMap.put(ss, new HistoryDecision());
-			timeMap.put(ss, new TimeDecision());
-		}
-		for (RefOntoUML.Relator r : ontoumlmodel.relators)
-		{
-			historyMap.put(r, new HistoryDecision());
-			timeMap.put(r, new TimeDecision());
-		}
-		
-		// TODO: Reference Decisions
-		// TODO: Measurement Decisions
-	}
 	
 	public void dealHistoryTracking ()
 	{
         // History Tracking
-        for (Entry<RefOntoUML.Class, HistoryDecision> entry : historyMap.entrySet())
+        for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
         {
-        	ScopeDecision sd = scopeMap.get(entry.getKey());
+        	ScopeDecision sd = dh.scopeMap.get(entry.getKey());
         	if (sd.scope) // TODO: perhaps I can add the attribute, even if the class is out of scope
         	{
 	        	if (entry.getValue().requiresAttribute())
@@ -78,9 +49,9 @@ public class Transformation
 	public void dealTimeTracking ()
 	{
         // Time Tracking
-        for (Entry<RefOntoUML.Class, TimeDecision> entry : timeMap.entrySet())
+        for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
         {
-        	ScopeDecision sd = scopeMap.get(entry.getKey());
+        	ScopeDecision sd = dh.scopeMap.get(entry.getKey());
         	if (sd.scope)
         	{
 	        	if (entry.getValue().start)
@@ -100,7 +71,7 @@ public class Transformation
 			if (!(c instanceof RefOntoUML.Role) && !(c instanceof RefOntoUML.Phase))
 			{
 				// Scope
-				if (scopeMap.get(c).scope)
+				if (dh.scopeMap.get(c).scope)
 				{
 		        	org.eclipse.uml2.uml.Class c2 = fa.createClass(c); // FIXME: perhaps I could create put do not add it to the umlmodel
 		        	umlmodel.getPackagedElements().add(c2);
@@ -152,12 +123,12 @@ public class Transformation
         {
         	// TODO: perhaps work through a list of generalizations
 			// specific in scope
-			if (scopeMap.get(obj).scope)
+			if (dh.scopeMap.get(obj).scope)
 			{
 				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
 				{
 					// general in scope
-					if (scopeMap.get(gen1.getGeneral()).scope)
+					if (dh.scopeMap.get(gen1.getGeneral()).scope)
 					{
 						fa.createGeneralization(gen1);
 					}
@@ -168,12 +139,12 @@ public class Transformation
         for (RefOntoUML.Classifier obj : ontoumlmodel.allMixins)
         {
 			// specific in scope
-			if (scopeMap.get(obj).scope)
+			if (dh.scopeMap.get(obj).scope)
 			{
 				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
 				{
 					// general in scope
-					if (scopeMap.get(gen1.getGeneral()).scope)
+					if (dh.scopeMap.get(gen1.getGeneral()).scope)
 					{
 						fa.createGeneralization(gen1);
 					}
@@ -187,12 +158,12 @@ public class Transformation
         // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
         for (RefOntoUML.GeneralizationSet gs1 : ontoumlmodel.generalizationSets)
         {
-        	if (scopeMap.get(gs1.parent()).scope)
+        	if (dh.scopeMap.get(gs1.parent()).scope)
         	{
         		int childInScope = 0;
         		for (RefOntoUML.Classifier child : gs1.children())
         		{
-        			if (scopeMap.get(child).scope)
+        			if (dh.scopeMap.get(child).scope)
         				childInScope++;
         		}
         		
@@ -211,7 +182,7 @@ public class Transformation
         for (RefOntoUML.RoleMixin roleMixin : ontoumlmodel.roleMixins)
         {
         	// general (RoleMixin) in scope
-			if (scopeMap.get(roleMixin).scope)
+			if (dh.scopeMap.get(roleMixin).scope)
 			{
 				List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
 	    		org.eclipse.uml2.uml.Generalization gen;
@@ -220,7 +191,7 @@ public class Transformation
 	    		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
 	    		{
 	    			// specific (RigidSortal) in scope
-	    			if (scopeMap.get(rigidSortal).scope)
+	    			if (dh.scopeMap.get(rigidSortal).scope)
 	    			{
 	    				// Create artificial Generalization (RigidSortal -> RoleMixin)
 	    				gen = umlhandler.createArtificialGeneralization (rigidSortal, roleMixin);
@@ -249,11 +220,11 @@ public class Transformation
         umlmodel.getPackagedElements().add(umlhandler.getBooleanType());	
 	}
 	
-	public org.eclipse.uml2.uml.Model transform (RefOntoUMLModelAbstraction ma)
+	public org.eclipse.uml2.uml.Model transform (RefOntoUMLModelAbstraction ma, DecisionHandler dh)
 	{
 		ontoumlmodel = ma;
 		umlmodel = fa.partiallyCreateModel(ontoumlmodel.model);
-		initializeDecisions();
+		this.dh = dh;
        
 		createClasses();
 		createAssociations();

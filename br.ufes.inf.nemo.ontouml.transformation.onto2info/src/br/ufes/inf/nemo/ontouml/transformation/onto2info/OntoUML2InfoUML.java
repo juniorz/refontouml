@@ -11,6 +11,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
 
 public class OntoUML2InfoUML
 {
@@ -18,6 +20,8 @@ public class OntoUML2InfoUML
 	{
 		if (args.length == 1)
 			transformation(args[0]);
+		else
+			System.out.println("args[0]: fileAbsolutePath.");
 	}
 	
 	public static void transformation (String fileAbsolutePath)
@@ -36,10 +40,15 @@ public class OntoUML2InfoUML
 			return;	
 		}
 		
-		Transformation t = new Transformation();
-		org.eclipse.uml2.uml.Model umlmodel = t.transform(ma);
+		DecisionHandler dh = new DecisionHandler(ma);
+		new Onto2InfoInterface(ma, dh);
+		dh.printTimeDecisions();
 		
-		saveUMLModel(umlmodel, fileAbsolutePath.replace(".refontouml", ".uml"));
+		// FIXME
+		/*Transformation t = new Transformation();
+		org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
+		
+		saveUMLModel(umlmodel, fileAbsolutePath.replace(".refontouml", ".uml"));*/
 	}
 
 	// Saves the UML model into a file

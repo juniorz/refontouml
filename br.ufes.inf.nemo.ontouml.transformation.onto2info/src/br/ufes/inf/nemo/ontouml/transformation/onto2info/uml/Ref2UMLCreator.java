@@ -1,8 +1,7 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
 import java.util.List;
 
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
 
 public class Ref2UMLCreator
 {
