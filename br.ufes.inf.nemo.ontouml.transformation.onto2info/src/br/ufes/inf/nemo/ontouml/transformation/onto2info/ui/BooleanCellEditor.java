@@ -25,6 +25,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 
 /**
  * @since 3.4
@@ -40,7 +42,6 @@ public class BooleanCellEditor extends CellEditor
 	
 	private KeyListener macSelectionListener = new KeyListener()
 	{
-
 		public void keyReleased(KeyEvent e)
 		{
 
@@ -100,17 +101,29 @@ public class BooleanCellEditor extends CellEditor
 			}
 
 		});
+		
+		// rcarraretto
+		button.addListener (SWT.Selection, new Listener()
+		{
+			public void handleEvent (Event e)
+			{
+				//System.out.println("%%%%%% fireApplyEditorValue() %%%%%%%%%");
+				fireApplyEditorValue(); // this works
+			}
+		});
 
 		return button;
 	}
 
 	protected Object doGetValue()
 	{
+		//System.out.println("doGetValue();");
 		return new Boolean(button.getSelection());
 	}
 
 	protected void doSetValue(Object value)
 	{
+		//System.out.println("doSetValue(" + value + ");");
 		boolean selection = Boolean.TRUE.equals(value);
 		button.setSelection(selection);
 	}
@@ -125,6 +138,7 @@ public class BooleanCellEditor extends CellEditor
 
 	protected void deactivate(ColumnViewerEditorDeactivationEvent event)
 	{
+		//System.out.println("--> deactivate()");
 		super.deactivate(event);
 		if (event.eventType == ColumnViewerEditorDeactivationEvent.EDITOR_CANCELED)
 		{
@@ -154,7 +168,16 @@ public class BooleanCellEditor extends CellEditor
 
 		if (activationEvent.eventType != ColumnViewerEditorActivationEvent.TRAVERSAL && changeOnActivation)
 		{
-			button.setSelection(!button.getSelection());
+			//System.out.println("!!!!!!!! activate() !!!!!!!!\n");
+			//button.setSelection(!button.getSelection()); // original code
+						
+			// rcarraretto (this almost works)
+			/* The problem is: the class that calls [Boolean]CellEditor.activate() also calls, further on, other methods of CellEditor 
+			 * So, since I programmed this SWT.Selection to fireApplyEditorValue()
+			 * This will deactivate() this CellEditor and will generate a NullPointerException
+			 * Perhaps, a way to solve this is to extend and override the class and the method that calls [Boolean]CellEditor.activate()
+			 */
+			//button.notifyListeners(SWT.Selection, new Event());
 		}
 
 		// TODO Add a way to enable key traversal when CheckBoxes don't get focus

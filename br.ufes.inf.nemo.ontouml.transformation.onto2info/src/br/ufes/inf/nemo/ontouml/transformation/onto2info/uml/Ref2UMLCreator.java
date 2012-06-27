@@ -1,6 +1,15 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
+import java.io.File;
+import java.util.Collections;
 import java.util.List;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 
 
 public class Ref2UMLCreator
@@ -18,6 +27,24 @@ public class Ref2UMLCreator
 		createTimeType();
 		createDurationType();
 		createBooleanType();
+	}
+	
+	// Saves the UML model into a file
+	public static void saveUMLModel (org.eclipse.uml2.uml.Model umlmodel, String fileAbsolutePath)
+	{
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
+		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+		
+		URI uri = URI.createFileURI(new File(fileAbsolutePath).getAbsolutePath());
+		
+		Resource resource = resourceSet.createResource(uri);
+		resource.getContents().add(umlmodel);
+		try
+		{
+			resource.save(Collections.EMPTY_MAP);
+		}
+		catch (Exception e) {}
 	}
 	
 	// The DataType that will be referred to by all time attributes

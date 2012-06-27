@@ -46,7 +46,7 @@ public class DecisionHandler
 	
 	public void setStartTimeDecision (RefOntoUML.Class c, boolean value)
 	{
-		System.out.println("setting -> " + c.getName() +  " -> " + value);
+		//System.out.println("setting -> " + c.getName() +  " -> " + value);
 		timeMap.get(c).start = value;
 	}
 	
@@ -55,11 +55,59 @@ public class DecisionHandler
 		return timeMap.get(c).start;
 	}
 	
+	public void setEndTimeDecision (RefOntoUML.Class c, boolean value)
+	{
+		//System.out.println("setting -> " + c.getName() +  " -> " + value);
+		timeMap.get(c).end = value;
+	}
+	
+	public boolean getEndTimeDecision (RefOntoUML.Class c)
+	{
+		return timeMap.get(c).end;
+	}
+	
+	public void setDurationDecision (RefOntoUML.Class c, boolean value)
+	{
+		//System.out.println("setting -> " + c.getName() +  " -> " + value);
+		timeMap.get(c).duration = value;
+	}
+	
+	public boolean getDurationDecision (RefOntoUML.Class c)
+	{
+		return timeMap.get(c).duration;
+	}
+
+	public void setHTPastDecision (RefOntoUML.Class c, boolean value)
+	{
+		//System.out.println("HT: past: setting -> " + c.getName() +  " -> " + value);
+		historyMap.get(c).past = value;
+	}
+	
+	public boolean getHTPastDecision (RefOntoUML.Class c)
+	{
+		return historyMap.get(c).past;
+	}
+	
+	public void setHTPresentDecision (RefOntoUML.Class c, boolean value)
+	{
+		//System.out.println("HT: present: setting -> " + c.getName() +  " -> " + value);
+		historyMap.get(c).present = value;
+	}
+	
+	public boolean getHTPresentDecision (RefOntoUML.Class c)
+	{
+		return historyMap.get(c).present;
+	}
+	
 	public void printTimeDecisions ()
 	{
 		for (Entry<RefOntoUML.Class, TimeDecision> e : timeMap.entrySet())
 		{
-			System.out.println(e.getKey().getName() + " " + e.getValue().start);
+			System.out.println(
+					e.getKey().getName() +
+					" " + e.getValue().start +
+					" " + e.getValue().end +
+					" " + e.getValue().duration);
 		}
 	}
 }

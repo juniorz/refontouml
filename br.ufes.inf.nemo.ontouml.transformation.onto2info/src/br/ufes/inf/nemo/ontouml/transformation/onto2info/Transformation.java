@@ -21,13 +21,16 @@ public class Transformation
 	Ref2UMLCreator umlhandler;
 	// Decision Handler
 	DecisionHandler dh;
+	// RefOntoUML model file path
+	String fileAbsolutePath;
 	
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	
-	public Transformation()  
+	public Transformation(String fileAbsolutePath)  
     { 
     	fa = new Ref2UMLReplicator();
     	umlhandler = new Ref2UMLCreator();
+    	this.fileAbsolutePath = fileAbsolutePath;
     }
 	
 	public void dealHistoryTracking ()
@@ -233,6 +236,8 @@ public class Transformation
         dealTimeTracking();
         addPrimitiveTypes();
                 
+        Ref2UMLCreator.saveUMLModel(umlmodel, fileAbsolutePath.replace(".refontouml", ".uml"));
+        
         return umlmodel;
 	}
 }

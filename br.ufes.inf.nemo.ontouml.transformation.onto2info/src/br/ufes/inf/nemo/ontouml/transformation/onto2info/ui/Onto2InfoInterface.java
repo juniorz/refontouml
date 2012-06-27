@@ -18,24 +18,36 @@ import org.eclipse.jface.viewers.TableViewerFocusCellManager;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.jface.viewers.TreeViewerEditor;
+import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.*;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 
 // Tree with columns: Snippet 170, 193, 220, 226, 274, 312
 public class Onto2InfoInterface
 {
-	public Onto2InfoInterface (RefOntoUMLModelAbstraction ma, DecisionHandler dh)
+	public Onto2InfoInterface (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
 	{
 		Display display = new Display();
 		final Shell shell = new Shell(display);
-		//shell.setLayout(new FillLayout());
-		
+		shell.setText("OntoUML to UML Transformation");
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 1;
+		shell.setLayout(layout);
+			
+		// Tab Folder
 		final TabFolder tabFolder = new TabFolder (shell, SWT.BORDER);
 		Rectangle clientArea = shell.getClientArea();
 		tabFolder.setLocation (clientArea.x, clientArea.y);
@@ -46,11 +58,16 @@ public class Onto2InfoInterface
 			
 			if (i == 0)
 			{
-				item.setControl(treeViewer(tabFolder, ma).getTree());
+				item.setControl(treeViewerScope(tabFolder, ma).getTree());
+			}
+			else if (i == 2)
+			{
+				item.setControl(treeViewerHistory(tabFolder, ma, dh).getTree());
 			}
 			else if (i == 3)
 			{
-				item.setControl(tableViewer(tabFolder, ma, dh).getTable());
+				//item.setControl(tableViewer(tabFolder, ma, dh).getTable());
+				item.setControl(treeViewerTime(tabFolder, ma, dh).getTree());
 			}
 			else
 			{
@@ -60,17 +77,32 @@ public class Onto2InfoInterface
 			}
 		}
 		tabFolder.pack ();
-		shell.pack ();
 		
+		// Transform Button
+		Button tbutton = new Button(shell, SWT.PUSH);
+		tbutton.setText("Transform");
+		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		tbutton.addSelectionListener(new SelectionAdapter()
+		{
+			public void widgetSelected(SelectionEvent e)
+			{
+				System.out.println("OK");
+				org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
+			}
+		});
+		
+		// Shell
+		shell.pack ();		
 		shell.open ();
-		while (!shell.isDisposed ()) {
+		while (!shell.isDisposed ())
+		{
 			if (!display.readAndDispatch ()) display.sleep ();
 		}
 		display.dispose ();
 	}
 	
 	@SuppressWarnings("deprecation")
-	public TreeViewer treeViewer (Composite parent, RefOntoUMLModelAbstraction ma)
+	public TreeViewer treeViewerScope (Composite parent, RefOntoUMLModelAbstraction ma)
 	{
 		final CheckboxTreeViewer treeViewer = new CheckboxTreeViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLinesVisible(true);
@@ -106,6 +138,274 @@ public class Onto2InfoInterface
 		treeViewer.expandAll();
 		treeViewer.setAllChecked(true);
 		return treeViewer;
+	}
+	
+	public TreeViewer treeViewerHistoryAndTime (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
+	{
+		final TreeViewer viewer = new TreeViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
+		viewer.getTree().setLinesVisible(true);
+		viewer.getTree().setHeaderVisible(true);
+		viewer.getTree().setBackgroundMode(SWT.INHERIT_DEFAULT);
+		
+		// The focusing thing... FIXME: I'm not sure if I need those things
+		FocusCellOwnerDrawHighlighter h = new FocusCellOwnerDrawHighlighter(viewer)
+		{
+			protected Color getSelectedCellBackgroundColorNoFocus(ViewerCell cell)
+			{
+				//return parent.getDisplay().getSystemColor(SWT.COLOR_WHITE);
+				 return parent.getDisplay().getSystemColor(SWT.COLOR_LIST_SELECTION);
+			}
+
+			protected Color getSelectedCellForegroundColorNoFocus(ViewerCell cell)
+			{
+				// I'm not sure where this color appears
+				//return parent.getDisplay().getSystemColor(SWT.COLOR_WHITE);
+				return parent.getDisplay().getSystemColor(SWT.COLOR_WIDGET_FOREGROUND);
+			}
+		};
+
+		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(viewer, h);
+		ColumnViewerEditorActivationStrategy actSupport = new ColumnViewerEditorActivationStrategy(viewer);
+
+		TreeViewerEditor.create(viewer, focusCellManager, actSupport,
+				ColumnViewerEditor.TABBING_HORIZONTAL |
+				ColumnViewerEditor.TABBING_MOVE_TO_ROW_NEIGHBOR |
+				ColumnViewerEditor.TABBING_VERTICAL |
+				ColumnViewerEditor.KEYBOARD_ACTIVATION);
+				
+		// Column 1 (Universal)
+		TreeViewerColumn column = new TreeViewerColumn(viewer, SWT.LEFT);
+		column.getColumn().setText("Universal");
+		column.getColumn().setWidth(200);
+		column.setLabelProvider(new ColumnLabelProvider()
+		{
+			public String getText(Object element)
+			{
+				return ((RefOntoUML.Class)element).getName();
+			}
+		});		
+		return viewer;
+	}
+	
+	public TreeViewer treeViewerTime (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
+	{
+		final TreeViewer viewer = treeViewerHistoryAndTime (parent, ma, dh);
+		
+		// BooleanCellEditor is a custom class created by a guy in JFace Snippets
+		final BooleanCellEditor booleanCellEditor = new BooleanCellEditor(viewer.getTree());
+		booleanCellEditor.setChangeOnActivation(true);
+		
+		// Column 2 (Start Time)
+		TreeViewerColumn column = new TreeViewerColumn(viewer, SWT.CENTER);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Start Time");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(viewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getStartTimeDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(viewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getStartTimeDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				//((File) element).read = ((Boolean) value).booleanValue();
+				dh.setStartTimeDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				viewer.update(element, null);
+			}
+		});
+		
+		// Column 3 (End Time)
+		column = new TreeViewerColumn(viewer, SWT.CENTER);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("End Time");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(viewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getEndTimeDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(viewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getEndTimeDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setEndTimeDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				viewer.update(element, null);
+			}
+		});
+		
+		// Column 4 (Duration)
+		column = new TreeViewerColumn(viewer, SWT.CENTER);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Duration");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(viewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getDurationDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(viewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getDurationDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setDurationDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				viewer.update(element, null);
+			}
+		});
+		
+		// ContentProvider and Input
+		viewer.setContentProvider(new TimeContentProvider());
+		viewer.setInput((new TimeModel(ma)).timeModel);
+		
+		return viewer;
+	}
+	
+	public TreeViewer treeViewerHistory (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
+	{
+		final TreeViewer viewer = treeViewerHistoryAndTime (parent, ma, dh);
+		
+		// BooleanCellEditor is a custom class created by a guy in JFace Snippets
+		final BooleanCellEditor booleanCellEditor = new BooleanCellEditor(viewer.getTree());
+		booleanCellEditor.setChangeOnActivation(true);
+		
+		// Column 2 (Past)
+		TreeViewerColumn column = new TreeViewerColumn(viewer, SWT.CENTER);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Past");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(viewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getHTPastDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(viewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getHTPastDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setHTPastDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				viewer.update(element, null);
+			}
+		});
+		
+		// Column 3 (Present)
+		column = new TreeViewerColumn(viewer, SWT.CENTER);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Present");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(viewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getHTPresentDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(viewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getHTPresentDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setHTPresentDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				viewer.update(element, null);
+			}
+		});
+		
+		// ContentProvider and Input
+		viewer.setContentProvider(new TimeContentProvider());
+		viewer.setInput((new TimeModel(ma)).timeModel);
+		
+		return viewer;
 	}
 	
 	public TableViewer tableViewer (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
@@ -243,6 +543,7 @@ public class Onto2InfoInterface
 		
 		return tableViewer;
 	}
+	
 	
 	public static Tree tree (Composite parent)
 	{

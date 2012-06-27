@@ -41,31 +41,8 @@ public class OntoUML2InfoUML
 		}
 		
 		DecisionHandler dh = new DecisionHandler(ma);
-		new Onto2InfoInterface(ma, dh);
-		dh.printTimeDecisions();
-		
-		// FIXME
-		/*Transformation t = new Transformation();
-		org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
-		
-		saveUMLModel(umlmodel, fileAbsolutePath.replace(".refontouml", ".uml"));*/
-	}
-
-	// Saves the UML model into a file
-	public static void saveUMLModel (org.eclipse.uml2.uml.Model umlmodel, String fileAbsolutePath)
-	{
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);
-		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
-		
-		URI uri = URI.createFileURI(new File(fileAbsolutePath).getAbsolutePath());
-		
-		Resource resource = resourceSet.createResource(uri);
-		resource.getContents().add(umlmodel);
-		try
-		{
-			resource.save(Collections.EMPTY_MAP);
-		}
-		catch (Exception e) {}
+		Transformation t = new Transformation(fileAbsolutePath);
+		new Onto2InfoInterface(ma, dh, t);
+		//dh.printTimeDecisions();
 	}
 }
