@@ -1,5 +1,9 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
@@ -29,6 +33,8 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.layout.RowData;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
@@ -82,23 +88,44 @@ public class Onto2InfoInterface
 		Button tbutton = new Button(shell, SWT.PUSH);
 		tbutton.setText("Transform");
 		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		
+		// Details Group
+		final Group group = new Group(shell, SWT.SHADOW_ETCHED_IN);
+	    group.setText("Details");
+	    group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+	    
+	    FillLayout groupLayout = new FillLayout();
+	    groupLayout.marginHeight = 5;
+	    groupLayout.marginWidth = 10;
+	    group.setLayout(groupLayout);   
+	    // Label
+	    final Label details = new Label(group, SWT.NONE);
+	    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date();
+	    details.setText(dateFormat.format(date) + "> Ready");
+	    
+	    // Transform Button Action
 		tbutton.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
-				System.out.println("OK");
 				org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
+				
+				DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+				Date date = new Date();
+				//details.setText(details.getText() + "\n" + dateFormat.format(date) + "> Transformation done");
+				details.setText(dateFormat.format(date) + "> Transformation done");
 			}
 		});
 		
 		// Shell
-		shell.pack ();		
-		shell.open ();
-		while (!shell.isDisposed ())
+		shell.pack();		
+		shell.open();
+		while (!shell.isDisposed())
 		{
-			if (!display.readAndDispatch ()) display.sleep ();
+			if (!display.readAndDispatch()) display.sleep();
 		}
-		display.dispose ();
+		display.dispose();
 	}
 	
 	@SuppressWarnings("deprecation")
