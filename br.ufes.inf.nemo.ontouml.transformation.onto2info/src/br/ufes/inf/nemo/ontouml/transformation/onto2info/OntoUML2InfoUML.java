@@ -44,5 +44,6 @@ public class OntoUML2InfoUML
 		Transformation t = new Transformation(fileAbsolutePath);
 		new Onto2InfoInterface(ma, dh, t);
 		//dh.printTimeDecisions();
+		//dh.printScopeDecisions();
 	}
 }

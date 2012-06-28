@@ -14,7 +14,7 @@ import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.ICheckStateListener;
-import org.eclipse.jface.viewers.OwnerDrawLabelProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.TableViewerEditor;
@@ -30,11 +30,8 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.RowData;
-import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.*;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
@@ -64,7 +61,7 @@ public class Onto2InfoInterface
 			
 			if (i == 0)
 			{
-				item.setControl(treeViewerScope(tabFolder, ma).getTree());
+				item.setControl(treeViewerScope(tabFolder, ma, dh).getTree());
 			}
 			else if (i == 2)
 			{
@@ -89,23 +86,23 @@ public class Onto2InfoInterface
 		tbutton.setText("Transform");
 		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		
-		// Details Group
+		// "Details" Group
 		final Group group = new Group(shell, SWT.SHADOW_ETCHED_IN);
 	    group.setText("Details");
 	    group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 	    
-	    // Group Layout
+	    // "Details" Group Layout
 	    GridLayout groupLayout = new GridLayout();
 	    groupLayout.numColumns = 1;	    
 	    group.setLayout(groupLayout); 
 	    
-	    // Label
+	    // Text in "Details" Group
 	    final Text text = new Text(group, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 	    GridData textLayoutData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
 	    textLayoutData.heightHint = 100;
 	    text.setLayoutData(textLayoutData);
 	    
-	    // Display Text in Details Group
+	    // Display Text in "Details" Group
 	    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		text.append(dateFormat.format(date) + "> Ready\n");
@@ -117,7 +114,7 @@ public class Onto2InfoInterface
 			{
 				org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
 				
-				// Display Text in Details Group
+				// Display Text in "Details" Group
 				DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 				Date date = new Date();
 				text.append(dateFormat.format(date) + "> Transformation done\n");
@@ -135,7 +132,7 @@ public class Onto2InfoInterface
 	}
 	
 	@SuppressWarnings("deprecation")
-	public TreeViewer treeViewerScope (Composite parent, RefOntoUMLModelAbstraction ma)
+	public TreeViewer treeViewerScope (Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
 	{
 		final CheckboxTreeViewer treeViewer = new CheckboxTreeViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLinesVisible(true);
@@ -148,7 +145,26 @@ public class Onto2InfoInterface
 			{
 				// if the item is checked, checks all children
 				// if the item is unchecked, unchecks all children
-				treeViewer.setSubtreeChecked(event.getElement(), event.getChecked());
+				Object target = event.getElement();
+				boolean value = event.getChecked();
+				treeViewer.setSubtreeChecked(target, value);
+	
+				// Set Scope
+				// The target element and all its (direct and indirect) children must change scope
+				ITreeContentProvider cp = (ITreeContentProvider) treeViewer.getContentProvider();
+				changeScope(target, value, cp);
+			}
+			
+			public void changeScope (Object element, boolean value, ITreeContentProvider cp)
+			{
+				// Change the scope of "element"
+				dh.setScopeDecision(element, value);
+				
+				Object[] children = cp.getChildren(element);
+				for (int i = 0; i < children.length; i++)
+				{
+					changeScope (children[i], value, cp);
+				}
 			}
 		});
 		
@@ -441,7 +457,7 @@ public class Onto2InfoInterface
 		return viewer;
 	}
 	
-	public TableViewer tableViewer (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
+	private TableViewer tableViewer (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
 	{
 		// FIXME: maybe using a Table is messing things out... this fake checkbox was made for Trees, perhaps it is something with the BooleanCellEditor
 		final TableViewer tableViewer = new TableViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
@@ -492,44 +508,6 @@ public class Onto2InfoInterface
 				return ((RefOntoUML.Class)element).getName();
 			}
 		});
-		/*column.setLabelProvider(new OwnerDrawLabelProvider()
-		{
-			protected void measure(Event event, Object element)
-			{
-
-			}
-
-			protected void paint(Event event, Object element)
-			{
-				((TreeItem) event.item).setText(element.toString());
-			}
-		});*/
-		/*column.setEditingSupport(new EditingSupport(tableViewer)
-		{
-			protected boolean canEdit(Object element)
-			{
-				return true;
-			}
-
-			protected CellEditor getCellEditor(Object element)
-			{
-				return textCellEditor;
-			}
-
-			protected Object getValue(Object element)
-			{
-				// FIXME
-				return null;
-				//return ((File) element).counter + "";
-			}
-
-			protected void setValue(Object element, Object value)
-			{
-				// FIXME
-				//((File) element).counter = Integer.parseInt(value.toString());
-				//v.update(element, null);
-			}
-		});*/
 
 		// Column 2
 		column = new TableViewerColumn(tableViewer, SWT.CENTER);

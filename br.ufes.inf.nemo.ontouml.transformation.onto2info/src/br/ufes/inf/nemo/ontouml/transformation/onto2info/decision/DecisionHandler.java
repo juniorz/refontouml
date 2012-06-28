@@ -99,6 +99,11 @@ public class DecisionHandler
 		return historyMap.get(c).present;
 	}
 	
+	public void setScopeDecision (Object o, boolean value)
+	{
+		scopeMap.get(o).scope = value;
+	}
+	
 	public void printTimeDecisions ()
 	{
 		for (Entry<RefOntoUML.Class, TimeDecision> e : timeMap.entrySet())
@@ -108,6 +113,16 @@ public class DecisionHandler
 					" " + e.getValue().start +
 					" " + e.getValue().end +
 					" " + e.getValue().duration);
+		}
+	}
+	
+	public void printScopeDecisions ()
+	{
+		for (Entry<RefOntoUML.Classifier, ScopeDecision> e : scopeMap.entrySet())
+		{
+			System.out.println(
+					e.getKey().getName() +
+					" " + e.getValue().scope);
 		}
 	}
 }
