@@ -94,15 +94,21 @@ public class Onto2InfoInterface
 	    group.setText("Details");
 	    group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 	    
-	    FillLayout groupLayout = new FillLayout();
-	    groupLayout.marginHeight = 5;
-	    groupLayout.marginWidth = 10;
-	    group.setLayout(groupLayout);   
+	    // Group Layout
+	    GridLayout groupLayout = new GridLayout();
+	    groupLayout.numColumns = 1;	    
+	    group.setLayout(groupLayout); 
+	    
 	    // Label
-	    final Label details = new Label(group, SWT.NONE);
+	    final Text text = new Text(group, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
+	    GridData textLayoutData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+	    textLayoutData.heightHint = 100;
+	    text.setLayoutData(textLayoutData);
+	    
+	    // Display Text in Details Group
 	    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
-	    details.setText(dateFormat.format(date) + "> Ready");
+		text.append(dateFormat.format(date) + "> Ready\n");
 	    
 	    // Transform Button Action
 		tbutton.addSelectionListener(new SelectionAdapter()
@@ -111,10 +117,10 @@ public class Onto2InfoInterface
 			{
 				org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
 				
+				// Display Text in Details Group
 				DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 				Date date = new Date();
-				//details.setText(details.getText() + "\n" + dateFormat.format(date) + "> Transformation done");
-				details.setText(dateFormat.format(date) + "> Transformation done");
+				text.append(dateFormat.format(date) + "> Transformation done\n");
 			}
 		});
 		
