@@ -95,8 +95,6 @@ public class Transformation
 					// Not in Scope
 					if (c2 != null)
 					{
-						System.out.println("Trying to remove references to: " + c.getName());
-						
 						// Remove the corresponding UML.Class
 						umlAbstraction.removePackageableElement(c2);
 						// Remove the mapping between the OntoUML.Class and the UML.Class
@@ -124,31 +122,61 @@ public class Transformation
 		List<RefOntoUML.Class> qroles = new LinkedList<RefOntoUML.Class>(ontoAbstraction.roles);
 		qroles.addAll(ontoAbstraction.roleMixins);
 		
-        // Roles (Associations) FIXME: (as long as in scope)
-        // FIXME: (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
-        // RoleMixins (Associations) FIXME: (as long as in scope)
-        // FIXME: (by the way, besides the RoleMixin, the Relator has to be in scope)(and perhaps at least one rigidSortal corresponding to the RoleMixin)
+		// For each Role/RoleMixin
         for (RefOntoUML.Class qrole : qroles)
         {
         	RefOntoUML.Role role = null;
         	RefOntoUML.RoleMixin roleMixin = null;
         	RefOntoUML.Mediation mediation = null;
+        	boolean scope = true;
         	
         	if (qrole instanceof RefOntoUML.Role)
         	{
+        		// Scope for Role
         		role = (RefOntoUML.Role) qrole;
+        		RefOntoUML.Class relator = role.relator();
         		mediation = role.mediation();
-        	}        		
+        		RefOntoUML.Class rigidParent = role.rigidParent();
+        		
+        		// There must be a Relator/Mediation
+        		if (relator!=null && mediation!=null && rigidParent!=null)
+        		{
+            		// The Role, the Relator and the RigidParent must be in Scope
+        			scope = dh.inScope(role) && dh.inScope(relator) && dh.inScope(rigidParent);
+        		}
+        		else
+        		{
+        			scope = false;
+        		}
+        	}
         	else if (qrole instanceof RefOntoUML.RoleMixin)
         	{
+        		// Scope for RoleMixin
         		roleMixin = (RefOntoUML.RoleMixin) qrole;
+        		RefOntoUML.Class relator = roleMixin.relator();
         		mediation = roleMixin.mediation();
+
+        		// There must be a Relator/Mediation
+        		if (relator!=null && mediation!=null)
+        		{
+        			// The RoleMixin and the Relator must be in Scope
+        			// FIXME: (and perhaps at least one rigidSortal corresponding to the RoleMixin must be in scope)
+        			scope = dh.inScope(roleMixin) && dh.inScope(relator);
+        		}
+        		else
+        		{
+        			scope = false;
+        		}
         	}
         	
-        	if (mediation != null)
+        	// The corresponding UML.Association
+        	org.eclipse.uml2.uml.Association a2 = null; 
+        	if (mediation != null)	
+        		a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation);
+        	
+        	if (scope)
         	{
-        		org.eclipse.uml2.uml.Association a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation);
-        		
+        		// In Scope        		
         		if (a2 == null)
         		{
         			// No corresponding UML.Association yet
@@ -158,6 +186,19 @@ public class Transformation
         				a2 = fa.createAssociationRepresentingRoleMixin(roleMixin);
         			
         			umlAbstraction.addPackageableElement(a2);
+        		}	
+        	}
+        	else
+        	{
+        		// Out of Scope
+        		if (a2 != null)
+        		{					
+					// Remove the corresponding UML.Association from the UML.Model
+					umlAbstraction.removePackageableElement(a2);
+					// Remove the mapping between the OntoUML.Mediation and the UML.Association
+					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not 
+											
+					System.out.println("Removed UML.Association " + a2);       			
         		}
         	}
         }
