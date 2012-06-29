@@ -7,7 +7,7 @@ public class Ref2UMLReplicator
 	// Creates UML Objects	
 	static org.eclipse.uml2.uml.UMLFactory myfactory;
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
-	static HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
+	public static HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
 	
 	public Ref2UMLReplicator()
 	{

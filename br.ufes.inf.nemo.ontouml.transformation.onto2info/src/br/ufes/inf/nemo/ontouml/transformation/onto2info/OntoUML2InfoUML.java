@@ -1,15 +1,5 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
-import java.io.File;
-import java.util.Collections;
-
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.resource.UMLResource;
-
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
@@ -40,9 +30,14 @@ public class OntoUML2InfoUML
 			return;	
 		}
 		
+		// TODO: do a class that opens the UML model (UMLModelAbstraction), if it exists
+		// UMLModeLAbstraction umlA;
+		
 		DecisionHandler dh = new DecisionHandler(ma);
 		Transformation t = new Transformation(fileAbsolutePath);
 		new Onto2InfoInterface(ma, dh, t);
+		
+		//Onto2InfoMap.saveMap(ma.resource, umlA.resource, fileAbsolutePath.replace(".refontouml", ".map"));
 		//dh.printTimeDecisions();
 		//dh.printScopeDecisions();
 	}

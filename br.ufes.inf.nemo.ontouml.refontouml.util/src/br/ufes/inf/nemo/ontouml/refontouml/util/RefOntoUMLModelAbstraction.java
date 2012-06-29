@@ -13,6 +13,9 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class RefOntoUMLModelAbstraction
 {
+	// Ecore Resource
+	public Resource resource;
+	// OntoUML Model
 	public RefOntoUML.Model model;
 	
 	// All Classes
@@ -90,8 +93,8 @@ public class RefOntoUMLModelAbstraction
 		{
 			URI uri = URI.createFileURI(sourceFile.getAbsolutePath());
 	
-			Resource resource = resourceSet.getResource(uri, true);
-			EObject root = resource.getContents().get(0);
+			this.resource = resourceSet.getResource(uri, true);
+			EObject root = this.resource.getContents().get(0);
 			
 			if (root instanceof RefOntoUML.Model)
 			{
