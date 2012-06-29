@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import br.ufes.inf.nemo.ontouml.refontouml.util.RouXMIResourceFactory;
 
 // add the library org.eclipse.uml2.uml and org.eclipse.uml2.common to the build path
 import org.eclipse.uml2.uml.UMLPackage;
@@ -63,7 +63,7 @@ public class RCFront2Ref
 		
 		// Save the model into a file
 		ResourceSet targetRS = new ResourceSetImpl();
-		targetRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		targetRS.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new RouXMIResourceFactory());
 		URI targetURI = URI.createFileURI(new File(fileName.replace(".uml", ".refontouml")).getAbsolutePath());
 		Resource targetR = targetRS.createResource(targetURI);
 		
