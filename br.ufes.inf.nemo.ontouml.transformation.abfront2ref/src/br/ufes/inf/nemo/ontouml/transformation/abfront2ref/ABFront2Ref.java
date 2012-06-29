@@ -7,6 +7,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+import br.ufes.inf.nemo.ontouml.refontouml.util.RouXMIResourceFactory;
+
 import java.io.File;
 import java.util.Collections;
 
@@ -50,7 +52,7 @@ public class ABFront2Ref
 		
 		// Save the model into a file
 		ResourceSet rs = new ResourceSetImpl();
-		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+		rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new RouXMIResourceFactory());
 		URI fileURI = URI.createFileURI(new File(fileName.replace(".ontouml", ".refontouml")).getAbsolutePath());
 		Resource r = rs.createResource(fileURI);
 		
