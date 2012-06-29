@@ -3,30 +3,112 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
-
-public class Ref2UMLCreator
+public class UMLModelAbstraction
 {
-	// Creates UML Objects	
-	org.eclipse.uml2.uml.UMLFactory myfactory;
-	// Primitive Types
+	// Ecore ResourceSet
+	ResourceSet resourceSet;
+	// Ecore Resource
+	public Resource resource;
+	// UML Model
+	public org.eclipse.uml2.uml.Model umlmodel;
+	
+	// PrimitiveTypes
 	org.eclipse.uml2.uml.DataType timeType;
 	org.eclipse.uml2.uml.DataType durationType;
 	org.eclipse.uml2.uml.PrimitiveType booleanType;
 	
-	public Ref2UMLCreator()
+	// UML Factory	
+	org.eclipse.uml2.uml.UMLFactory myfactory;
+	
+	boolean hasFile;
+	String fileName;
+	
+	public UMLModelAbstraction()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
+		hasFile = false;
+		fileName = null;
+		
 		createTimeType();
 		createDurationType();
 		createBooleanType();
+	}
+	
+	// Loads a UML.Model from a file
+	public boolean load (String fileAbsolutePath)
+	{
+		// ResourceSet
+		resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);	
+		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);
+
+		// File handling
+		fileName = fileAbsolutePath;
+		File file = new File(fileName);
+		if (!file.isFile())
+		{
+			hasFile = false;
+			System.out.println("Error accessing: " + file.getAbsolutePath());
+		}
+		else
+		{
+			// URI
+			URI uri = URI.createFileURI(file.getAbsolutePath());
+			
+			// Additional things that I'm not sure if I need them
+			Map<URI, URI> uriMap = resourceSet.getURIConverter().getURIMap();
+			uriMap.put(URI.createURI(UMLResource.LIBRARIES_PATHMAP), uri.appendSegment("libraries").appendSegment(""));
+			uriMap.put(URI.createURI(UMLResource.METAMODELS_PATHMAP), uri.appendSegment("metamodels").appendSegment(""));
+			uriMap.put(URI.createURI(UMLResource.PROFILES_PATHMAP), uri.appendSegment("profiles").appendSegment(""));
+			
+			// Resource
+			resource = resourceSet.getResource(uri, true);			
+			EObject root = resource.getContents().get(0);
+			
+			if (root instanceof org.eclipse.uml2.uml.Model)
+			{
+				umlmodel = (org.eclipse.uml2.uml.Model) root;
+				return true;
+			}
+			else
+			{
+				System.out.println("The root element is not a UML.Model");
+			}
+		}
+		
+		return false;
+	}
+	
+	public void save ()
+	{		
+		if (!hasFile)
+		{
+			// Create file
+			URI uri = URI.createFileURI(new File(fileName).getAbsolutePath());
+			// Create Resource
+			resource = resourceSet.createResource(uri);			
+			// Put the UML.Model in the Resource
+			resource.getContents().add(umlmodel);
+		}
+		
+		try
+		{
+			resource.save(Collections.EMPTY_MAP);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	// Saves the UML model into a file
@@ -44,7 +126,27 @@ public class Ref2UMLCreator
 		{
 			resource.save(Collections.EMPTY_MAP);
 		}
-		catch (Exception e) {}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Adds an UML.PackageableElement to the UML.Model
+	public void addPackageableElement (org.eclipse.uml2.uml.PackageableElement pe)
+	{
+		umlmodel.getPackagedElements().add(pe);
+	}
+	
+	// Adds the PrimitiveTypes to the UML.Model
+	public void addPrimitiveTypes()
+	{
+        // Time DataType
+        addPackageableElement(getTimeType());
+        // Duration DataType
+        addPackageableElement(getDurationType());
+        // Boolean PrimitiveType
+        addPackageableElement(getBooleanType());	
 	}
 	
 	// The DataType that will be referred to by all time attributes

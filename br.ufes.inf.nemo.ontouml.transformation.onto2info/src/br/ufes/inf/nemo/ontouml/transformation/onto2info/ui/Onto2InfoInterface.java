@@ -112,7 +112,7 @@ public class Onto2InfoInterface
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
-				org.eclipse.uml2.uml.Model umlmodel = t.transform(ma, dh);
+				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh);
 				
 				// Display Text in "Details" Group
 				DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");

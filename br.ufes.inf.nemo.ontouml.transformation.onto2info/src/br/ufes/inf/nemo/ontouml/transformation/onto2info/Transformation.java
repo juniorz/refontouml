@@ -6,31 +6,27 @@ import java.util.Map.Entry;
 
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLCreator;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
 
 public class Transformation
 {
 	// OntoUML Model (Abstraction)
-	RefOntoUMLModelAbstraction ontoumlmodel;
-	// UML Model
-	org.eclipse.uml2.uml.Model umlmodel;
+	RefOntoUMLModelAbstraction ontoAbstraction;
+	// UML Model (Abstraction)
+	UMLModelAbstraction umlAbstraction;
 	// UML Factory (Abstraction)
 	Ref2UMLReplicator fa;
-	// UML Handler
-	Ref2UMLCreator umlhandler;
 	// Decision Handler
 	DecisionHandler dh;
-	// RefOntoUML model file path
-	String fileAbsolutePath;
 	
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	
-	public Transformation(String fileAbsolutePath)  
+	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction)  
     { 
+		this.ontoAbstraction = ontoAbstraction;
+		this.umlAbstraction = umlAbstraction;
     	fa = new Ref2UMLReplicator();
-    	umlhandler = new Ref2UMLCreator();
-    	this.fileAbsolutePath = fileAbsolutePath;
     }
 	
 	public void dealHistoryTracking ()
@@ -43,7 +39,7 @@ public class Transformation
         	{
 	        	if (entry.getValue().requiresAttribute())
 	        	{
-	        		umlhandler.addHistoryTrackingAttribute(entry.getKey());
+	        		umlAbstraction.addHistoryTrackingAttribute(entry.getKey());
 	        	}
         	}
         }
@@ -58,18 +54,18 @@ public class Transformation
         	if (sd.scope)
         	{
 	        	if (entry.getValue().start)
-	        		umlhandler.addStartTime(entry.getKey());
+	        		umlAbstraction.addStartTime(entry.getKey());
 	        	if (entry.getValue().end)
-	        		umlhandler.addEndTime(entry.getKey());
+	        		umlAbstraction.addEndTime(entry.getKey());
 	        	if (entry.getValue().start)
-	        		umlhandler.addDuration(entry.getKey());
+	        		umlAbstraction.addDuration(entry.getKey());
         	}
         }		
 	}
 	
 	public void createClasses ()
 	{
-		for (RefOntoUML.Class c : ontoumlmodel.classes)
+		for (RefOntoUML.Class c : ontoAbstraction.classes)
 		{
 			if (!(c instanceof RefOntoUML.Role) && !(c instanceof RefOntoUML.Phase))
 			{
@@ -77,7 +73,7 @@ public class Transformation
 				if (dh.scopeMap.get(c).scope)
 				{
 		        	org.eclipse.uml2.uml.Class c2 = fa.createClass(c); // FIXME: perhaps I could create put do not add it to the umlmodel
-		        	umlmodel.getPackagedElements().add(c2);
+		        	umlAbstraction.addPackageableElement(c2);
 		        	
 		        	if (c instanceof RefOntoUML.RoleMixin)
 		        	{
@@ -92,22 +88,22 @@ public class Transformation
 	{
         // Roles (Associations) (as long as in scope)
         // (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
-        for (RefOntoUML.Role role : ontoumlmodel.roles)
+        for (RefOntoUML.Role role : ontoAbstraction.roles)
         {
         	if (role.mediation() != null)
         	{
         		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole(role);
-        		umlmodel.getPackagedElements().add(a2);
+        		umlAbstraction.addPackageableElement(a2);
         	}
         }     
         // RoleMixins (Associations) (as long as in scope)
         // (by the way, besides the RoleMixin, the Relator has to be in scope)(and perhaps at least one rigidSortal corresponding to the RoleMixin)
-        for (RefOntoUML.RoleMixin roleMixin : ontoumlmodel.roleMixins)
+        for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
         {
         	if (roleMixin.mediation() != null)
         	{
         		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRoleMixin (roleMixin);
-        		umlmodel.getPackagedElements().add(a2);
+        		umlAbstraction.addPackageableElement(a2);
         	}
         }
 	}
@@ -122,7 +118,7 @@ public class Transformation
 	public void createReplicateGeneralizations ()
 	{
         // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
-        for (RefOntoUML.Classifier obj : ontoumlmodel.rigidSortals)
+        for (RefOntoUML.Classifier obj : ontoAbstraction.rigidSortals)
         {
         	// TODO: perhaps work through a list of generalizations
 			// specific in scope
@@ -139,7 +135,7 @@ public class Transformation
 			}
         }
         // Generalizations (All Mixins) (as long as both the specific and the general are in scope)
-        for (RefOntoUML.Classifier obj : ontoumlmodel.allMixins)
+        for (RefOntoUML.Classifier obj : ontoAbstraction.allMixins)
         {
 			// specific in scope
 			if (dh.scopeMap.get(obj).scope)
@@ -159,7 +155,7 @@ public class Transformation
 	public void createReplicateGeneralizationSets ()
 	{
         // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
-        for (RefOntoUML.GeneralizationSet gs1 : ontoumlmodel.generalizationSets)
+        for (RefOntoUML.GeneralizationSet gs1 : ontoAbstraction.generalizationSets)
         {
         	if (dh.scopeMap.get(gs1.parent()).scope)
         	{
@@ -173,7 +169,7 @@ public class Transformation
         		if (childInScope > 1)
         		{
         			org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
-        			umlmodel.getPackagedElements().add(gs2);
+        			umlAbstraction.addPackageableElement(gs2);
         		}
         	}
         }
@@ -182,7 +178,7 @@ public class Transformation
 	public void createArtificialGeneralizationsforRoleMixin ()
 	{
         // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
-        for (RefOntoUML.RoleMixin roleMixin : ontoumlmodel.roleMixins)
+        for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
         {
         	// general (RoleMixin) in scope
 			if (dh.scopeMap.get(roleMixin).scope)
@@ -197,7 +193,7 @@ public class Transformation
 	    			if (dh.scopeMap.get(rigidSortal).scope)
 	    			{
 	    				// Create artificial Generalization (RigidSortal -> RoleMixin)
-	    				gen = umlhandler.createArtificialGeneralization (rigidSortal, roleMixin);
+	    				gen = umlAbstraction.createArtificialGeneralization (rigidSortal, roleMixin);
 	    				genlist.add(gen);
 	    			}
 	    		}
@@ -206,38 +202,30 @@ public class Transformation
 	    		if (genlist.size() > 1)
 	    		{
 	    			// Linking the GeneralizationSet and the Generalizations
-	    			org.eclipse.uml2.uml.GeneralizationSet gset = umlhandler.createGeneralizationSetForRoleMixin (roleMixin, genlist);
-	    			umlmodel.getPackagedElements().add(gset);
+	    			org.eclipse.uml2.uml.GeneralizationSet gset = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
+	    			umlAbstraction.addPackageableElement(gset);
 	    		}
         	}
         }
 	}
-	
-	public void addPrimitiveTypes()
+		
+	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
-        // Time DataType
-        umlmodel.getPackagedElements().add(umlhandler.getTimeType());
-        // Duration DataType
-        umlmodel.getPackagedElements().add(umlhandler.getDurationType());
-        // Boolean PrimitiveType
-        umlmodel.getPackagedElements().add(umlhandler.getBooleanType());	
-	}
-	
-	public org.eclipse.uml2.uml.Model transform (RefOntoUMLModelAbstraction ma, DecisionHandler dh)
-	{
-		ontoumlmodel = ma;
-		umlmodel = fa.partiallyCreateModel(ontoumlmodel.model);
+		if (umlAbstraction.umlmodel == null)
+			umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
 		this.dh = dh;
        
+		// FIXME: In case the UML.Model already exists, do not create UML things if they already exist
+		// Also, delete UML things that will not exist anymore
 		createClasses();
 		createAssociations();
 		createGeneralizations();
         dealHistoryTracking();
         dealTimeTracking();
-        addPrimitiveTypes();
-                
-        Ref2UMLCreator.saveUMLModel(umlmodel, fileAbsolutePath.replace(".refontouml", ".uml"));
+
+        umlAbstraction.addPrimitiveTypes();
+        umlAbstraction.save();
         
-        return umlmodel;
+        return umlAbstraction.umlmodel;
 	}
 }

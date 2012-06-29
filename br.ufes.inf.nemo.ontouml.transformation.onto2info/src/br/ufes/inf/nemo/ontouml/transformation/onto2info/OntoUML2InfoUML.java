@@ -3,6 +3,7 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 
 public class OntoUML2InfoUML
 {
@@ -16,28 +17,30 @@ public class OntoUML2InfoUML
 	
 	public static void transformation (String fileAbsolutePath)
 	{
-		RefOntoUMLModelAbstraction ma = new RefOntoUMLModelAbstraction();
+		RefOntoUMLModelAbstraction ontoAbstraction = new RefOntoUMLModelAbstraction();
+		UMLModelAbstraction umlAbstraction = new UMLModelAbstraction();
 
-		if (!ma.load(fileAbsolutePath))
+		if (!ontoAbstraction.load(fileAbsolutePath))
 		{
 			System.out.println("Unable to load " + fileAbsolutePath);
 			return;
 		}
 
-		if (!ma.process())
+		if (!ontoAbstraction.process())
 		{
 			System.out.println("Unable to process OntoUML model");
 			return;	
 		}
 		
-		// TODO: do a class that opens the UML model (UMLModelAbstraction), if it exists
-		// UMLModeLAbstraction umlA;
+		umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml"));
 		
-		DecisionHandler dh = new DecisionHandler(ma);
-		Transformation t = new Transformation(fileAbsolutePath);
-		new Onto2InfoInterface(ma, dh, t);
+		DecisionHandler dh = new DecisionHandler(ontoAbstraction);
+
+		Transformation t = new Transformation(ontoAbstraction, umlAbstraction);
 		
-		//Onto2InfoMap.saveMap(ma.resource, umlA.resource, fileAbsolutePath.replace(".refontouml", ".map"));
+		new Onto2InfoInterface(ontoAbstraction, dh, t);
+		
+		//Onto2InfoMap.saveMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"));
 		//dh.printTimeDecisions();
 		//dh.printScopeDecisions();
 	}
