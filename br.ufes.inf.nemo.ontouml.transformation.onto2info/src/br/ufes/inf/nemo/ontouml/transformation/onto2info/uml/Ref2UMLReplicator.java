@@ -1,30 +1,15 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
-import java.util.HashMap;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 
 public class Ref2UMLReplicator
 {		
 	// Creates UML Objects	
 	static org.eclipse.uml2.uml.UMLFactory myfactory;
-	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
-	public static HashMap <RefOntoUML.Element,org.eclipse.uml2.uml.Element> mymap;
 	
 	public Ref2UMLReplicator()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
-		mymap = new HashMap<RefOntoUML.Element, org.eclipse.uml2.uml.Element>();
-	}
-	
-	// Relate Classifiers and Generalizations
-	// This is important for solving Generalizations and Properties (relating Classifiers) and GeneralizationSets (relating Generalizations)
-	public static void relateElements (RefOntoUML.Element c1, org.eclipse.uml2.uml.Element c2)
-	{
-		mymap.put(c1, c2);
-	}
-
-	public static org.eclipse.uml2.uml.Element getElement (RefOntoUML.Element e1)
-	{
-		return mymap.get(e1);
 	}
 	
 	public void replicateNamedElement (RefOntoUML.NamedElement ne1, org.eclipse.uml2.uml.NamedElement ne2)
@@ -57,7 +42,7 @@ public class Ref2UMLReplicator
 	{
 		org.eclipse.uml2.uml.Model m2 = myfactory.createModel();
         replicateNamedElement(m1, m2);
-        relateElements(m1, m2);
+        Onto2InfoMap.relateElements(m1, m2);
         return m2;
 	}
     
@@ -82,8 +67,8 @@ public class Ref2UMLReplicator
         p2.setUpperValue(upperValue);
                 
         // Type (TypedElement)
-        org.eclipse.uml2.uml.Type t2 = (org.eclipse.uml2.uml.Type) getElement(p1.getType());
-        p2.setType(t2);              
+        org.eclipse.uml2.uml.Type t2 = (org.eclipse.uml2.uml.Type) Onto2InfoMap.getElement(p1.getType());
+        p2.setType(t2);
         
         // isDerived
         p2.setIsDerived(p1.isIsDerived());
@@ -116,7 +101,7 @@ public class Ref2UMLReplicator
     {
         replicateNamedElement (c1, c2);
         // Important for Generalization, Property
-        relateElements (c1, c2);
+        Onto2InfoMap.relateElements (c1, c2);
         // Is Abstract
         c2.setIsAbstract(c1.isIsAbstract());        
     }
@@ -159,13 +144,13 @@ public class Ref2UMLReplicator
             // EOpposite
             p2.setAssociation(a2);
             
-            relateElements(p1, p2);
+            Onto2InfoMap.relateElements(p1, p2);
         }
 
 		// ownedEnds
 		for (RefOntoUML.Property p1 : a1.getOwnedEnd())
 		{
-			p2 = (org.eclipse.uml2.uml.Property) getElement(p1);
+			p2 = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getElement(p1);
 			
 			a2.getOwnedEnds().add(p2);
 		}
@@ -173,7 +158,7 @@ public class Ref2UMLReplicator
 		// navigableOwnedEnds
 		for (RefOntoUML.Property p1 : a1.getNavigableOwnedEnd())
 		{
-			p2 = (org.eclipse.uml2.uml.Property) getElement(p1);
+			p2 = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getElement(p1);
 			
 			a2.getNavigableOwnedEnds().add(p2);
 		}
@@ -201,7 +186,7 @@ public class Ref2UMLReplicator
 		// navigableOwnedEnd
 		a2.getNavigableOwnedEnds().add(p2);
 		
-		relateElements(p1, p2);
+		Onto2InfoMap.relateElements(p1, p2);
 		
 		return p2;
 	}
@@ -246,7 +231,7 @@ public class Ref2UMLReplicator
 		if (rigidParent != null)
 		{
 			// Property Type -> RigidParentType (since there is no RoleType)
-			p2.setType((org.eclipse.uml2.uml.Type) getElement(rigidParent));
+			p2.setType((org.eclipse.uml2.uml.Type) Onto2InfoMap.getElement(rigidParent));
 		}
 		// Property name -> Role name
 		p2.setName(roleName);
@@ -285,7 +270,7 @@ public class Ref2UMLReplicator
     {            
         // source (Specific)
         RefOntoUML.Classifier e1 = (RefOntoUML.Classifier) gen1.getSpecific();
-        org.eclipse.uml2.uml.Classifier e2 = (org.eclipse.uml2.uml.Classifier) getElement(e1);        
+        org.eclipse.uml2.uml.Classifier e2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(e1);        
         
         // Poderia ter setado apenas um dos dois (Generalization::Specific, Classifier::Generalization), ja que sao EOpposites
         gen2.setSpecific(e2);
@@ -294,13 +279,13 @@ public class Ref2UMLReplicator
 
         // target (General)
         e1 = (RefOntoUML.Classifier) gen1.getGeneral();
-        e2 = (org.eclipse.uml2.uml.Classifier) getElement(e1);        
+        e2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(e1);        
 
         gen2.setGeneral(e2);
         
         // Important for GeneralizationSet
-        relateElements (gen1, gen2);
-     }
+        Onto2InfoMap.relateElements (gen1, gen2);
+	}
 	
 	public org.eclipse.uml2.uml.Generalization createGeneralization (RefOntoUML.Generalization gen1)
 	{
@@ -327,7 +312,7 @@ public class Ref2UMLReplicator
         // Adds all the generalizations
         for  (RefOntoUML.Generalization gen1 : gs1.getGeneralization())
         {
-        	org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) getElement(gen1);
+        	org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
 
         	// Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites
             gs2.getGeneralizations().add(gen2);
@@ -339,7 +324,7 @@ public class Ref2UMLReplicator
         gs2.setIsDisjoint(gs1.isIsDisjoint());
         
         // They are PackageableElements, don't forget it
-        relateElements (gs1, gs2);
+        Onto2InfoMap.relateElements (gs1, gs2);
              
         return gs2;
      }

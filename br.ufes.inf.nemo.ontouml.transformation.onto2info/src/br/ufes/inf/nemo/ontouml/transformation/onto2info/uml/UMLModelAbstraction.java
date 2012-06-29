@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
+
 public class UMLModelAbstraction
 {
 	// Ecore ResourceSet
@@ -58,7 +60,7 @@ public class UMLModelAbstraction
 		if (!file.isFile())
 		{
 			hasFile = false;
-			System.out.println("Error accessing: " + file.getAbsolutePath());
+			System.out.println("The corresponding UML model does not exist: " + file.getAbsolutePath());
 		}
 		else
 		{
@@ -132,10 +134,30 @@ public class UMLModelAbstraction
 		}
 	}
 	
-	// Adds an UML.PackageableElement to the UML.Model
+	// Adds a UML.PackageableElement to the UML.Model
 	public void addPackageableElement (org.eclipse.uml2.uml.PackageableElement pe)
 	{
 		umlmodel.getPackagedElements().add(pe);
+	}
+	
+	// Removes a UML.PackageableElement from the UML.Model
+	public void removePackageableElement (org.eclipse.uml2.uml.PackageableElement pe)
+	{
+		umlmodel.getPackagedElements().remove(pe);
+	}
+	
+	// TODO: not sure if I need this
+	// Removes a UML.Generalization (from the UML.Classifier inside the UML.Model)
+	public void removeGeneralization (org.eclipse.uml2.uml.Generalization gen)
+	{
+		org.eclipse.uml2.uml.Classifier owner = gen.getSpecific();
+		owner.getGeneralizations().remove(gen);
+	}
+	
+	// Removes all UML.Generalizations from a UML.Classifier
+	public void removeAllGeneralizations (org.eclipse.uml2.uml.Classifier c)
+	{
+		c.getGeneralizations().clear();
 	}
 	
 	// Adds the PrimitiveTypes to the UML.Model
@@ -228,7 +250,7 @@ public class UMLModelAbstraction
 		
 	private void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
 	{
-		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Ref2UMLReplicator.getElement(c1);
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
 		
 		org.eclipse.uml2.uml.Property p = myfactory.createProperty();
 		
@@ -267,12 +289,12 @@ public class UMLModelAbstraction
 		org.eclipse.uml2.uml.Generalization gen = myfactory.createGeneralization();
 		
 		// specific
-		org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) Ref2UMLReplicator.getElement(rigidSortal);
+		org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(rigidSortal);
 		 gen.setSpecific(specific);
 		 specific.getGeneralizations().add(gen);
 		
 		// general
-		org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) Ref2UMLReplicator.getElement(roleMixin);
+		org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(roleMixin);
 		gen.setGeneral(general);
 
 		return gen;

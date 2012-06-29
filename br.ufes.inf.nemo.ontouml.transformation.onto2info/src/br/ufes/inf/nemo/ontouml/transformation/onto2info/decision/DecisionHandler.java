@@ -8,7 +8,7 @@ import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 
 public class DecisionHandler
 {
-	public Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
+	private Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
 	public Map<RefOntoUML.Class, HistoryDecision> historyMap;
 	public Map<RefOntoUML.Class, TimeDecision> timeMap;
 	
@@ -42,6 +42,16 @@ public class DecisionHandler
 		
 		// TODO: Reference Decisions
 		// TODO: Measurement Decisions
+	}
+	
+	public boolean inScope(RefOntoUML.Classifier c)
+	{
+		return scopeMap.get(c).scope;
+	}
+	
+	public void setScopeDecision (Object o, boolean value)
+	{
+		scopeMap.get(o).scope = value;
 	}
 	
 	public void setStartTimeDecision (RefOntoUML.Class c, boolean value)
@@ -98,12 +108,7 @@ public class DecisionHandler
 	{
 		return historyMap.get(c).present;
 	}
-	
-	public void setScopeDecision (Object o, boolean value)
-	{
-		scopeMap.get(o).scope = value;
-	}
-	
+		
 	public void printTimeDecisions ()
 	{
 		for (Entry<RefOntoUML.Class, TimeDecision> e : timeMap.entrySet())

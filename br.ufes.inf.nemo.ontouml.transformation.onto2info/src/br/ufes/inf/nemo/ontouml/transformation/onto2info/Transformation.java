@@ -19,7 +19,7 @@ public class Transformation
 	Ref2UMLReplicator fa;
 	// Decision Handler
 	DecisionHandler dh;
-	
+	 
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	
 	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction)  
@@ -34,8 +34,7 @@ public class Transformation
         // History Tracking
         for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
         {
-        	ScopeDecision sd = dh.scopeMap.get(entry.getKey());
-        	if (sd.scope) // TODO: perhaps I can add the attribute, even if the class is out of scope
+        	if (dh.inScope(entry.getKey())) // TODO: perhaps I can add the attribute, even if the class is out of scope
         	{
 	        	if (entry.getValue().requiresAttribute())
 	        	{
@@ -50,8 +49,7 @@ public class Transformation
         // Time Tracking
         for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
         {
-        	ScopeDecision sd = dh.scopeMap.get(entry.getKey());
-        	if (sd.scope)
+        	if (dh.inScope(entry.getKey()))
         	{
 	        	if (entry.getValue().start)
 	        		umlAbstraction.addStartTime(entry.getKey());
@@ -67,43 +65,100 @@ public class Transformation
 	{
 		for (RefOntoUML.Class c : ontoAbstraction.classes)
 		{
-			if (!(c instanceof RefOntoUML.Role) && !(c instanceof RefOntoUML.Phase))
+			// Not AntiRigidSortalClass (Phase or Role)
+			if (!(c instanceof RefOntoUML.AntiRigidSortalClass))
 			{
+				// Corresponding UML.Class
+				org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c);
+				
 				// Scope
-				if (dh.scopeMap.get(c).scope)
+				if (dh.inScope(c))
 				{
-		        	org.eclipse.uml2.uml.Class c2 = fa.createClass(c); // FIXME: perhaps I could create put do not add it to the umlmodel
-		        	umlAbstraction.addPackageableElement(c2);
-		        	
-		        	if (c instanceof RefOntoUML.RoleMixin)
-		        	{
-		        		c2.setName("Potential".concat(c2.getName())); // FIXME: do a later rotine to fix RoleMixin names?
-		        	}
+					// In Scope
+					if (c2 == null)
+					{
+						// Create corresponding UML.Class
+			        	c2 = fa.createClass(c); // FIXME: perhaps I could create it but not add it to the umlmodel
+			        	umlAbstraction.addPackageableElement(c2);
+			        	
+			        	if (c instanceof RefOntoUML.RoleMixin)
+			        	{
+			        		c2.setName("Potential".concat(c2.getName())); // FIXME: do a later rotine to fix RoleMixin names?
+			        	}
+			        	
+			        	System.out.println("Created UML.Class " + c2.getName());
+					}
+					// TODO: else { // check the attributes of the already existing corresponding UML.Class }
+				}
+				else
+				{
+					// Not in Scope
+					if (c2 != null)
+					{
+						System.out.println("Trying to remove references to: " + c.getName());
+						
+						// Remove the corresponding UML.Class
+						umlAbstraction.removePackageableElement(c2);
+						// Remove the mapping between the OntoUML.Class and the UML.Class
+						Onto2InfoMap.removeElement(c);
+						// FIXME: Remove the mapping between Properties and Generalizations and Associations(?) of the deleted UML.Class...
+												
+						System.out.println("Removed UML.Class " + c2.getName());
+					}
 				}
 			}
 		}	
 	}
 	
+	public void removeReferencesTo (RefOntoUML.Class c1)
+	{
+		for (RefOntoUML.Generalization g1 : c1.getGeneralization())
+		{
+			// TODO 
+		}
+	}
+	
 	public void createAssociations ()
 	{
-        // Roles (Associations) (as long as in scope)
-        // (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
-        for (RefOntoUML.Role role : ontoAbstraction.roles)
+		// Roles + RoleMixins
+		List<RefOntoUML.Class> qroles = new LinkedList<RefOntoUML.Class>(ontoAbstraction.roles);
+		qroles.addAll(ontoAbstraction.roleMixins);
+		
+        // Roles (Associations) FIXME: (as long as in scope)
+        // FIXME: (by the way, besides the Role, the Relator and the RigidParent have to be in scope)
+        // RoleMixins (Associations) FIXME: (as long as in scope)
+        // FIXME: (by the way, besides the RoleMixin, the Relator has to be in scope)(and perhaps at least one rigidSortal corresponding to the RoleMixin)
+        for (RefOntoUML.Class qrole : qroles)
         {
-        	if (role.mediation() != null)
+        	RefOntoUML.Role role = null;
+        	RefOntoUML.RoleMixin roleMixin = null;
+        	RefOntoUML.Mediation mediation = null;
+        	
+        	if (qrole instanceof RefOntoUML.Role)
         	{
-        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRole(role);
-        		umlAbstraction.addPackageableElement(a2);
+        		role = (RefOntoUML.Role) qrole;
+        		mediation = role.mediation();
+        	}        		
+        	else if (qrole instanceof RefOntoUML.RoleMixin)
+        	{
+        		roleMixin = (RefOntoUML.RoleMixin) qrole;
+        		mediation = roleMixin.mediation();
         	}
-        }     
-        // RoleMixins (Associations) (as long as in scope)
-        // (by the way, besides the RoleMixin, the Relator has to be in scope)(and perhaps at least one rigidSortal corresponding to the RoleMixin)
-        for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
-        {
-        	if (roleMixin.mediation() != null)
+        	
+        	if (mediation != null)
         	{
-        		org.eclipse.uml2.uml.Association a2 = fa.createAssociationRepresentingRoleMixin (roleMixin);
-        		umlAbstraction.addPackageableElement(a2);
+        		org.eclipse.uml2.uml.Association a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation);
+        		
+        		if (a2 == null)
+        		{
+        			// No corresponding UML.Association yet
+        			if (role != null)
+        				a2 = fa.createAssociationRepresentingRole(role);
+        			else if (roleMixin != null)
+        				a2 = fa.createAssociationRepresentingRoleMixin(roleMixin);
+        			
+        			umlAbstraction.addPackageableElement(a2);
+        		}
         	}
         }
 	}
@@ -112,40 +167,62 @@ public class Transformation
 	{
 		createReplicateGeneralizations();
 		createReplicateGeneralizationSets();
-        createArtificialGeneralizationsforRoleMixin();
+        createArtificialGeneralizationsforRoleMixin(); // TODO: check if the UML.Generalizations should be removed because they went out of scope
 	}
 	
 	public void createReplicateGeneralizations ()
 	{
+		// By the way, the following two "for" blocks are almost identical
+		
         // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier obj : ontoAbstraction.rigidSortals)
         {
         	// TODO: perhaps work through a list of generalizations
-			// specific in scope
-			if (dh.scopeMap.get(obj).scope)
+			// generalization.specific in scope
+			if (dh.inScope(obj))
 			{
 				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
 				{
-					// general in scope
-					if (dh.scopeMap.get(gen1.getGeneral()).scope)
+					// TODO: static method getCorrespondingGeneralzation (gen1)
+					org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
+					
+					// generalization.general in scope
+					if (dh.inScope(gen1.getGeneral()))
 					{
-						fa.createGeneralization(gen1);
+						// In Scope
+						if (gen2 == null)
+						{
+							// Create the corresponding UML.Generalization
+							fa.createGeneralization(gen1);
+						}
 					}
 				}
 			}
+			
+			// If the generalization.specific is out of scope then:
+			// The corresponding UML.Class will be absent/removed in the previously called method: createdClasses()
+			// So, I won't need to remove the UML.Generalizations, because they are owned by the corresponding UML.Class
         }
+        
         // Generalizations (All Mixins) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier obj : ontoAbstraction.allMixins)
         {
 			// specific in scope
-			if (dh.scopeMap.get(obj).scope)
+			if (dh.inScope(obj))
 			{
 				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
 				{
+					org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
+					
 					// general in scope
-					if (dh.scopeMap.get(gen1.getGeneral()).scope)
+					if (dh.inScope(gen1.getGeneral()))
 					{
-						fa.createGeneralization(gen1);
+						// In Scope
+						if (gen2 == null)
+						{
+							// Create the corresponding UML.Generalization
+							fa.createGeneralization(gen1);
+						}
 					}
 				}
 			}
@@ -157,19 +234,42 @@ public class Transformation
         // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
         for (RefOntoUML.GeneralizationSet gs1 : ontoAbstraction.generalizationSets)
         {
-        	if (dh.scopeMap.get(gs1.parent()).scope)
+        	if (dh.inScope(gs1.parent()))
         	{
+        		// Couting OntoUML.GeneralizationSet.children() in scope
         		int childInScope = 0;
         		for (RefOntoUML.Classifier child : gs1.children())
         		{
-        			if (dh.scopeMap.get(child).scope)
+        			if (dh.inScope(child))
         				childInScope++;
         		}
         		
+        		org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1);
+        		
         		if (childInScope > 1)
         		{
-        			org.eclipse.uml2.uml.GeneralizationSet gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
-        			umlAbstraction.addPackageableElement(gs2);
+        			// In Scope
+        			if (gs2 == null)
+        			{
+        				// Creates the corresponding UML.GeneralizationSet
+        				gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
+        				umlAbstraction.addPackageableElement(gs2);
+        			}
+        		}
+        		else
+        		{
+        			// Out of Scope
+        			if (gs2 != null)
+        			{
+						// Removes the links between the UML.GeneralizationSet and the related UML.Generalizations
+        				gs2.getGeneralizations().clear();
+        				// Removes the corresponding UML.GeneralizationSet from the UML.Model
+        				umlAbstraction.removePackageableElement(gs2);
+        				// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
+        				Onto2InfoMap.removeElement(gs1);
+        				
+						System.out.println("Removed UML.GeneralizationSet " + gs2);
+        			}
         		}
         	}
         }
@@ -181,7 +281,7 @@ public class Transformation
         for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
         {
         	// general (RoleMixin) in scope
-			if (dh.scopeMap.get(roleMixin).scope)
+			if (dh.inScope(roleMixin))
 			{
 				List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
 	    		org.eclipse.uml2.uml.Generalization gen;
@@ -190,7 +290,7 @@ public class Transformation
 	    		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
 	    		{
 	    			// specific (RigidSortal) in scope
-	    			if (dh.scopeMap.get(rigidSortal).scope)
+	    			if (dh.inScope(rigidSortal))
 	    			{
 	    				// Create artificial Generalization (RigidSortal -> RoleMixin)
 	    				gen = umlAbstraction.createArtificialGeneralization (rigidSortal, roleMixin);
@@ -225,6 +325,7 @@ public class Transformation
 
         umlAbstraction.addPrimitiveTypes();
         umlAbstraction.save();
+        OntoUML2InfoUML.saveMap();
         
         return umlAbstraction.umlmodel;
 	}
