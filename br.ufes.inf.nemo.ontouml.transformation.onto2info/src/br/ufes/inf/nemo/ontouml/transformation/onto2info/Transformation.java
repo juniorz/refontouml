@@ -38,30 +38,143 @@ public class Transformation
         // History Tracking
         for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
         {
-        	if (dh.inScope(entry.getKey()))
+        	RefOntoUML.Class c1 = entry.getKey();
+        	HistoryDecision decision = entry.getValue();
+        	
+        	if (dh.inScope(c1))
         	{
-	        	if (entry.getValue().requiresAttribute())
+        		// OntoUML.Class in scope        		
+	        	if (decision.requiresAttribute())
 	        	{
-	        		umlAbstraction.addHistoryTrackingAttribute(entry.getKey());
+	        		// HistoryTracking = true
+	        		if (decision.htAttribute == null)
+	        		{
+	        			// UML.Property (Attribute) does not exist
+	        			decision.htAttribute = umlAbstraction.addHistoryTrackingAttribute(c1);
+	        			
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.htAttribute.getName());
+	        		}
 	        	}
-        	} // TODO: remove attribute if necessary
+	        	else
+	        	{
+	        		// HistoryTracking = false
+	        		if (decision.htAttribute != null)
+	        		{
+	        			// UML.Property (Attribute) exists
+	        			// Remove it from the UML.Class
+	        			umlAbstraction.removeClassAttribute(c1, decision.htAttribute);
+	        			// Remove it from the HistoryDecision
+	        			decision.htAttribute = null;
+	        			
+	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
+	        		}
+	        	}
+        	}
+        	else
+        	{
+        		// TODO: OntoUML.Class out of scope
+        	}
         }
 	}
 	
 	public void dealTimeTracking ()
 	{
+		// TODO: modularize
         // Time Tracking
         for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
         {
-        	if (dh.inScope(entry.getKey()))
+        	RefOntoUML.Class c1 = entry.getKey();
+        	TimeDecision decision = entry.getValue();
+        	
+        	if (dh.inScope(c1))
         	{
-	        	if (entry.getValue().start)
-	        		umlAbstraction.addStartTime(entry.getKey());
-	        	if (entry.getValue().end)
-	        		umlAbstraction.addEndTime(entry.getKey());
-	        	if (entry.getValue().start)
-	        		umlAbstraction.addDuration(entry.getKey());
-        	} // TODO: remove attribute if necessary
+        		// OntoUML.Class in scope
+        		
+        		// StartTime
+	        	if (decision.start)
+	        	{
+	        		// StartTime = true
+	        		if (decision.startAttribute == null)
+	        		{
+	        			// UML.Property (Attribute) does not exist
+	        			decision.startAttribute = umlAbstraction.addStartTime(c1);
+	        			
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.startAttribute.getName());
+	        		}
+	        	}
+	        	else
+	        	{
+	        		// StartTime = false
+	        		if (decision.startAttribute != null)
+	        		{
+	        			// UML.Property (Attribute) exists
+	        			// Remove it from the UML.Class
+	        			umlAbstraction.removeClassAttribute(c1, decision.startAttribute);
+	        			// Remove it from the TimeDecision
+	        			decision.startAttribute = null;
+	        			
+	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Start Time Tracking)");
+	        		}
+	        	}
+	        		
+	        	// EndTime
+	        	if (decision.end)
+	        	{
+	        		// EndTime = true
+	        		if (decision.endAttribute == null)
+	        		{
+	        			// UML.Property (Attribute) does not exist
+	        			decision.endAttribute = umlAbstraction.addEndTime(c1);
+	        			
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.endAttribute.getName());
+	        		}
+	        	}
+	        	else
+	        	{
+	        		// EndTime = false
+	        		if (decision.endAttribute != null)
+	        		{
+	        			// UML.Property (Attribute) exists
+	        			// Remove it from the UML.Class
+	        			umlAbstraction.removeClassAttribute(c1, decision.endAttribute);
+	        			// Remove it from the TimeDecision
+	        			decision.endAttribute = null;
+	        			
+	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (End Time Tracking)");
+	        		}
+	        	}
+	        	
+	        	// Duration
+	        	if (decision.duration)
+	        	{
+	        		// Duration = true
+	        		if (decision.durationAttribute == null)
+	        		{
+	        			// UML.Property (Attribute) does not exist
+	        			decision.durationAttribute = umlAbstraction.addDuration(c1);
+	        			
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.durationAttribute.getName());
+	        		}
+	        	}
+	        	else
+	        	{
+	        		// Duration = false
+	        		if (decision.durationAttribute != null)
+	        		{
+	        			// UML.Property (Attribute) exists
+	        			// Remove it from the UML.Class
+	        			umlAbstraction.removeClassAttribute(c1, decision.durationAttribute);
+	        			// Remove it from the TimeDecision
+	        			decision.durationAttribute = null;
+	        			
+	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Duration Time Tracking)");
+	        		}
+	        	}
+        	}
+        	else
+        	{
+        		// TODO: OntoUML.Class out of scope
+        	}
         }		
 	}
 	
@@ -429,8 +542,6 @@ public class Transformation
 			umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
 		this.dh = dh;
        
-		// FIXME: In case the UML.Model already exists, do not create UML things if they already exist
-		// Also, delete UML things that will not exist anymore
 		createClasses();
 		createAssociations();
 		createGeneralizations();

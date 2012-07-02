@@ -203,26 +203,26 @@ public class UMLModelAbstraction
 		return booleanType;
 	}
 	
-	public void addStartTime (RefOntoUML.Class c1)
+	public org.eclipse.uml2.uml.Property addStartTime (RefOntoUML.Class c1)
 	{
-		addClassAttribute (c1, "start", timeType, true);
+		return addClassAttribute (c1, "start", timeType, true);
 	}
 	
-	public void addEndTime (RefOntoUML.Class c1)
+	public org.eclipse.uml2.uml.Property addEndTime (RefOntoUML.Class c1)
 	{
-		addClassAttribute (c1, "end", timeType, false);
+		return addClassAttribute (c1, "end", timeType, false);
 	}
 	
-	public void addDuration (RefOntoUML.Class c1)
+	public org.eclipse.uml2.uml.Property addDuration (RefOntoUML.Class c1)
 	{
-		addClassAttribute (c1, "duration", durationType, true);
+		return addClassAttribute (c1, "duration", durationType, true);
 	}
 	
-	public void addHistoryTrackingAttribute (RefOntoUML.Class c1)
+	public org.eclipse.uml2.uml.Property addHistoryTrackingAttribute (RefOntoUML.Class c1)
 	{
-		addClassAttribute (c1, "current", booleanType, true);
+		return addClassAttribute (c1, "current", booleanType, true);
 	}
-	
+		
 	// Set the basic attributes of DataType
 	private static void initializeDataType (org.eclipse.uml2.uml.DataType dataType, String name)
 	{
@@ -248,7 +248,7 @@ public class UMLModelAbstraction
 		return pt;
 	}
 		
-	private void addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
+	private org.eclipse.uml2.uml.Property addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
 	{
 		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
 		
@@ -281,6 +281,14 @@ public class UMLModelAbstraction
 		
 		// Linking Class and Property
 		c2.getOwnedAttributes().add(p);
+		
+		return p;
+	}
+	
+	public void removeClassAttribute (RefOntoUML.Class c1, org.eclipse.uml2.uml.Property p)
+	{
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		c2.getOwnedAttributes().remove(p);
 	}
 	
 	// Return a UML.Generalization between two UML.Classifiers, if it exists
