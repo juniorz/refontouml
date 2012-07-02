@@ -34,6 +34,12 @@ public class Onto2InfoMap
 		return mymap.get(e1);
 	}
 	
+	// TODO: do more methods like this
+	public static org.eclipse.uml2.uml.Generalization getGeneralization (RefOntoUML.Generalization gen1)
+	{
+		return (org.eclipse.uml2.uml.Generalization) getElement(gen1);
+	}
+	
 	public static void removeElement (RefOntoUML.Element e1)
 	{
 		mymap.remove(e1);

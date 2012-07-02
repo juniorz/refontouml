@@ -48,12 +48,12 @@ public class OntoUML2InfoUML
 		{
 			Onto2InfoMap.initializeMap();
 		}
-				
-		DecisionHandler dh = new DecisionHandler(ontoAbstraction);
-
-		Transformation t = new Transformation(ontoAbstraction, umlAbstraction);
-
-		new Onto2InfoInterface(ontoAbstraction, dh, t);
+		
+		Onto2InfoInterface ui = new Onto2InfoInterface();
+		DecisionHandler dh = new DecisionHandler(ontoAbstraction);		
+		Transformation t = new Transformation(ontoAbstraction, umlAbstraction, ui);
+		
+		ui.load(ontoAbstraction, dh, t);
 		
 		//dh.printTimeDecisions();
 		//dh.printScopeDecisions();

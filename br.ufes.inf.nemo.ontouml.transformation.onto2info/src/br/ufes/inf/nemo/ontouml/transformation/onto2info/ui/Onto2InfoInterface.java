@@ -44,7 +44,12 @@ public class Onto2InfoInterface
 	Text text = null;
 	Text log = null;
 	
-	public Onto2InfoInterface (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
+	public Onto2InfoInterface ()
+	{
+		
+	}
+	
+	public void load (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
 	{
 		Display display = new Display();
 		final Shell shell = new Shell(display);
@@ -61,15 +66,13 @@ public class Onto2InfoInterface
 		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		
 		LogTabFolder(shell);
-	    
-		final Onto2InfoInterface that = this;
-		
+	    		
 	    // Transform Button Action
 		tbutton.addSelectionListener(new SelectionAdapter()
 		{
 			public void widgetSelected(SelectionEvent e)
 			{
-				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh,that);
+				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh);
 				
 				// Display Text in "Details" Group
 				writeText("Transformation done");
@@ -128,8 +131,8 @@ public class Onto2InfoInterface
 	    
 	    // TabFolder (inside) Layout
 	    GridLayout layout = new GridLayout();
-	    layout.numColumns = 1;	    
-	    tabFolder.setLayout(layout); 
+	    layout.numColumns = 1;
+	    tabFolder.setLayout(layout);
 	    
 	    // Text in "Details" Tab
 	    text = new Text(tabFolder, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -500,6 +503,7 @@ public class Onto2InfoInterface
 		return viewer;
 	}
 	
+	// I'm not using this method, although perhaps I should...
 	private TableViewer tableViewer (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
 	{
 		// FIXME: maybe using a Table is messing things out... this fake checkbox was made for Trees, perhaps it is something with the BooleanCellEditor

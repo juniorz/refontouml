@@ -290,8 +290,8 @@ public class UMLModelAbstraction
 		
 		// specific
 		org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(rigidSortal);
-		 gen.setSpecific(specific);
-		 specific.getGeneralizations().add(gen);
+		gen.setSpecific(specific);
+		specific.getGeneralizations().add(gen);
 		
 		// general
 		org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(roleMixin);
