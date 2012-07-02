@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
 
@@ -19,6 +20,8 @@ public class Transformation
 	Ref2UMLReplicator fa;
 	// Decision Handler
 	DecisionHandler dh;
+	// Interface
+	Onto2InfoInterface ui;
 	 
 	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
 	
@@ -86,7 +89,7 @@ public class Transformation
 			        		c2.setName("Potential".concat(c2.getName())); // FIXME: do a later rotine to fix RoleMixin names?
 			        	}
 			        	
-			        	System.out.println("Created UML.Class " + c2.getName());
+			        	ui.writeLog("Created UML.Class " + c2.getName());
 					}
 					// TODO: else { // check the attributes of the already existing corresponding UML.Class }
 				}
@@ -101,7 +104,7 @@ public class Transformation
 						Onto2InfoMap.removeElement(c);
 						// FIXME: Remove the mapping between Properties and Generalizations and Associations(?) of the deleted UML.Class...
 												
-						System.out.println("Removed UML.Class " + c2.getName());
+						ui.writeLog("Removed UML.Class " + c2.getName());
 					}
 				}
 			}
@@ -187,7 +190,7 @@ public class Transformation
         			
         			umlAbstraction.addPackageableElement(a2);
         			
-					System.out.println("Created UML.Association { " +
+					ui.writeLog("Created UML.Association { " +
 							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
 							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
 							"}"); 
@@ -203,7 +206,7 @@ public class Transformation
 					// Remove the mapping between the OntoUML.Mediation and the UML.Association
 					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not 
 											
-					System.out.println("Removed UML.Association { " +
+					ui.writeLog("Removed UML.Association { " +
 							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
 							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
 							"}");       			
@@ -243,7 +246,7 @@ public class Transformation
 						// Create the corresponding UML.Generalization
 						fa.createGeneralization(gen1); // FIXME: return gen2 here?
 						
-						System.out.println("Created UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
+						ui.writeLog("Created UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
 					}
 				}
 				else
@@ -267,7 +270,7 @@ public class Transformation
 						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
 						// So, I won't need to remove the UML.Generalizations from the UML.Model or the specific UML.Classifier
 						
-						System.out.println("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
+						ui.writeLog("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
 					}
 				}
 			}
@@ -300,7 +303,7 @@ public class Transformation
         				gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
         				umlAbstraction.addPackageableElement(gs2);
         				
-        				System.out.println("Created UML.GeneralizationSet " + gs2.getName());
+        				ui.writeLog("Created UML.GeneralizationSet " + gs2.getName());
         			}
         		}
         		else
@@ -315,7 +318,7 @@ public class Transformation
         				// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
         				Onto2InfoMap.removeElement(gs1);
         				
-						System.out.println("Removed UML.GeneralizationSet " + gs2.getName());
+						ui.writeLog("Removed UML.GeneralizationSet " + gs2.getName());
         			}
         		}
         	}
@@ -356,11 +359,12 @@ public class Transformation
         }
 	}
 		
-	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
+	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh, Onto2InfoInterface ui)
 	{
 		if (umlAbstraction.umlmodel == null)
 			umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
 		this.dh = dh;
+		this.ui = ui;
        
 		// FIXME: In case the UML.Model already exists, do not create UML things if they already exist
 		// Also, delete UML things that will not exist anymore

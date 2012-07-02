@@ -41,6 +41,9 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandle
 // Tree with columns: Snippet 170, 193, 220, 226, 274, 312
 public class Onto2InfoInterface
 {
+	Text text = null;
+	Text log = null;
+	
 	public Onto2InfoInterface (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
 	{
 		Display display = new Display();
@@ -50,9 +53,44 @@ public class Onto2InfoInterface
 		layout.numColumns = 1;
 		shell.setLayout(layout);
 			
+		DecisionTabFolder(shell, ma, dh);
+		
+		// Transform Button
+		Button tbutton = new Button(shell, SWT.PUSH);
+		tbutton.setText("Transform");
+		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		
+		LogTabFolder(shell);
+	    
+		final Onto2InfoInterface that = this;
+		
+	    // Transform Button Action
+		tbutton.addSelectionListener(new SelectionAdapter()
+		{
+			public void widgetSelected(SelectionEvent e)
+			{
+				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh,that);
+				
+				// Display Text in "Details" Group
+				writeText("Transformation done");
+			}
+		});
+		
+		// Shell
+		shell.pack();		
+		shell.open();
+		while (!shell.isDisposed())
+		{
+			if (!display.readAndDispatch()) display.sleep();
+		}
+		display.dispose();
+	}
+	
+	public void DecisionTabFolder (Composite parent, RefOntoUMLModelAbstraction ma, DecisionHandler dh)
+	{
 		// Tab Folder
-		final TabFolder tabFolder = new TabFolder (shell, SWT.BORDER);
-		Rectangle clientArea = shell.getClientArea();
+		final TabFolder tabFolder = new TabFolder (parent, SWT.BORDER);
+		Rectangle clientArea = parent.getClientArea();
 		tabFolder.setLocation (clientArea.x, clientArea.y);
 		for (int i=0; i<5; i++)
 		{
@@ -79,56 +117,61 @@ public class Onto2InfoInterface
 				//item.setControl (button);
 			}
 		}
-		tabFolder.pack ();
-		
-		// Transform Button
-		Button tbutton = new Button(shell, SWT.PUSH);
-		tbutton.setText("Transform");
-		tbutton.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
-		
-		// "Details" Group
-		final Group group = new Group(shell, SWT.SHADOW_ETCHED_IN);
-	    group.setText("Details");
-	    group.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		tabFolder.pack();
+	}
+	
+	public void LogTabFolder (Composite parent)
+	{
+		// Tab Folder
+		final TabFolder tabFolder = new TabFolder (parent, SWT.BORDER);		
+	    tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 	    
-	    // "Details" Group Layout
-	    GridLayout groupLayout = new GridLayout();
-	    groupLayout.numColumns = 1;	    
-	    group.setLayout(groupLayout); 
+	    // TabFolder (inside) Layout
+	    GridLayout layout = new GridLayout();
+	    layout.numColumns = 1;	    
+	    tabFolder.setLayout(layout); 
 	    
-	    // Text in "Details" Group
-	    final Text text = new Text(group, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
+	    // Text in "Details" Tab
+	    text = new Text(tabFolder, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
 	    GridData textLayoutData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
 	    textLayoutData.heightHint = 100;
 	    text.setLayoutData(textLayoutData);
 	    
-	    // Display Text in "Details" Group
+		// TabItem
+		TabItem item = new TabItem (tabFolder, SWT.NONE);
+		item.setText("Details");
+		item.setControl(text);
+	    
+		// Text in "Log" Tab
+		log = new Text(tabFolder, SWT.READ_ONLY | SWT.H_SCROLL | SWT.V_SCROLL);
+		//GridData logLayoutData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+		//logLayoutData.heightHint = 100;
+		//log.setLayoutData(logLayoutData);
+		
+		// TabItem
+		item = new TabItem(tabFolder, SWT.NONE);
+		item.setText("Log");
+		item.setControl(log);
+		
+	    // Display Text in "Details" Tab
+		text.append(timestampHeader() + "> Ready\n");
+	}
+	
+	public String timestampHeader ()
+	{
 	    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
-		text.append(dateFormat.format(date) + "> Ready\n");
-	    
-	    // Transform Button Action
-		tbutton.addSelectionListener(new SelectionAdapter()
-		{
-			public void widgetSelected(SelectionEvent e)
-			{
-				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh);
-				
-				// Display Text in "Details" Group
-				DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-				Date date = new Date();
-				text.append(dateFormat.format(date) + "> Transformation done\n");
-			}
-		});
-		
-		// Shell
-		shell.pack();		
-		shell.open();
-		while (!shell.isDisposed())
-		{
-			if (!display.readAndDispatch()) display.sleep();
-		}
-		display.dispose();
+		return dateFormat.format(date);
+	}
+	
+	public void writeText (String message)
+	{
+		text.append(timestampHeader() + "> " + message + "\n");
+	}
+	
+	public void writeLog (String message)
+	{
+		log.append(timestampHeader() + "> " + message + "\n");
 	}
 	
 	@SuppressWarnings("deprecation")
