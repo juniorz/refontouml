@@ -186,7 +186,12 @@ public class Transformation
         				a2 = fa.createAssociationRepresentingRoleMixin(roleMixin);
         			
         			umlAbstraction.addPackageableElement(a2);
-        		}	
+        			
+					System.out.println("Created UML.Association { " +
+							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
+							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
+							"}"); 
+        		}
         	}
         	else
         	{
@@ -198,7 +203,10 @@ public class Transformation
 					// Remove the mapping between the OntoUML.Mediation and the UML.Association
 					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not 
 											
-					System.out.println("Removed UML.Association " + a2);       			
+					System.out.println("Removed UML.Association { " +
+							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
+							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
+							"}");       			
         		}
         	}
         }
@@ -213,57 +221,53 @@ public class Transformation
 	
 	public void createReplicateGeneralizations ()
 	{
-		// By the way, the following two "for" blocks are almost identical
+		// RigidSortals + AllMixins
+		List<RefOntoUML.Class> specifics = new LinkedList<RefOntoUML.Class>(ontoAbstraction.rigidSortals);
+		specifics.addAll(ontoAbstraction.allMixins);
 		
         // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
-        for (RefOntoUML.Classifier obj : ontoAbstraction.rigidSortals)
+        for (RefOntoUML.Classifier specific : specifics)
         {
         	// TODO: perhaps work through a list of generalizations
-			// generalization.specific in scope
-			if (dh.inScope(obj))
+			for (RefOntoUML.Generalization gen1 : specific.getGeneralization())
 			{
-				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
+				// TODO: static method getCorrespondingGeneralzation (gen1)
+				org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
+				
+				// generalization.specific and generalization.general in scope
+				if (dh.inScope(specific) && dh.inScope(gen1.getGeneral()))
 				{
-					// TODO: static method getCorrespondingGeneralzation (gen1)
-					org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
-					
-					// generalization.general in scope
-					if (dh.inScope(gen1.getGeneral()))
+					// In Scope
+					if (gen2 == null)
 					{
-						// In Scope
-						if (gen2 == null)
-						{
-							// Create the corresponding UML.Generalization
-							fa.createGeneralization(gen1);
-						}
+						// Create the corresponding UML.Generalization
+						fa.createGeneralization(gen1); // FIXME: return gen2 here?
+						
+						System.out.println("Created UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
 					}
 				}
-			}
-			
-			// If the generalization.specific is out of scope then:
-			// The corresponding UML.Class will be absent/removed in the previously called method: createdClasses()
-			// So, I won't need to remove the UML.Generalizations, because they are owned by the corresponding UML.Class
-        }
-        
-        // Generalizations (All Mixins) (as long as both the specific and the general are in scope)
-        for (RefOntoUML.Classifier obj : ontoAbstraction.allMixins)
-        {
-			// specific in scope
-			if (dh.inScope(obj))
-			{
-				for (RefOntoUML.Generalization gen1 : obj.getGeneralization())
+				else
 				{
-					org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
-					
-					// general in scope
-					if (dh.inScope(gen1.getGeneral()))
+					// Out of Scope
+					if (gen2 != null)
 					{
-						// In Scope
-						if (gen2 == null)
+						// Removes the reference in the map from the OntoUML.Generalization to the UML.Generalization
+						Onto2InfoMap.removeElement(gen1);
+						
+						if (dh.inScope(specific))
 						{
-							// Create the corresponding UML.Generalization
-							fa.createGeneralization(gen1);
+							// OntoUML.Specific is in scope
+							// Get the UML.Classifier corresponding to the specific
+							org.eclipse.uml2.uml.Classifier specific2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(specific);
+							// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
+							specific2.getGeneralizations().remove(gen2);
 						}
+												
+						// If the OntoUML.Specific is out of scope then:
+						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
+						// So, I won't need to remove the UML.Generalizations from the UML.Model or the specific UML.Classifier
+						
+						System.out.println("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
 					}
 				}
 			}
@@ -295,6 +299,8 @@ public class Transformation
         				// Creates the corresponding UML.GeneralizationSet
         				gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
         				umlAbstraction.addPackageableElement(gs2);
+        				
+        				System.out.println("Created UML.GeneralizationSet " + gs2.getName());
         			}
         		}
         		else
@@ -309,7 +315,7 @@ public class Transformation
         				// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
         				Onto2InfoMap.removeElement(gs1);
         				
-						System.out.println("Removed UML.GeneralizationSet " + gs2);
+						System.out.println("Removed UML.GeneralizationSet " + gs2.getName());
         			}
         		}
         	}
