@@ -51,6 +51,7 @@ public class DecisionHandler
 	
 	public void setScopeDecision (Object o, boolean value)
 	{
+		//System.out.println("setting scope to " + value + " -> " + o);
 		scopeMap.get(o).scope = value;
 	}
 	

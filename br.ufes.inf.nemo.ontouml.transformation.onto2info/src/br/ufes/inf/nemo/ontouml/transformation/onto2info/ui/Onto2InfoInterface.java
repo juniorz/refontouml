@@ -189,16 +189,38 @@ public class Onto2InfoInterface
 		{
 			public void checkStateChanged(CheckStateChangedEvent event)
 			{
+				ITreeContentProvider cp = (ITreeContentProvider) treeViewer.getContentProvider();
+				
 				// if the item is checked, checks all children
 				// if the item is unchecked, unchecks all children
 				Object target = event.getElement();
 				boolean value = event.getChecked();
 				treeViewer.setSubtreeChecked(target, value);
-	
+									
 				// Set Scope
 				// The target element and all its (direct and indirect) children must change scope
-				ITreeContentProvider cp = (ITreeContentProvider) treeViewer.getContentProvider();
 				changeScope(target, value, cp);
+				
+				// If the target was checked
+				if (value == true)
+				{
+					// Checks all parents and also set their scope to true
+					checkParents(target, cp);
+				}
+			}
+			
+			public void checkParents(Object element, ITreeContentProvider cp)
+			{
+				// Set the scope of "element" to true
+				dh.setScopeDecision(element, true);
+				
+				// Recursive call using "parent", if there is one
+				Object parent = cp.getParent(element);
+				if (parent != null)
+				{
+					treeViewer.setChecked(parent, true);
+					checkParents(parent, cp);
+				}
 			}
 			
 			public void changeScope (Object element, boolean value, ITreeContentProvider cp)

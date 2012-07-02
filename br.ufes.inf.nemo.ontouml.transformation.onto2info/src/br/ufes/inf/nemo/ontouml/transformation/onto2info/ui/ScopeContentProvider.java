@@ -71,7 +71,9 @@ public class ScopeContentProvider implements ITreeContentProvider
 
 		// All Mixins, Relator, SubKind, and Roles without RoleMixin
 		// The first parent
-		return c.parents().get(0);
+		if (c.parents().size() > 0)
+			return c.parents().get(0);
+		return null;
 	}
 
 	@Override

@@ -44,7 +44,13 @@ public class Onto2InfoMap
 	{
 		return (org.eclipse.uml2.uml.Generalization) getElement(gen1);
 	}
-		
+	
+	// This is used for Roles of a RoleMixin
+	public static org.eclipse.uml2.uml.Generalization getGeneralization (RefOntoUML.Role role)
+	{
+		return (org.eclipse.uml2.uml.Generalization) getElement(role);
+	}
+
 	public static void removeElement (RefOntoUML.Element e1)
 	{
 		mymap.remove(e1);
