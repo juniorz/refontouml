@@ -283,18 +283,34 @@ public class UMLModelAbstraction
 		c2.getOwnedAttributes().add(p);
 	}
 	
+	// Return a UML.Generalization between two UML.Classifiers, if it exists
+	public org.eclipse.uml2.uml.Generalization getGeneralization (org.eclipse.uml2.uml.Classifier specific, org.eclipse.uml2.uml.Classifier general)
+	{
+		for (org.eclipse.uml2.uml.Generalization gen : specific.getGeneralizations())
+		{
+			if (gen.getGeneral() == general)
+			{
+				return gen;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void removeGeneralization (org.eclipse.uml2.uml.Classifier specific2, org.eclipse.uml2.uml.Generalization gen2)
+	{
+		specific2.getGeneralizations().remove(gen2);
+	}
+	
 	// Created from scratch, no mapping
-	public org.eclipse.uml2.uml.Generalization createArtificialGeneralization (RefOntoUML.RigidSortalClass rigidSortal, RefOntoUML.RoleMixin roleMixin)
+	public org.eclipse.uml2.uml.Generalization createGeneralization (org.eclipse.uml2.uml.Classifier specific, org.eclipse.uml2.uml.Classifier general)
 	{
 		org.eclipse.uml2.uml.Generalization gen = myfactory.createGeneralization();
 		
 		// specific
-		org.eclipse.uml2.uml.Classifier specific = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(rigidSortal);
 		gen.setSpecific(specific);
-		specific.getGeneralizations().add(gen);
-		
+		specific.getGeneralizations().add(gen);		
 		// general
-		org.eclipse.uml2.uml.Classifier general = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(roleMixin);
 		gen.setGeneral(general);
 
 		return gen;

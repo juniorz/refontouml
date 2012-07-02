@@ -73,7 +73,7 @@ public class Transformation
 			if (!(c instanceof RefOntoUML.AntiRigidSortalClass))
 			{
 				// Corresponding UML.Class
-				org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c);
+				org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c); // FIXME Onto2InfoMap.getClass
 				
 				// Scope
 				if (dh.inScope(c))
@@ -112,14 +112,7 @@ public class Transformation
 		}	
 	}
 	
-	public void removeReferencesTo (RefOntoUML.Class c1)
-	{
-		for (RefOntoUML.Generalization g1 : c1.getGeneralization())
-		{
-			// TODO 
-		}
-	}
-	
+	// TODO: remove UML.Associations if something went out of scope
 	public void createAssociations ()
 	{
 		// Roles + RoleMixins
@@ -176,7 +169,7 @@ public class Transformation
         	// The corresponding UML.Association
         	org.eclipse.uml2.uml.Association a2 = null; 
         	if (mediation != null)	
-        		a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation);
+        		a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation); // FIXME Onto2InfoMap.getAssociation()
         	
         	if (scope)
         	{
@@ -232,6 +225,7 @@ public class Transformation
         // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier specific : specifics)
         {
+        	// For each Generalization of an OntoUML.Class (excluding Roles and Phases)
 			for (RefOntoUML.Generalization gen1 : specific.getGeneralization())
 			{
 				org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(gen1);
@@ -260,19 +254,83 @@ public class Transformation
 						{
 							// OntoUML.Specific is in scope
 							// Get the UML.Classifier corresponding to the specific
-							org.eclipse.uml2.uml.Classifier specific2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(specific);
+							org.eclipse.uml2.uml.Classifier specific2 = Onto2InfoMap.getClassifier(specific);
 							// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
-							specific2.getGeneralizations().remove(gen2);
+							umlAbstraction.removeGeneralization(specific2, gen2); 
 						}
 												
 						// If the OntoUML.Specific is out of scope then:
 						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
-						// So, I won't need to remove the UML.Generalizations from the UML.Model or the specific UML.Classifier
+						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
 						
 						ui.writeLog("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
 					}
 				}
 			}
+        }
+	}
+	
+	public void createArtificialGeneralizationsforRoleMixin ()
+	{
+        // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
+		
+		// For each RoleMixin (e.g., Customer)
+        for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
+        {
+			List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
+    		
+    		// For each RigidSortal (e.g., Person, Organization)
+    		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
+    		{
+				org.eclipse.uml2.uml.Classifier specific2 = Onto2InfoMap.getClassifier(rigidSortal);
+				org.eclipse.uml2.uml.Classifier general2 = Onto2InfoMap.getClassifier(roleMixin); // FIXME: This may be null. Problem here, if the roleMixin went out of scope and the UML.Class was deleted
+    			org.eclipse.uml2.uml.Generalization gen2 = umlAbstraction.getGeneralization(specific2, general2);
+				
+    			// Generalization.general (RoleMixin) and Generalization.specific (RigidSortal) in scope
+    			if (dh.inScope(roleMixin) && dh.inScope(rigidSortal))
+    			{
+    				// In Scope
+    				if (gen2 == null)
+    				{
+    					// UML.Generalization (RigidSortal->RoleMixin) does not exist
+        				// Create artificial Generalization (RigidSortal -> RoleMixin)
+        				gen2 = umlAbstraction.createGeneralization (specific2, general2);
+        				genlist.add(gen2);    
+        				
+        				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());        				
+    				}
+    			}
+    			else
+    			{
+    				// Out of Scope
+    				if (gen2 != null)
+    				{
+    					// UML.Generalization exists    					
+						// NOTE: This UML.Generalization is artificial (i.e., it has no correspondence to a OntoUML.Generalization), so no Onto2InfoMap involved
+						
+						if (dh.inScope(rigidSortal))
+						{
+							// OntoUML.Specific (UML.Generalization.specific) is in scope
+							// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
+							umlAbstraction.removeGeneralization(specific2, gen2); 
+						}
+												
+						// If the OntoUML.Specific is out of scope then:
+						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
+						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
+						
+						ui.writeLog("Removed UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
+    				}
+    			}
+    		}
+    		
+    		// The GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
+    		if (genlist.size() > 1)
+    		{
+    			// Linking the GeneralizationSet and the Generalizations
+    			org.eclipse.uml2.uml.GeneralizationSet gset = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
+    			umlAbstraction.addPackageableElement(gset);
+    		}
         }
 	}
 	
@@ -291,7 +349,7 @@ public class Transformation
         				childInScope++;
         		}
         		
-        		org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1);
+        		org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1); // FIXME getGeneralizationSet()
         		
         		if (childInScope > 1)
         		{
@@ -323,40 +381,7 @@ public class Transformation
         	}
         }
 	}
-	
-	// TODO: check if the UML.Generalizations should be removed because they went out of scope
-	public void createArtificialGeneralizationsforRoleMixin ()
-	{
-        // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
-        for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
-        {
-			List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
-    		org.eclipse.uml2.uml.Generalization gen2;
-    		
-    		// For each specific (RigidSortal)
-    		for (RefOntoUML.RigidSortalClass rigidSortal : roleMixin.rigidSortals())
-    		{
-    			// Generalization.general (RoleMixin) and Generalization.specific (RigidSortal) in scope
-    			if (dh.inScope(roleMixin) && dh.inScope(rigidSortal))
-    			{
-    				// FIXME: Check if the UML.Generalization already exists... Maybe do it inside createArtificialGeneralization()
-    				
-    				// Create artificial Generalization (RigidSortal -> RoleMixin)
-    				gen2 = umlAbstraction.createArtificialGeneralization (rigidSortal, roleMixin);
-    				genlist.add(gen2);
-    			}
-    		}
-    		
-    		// The GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
-    		if (genlist.size() > 1)
-    		{
-    			// Linking the GeneralizationSet and the Generalizations
-    			org.eclipse.uml2.uml.GeneralizationSet gset = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
-    			umlAbstraction.addPackageableElement(gset);
-    		}
-        }
-	}
-		
+			
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
 		if (umlAbstraction.umlmodel == null)
