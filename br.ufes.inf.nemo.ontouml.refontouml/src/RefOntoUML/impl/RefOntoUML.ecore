@@ -1745,9 +1745,17 @@
         <details key="body" value="if mediation()->notEmpty() then mediation().relator() else null endif"/>
       </eAnnotations>
     </eOperations>
+    <eOperations name="roles" ordered="false" upperBound="-1" eType="#//Role">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="children()->select(oclIsTypeOf(Role)).oclAsType(Role)->asSet()"/>
+      </eAnnotations>
+      <eAnnotations source="Comments">
+        <details key="roles" value="Returns all the children Roles of the RoleMixin."/>
+      </eAnnotations>
+    </eOperations>
     <eOperations name="rigidSortals" ordered="false" upperBound="-1" eType="#//RigidSortalClass">
       <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-        <details key="body" value="children()->select(oclIsTypeOf(Role)).oclAsType(Role).rigidParent()->asSet()"/>
+        <details key="body" value="roles().rigidParent()->asSet()"/>
       </eAnnotations>
       <eAnnotations source="Comments">
         <details key="rigidSortals" value="Returns the more specific rigid parents underlying each Role of the RoleMixin."/>

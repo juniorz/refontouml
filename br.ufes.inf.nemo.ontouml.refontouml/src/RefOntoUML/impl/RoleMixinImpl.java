@@ -10,6 +10,7 @@ import RefOntoUML.Mediation;
 import RefOntoUML.RefOntoUMLPackage;
 import RefOntoUML.Relator;
 import RefOntoUML.RigidSortalClass;
+import RefOntoUML.Role;
 import RefOntoUML.RoleMixin;
 
 import java.util.Collection;
@@ -118,7 +119,7 @@ public class RoleMixinImpl extends AntiRigidMixinClassImpl implements RoleMixin
 	public EList<RigidSortalClass> rigidSortals()
 	{
 		if (rigidSortalsBodyOCL == null) {
-			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getRoleMixin().getEOperations().get(2);
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getRoleMixin().getEOperations().get(3);
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getRoleMixin(), eOperation);
 			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
@@ -136,6 +137,35 @@ public class RoleMixinImpl extends AntiRigidMixinClassImpl implements RoleMixin
 		@SuppressWarnings("unchecked")
 		Collection<RigidSortalClass> result = (Collection<RigidSortalClass>) query.evaluate(this);
 		return new BasicEList.UnmodifiableEList<RigidSortalClass>(result.size(), result.toArray());
+	
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Role> roles()
+	{
+		if (rolesBodyOCL == null) {
+			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getRoleMixin().getEOperations().get(2);
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getRoleMixin(), eOperation);
+			EAnnotation ocl = eOperation.getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String body = ocl.getDetails().get("body");
+			
+			try {
+				rolesBodyOCL = helper.createQuery(body);
+			} catch (ParserException e) {
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(rolesBodyOCL);
+	
+		@SuppressWarnings("unchecked")
+		Collection<Role> result = (Collection<Role>) query.evaluate(this);
+		return new BasicEList.UnmodifiableEList<Role>(result.size(), result.toArray());
 	
 	}
 
@@ -163,6 +193,14 @@ public class RoleMixinImpl extends AntiRigidMixinClassImpl implements RoleMixin
 	 * @generated
 	 */
 	private static OCLExpression<EClassifier> rigidSortalsBodyOCL;
+	/**
+	 * The parsed OCL expression for the body of the '{@link #roles <em>Roles</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #roles
+	 * @generated
+	 */
+	private static OCLExpression<EClassifier> rolesBodyOCL;
 	private static final String OCL_ANNOTATION_SOURCE = "http://www.eclipse.org/ocl/examples/OCL";
 	private static final OCL OCL_ENV = OCL.newInstance();
 

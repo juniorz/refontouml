@@ -45,9 +45,19 @@ public interface RoleMixin extends AntiRigidMixinClass
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false"
-	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='children()->select(oclIsTypeOf(Role)).oclAsType(Role).rigidParent()->asSet()'"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='roles().rigidParent()->asSet()'"
 	 *        annotation="Comments rigidSortals='Returns the more specific rigid parents underlying each Role of the RoleMixin.'"
 	 * @generated
 	 */
 	EList<RigidSortalClass> rigidSortals();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='children()->select(oclIsTypeOf(Role)).oclAsType(Role)->asSet()'"
+	 *        annotation="Comments roles='Returns all the children Roles of the RoleMixin.'"
+	 * @generated
+	 */
+	EList<Role> roles();
 } // RoleMixin
