@@ -253,8 +253,25 @@ public class Onto2InfoInterface
 		treeViewer.setContentProvider(new ScopeContentProvider());
 		treeViewer.setInput(new ScopeModel(ma));
 		treeViewer.expandAll();
-		treeViewer.setAllChecked(true);
+		
+		// Initialize the values of checkboxes according to previous ScopeDecisions
+		// Passing the top nodes of the Tree as parameter
+		InitializeScopeCheckboxes (treeViewer.getTree().getItems(), dh);
+				
 		return treeViewer;
+	}
+	
+	public void InitializeScopeCheckboxes (TreeItem[] items, DecisionHandler dh)
+	{
+		for (int i = 0; i < items.length; i++)
+		{
+			Object obj = items[i].getData();
+			boolean scopeValue = dh.inScope((RefOntoUML.Classifier)obj);
+			items[i].setChecked(scopeValue);
+			
+			TreeItem[] children = items[i].getItems();
+			InitializeScopeCheckboxes(children, dh);
+		}
 	}
 	
 	public TreeViewer treeViewerHistoryAndTime (final Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
