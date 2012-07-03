@@ -1,22 +1,30 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.emf.ecore.resource.Resource;
+
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 
 public class DecisionHandler
 {
 	private Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
 	public Map<RefOntoUML.Class, HistoryDecision> historyMap;
 	public Map<RefOntoUML.Class, TimeDecision> timeMap;
+	private Map<RefOntoUML.Class, UMLAttributeSlot> attributeMap;
 	
 	public DecisionHandler(RefOntoUMLModelAbstraction ma)
 	{
     	scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
     	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
     	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
+    	attributeMap = new HashMap<RefOntoUML.Class, UMLAttributeSlot>();
     	initializeDecisions(ma);
 	}
 	
@@ -28,20 +36,159 @@ public class DecisionHandler
 			scopeMap.put(c, new ScopeDecision());
 		}
 		
+		// TODO: make a list involving both SubstanceSortals and Relators
 		// History and Time Tracking Decisions (OntoUML.SubstanceSortal and OntoUML.Relator)
 		for (RefOntoUML.SubstanceSortal ss : ontoumlmodel.substanceSortals)
 		{
 			historyMap.put(ss, new HistoryDecision());
 			timeMap.put(ss, new TimeDecision());
+			attributeMap.put(ss, new UMLAttributeSlot());
 		}
 		for (RefOntoUML.Relator r : ontoumlmodel.relators)
 		{
 			historyMap.put(r, new HistoryDecision());
 			timeMap.put(r, new TimeDecision());
+			attributeMap.put(r, new UMLAttributeSlot());
 		}
 		
 		// TODO: Reference Decisions
 		// TODO: Measurement Decisions
+	}
+	
+	public Map<String, ScopeDecision> convertScopeMap (Resource ontoumlResource, Resource umlResource)
+	{
+		Map<String, ScopeDecision> idMap = new HashMap<String, ScopeDecision>();
+		
+		for (Entry<RefOntoUML.Classifier, ScopeDecision> entry : scopeMap.entrySet())
+		{
+			String ontoumlID = Onto2InfoMap.getUUID (ontoumlResource, entry.getKey());
+			idMap.put(ontoumlID, entry.getValue());
+		}
+		
+		return idMap;
+	}
+	
+	public Map<String, HistoryDecision> convertHistoryMap (Resource ontoumlResource, Resource umlResource)
+	{
+		Map<String, HistoryDecision> idMap = new HashMap<String, HistoryDecision>();
+		
+		for (Entry<RefOntoUML.Class, HistoryDecision> entry : historyMap.entrySet())
+		{
+			String ontoumlID = Onto2InfoMap.getUUID (ontoumlResource, entry.getKey());
+			idMap.put(ontoumlID, entry.getValue());
+		}
+		
+		return idMap;
+	}
+	
+	public Map<String, TimeDecision> convertTimeMap (Resource ontoumlResource, Resource umlResource)
+	{
+		Map<String, TimeDecision> idMap = new HashMap<String, TimeDecision>();
+		
+		for (Entry<RefOntoUML.Class, TimeDecision> entry : timeMap.entrySet())
+		{
+			String ontoumlID = Onto2InfoMap.getUUID (ontoumlResource, entry.getKey());
+			idMap.put(ontoumlID, entry.getValue());
+		}
+		
+		return idMap;
+	}
+	
+	public Map<String, UMLAttributeSlotString> convertAttributeMap (Resource ontoumlResource, Resource umlResource)
+	{
+		Map<String, UMLAttributeSlotString> idMap = new HashMap<String, UMLAttributeSlotString>();
+		
+		for (Entry<RefOntoUML.Class, UMLAttributeSlot> entry : attributeMap.entrySet())
+		{
+			String ontoumlID = Onto2InfoMap.getUUID (ontoumlResource, entry.getKey());
+			
+			UMLAttributeSlot slot = entry.getValue();
+			UMLAttributeSlotString stringSlot = new UMLAttributeSlotString();
+			
+			if (slot.startAttribute != null)
+				stringSlot.startAttribute = Onto2InfoMap.getUUID (umlResource, slot.startAttribute);
+			else
+				stringSlot.startAttribute = null;
+			
+			if (slot.endAttribute != null)
+				stringSlot.endAttribute = Onto2InfoMap.getUUID (umlResource, slot.endAttribute);
+			else
+				stringSlot.endAttribute = null;
+			
+			if (slot.durationAttribute != null)
+				stringSlot.durationAttribute = Onto2InfoMap.getUUID (umlResource, slot.durationAttribute);
+			else
+				stringSlot.durationAttribute = null;
+			
+			if (slot.htAttribute != null)
+				stringSlot.htAttribute = Onto2InfoMap.getUUID (umlResource, slot.htAttribute);
+			else
+				stringSlot.htAttribute = null;
+			
+			idMap.put(ontoumlID, stringSlot);
+		}
+		
+		return idMap;
+	}
+	
+	public void convertToRealScopeMap (Resource ontoumlResource, Resource umlResource, Map<String, ScopeDecision> idMap)
+	{
+		scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
+		
+		for (Entry<String, ScopeDecision> entry : idMap.entrySet())
+		{
+			RefOntoUML.Classifier ontoumlObj = (RefOntoUML.Classifier) Onto2InfoMap.getEObject (ontoumlResource, entry.getKey());
+			scopeMap.put(ontoumlObj, entry.getValue());
+		}
+	}
+	
+	public void convertToRealHistoryMap (Resource ontoumlResource, Resource umlResource, Map<String, HistoryDecision> idMap)
+	{
+		historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
+		
+		for (Entry<String, HistoryDecision> entry : idMap.entrySet())
+		{
+			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) Onto2InfoMap.getEObject (ontoumlResource, entry.getKey());
+			historyMap.put(ontoumlObj, entry.getValue());
+		}
+	}
+	
+	public void convertToRealTimeMap (Resource ontoumlResource, Resource umlResource, Map<String, TimeDecision> idMap)
+	{
+		timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
+		
+		for (Entry<String, TimeDecision> entry : idMap.entrySet())
+		{
+			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) Onto2InfoMap.getEObject (ontoumlResource, entry.getKey());
+			timeMap.put(ontoumlObj, entry.getValue());
+		}
+	}
+	
+	public void convertToRealAttributeMap (Resource ontoumlResource, Resource umlResource, Map<String, UMLAttributeSlotString> idMap)
+	{
+		attributeMap = new HashMap<RefOntoUML.Class, UMLAttributeSlot>();
+		
+		for (Entry<String, UMLAttributeSlotString> entry : idMap.entrySet())
+		{
+			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) Onto2InfoMap.getEObject (ontoumlResource, entry.getKey());
+			
+			UMLAttributeSlotString stringSlot = entry.getValue();
+			UMLAttributeSlot slot = new UMLAttributeSlot();
+			
+			if (stringSlot.startAttribute != null)
+				slot.startAttribute = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getEObject(umlResource, stringSlot.startAttribute);
+			
+			if (stringSlot.endAttribute != null)
+				slot.endAttribute = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getEObject(umlResource, stringSlot.endAttribute);
+			
+			if (stringSlot.durationAttribute != null)
+				slot.durationAttribute = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getEObject(umlResource, stringSlot.durationAttribute);
+			
+			if (stringSlot.htAttribute != null)
+				slot.htAttribute = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getEObject(umlResource, stringSlot.htAttribute);
+			
+			attributeMap.put(ontoumlObj, slot);
+		}
 	}
 	
 	public boolean inScope(RefOntoUML.Classifier c)
@@ -108,6 +255,11 @@ public class DecisionHandler
 	public boolean getHTPresentDecision (RefOntoUML.Class c)
 	{
 		return historyMap.get(c).present;
+	}
+	
+	public UMLAttributeSlot getAttributeSlot (RefOntoUML.Class c)
+	{
+		return attributeMap.get(c);
 	}
 		
 	public void printTimeDecisions ()

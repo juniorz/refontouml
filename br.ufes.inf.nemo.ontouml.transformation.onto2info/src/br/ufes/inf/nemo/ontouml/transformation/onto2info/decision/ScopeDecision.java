@@ -1,6 +1,8 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
-public class ScopeDecision
+import java.io.Serializable;
+
+public class ScopeDecision implements Serializable
 {
 	public boolean scope;
 	

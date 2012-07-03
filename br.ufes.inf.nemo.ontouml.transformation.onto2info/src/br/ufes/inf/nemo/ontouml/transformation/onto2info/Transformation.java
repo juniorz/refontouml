@@ -40,6 +40,7 @@ public class Transformation
         {
         	RefOntoUML.Class c1 = entry.getKey();
         	HistoryDecision decision = entry.getValue();
+        	UMLAttributeSlot slot = dh.getAttributeSlot(c1);
         	
         	if (dh.inScope(c1))
         	{
@@ -47,24 +48,24 @@ public class Transformation
 	        	if (decision.requiresAttribute())
 	        	{
 	        		// HistoryTracking = true
-	        		if (decision.htAttribute == null)
+	        		if (slot.htAttribute == null)
 	        		{
 	        			// UML.Property (Attribute) does not exist
-	        			decision.htAttribute = umlAbstraction.addHistoryTrackingAttribute(c1);
+	        			slot.htAttribute = umlAbstraction.addHistoryTrackingAttribute(c1);
 	        			
-	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.htAttribute.getName());
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.htAttribute.getName());
 	        		}
 	        	}
 	        	else
 	        	{
 	        		// HistoryTracking = false
-	        		if (decision.htAttribute != null)
+	        		if (slot.htAttribute != null)
 	        		{
 	        			// UML.Property (Attribute) exists
 	        			// Remove it from the UML.Class
-	        			umlAbstraction.removeClassAttribute(c1, decision.htAttribute);
+	        			umlAbstraction.removeClassAttribute(c1, slot.htAttribute);
 	        			// Remove it from the HistoryDecision
-	        			decision.htAttribute = null;
+	        			slot.htAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
 	        		}
@@ -85,6 +86,7 @@ public class Transformation
         {
         	RefOntoUML.Class c1 = entry.getKey();
         	TimeDecision decision = entry.getValue();
+        	UMLAttributeSlot slot = dh.getAttributeSlot(c1);
         	
         	if (dh.inScope(c1))
         	{
@@ -94,24 +96,24 @@ public class Transformation
 	        	if (decision.start)
 	        	{
 	        		// StartTime = true
-	        		if (decision.startAttribute == null)
+	        		if (slot.startAttribute == null)
 	        		{
 	        			// UML.Property (Attribute) does not exist
-	        			decision.startAttribute = umlAbstraction.addStartTime(c1);
+	        			slot.startAttribute = umlAbstraction.addStartTime(c1);
 	        			
-	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.startAttribute.getName());
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.startAttribute.getName());
 	        		}
 	        	}
 	        	else
 	        	{
 	        		// StartTime = false
-	        		if (decision.startAttribute != null)
+	        		if (slot.startAttribute != null)
 	        		{
 	        			// UML.Property (Attribute) exists
 	        			// Remove it from the UML.Class
-	        			umlAbstraction.removeClassAttribute(c1, decision.startAttribute);
+	        			umlAbstraction.removeClassAttribute(c1, slot.startAttribute);
 	        			// Remove it from the TimeDecision
-	        			decision.startAttribute = null;
+	        			slot.startAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Start Time Tracking)");
 	        		}
@@ -121,24 +123,24 @@ public class Transformation
 	        	if (decision.end)
 	        	{
 	        		// EndTime = true
-	        		if (decision.endAttribute == null)
+	        		if (slot.endAttribute == null)
 	        		{
 	        			// UML.Property (Attribute) does not exist
-	        			decision.endAttribute = umlAbstraction.addEndTime(c1);
+	        			slot.endAttribute = umlAbstraction.addEndTime(c1);
 	        			
-	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.endAttribute.getName());
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.endAttribute.getName());
 	        		}
 	        	}
 	        	else
 	        	{
 	        		// EndTime = false
-	        		if (decision.endAttribute != null)
+	        		if (slot.endAttribute != null)
 	        		{
 	        			// UML.Property (Attribute) exists
 	        			// Remove it from the UML.Class
-	        			umlAbstraction.removeClassAttribute(c1, decision.endAttribute);
+	        			umlAbstraction.removeClassAttribute(c1, slot.endAttribute);
 	        			// Remove it from the TimeDecision
-	        			decision.endAttribute = null;
+	        			slot.endAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (End Time Tracking)");
 	        		}
@@ -148,24 +150,24 @@ public class Transformation
 	        	if (decision.duration)
 	        	{
 	        		// Duration = true
-	        		if (decision.durationAttribute == null)
+	        		if (slot.durationAttribute == null)
 	        		{
 	        			// UML.Property (Attribute) does not exist
-	        			decision.durationAttribute = umlAbstraction.addDuration(c1);
+	        			slot.durationAttribute = umlAbstraction.addDuration(c1);
 	        			
-	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + decision.durationAttribute.getName());
+	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.durationAttribute.getName());
 	        		}
 	        	}
 	        	else
 	        	{
 	        		// Duration = false
-	        		if (decision.durationAttribute != null)
+	        		if (slot.durationAttribute != null)
 	        		{
 	        			// UML.Property (Attribute) exists
 	        			// Remove it from the UML.Class
-	        			umlAbstraction.removeClassAttribute(c1, decision.durationAttribute);
+	        			umlAbstraction.removeClassAttribute(c1, slot.durationAttribute);
 	        			// Remove it from the TimeDecision
-	        			decision.durationAttribute = null;
+	        			slot.durationAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Duration Time Tracking)");
 	        		}

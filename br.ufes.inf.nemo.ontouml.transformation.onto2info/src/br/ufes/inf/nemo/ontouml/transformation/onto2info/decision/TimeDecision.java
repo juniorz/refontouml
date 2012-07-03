@@ -1,13 +1,12 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
-public class TimeDecision
+import java.io.Serializable;
+
+public class TimeDecision implements Serializable
 {
 	public boolean start;
 	public boolean end;
 	public boolean duration;
-	public org.eclipse.uml2.uml.Property startAttribute;
-	public org.eclipse.uml2.uml.Property endAttribute;
-	public org.eclipse.uml2.uml.Property durationAttribute;
 	
 	public TimeDecision()
 	{

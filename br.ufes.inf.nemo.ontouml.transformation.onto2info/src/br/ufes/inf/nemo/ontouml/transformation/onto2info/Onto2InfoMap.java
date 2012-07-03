@@ -12,6 +12,12 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.HistoryDecision;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ScopeDecision;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.TimeDecision;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlotString;
+
 public class Onto2InfoMap
 {
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)
@@ -57,10 +63,14 @@ public class Onto2InfoMap
 	}
 	
 	// Saves the OntoUML[ID]<->UML[ID] Map in a file
-	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName)
+	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh)
 	{
 		// Converts the OntoUML<->UML Map into an ID<->ID Map
-		Map<String, String> idMap = convertToIDMap (ontoumlResource, umlResource, mymap);
+		Map<String, String> idMap = convertToIDMap (ontoumlResource, umlResource);
+		Map<String, ScopeDecision> scopeMap = dh.convertScopeMap (ontoumlResource, umlResource);
+		Map<String, HistoryDecision> historyMap = dh.convertHistoryMap (ontoumlResource, umlResource);
+		Map<String, TimeDecision> timeMap = dh.convertTimeMap (ontoumlResource, umlResource);
+		Map<String, UMLAttributeSlotString> attributeMap = dh.convertAttributeMap (ontoumlResource, umlResource);
 		
 		// Saves the ID<->ID Map into a file
 		FileOutputStream fos = null;
@@ -70,6 +80,10 @@ public class Onto2InfoMap
 			fos = new FileOutputStream(fileName);
 			out = new ObjectOutputStream(fos);
 			out.writeObject(idMap);
+			out.writeObject(scopeMap);
+			out.writeObject(historyMap);
+			out.writeObject(timeMap);
+			out.writeObject(attributeMap);
 			out.close();
 		}
 		catch (IOException e)
@@ -78,11 +92,11 @@ public class Onto2InfoMap
 		}
 	}
 	
-	public static Map<String, String> convertToIDMap (Resource ontoumlResource, Resource umlResource, Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> rMap)
+	public static Map<String, String> convertToIDMap (Resource ontoumlResource, Resource umlResource)
 	{
 		Map<String, String> idMap = new HashMap<String, String>();
 		
-		for (Entry<RefOntoUML.Element, org.eclipse.uml2.uml.Element> entry : rMap.entrySet())
+		for (Entry<RefOntoUML.Element, org.eclipse.uml2.uml.Element> entry : mymap.entrySet())
 		{
 			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
 			String umlID = getUUID (umlResource, entry.getValue());
@@ -94,9 +108,14 @@ public class Onto2InfoMap
 	
 	// Loads the OntoUML[ID]<->UML[ID] Map from a file
 	@SuppressWarnings("unchecked")
-	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName)
+	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh)
 	{
-		Map<String, String> idMap = null;		
+		Map<String, String> idMap = null;
+		Map<String, ScopeDecision> scopeMap = null;
+		Map<String, HistoryDecision> historyMap = null;
+		Map<String, TimeDecision> timeMap = null;
+		Map<String, UMLAttributeSlotString> attributeMap = null;
+				
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		
@@ -105,7 +124,13 @@ public class Onto2InfoMap
 		{
 			fis = new FileInputStream(fileName);
 			in = new ObjectInputStream(fis);
+			
 			idMap = (Map<String, String>) in.readObject();
+			scopeMap = (Map<String, ScopeDecision>) in.readObject();
+			historyMap = (Map<String, HistoryDecision>) in.readObject();
+			timeMap = (Map<String, TimeDecision>) in.readObject();
+			attributeMap = (Map<String, UMLAttributeSlotString>) in.readObject();
+			
 			in.close();
 		}
 		catch (IOException e)
@@ -119,6 +144,10 @@ public class Onto2InfoMap
 		
 		// Convert it to RefOntoUML.Element <-> UML.Element Map
 		convertToRealMap (ontoumlResource, umlResource, idMap);
+		dh.convertToRealScopeMap(ontoumlResource, umlResource, scopeMap);
+		dh.convertToRealHistoryMap(ontoumlResource, umlResource, historyMap);
+		dh.convertToRealTimeMap(ontoumlResource, umlResource, timeMap);
+		dh.convertToRealAttributeMap(ontoumlResource, umlResource, attributeMap);
 	}
 	
 	public static void convertToRealMap (Resource ontoumlResource, Resource umlResource, Map<String, String> idMap)

@@ -10,6 +10,7 @@ public class OntoUML2InfoUML
 	static RefOntoUMLModelAbstraction ontoAbstraction;
 	static UMLModelAbstraction umlAbstraction;
 	static String filename;
+	static DecisionHandler dh;
 	
 	public static void main(String[] args)
 	{
@@ -37,10 +38,12 @@ public class OntoUML2InfoUML
 			return;	
 		}
 		
+		dh = new DecisionHandler(ontoAbstraction);	
+		
 		if (umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml")))
 		{
 			// TODO: Put the loaded Map in the Ref2UMLReplicator 
-			Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"));
+			Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh);
 			//Onto2InfoMap.printMap(Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map")));
 			// TODO: load decisions
 		}
@@ -50,7 +53,6 @@ public class OntoUML2InfoUML
 		}
 		
 		Onto2InfoInterface ui = new Onto2InfoInterface();
-		DecisionHandler dh = new DecisionHandler(ontoAbstraction);		
 		Transformation t = new Transformation(ontoAbstraction, umlAbstraction, ui);
 		
 		ui.load(ontoAbstraction, dh, t);
@@ -61,6 +63,6 @@ public class OntoUML2InfoUML
 	
 	public static void saveMap ()
 	{
-		Onto2InfoMap.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"));
+		Onto2InfoMap.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh);
 	}
 }

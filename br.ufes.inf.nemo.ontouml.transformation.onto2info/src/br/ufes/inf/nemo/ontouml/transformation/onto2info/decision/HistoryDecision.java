@@ -1,11 +1,11 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
-public class HistoryDecision
+import java.io.Serializable;
+
+public class HistoryDecision implements Serializable
 {
 	public boolean past;
 	public boolean present;
-	// current : Boolean [1,1] attribute
-	public org.eclipse.uml2.uml.Property htAttribute;
 	
 	public HistoryDecision()
 	{
