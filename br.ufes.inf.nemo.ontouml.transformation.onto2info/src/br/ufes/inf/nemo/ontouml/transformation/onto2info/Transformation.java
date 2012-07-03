@@ -73,7 +73,14 @@ public class Transformation
         	}
         	else
         	{
-        		// TODO: OntoUML.Class out of scope
+        		// OntoUML.Class out of scope
+        		// UML.Class was already removed, but...
+        		if (slot.htAttribute != null)
+        		{
+        			// Clear the UMLAttributeSlot
+        			slot.htAttribute = null;
+        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
+        		}
         	}
         }
 	}
@@ -175,9 +182,30 @@ public class Transformation
         	}
         	else
         	{
-        		// TODO: OntoUML.Class out of scope
+        		// OntoUML.Class out of scope
+        		// UML.Class was already removed, but...
+        		if (slot.startAttribute != null)
+        		{
+        			// Clear the UMLAttributeSlot
+        			slot.startAttribute = null;
+        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Start Time Tracking)");
+        		}
+        		
+        		if (slot.endAttribute != null)
+        		{
+        			// Clear the UMLAttributeSlot
+        			slot.endAttribute = null;
+        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (End Time Tracking)");
+        		}
+        		
+        		if (slot.durationAttribute != null)
+        		{
+        			// Clear the UMLAttributeSlot
+        			slot.durationAttribute = null;
+        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Duration Time Tracking)");
+        		}
         	}
-        }		
+        }
 	}
 	
 	public void createClasses ()
