@@ -378,7 +378,7 @@ public class Transformation
 						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
 						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
 						
-						ui.writeLog("Removed UML.Generalization: " + gen2);
+						ui.writeLog("Removed UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
 						//ui.writeLog("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName()); // FIXME: when General is gone
 					}
 				}
@@ -393,8 +393,8 @@ public class Transformation
 		// For each RoleMixin (e.g., Customer)
         for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
         {
+        	// UML.Generalization List (important to link them later with a UML.Generalization, in case there must be one)
 			List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
-			int generalizationsInScope = 0;
 			org.eclipse.uml2.uml.GeneralizationSet gset2 = null;
     		
     		// For each Role (e.g., PrivateCustomer, CorporateCustomer)
@@ -409,8 +409,6 @@ public class Transformation
     			if (dh.inScope(roleMixin) && dh.inScope(role) && dh.inScope(rigidParent))
     			{
     				// In Scope
-    				generalizationsInScope++;
-    				
     				if (gen2 == null)
     				{
     					// UML.Generalization (RigidSortal->RoleMixin) does not exist
@@ -418,13 +416,14 @@ public class Transformation
     					org.eclipse.uml2.uml.Classifier general2 = Onto2InfoMap.getClassifier(roleMixin);    					
     					
         				gen2 = umlAbstraction.createGeneralization (specific2, general2);
-        				genlist.add(gen2);
         				
         				// Relates the OntoUML.Role and the UML.Generalization
         				Onto2InfoMap.relateElements(role, gen2);
         				
         				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());        				
     				}
+    				
+    				genlist.add(gen2);
     			}
     			else
     			{
@@ -446,8 +445,8 @@ public class Transformation
 						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
 						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
 						
-						ui.writeLog("Removed UML.Generalization (artificial): " + gen2);
-						//ui.writeLog("Removed UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName()); // FIXME: when General is gone
+						// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
+						ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
     				}
     			}
     			
@@ -462,7 +461,7 @@ public class Transformation
     		}
     		
     		// The GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
-    		if (generalizationsInScope > 1)
+    		if (genlist.size() > 1)
     		{
     			// UML.GeneralizationSet "in scope"
     			if (gset2 == null)
@@ -472,7 +471,7 @@ public class Transformation
 	    			gset2 = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
 	    			umlAbstraction.addPackageableElement(gset2);
 	    			
-	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + gset2.getName());
+	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
     			}
     		}
     		else
@@ -484,7 +483,13 @@ public class Transformation
     				// Remove it from the UML.Model
     				umlAbstraction.removePackageableElement(gset2);
     				
-    				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
+    				// For each UML.Generalization in scope, remove its reference to the UML.GeneralizationSet
+    				for (org.eclipse.uml2.uml.Generalization sgen : genlist)
+    				{
+    					sgen.getGeneralizationSets().remove(gset2);
+    				}
+    				
+    				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
     			}
     		}
         }
@@ -492,50 +497,49 @@ public class Transformation
 	
 	public void createReplicateGeneralizationSets ()
 	{
-        // Generalization Sets (as long as both the parent and (at least some) children are in scope)      
-        for (RefOntoUML.GeneralizationSet gs1 : ontoAbstraction.generalizationSets)
-        {
-        	if (dh.inScope(gs1.parent()))
-        	{
-        		// Couting OntoUML.GeneralizationSet.children() in scope
-        		int childInScope = 0;
-        		for (RefOntoUML.Classifier child : gs1.children())
-        		{
-        			if (dh.inScope(child))
-        				childInScope++;
-        		}
-        		
-        		org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1); // FIXME getGeneralizationSet()
-        		
-        		if (childInScope > 1)
-        		{
-        			// In Scope
-        			if (gs2 == null)
-        			{
-        				// Creates the corresponding UML.GeneralizationSet
-        				gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);        
-        				umlAbstraction.addPackageableElement(gs2);
-        				
-        				ui.writeLog("Created UML.GeneralizationSet " + gs2.getName());
-        			}
-        		}
-        		else
-        		{
-        			// Out of Scope
-        			if (gs2 != null)
-        			{
-						// Removes the links between the UML.GeneralizationSet and the related UML.Generalizations
-        				gs2.getGeneralizations().clear();
-        				// Removes the corresponding UML.GeneralizationSet from the UML.Model
-        				umlAbstraction.removePackageableElement(gs2);
-        				// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
-        				Onto2InfoMap.removeElement(gs1);
-        				
-						ui.writeLog("Removed UML.GeneralizationSet " + gs2.getName());
-        			}
-        		}
-        	}
-        }
+		// Generalization Sets (as long as both the parent and (at least some) children are in scope)      
+		for (RefOntoUML.GeneralizationSet gs1 : ontoAbstraction.generalizationSets)
+		{
+			// Couting OntoUML.GeneralizationSet.children() in scope
+			int childInScope = 0;
+			for (RefOntoUML.Classifier child : gs1.children())
+			{
+				if (dh.inScope(child))
+					childInScope++;
+			}
+			
+			// The corresponding UML.GeneralizationSet
+			org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1); // FIXME getGeneralizationSet()
+			
+			// GeneralizationSet.parent and at least one GeneralizationSet.child in scope
+			if (dh.inScope(gs1.parent()) && childInScope > 1)
+			{
+				// In Scope
+				if (gs2 == null)
+				{
+					// Creates the corresponding UML.GeneralizationSet
+					gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);
+					umlAbstraction.addPackageableElement(gs2);
+					
+					ui.writeLog("Created UML.GeneralizationSet " + gs2.getName());
+				}
+			}
+			else
+			{
+				// Out of Scope
+				if (gs2 != null)
+				{
+					// Removes the links between the UML.GeneralizationSet and the related UML.Generalizations
+					gs2.getGeneralizations().clear();
+					// Removes the corresponding UML.GeneralizationSet from the UML.Model
+					umlAbstraction.removePackageableElement(gs2);
+					// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
+					Onto2InfoMap.removeElement(gs1);
+					
+					ui.writeLog("Removed UML.GeneralizationSet " + gs2.getName());
+				}
+			}
+		}
 	}
 			
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
