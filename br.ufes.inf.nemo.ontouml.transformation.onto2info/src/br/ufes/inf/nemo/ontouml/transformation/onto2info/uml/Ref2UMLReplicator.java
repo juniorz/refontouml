@@ -19,7 +19,7 @@ public class Ref2UMLReplicator
 
 		// visibility
         RefOntoUML.VisibilityKind vk1 = ne1.getVisibility();
-        // FIXME
+        // I'm not sure if this part is 100% right (it's different from the rcfront2ref plugin)
         if (vk1.getValue() == RefOntoUML.VisibilityKind.PUBLIC_VALUE)
         {
         	ne2.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
@@ -67,7 +67,7 @@ public class Ref2UMLReplicator
         p2.setUpperValue(upperValue);
                 
         // Type (TypedElement)
-        org.eclipse.uml2.uml.Type t2 = (org.eclipse.uml2.uml.Type) Onto2InfoMap.getElement(p1.getType());
+        org.eclipse.uml2.uml.Type t2 = Onto2InfoMap.getType(p1.getType());
         p2.setType(t2);
         
         // isDerived
@@ -75,7 +75,7 @@ public class Ref2UMLReplicator
         
         // aggregation
         RefOntoUML.AggregationKind ak1 = p1.getAggregation();
-        // FIXME
+        // I'm not sure if this part is 100% right (it's different from the rcfront2ref plugin)
         if (ak1.getValue() == RefOntoUML.AggregationKind.NONE_VALUE)
         {
         	p2.setAggregation(org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL);                     
@@ -124,52 +124,6 @@ public class Ref2UMLReplicator
 		org.eclipse.uml2.uml.Class c2 = myfactory.createClass();
 		replicateClass (c1, c2);
 		return c2;
-	}
-		
-	// FIXME: I probably won't use this method
-	private void replicateAssociation (RefOntoUML.Association a1, org.eclipse.uml2.uml.Association a2)
-    {
-        replicateClassifier(a1, a2);
-        
-        // isDerived
-        a2.setIsDerived(a1.isIsDerived());        
-
-        // memberEnds 
-        org.eclipse.uml2.uml.Property p2;
-        for (RefOntoUML.Property p1 : a1.getMemberEnd())
-        {
-        	p2 = createProperty(p1);
-            
-            a2.getMemberEnds().add(p2);
-            // EOpposite
-            p2.setAssociation(a2);
-            
-            Onto2InfoMap.relateElements(p1, p2);
-        }
-
-		// ownedEnds
-		for (RefOntoUML.Property p1 : a1.getOwnedEnd())
-		{
-			p2 = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getElement(p1);
-			
-			a2.getOwnedEnds().add(p2);
-		}
-		
-		// navigableOwnedEnds
-		for (RefOntoUML.Property p1 : a1.getNavigableOwnedEnd())
-		{
-			p2 = (org.eclipse.uml2.uml.Property) Onto2InfoMap.getElement(p1);
-			
-			a2.getNavigableOwnedEnds().add(p2);
-		}
-    }
-	
-	// FIXME: I probably won't use this method
-	private org.eclipse.uml2.uml.Association createAssociation (RefOntoUML.Association a1)
-	{
-		org.eclipse.uml2.uml.Association a2 = myfactory.createAssociation();
-		replicateAssociation(a1, a2);
-		return a2;
 	}
 	
 	private org.eclipse.uml2.uml.Property createMemberEnd (org.eclipse.uml2.uml.Association a2, RefOntoUML.Property p1)
@@ -231,55 +185,28 @@ public class Ref2UMLReplicator
 		if (rigidParent != null)
 		{
 			// Property Type -> RigidParentType (since there is no RoleType)
-			p2.setType((org.eclipse.uml2.uml.Type) Onto2InfoMap.getElement(rigidParent));
+			p2.setType(Onto2InfoMap.getType(rigidParent));
 		}
 		// Property name -> Role name
 		p2.setName(roleName);
 		
 		return a2;
 	}
-
-	// FIXME: I won't be using DataTypes, but, as a note: John's version does not deal with PrimitiveTypes and Enumeration Literals
-    public org.eclipse.uml2.uml.DataType replicateDataType (RefOntoUML.DataType dt1)
-    {
-            org.eclipse.uml2.uml.DataType dt2 = null;
-            
-            if (dt1 instanceof RefOntoUML.DataType)
-            {
-            	dt2 = myfactory.createDataType();
-            }             
-            else if (dt1 instanceof RefOntoUML.Enumeration)
-            {                     
-                dt2 = myfactory.createEnumeration();
-            }
-            
-            replicateClassifier (dt1, dt2);
-           
-            /* Attributes */
-            org.eclipse.uml2.uml.Property p2; 
-            for (RefOntoUML.Property p1 : dt1.getAttribute())
-            {
-                    p2 = createProperty(p1);
-                    dt2.getOwnedAttributes().add(p2);
-            }
-                         
-            return dt2;
-    }
 	
 	private void replicateGeneralization (RefOntoUML.Generalization gen1, org.eclipse.uml2.uml.Generalization gen2)
     {            
         // source (Specific)
         RefOntoUML.Classifier e1 = (RefOntoUML.Classifier) gen1.getSpecific();
-        org.eclipse.uml2.uml.Classifier e2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(e1);        
+        org.eclipse.uml2.uml.Classifier e2 = Onto2InfoMap.getClassifier(e1);
         
         // Poderia ter setado apenas um dos dois (Generalization::Specific, Classifier::Generalization), ja que sao EOpposites
         gen2.setSpecific(e2);
-        // O Specific tem posse do generalization        
+        // O Specific tem posse do generalization
         e2.getGeneralizations().add(gen2);
 
         // target (General)
         e1 = (RefOntoUML.Classifier) gen1.getGeneral();
-        e2 = (org.eclipse.uml2.uml.Classifier) Onto2InfoMap.getElement(e1);        
+        e2 = Onto2InfoMap.getClassifier(e1);
 
         gen2.setGeneral(e2);
         
@@ -312,7 +239,7 @@ public class Ref2UMLReplicator
         // Adds all the generalizations
         for  (RefOntoUML.Generalization gen1 : gs1.getGeneralization())
         {
-        	org.eclipse.uml2.uml.Generalization gen2 = (org.eclipse.uml2.uml.Generalization) Onto2InfoMap.getElement(gen1);
+        	org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(gen1);
 
         	// Poderia ter setado apenas um dos dois (GeneralizationSet::Generalization, Generalization::GeneralizationSet), ja que sao EOpposites
             gs2.getGeneralizations().add(gen2);

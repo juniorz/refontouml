@@ -143,18 +143,15 @@ public class UMLModelAbstraction
 		umlmodel.getPackagedElements().add(pe);
 	}
 	
+	public boolean hasPackageableElement (org.eclipse.uml2.uml.PackageableElement pe)
+	{
+		return umlmodel.getPackagedElements().contains(pe);
+	}
+	
 	// Removes a UML.PackageableElement from the UML.Model
 	public void removePackageableElement (org.eclipse.uml2.uml.PackageableElement pe)
 	{
 		umlmodel.getPackagedElements().remove(pe);
-	}
-	
-	// TODO: not sure if I need this
-	// Removes a UML.Generalization (from the UML.Classifier inside the UML.Model)
-	public void removeGeneralization (org.eclipse.uml2.uml.Generalization gen)
-	{
-		org.eclipse.uml2.uml.Classifier owner = gen.getSpecific();
-		owner.getGeneralizations().remove(gen);
 	}
 	
 	// Removes all UML.Generalizations from a UML.Classifier
@@ -162,24 +159,7 @@ public class UMLModelAbstraction
 	{
 		c.getGeneralizations().clear();
 	}
-	
-	// Adds the PrimitiveTypes to the UML.Model
-	public void addPrimitiveTypes()
-	{
-        // Time DataType
-		if (!umlmodel.getPackagedElements().contains(getTimeType()))
-			addPackageableElement(getTimeType());
 		
-        // Duration DataType
-		if (!umlmodel.getPackagedElements().contains(getDurationType()))
-			addPackageableElement(getDurationType());
-		
-        // Boolean PrimitiveType
-		if (!umlmodel.getPackagedElements().contains(getBooleanType()))
-			addPackageableElement(getBooleanType());
-		// TODO: Warn the UserInterface about the additions
-	}
-	
 	// The DataType that will be referred to by all time attributes
 	private void createTimeType ()
 	{
@@ -344,7 +324,7 @@ public class UMLModelAbstraction
 		gset.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
 		// isDisjoint
 		gset.setIsDisjoint(true);
-		// isCovering FIXME: not always, only when all rigidSortals are in scope
+		// isCovering (not always, only when all rigidSortals are in scope)
 		gset.setIsCovering(genlist.size() == roleMixin.rigidSortals().size());
 		
 		// Linking the GeneralizationSet and the Generalizations

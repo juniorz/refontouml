@@ -25,10 +25,19 @@ public class Onto2InfoMap
 		return mymap.get(e1);
 	}
 	
-	// TODO: do more methods like this
 	public static org.eclipse.uml2.uml.Classifier getClassifier (RefOntoUML.Classifier c1)
 	{
 		return (org.eclipse.uml2.uml.Classifier) getElement(c1);
+	}
+	
+	public static org.eclipse.uml2.uml.Class getClass (RefOntoUML.Class c1)
+	{
+		return (org.eclipse.uml2.uml.Class) getElement(c1);
+	}
+	
+	public static org.eclipse.uml2.uml.Association getAssociation (RefOntoUML.Association a1)
+	{
+		return (org.eclipse.uml2.uml.Association) getElement(a1);
 	}
 		
 	public static org.eclipse.uml2.uml.Generalization getGeneralization (RefOntoUML.Generalization gen1)
@@ -40,6 +49,16 @@ public class Onto2InfoMap
 	public static org.eclipse.uml2.uml.Generalization getGeneralization (RefOntoUML.Role role)
 	{
 		return (org.eclipse.uml2.uml.Generalization) getElement(role);
+	}
+	
+	public static org.eclipse.uml2.uml.GeneralizationSet getGeneralizationSet (RefOntoUML.GeneralizationSet gset1)
+	{
+		return (org.eclipse.uml2.uml.GeneralizationSet) getElement(gset1);
+	}
+	
+	public static org.eclipse.uml2.uml.Type getType (RefOntoUML.Type type1)
+	{
+		return (org.eclipse.uml2.uml.Type) getElement(type1);
 	}
 
 	public static void removeElement (RefOntoUML.Element e1)

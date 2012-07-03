@@ -22,9 +22,7 @@ public class Transformation
 	DecisionHandler dh;
 	// Interface
 	Onto2InfoInterface ui;
-	 
-	// TODO: Shouldn't the Map<RefOntoUML.Element, org.eclipse.uml2.uml.Element> stay here?
-	
+
 	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction, Onto2InfoInterface ui)  
     { 
 		this.ontoAbstraction = ontoAbstraction;
@@ -216,7 +214,7 @@ public class Transformation
 			if (!(c instanceof RefOntoUML.AntiRigidSortalClass))
 			{
 				// Corresponding UML.Class
-				org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c); // FIXME Onto2InfoMap.getClass
+				org.eclipse.uml2.uml.Class c2 = Onto2InfoMap.getClass(c);
 				
 				// Scope
 				if (dh.inScope(c))
@@ -235,7 +233,6 @@ public class Transformation
 			        	
 			        	ui.writeLog("Created UML.Class " + c2.getName());
 					}
-					// TODO: else { // check the attributes of the already existing corresponding UML.Class }
 				}
 				else
 				{
@@ -246,7 +243,6 @@ public class Transformation
 						umlAbstraction.removePackageableElement(c2);
 						// Remove the mapping between the OntoUML.Class and the UML.Class
 						Onto2InfoMap.removeElement(c);
-						// FIXME: Remove the mapping between Properties and Generalizations(done) and Associations(?) of the deleted UML.Class...
 												
 						ui.writeLog("Removed UML.Class " + c2.getName());
 					}
@@ -255,7 +251,6 @@ public class Transformation
 		}	
 	}
 	
-	// TODO: remove UML.Associations if something went out of scope
 	public void createAssociations ()
 	{
 		// Roles + RoleMixins
@@ -312,7 +307,7 @@ public class Transformation
         	// The corresponding UML.Association
         	org.eclipse.uml2.uml.Association a2 = null; 
         	if (mediation != null)	
-        		a2 = (org.eclipse.uml2.uml.Association) Onto2InfoMap.getElement(mediation); // FIXME Onto2InfoMap.getAssociation()
+        		a2 = Onto2InfoMap.getAssociation(mediation);
         	
         	if (scope)
         	{
@@ -405,9 +400,9 @@ public class Transformation
 						// If the OntoUML.Specific is out of scope then:
 						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
 						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
-						
+
+						// gen2.general and gen2.specific may be already gone, so I can't print them
 						ui.writeLog("Removed UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
-						//ui.writeLog("Removed UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName()); // FIXME: when General is gone
 					}
 				}
 			}
@@ -537,7 +532,7 @@ public class Transformation
 			}
 			
 			// The corresponding UML.GeneralizationSet
-			org.eclipse.uml2.uml.GeneralizationSet gs2 = (org.eclipse.uml2.uml.GeneralizationSet) Onto2InfoMap.getElement(gs1); // FIXME getGeneralizationSet()
+			org.eclipse.uml2.uml.GeneralizationSet gs2 = Onto2InfoMap.getGeneralizationSet(gs1);
 			
 			// GeneralizationSet.parent and at least one GeneralizationSet.child in scope
 			if (dh.inScope(gs1.parent()) && childInScope > 1)
@@ -569,6 +564,30 @@ public class Transformation
 			}
 		}
 	}
+	
+	public void addPrimitiveTypes()
+	{
+        // Time DataType
+		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getTimeType()))
+		{
+			umlAbstraction.addPackageableElement(umlAbstraction.getTimeType());
+			ui.writeLog("Created UML.DataType " + umlAbstraction.getTimeType().getName());
+		}
+		
+        // Duration DataType
+		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getDurationType()))
+		{
+			umlAbstraction.addPackageableElement(umlAbstraction.getDurationType());
+			ui.writeLog("Created UML.DataType " + umlAbstraction.getDurationType().getName());
+		}
+		
+        // Boolean PrimitiveType
+		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getBooleanType()))
+		{
+			umlAbstraction.addPackageableElement(umlAbstraction.getBooleanType());
+			ui.writeLog("Created UML.PrimitiveType " + umlAbstraction.getBooleanType().getName());
+		}
+	}
 			
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
@@ -582,7 +601,7 @@ public class Transformation
         dealHistoryTracking();
         dealTimeTracking();
 
-        umlAbstraction.addPrimitiveTypes();
+        addPrimitiveTypes();
         umlAbstraction.save();
         OntoUML2InfoUML.saveMap();
         

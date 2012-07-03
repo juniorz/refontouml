@@ -1,6 +1,8 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -22,27 +24,23 @@ public class DecisionHandler
     	initializeDecisions(ma);
 	}
 	
-	private void initializeDecisions (RefOntoUMLModelAbstraction ontoumlmodel)
+	private void initializeDecisions (RefOntoUMLModelAbstraction ontoAbstraction)
 	{
 		// Scope Decisions (OntoUML.Class)
-		for (RefOntoUML.Class c : ontoumlmodel.classes)
+		for (RefOntoUML.Class c : ontoAbstraction.classes)
 		{
 			scopeMap.put(c, new ScopeDecision());
 		}
 		
-		// TODO: make a list involving both SubstanceSortals and Relators
 		// History and Time Tracking Decisions (OntoUML.SubstanceSortal and OntoUML.Relator)
-		for (RefOntoUML.SubstanceSortal ss : ontoumlmodel.substanceSortals)
+		List<RefOntoUML.Class> htclasses = new LinkedList<RefOntoUML.Class>(ontoAbstraction.substanceSortals);
+		htclasses.addAll(ontoAbstraction.relators);
+		
+		for (RefOntoUML.Class c : htclasses)
 		{
-			historyMap.put(ss, new HistoryDecision());
-			timeMap.put(ss, new TimeDecision());
-			attributeMap.put(ss, new UMLAttributeSlot());
-		}
-		for (RefOntoUML.Relator r : ontoumlmodel.relators)
-		{
-			historyMap.put(r, new HistoryDecision());
-			timeMap.put(r, new TimeDecision());
-			attributeMap.put(r, new UMLAttributeSlot());
+			historyMap.put(c, new HistoryDecision());
+			timeMap.put(c, new TimeDecision());
+			attributeMap.put(c, new UMLAttributeSlot());
 		}
 		
 		// TODO: Reference Decisions
