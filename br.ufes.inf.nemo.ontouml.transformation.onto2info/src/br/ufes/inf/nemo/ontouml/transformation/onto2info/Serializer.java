@@ -18,6 +18,7 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ScopeDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.TimeDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlot;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlotString;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 
 public class Serializer
 {
@@ -35,8 +36,8 @@ public class Serializer
 		// Could have done something like: model.eResource().getEObject(uuid)
 	}
 	
-	// Saves the OntoUML[ID]<->UML[ID] Map in a file
-	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh)
+	// Saves the Maps for OntoUML->UML, OntoUML->Decisions and OntoUML->UMLAttributes
+	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
 	{
 		// Converts the OntoUML<->UML Map into an ID<->ID Map
 		Map<String, String> idMap = convertOntoInfoMap (ontoumlResource, umlResource);
@@ -51,6 +52,10 @@ public class Serializer
 		// Converts the OntoUML<->UMLAttributeSlot Map into an ID<->UMLAttributeSlotString Map
 		Map<String, UMLAttributeSlotString> attributeMap = convertAttributeMap (ontoumlResource, umlResource, dh);
 		
+		String timePrimitiveStr = getUUID (umlResource, umlAbstraction.getTimeType());
+		String durationPrimitiveStr = getUUID (umlResource, umlAbstraction.getDurationType());
+		String booleanPrimitiveStr = getUUID (umlResource, umlAbstraction.getBooleanType());
+		
 		// Saves the fake Maps into a file
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
@@ -63,6 +68,9 @@ public class Serializer
 			out.writeObject(historyMap);
 			out.writeObject(timeMap);
 			out.writeObject(attributeMap);
+			out.writeObject(timePrimitiveStr);
+			out.writeObject(durationPrimitiveStr);
+			out.writeObject(booleanPrimitiveStr);
 			out.close();
 		}
 		catch (IOException e)
@@ -170,13 +178,16 @@ public class Serializer
 	
 	// Loads the OntoUML[ID]<->UML[ID] Map from a file
 	@SuppressWarnings("unchecked")
-	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh)
+	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
 	{
 		Map<String, String> idMap = null;
 		Map<String, ScopeDecision> scopeMap = null;
 		Map<String, HistoryDecision> historyMap = null;
 		Map<String, TimeDecision> timeMap = null;
 		Map<String, UMLAttributeSlotString> attributeMap = null;
+		String timePrimitiveStr = null;
+		String durationPrimitiveStr = null;
+		String booleanPrimitiveStr = null;
 				
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
@@ -192,6 +203,9 @@ public class Serializer
 			historyMap = (Map<String, HistoryDecision>) in.readObject();
 			timeMap = (Map<String, TimeDecision>) in.readObject();
 			attributeMap = (Map<String, UMLAttributeSlotString>) in.readObject();
+			timePrimitiveStr = (String) in.readObject();
+			durationPrimitiveStr = (String) in.readObject();
+			booleanPrimitiveStr = (String) in.readObject();
 			
 			in.close();
 		}
@@ -210,6 +224,10 @@ public class Serializer
 		loadHistoryMap(ontoumlResource, historyMap, dh);
 		loadTimeMap(ontoumlResource, timeMap, dh);
 		loadAttributeMap(ontoumlResource, umlResource, attributeMap, dh);
+		
+		umlAbstraction.timeType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, timePrimitiveStr);
+		umlAbstraction.durationType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, durationPrimitiveStr);
+		umlAbstraction.booleanType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, booleanPrimitiveStr);
 	}
 	
 	public static void loadOntoInfoMap (Resource ontoumlResource, Resource umlResource, Map<String, String> idMap)

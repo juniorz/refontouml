@@ -1,16 +1,10 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.ecore.resource.Resource;
-
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 
 public class DecisionHandler
 {

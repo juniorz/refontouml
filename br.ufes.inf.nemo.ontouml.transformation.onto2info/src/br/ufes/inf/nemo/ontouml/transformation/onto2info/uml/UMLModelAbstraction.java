@@ -25,9 +25,9 @@ public class UMLModelAbstraction
 	public org.eclipse.uml2.uml.Model umlmodel;
 	
 	// PrimitiveTypes
-	org.eclipse.uml2.uml.DataType timeType;
-	org.eclipse.uml2.uml.DataType durationType;
-	org.eclipse.uml2.uml.PrimitiveType booleanType;
+	public org.eclipse.uml2.uml.DataType timeType;
+	public org.eclipse.uml2.uml.DataType durationType;
+	public org.eclipse.uml2.uml.PrimitiveType booleanType;
 		
 	// UML Factory	
 	org.eclipse.uml2.uml.UMLFactory myfactory;
@@ -167,11 +167,17 @@ public class UMLModelAbstraction
 	public void addPrimitiveTypes()
 	{
         // Time DataType
-        addPackageableElement(getTimeType());
+		if (!umlmodel.getPackagedElements().contains(getTimeType()))
+			addPackageableElement(getTimeType());
+		
         // Duration DataType
-        addPackageableElement(getDurationType());
+		if (!umlmodel.getPackagedElements().contains(getDurationType()))
+			addPackageableElement(getDurationType());
+		
         // Boolean PrimitiveType
-        addPackageableElement(getBooleanType());	
+		if (!umlmodel.getPackagedElements().contains(getBooleanType()))
+			addPackageableElement(getBooleanType());
+		// TODO: Warn the UserInterface about the additions
 	}
 	
 	// The DataType that will be referred to by all time attributes

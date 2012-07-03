@@ -7,11 +7,15 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction
 
 public class OntoUML2InfoUML
 {
+	// OntoUML Model wrapper
 	static RefOntoUMLModelAbstraction ontoAbstraction;
+	// UML Model wrapper
 	static UMLModelAbstraction umlAbstraction;
-	static String filename;
+	// Decisions made by the user
 	static DecisionHandler dh;
-	
+	// arg[0] on debug
+	static String filename;
+		
 	public static void main(String[] args)
 	{
 		if (args.length == 1)
@@ -45,10 +49,9 @@ public class OntoUML2InfoUML
 		if (umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml")))
 		{
 			// TODO: Put the loaded Map in the Ref2UMLReplicator 
-			Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh);
+			// Load the user Decisions, the OntoUML<->UML mappings
+			Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh, umlAbstraction);
 			//Onto2InfoMap.printMap(Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map")));
-			// FIXME: provisory line
-			umlAbstraction.createPrimitiveTypes();
 		}
 		else
 		{
@@ -67,6 +70,6 @@ public class OntoUML2InfoUML
 	
 	public static void saveMap ()
 	{
-		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh);
+		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh, umlAbstraction);
 	}
 }

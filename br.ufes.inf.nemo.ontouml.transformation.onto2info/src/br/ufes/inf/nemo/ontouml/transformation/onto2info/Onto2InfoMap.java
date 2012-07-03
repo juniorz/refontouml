@@ -1,22 +1,7 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.HistoryDecision;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ScopeDecision;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.TimeDecision;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlotString;
 
 public class Onto2InfoMap
 {
