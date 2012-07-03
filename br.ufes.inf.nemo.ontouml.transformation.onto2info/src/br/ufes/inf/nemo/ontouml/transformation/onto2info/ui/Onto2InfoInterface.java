@@ -73,9 +73,6 @@ public class Onto2InfoInterface
 			public void widgetSelected(SelectionEvent e)
 			{
 				org.eclipse.uml2.uml.Model umlmodel = t.transform(dh);
-				
-				// Display Text in "Details" Group
-				writeText("Transformation done");
 			}
 		});
 		

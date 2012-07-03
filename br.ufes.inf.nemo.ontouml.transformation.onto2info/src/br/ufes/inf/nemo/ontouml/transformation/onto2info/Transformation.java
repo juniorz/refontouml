@@ -591,19 +591,32 @@ public class Transformation
 			
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
-		if (umlAbstraction.umlmodel == null)
-			umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
-		this.dh = dh;
-       
-		createClasses();
-		createAssociations();
-		createGeneralizations();
-        dealHistoryTracking();
-        dealTimeTracking();
-
-        addPrimitiveTypes();
-        umlAbstraction.save();
-        OntoUML2InfoUML.saveMap();
+		try
+		{		
+			if (umlAbstraction.umlmodel == null)
+				umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
+			this.dh = dh;
+	       
+			createClasses();
+			createAssociations();
+			createGeneralizations();
+	        dealHistoryTracking();
+	        dealTimeTracking();
+	
+	        addPrimitiveTypes();
+	        umlAbstraction.save();
+	        OntoUML2InfoUML.saveMap();
+	        
+			//if (true) throw new RuntimeException(); // for debug
+		}
+		catch (Exception e)
+		{
+			ui.writeText("Could not perform the transformation. A terrible exception has happened.");
+			// TODO: Call OntoUML2InfoUML.dealException(); to delete .map and .uml
+			return null;
+		}
+		
+		ui.writeText("Transformation done");
         
         return umlAbstraction.umlmodel;
 	}

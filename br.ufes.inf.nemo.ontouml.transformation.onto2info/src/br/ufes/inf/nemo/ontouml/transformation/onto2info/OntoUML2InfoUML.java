@@ -26,50 +26,58 @@ public class OntoUML2InfoUML
 	
 	public static void transformation (String fileAbsolutePath)
 	{
-		ontoAbstraction = new RefOntoUMLModelAbstraction();
-		umlAbstraction = new UMLModelAbstraction();
-		filename = fileAbsolutePath;
-		
-		// OntoUML Model
-		if (!ontoAbstraction.load(fileAbsolutePath))
+		try
 		{
-			System.out.println("Unable to load " + fileAbsolutePath);
-			return;
+			ontoAbstraction = new RefOntoUMLModelAbstraction();
+			umlAbstraction = new UMLModelAbstraction();
+			filename = fileAbsolutePath;
+			
+			// OntoUML Model
+			if (!ontoAbstraction.load(fileAbsolutePath))
+			{
+				System.out.println("Unable to load " + fileAbsolutePath);
+				return;
+			}
+	
+			if (!ontoAbstraction.process())
+			{
+				System.out.println("Unable to process OntoUML model");
+				return;	
+			}
+			
+			dh = new DecisionHandler(ontoAbstraction);	
+			
+			// UML Model, if any
+			if (umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml")))
+			{
+				// TODO: Put the loaded Map in the Ref2UMLReplicator 
+				// Loads the user Decisions, the OntoUML<->UML mappings
+				Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh, umlAbstraction);
+			}
+			else
+			{
+				Onto2InfoMap.initializeMap();
+				umlAbstraction.createPrimitiveTypes();
+			}
+			
+			Onto2InfoInterface ui = new Onto2InfoInterface();
+			Transformation t = new Transformation(ontoAbstraction, umlAbstraction, ui);
+			
+			ui.load(ontoAbstraction, dh, t);
+			// Program execution stops here, until the user closes the window			
+			
+			//dh.printTimeDecisions();
+			//dh.printScopeDecisions();
 		}
-
-		if (!ontoAbstraction.process())
+		catch (Exception e)
 		{
-			System.out.println("Unable to process OntoUML model");
-			return;	
+			System.out.println("A terrible execution problem has happened.");
 		}
-		
-		dh = new DecisionHandler(ontoAbstraction);	
-		
-		// UML Model, if any
-		if (umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml")))
-		{
-			// TODO: Put the loaded Map in the Ref2UMLReplicator 
-			// Load the user Decisions, the OntoUML<->UML mappings
-			Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh, umlAbstraction);
-			//Onto2InfoMap.printMap(Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map")));
-		}
-		else
-		{
-			Onto2InfoMap.initializeMap();
-			umlAbstraction.createPrimitiveTypes();
-		}
-		
-		Onto2InfoInterface ui = new Onto2InfoInterface();
-		Transformation t = new Transformation(ontoAbstraction, umlAbstraction, ui);
-		
-		ui.load(ontoAbstraction, dh, t);
-		
-		//dh.printTimeDecisions();
-		//dh.printScopeDecisions();
 	}
 	
 	public static void saveMap ()
 	{
+		//if (true) throw new RuntimeException(); // for debug
 		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh, umlAbstraction);
 	}
 }
