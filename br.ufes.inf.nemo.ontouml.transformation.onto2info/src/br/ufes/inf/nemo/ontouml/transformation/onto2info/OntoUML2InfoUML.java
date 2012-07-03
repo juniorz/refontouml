@@ -26,6 +26,7 @@ public class OntoUML2InfoUML
 		umlAbstraction = new UMLModelAbstraction();
 		filename = fileAbsolutePath;
 		
+		// OntoUML Model
 		if (!ontoAbstraction.load(fileAbsolutePath))
 		{
 			System.out.println("Unable to load " + fileAbsolutePath);
@@ -40,16 +41,19 @@ public class OntoUML2InfoUML
 		
 		dh = new DecisionHandler(ontoAbstraction);	
 		
+		// UML Model, if any
 		if (umlAbstraction.load(fileAbsolutePath.replace(".refontouml", ".uml")))
 		{
 			// TODO: Put the loaded Map in the Ref2UMLReplicator 
-			Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh);
+			Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map"), dh);
 			//Onto2InfoMap.printMap(Onto2InfoMap.loadMap(ontoAbstraction.resource, umlAbstraction.resource, fileAbsolutePath.replace(".refontouml", ".map")));
-			// TODO: load decisions
+			// FIXME: provisory line
+			umlAbstraction.createPrimitiveTypes();
 		}
 		else
 		{
 			Onto2InfoMap.initializeMap();
+			umlAbstraction.createPrimitiveTypes();
 		}
 		
 		Onto2InfoInterface ui = new Onto2InfoInterface();
@@ -63,6 +67,6 @@ public class OntoUML2InfoUML
 	
 	public static void saveMap ()
 	{
-		Onto2InfoMap.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh);
+		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, filename.replace(".refontouml", ".map"), dh);
 	}
 }

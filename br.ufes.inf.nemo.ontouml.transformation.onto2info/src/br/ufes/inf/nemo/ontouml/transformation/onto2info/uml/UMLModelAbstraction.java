@@ -28,7 +28,7 @@ public class UMLModelAbstraction
 	org.eclipse.uml2.uml.DataType timeType;
 	org.eclipse.uml2.uml.DataType durationType;
 	org.eclipse.uml2.uml.PrimitiveType booleanType;
-	
+		
 	// UML Factory	
 	org.eclipse.uml2.uml.UMLFactory myfactory;
 	
@@ -40,7 +40,10 @@ public class UMLModelAbstraction
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 		hasFile = false;
 		fileName = null;
-		
+	}
+	
+	public void createPrimitiveTypes()
+	{
 		createTimeType();
 		createDurationType();
 		createBooleanType();

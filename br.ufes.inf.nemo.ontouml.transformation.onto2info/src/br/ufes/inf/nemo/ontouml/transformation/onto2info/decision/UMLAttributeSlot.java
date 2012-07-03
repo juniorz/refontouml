@@ -8,7 +8,7 @@ public class UMLAttributeSlot
 	// current : Boolean [1,1] attribute
 	public org.eclipse.uml2.uml.Property htAttribute;
 	
-	UMLAttributeSlot()
+	public UMLAttributeSlot()
 	{
 		startAttribute = null;
 		endAttribute = null;
