@@ -356,7 +356,9 @@ public class Transformation
 					// Remove the corresponding UML.Association from the UML.Model
 					umlAbstraction.removePackageableElement(a2);
 					// Remove the mapping between the OntoUML.Mediation and the UML.Association
-					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not 
+					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not
+					Onto2InfoMap.removeElement(mediation.relatorEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
+					Onto2InfoMap.removeElement(mediation.mediatedEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 											
 					ui.writeLog("Removed UML.Association { " +
 							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
