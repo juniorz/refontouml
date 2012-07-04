@@ -2,12 +2,12 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 
-public class Ref2UMLReplicator
+public class Onto2UMLReplicator
 {		
 	// Creates UML Objects	
 	static org.eclipse.uml2.uml.UMLFactory myfactory;
 	
-	public Ref2UMLReplicator()
+	public Onto2UMLReplicator()
 	{
 		myfactory = org.eclipse.uml2.uml.UMLFactory.eINSTANCE;
 	}

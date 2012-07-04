@@ -8,7 +8,7 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Ref2UMLReplicator;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Onto2UMLReplicator;
 
 public class Transformation
 {
@@ -17,18 +17,23 @@ public class Transformation
 	// UML Model (Abstraction)
 	UMLModelAbstraction umlAbstraction;
 	// UML Factory (Abstraction)
-	Ref2UMLReplicator fa;
+	Onto2UMLReplicator fa;
 	// Decision Handler
 	DecisionHandler dh;
 	// Interface
 	Onto2InfoInterface ui;
+
+	// Number of additions in one transformation operation
+	int numAdditions;
+	// Number of removals in one transformation operation
+	int numRemovals;
 
 	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction, Onto2InfoInterface ui)  
     { 
 		this.ontoAbstraction = ontoAbstraction;
 		this.umlAbstraction = umlAbstraction;
 		this.ui = ui;
-    	fa = new Ref2UMLReplicator();
+    	fa = new Onto2UMLReplicator();
     }
 	
 	public void dealHistoryTracking ()
@@ -52,6 +57,7 @@ public class Transformation
 	        			slot.htAttribute = umlAbstraction.addHistoryTrackingAttribute(c1);
 	        			
 	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.htAttribute.getName());
+	        			numAdditions++;
 	        		}
 	        	}
 	        	else
@@ -66,6 +72,7 @@ public class Transformation
 	        			slot.htAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
+	        			numRemovals++;
 	        		}
 	        	}
         	}
@@ -78,6 +85,7 @@ public class Transformation
         			// Clear the UMLAttributeSlot
         			slot.htAttribute = null;
         			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
+        			numRemovals++;
         		}
         	}
         }
@@ -107,6 +115,7 @@ public class Transformation
 	        			slot.startAttribute = umlAbstraction.addStartTime(c1);
 	        			
 	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.startAttribute.getName());
+	        			numAdditions++;
 	        		}
 	        	}
 	        	else
@@ -121,6 +130,7 @@ public class Transformation
 	        			slot.startAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Start Time Tracking)");
+	        			numRemovals++;
 	        		}
 	        	}
 	        		
@@ -134,6 +144,7 @@ public class Transformation
 	        			slot.endAttribute = umlAbstraction.addEndTime(c1);
 	        			
 	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.endAttribute.getName());
+	        			numAdditions++;
 	        		}
 	        	}
 	        	else
@@ -148,6 +159,7 @@ public class Transformation
 	        			slot.endAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (End Time Tracking)");
+	        			numRemovals++;
 	        		}
 	        	}
 	        	
@@ -161,6 +173,7 @@ public class Transformation
 	        			slot.durationAttribute = umlAbstraction.addDuration(c1);
 	        			
 	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.durationAttribute.getName());
+	        			numAdditions++;
 	        		}
 	        	}
 	        	else
@@ -175,6 +188,7 @@ public class Transformation
 	        			slot.durationAttribute = null;
 	        			
 	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Duration Time Tracking)");
+	        			numRemovals++;
 	        		}
 	        	}
         	}
@@ -187,6 +201,7 @@ public class Transformation
         			// Clear the UMLAttributeSlot
         			slot.startAttribute = null;
         			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Start Time Tracking)");
+        			numRemovals++;
         		}
         		
         		if (slot.endAttribute != null)
@@ -194,6 +209,7 @@ public class Transformation
         			// Clear the UMLAttributeSlot
         			slot.endAttribute = null;
         			ui.writeLog("Removed UML.Property for " + c1.getName() + " (End Time Tracking)");
+        			numRemovals++;
         		}
         		
         		if (slot.durationAttribute != null)
@@ -201,6 +217,7 @@ public class Transformation
         			// Clear the UMLAttributeSlot
         			slot.durationAttribute = null;
         			ui.writeLog("Removed UML.Property for " + c1.getName() + " (Duration Time Tracking)");
+        			numRemovals++;
         		}
         	}
         }
@@ -232,6 +249,7 @@ public class Transformation
 			        	}
 			        	
 			        	ui.writeLog("Created UML.Class " + c2.getName());
+			        	numAdditions++;
 					}
 				}
 				else
@@ -245,6 +263,7 @@ public class Transformation
 						Onto2InfoMap.removeElement(c);
 												
 						ui.writeLog("Removed UML.Class " + c2.getName());
+						numRemovals++;
 					}
 				}
 			}
@@ -325,7 +344,8 @@ public class Transformation
 					ui.writeLog("Created UML.Association { " +
 							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
 							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
-							"}"); 
+							"}");
+					numAdditions++;
         		}
         	}
         	else
@@ -341,7 +361,8 @@ public class Transformation
 					ui.writeLog("Removed UML.Association { " +
 							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
 							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
-							"}");       			
+							"}");
+					numRemovals++;
         		}
         	}
         }
@@ -378,6 +399,7 @@ public class Transformation
 						gen2 = fa.createGeneralization(gen1);
 						
 						ui.writeLog("Created UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
+						numAdditions++;
 					}
 				}
 				else
@@ -403,6 +425,7 @@ public class Transformation
 
 						// gen2.general and gen2.specific may be already gone, so I can't print them
 						ui.writeLog("Removed UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
+						numRemovals++;
 					}
 				}
 			}
@@ -443,7 +466,8 @@ public class Transformation
         				// Relates the OntoUML.Role and the UML.Generalization
         				Onto2InfoMap.relateElements(role, gen2);
         				
-        				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());        				
+        				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
+        				numAdditions++;
     				}
     				
     				genlist.add(gen2);
@@ -470,6 +494,7 @@ public class Transformation
 						
 						// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
 						ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
+						numRemovals++;
     				}
     			}
     			
@@ -495,6 +520,7 @@ public class Transformation
 	    			umlAbstraction.addPackageableElement(gset2);
 	    			
 	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
+	    			numAdditions++;
     			}
     		}
     		else
@@ -513,6 +539,7 @@ public class Transformation
     				}
     				
     				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
+    				numRemovals++;
     			}
     		}
         }
@@ -545,6 +572,7 @@ public class Transformation
 					umlAbstraction.addPackageableElement(gs2);
 					
 					ui.writeLog("Created UML.GeneralizationSet " + gs2.getName());
+					numAdditions++;
 				}
 			}
 			else
@@ -560,6 +588,7 @@ public class Transformation
 					Onto2InfoMap.removeElement(gs1);
 					
 					ui.writeLog("Removed UML.GeneralizationSet " + gs2.getName());
+					numRemovals++;
 				}
 			}
 		}
@@ -572,6 +601,7 @@ public class Transformation
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getTimeType());
 			ui.writeLog("Created UML.DataType " + umlAbstraction.getTimeType().getName());
+			numAdditions++;
 		}
 		
         // Duration DataType
@@ -579,6 +609,7 @@ public class Transformation
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getDurationType());
 			ui.writeLog("Created UML.DataType " + umlAbstraction.getDurationType().getName());
+			numAdditions++;
 		}
 		
         // Boolean PrimitiveType
@@ -586,25 +617,75 @@ public class Transformation
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getBooleanType());
 			ui.writeLog("Created UML.PrimitiveType " + umlAbstraction.getBooleanType().getName());
+			numAdditions++;
 		}
 	}
+
+	public void printSuccessMessage (boolean first)
+	{
+		String extraText = "";
+		
+		if (!first)
+		{
+			extraText += " (";
 			
+			if (numAdditions == 0 && numRemovals == 0)
+			{
+				extraText += "no changes";
+			}
+			else
+			{
+				if (numAdditions != 0)
+				{
+					extraText += numAdditions + " additions";
+					if (numRemovals != 0)
+						extraText += ", ";
+				}
+				if (numRemovals != 0)
+					extraText += numRemovals + " removals";
+			}
+			
+			extraText += ")";
+		}
+		
+		ui.writeText("Transformation done" + extraText);
+	}
+	
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
+		// Transformation from scratch
+		boolean first = true;
+		// Initialize additions and removals made so far
+		numAdditions = 0;
+		numRemovals = 0;
+		this.dh = dh;
+		
 		try
-		{		
+		{
 			if (umlAbstraction.umlmodel == null)
+			{
+				// Transformation from scratch
 				umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
-			this.dh = dh;
-	       
+			}
+			else
+			{
+				// Transformation over a pre-loaded UML.Model
+				first = false;
+			}
+			
 			createClasses();
 			createAssociations();
 			createGeneralizations();
 	        dealHistoryTracking();
 	        dealTimeTracking();
-	
+
+	        // Adds the PrimitiveTypes (time, duration, boolean) to the UML.Model
+	        // I like them at the end of the model, rather than at the beginning
 	        addPrimitiveTypes();
+	        
+	        // Saves the UML.Model in a file
 	        umlAbstraction.save();
+	        // Saves the Onto<->UML Mappings and Decisions in a file
 	        OntoUML2InfoUML.saveMap();
 	        
 			//if (true) throw new RuntimeException(); // for debug
@@ -612,11 +693,12 @@ public class Transformation
 		catch (Exception e)
 		{
 			ui.writeText("Could not perform the transformation. A terrible exception has happened.");
-			// TODO: Call OntoUML2InfoUML.dealException(); to delete .map and .uml
+			OntoUML2InfoUML.exception();
+			e.printStackTrace();
 			return null;
 		}
 		
-		ui.writeText("Transformation done");
+		printSuccessMessage(first);
         
         return umlAbstraction.umlmodel;
 	}

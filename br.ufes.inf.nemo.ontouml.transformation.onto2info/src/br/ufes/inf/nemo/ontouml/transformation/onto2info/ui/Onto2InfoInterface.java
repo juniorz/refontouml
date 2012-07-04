@@ -35,6 +35,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.OntoUML2InfoUML;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 
@@ -152,9 +153,8 @@ public class Onto2InfoInterface
 		item = new TabItem(tabFolder, SWT.NONE);
 		item.setText("Log");
 		item.setControl(log);
-		
-	    // Display Text in "Details" Tab
-		text.append(timestampHeader() + "> Ready\n");
+
+		OntoUML2InfoUML.initialCallback();
 	}
 	
 	public String timestampHeader ()

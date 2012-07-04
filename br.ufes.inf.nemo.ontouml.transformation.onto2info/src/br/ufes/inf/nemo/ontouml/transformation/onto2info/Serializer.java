@@ -85,9 +85,28 @@ public class Serializer
 		
 		for (Entry<RefOntoUML.Element, org.eclipse.uml2.uml.Element> entry : Onto2InfoMap.mymap.entrySet())
 		{
-			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
-			String umlID = getUUID (umlResource, entry.getValue());
-			idMap.put(ontoumlID, umlID);
+			// start debug FIXME
+			// This is only provisory, unitl I remove the garbage
+			if (entry.getKey() == null || entry.getValue() == null)
+			{
+				System.out.println("Something is null here!");
+				System.out.println(entry.getKey());
+				System.out.println(entry.getValue());
+				if (entry.getKey() instanceof RefOntoUML.Property)
+				{
+					RefOntoUML.Property p = (RefOntoUML.Property) entry.getKey();
+					if (p.getName().length() > 0) System.out.println(p.getName());
+					System.out.println(p.getType());
+				}
+				System.out.println();
+			}
+			// end debug FIXME
+			else
+			{
+				String ontoumlID = getUUID (ontoumlResource, entry.getKey());
+				String umlID = getUUID (umlResource, entry.getValue());
+				idMap.put(ontoumlID, umlID);
+			}
 		}
 		
 		return idMap;

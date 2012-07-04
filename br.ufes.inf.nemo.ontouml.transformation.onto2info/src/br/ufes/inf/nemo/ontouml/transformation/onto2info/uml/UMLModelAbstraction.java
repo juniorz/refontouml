@@ -63,7 +63,7 @@ public class UMLModelAbstraction
 		if (!file.isFile())
 		{
 			hasFile = false;
-			System.out.println("The corresponding UML model does not exist: " + file.getAbsolutePath());
+			//System.out.println("The corresponding UML model does not exist: " + file.getAbsolutePath());
 		}
 		else
 		{
