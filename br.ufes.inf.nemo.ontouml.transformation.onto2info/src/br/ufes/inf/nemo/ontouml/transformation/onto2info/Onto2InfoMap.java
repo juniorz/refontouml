@@ -3,6 +3,20 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+/*
+	Important usages of Map:
+	
+	replicateProperty -> Property.Type
+	createAssociationRepresentingRoleClass -> Property.Type
+	replicateAssociation -> Association.ownedEnds, Association.navigableOwnedEnds
+	
+	createArtificialGeneralization -> Generalization.general and Generalization.specific
+	replicateGeneralization -> Generalization.general and Generalization.specific
+	createGeneralizationSet -> GeneralizationSet.generalizations
+	 
+	 and perhaps others that I forgot...
+ */
+
 public class Onto2InfoMap
 {
 	// Maps RefOntoUML Elements to UML Elements (auxiliary for Properties, Generalizations and GeneralizationSets)

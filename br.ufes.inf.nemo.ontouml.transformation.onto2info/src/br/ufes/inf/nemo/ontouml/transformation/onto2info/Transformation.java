@@ -261,7 +261,8 @@ public class Transformation
 						umlAbstraction.removePackageableElement(c2);
 						// Remove the mapping between the OntoUML.Class and the UML.Class
 						Onto2InfoMap.removeElement(c);
-												
+						// If some day OntoUML.Classes could have attributes, an OntoUML.Property<->UML.Property mapping would also have to be removed
+
 						ui.writeLog("Removed UML.Class " + c2.getName());
 						numRemovals++;
 					}

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class ScopeDecision implements Serializable
 {
+	private static final long serialVersionUID = -6108221956205708251L;
+	
 	public boolean scope;
 	
 	public ScopeDecision()

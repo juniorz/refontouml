@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class HistoryDecision implements Serializable
 {
+	private static final long serialVersionUID = -582351433775987751L;
+	
 	public boolean past;
 	public boolean present;
 	

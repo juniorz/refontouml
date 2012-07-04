@@ -36,6 +36,10 @@ public class Serializer
 		// Could have done something like: model.eResource().getEObject(uuid)
 	}
 	
+	
+	
+	
+		
 	// Saves the Maps for OntoUML->UML, OntoUML->Decisions and OntoUML->UMLAttributes
 	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
 	{
@@ -172,8 +176,7 @@ public class Serializer
 	
 	
 	
-	
-	
+
 	
 	
 	// Loads the OntoUML[ID]<->UML[ID] Map from a file
