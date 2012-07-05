@@ -1,6 +1,7 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
 import java.io.File;
+import java.io.IOException;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
@@ -66,7 +67,8 @@ public class OntoUML2InfoUML
 			// UML Model, if any
 			if (umlAbstraction.load(umlfilename))
 			{
-				// TODO: Put the loaded Map in the Ref2UMLReplicator 
+				// TODO: Put the loaded Map in the Ref2UMLReplicator
+				// TODO: in case of Exception here, delete the Map and the UML model (this.exception())
 				// Loads the user Decisions, the OntoUML<->UML mappings
 				Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, mapfilename, dh, umlAbstraction);
 				preloaded = true;
@@ -98,7 +100,7 @@ public class OntoUML2InfoUML
 		}
 	}
 	
-	public static void saveMap ()
+	public static void saveMap () throws IOException
 	{
 		//if (true) throw new RuntimeException(); // for debug
 		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, ontofilename.replace(".refontouml", ".map"), dh, umlAbstraction);

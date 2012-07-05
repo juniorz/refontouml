@@ -1,6 +1,7 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -94,7 +95,7 @@ public class UMLModelAbstraction
 		return false;
 	}
 	
-	public void save ()
+	public void save () throws IOException
 	{		
 		if (!hasFile)
 		{
@@ -106,14 +107,7 @@ public class UMLModelAbstraction
 			resource.getContents().add(umlmodel);
 		}
 		
-		try
-		{
-			resource.save(Collections.EMPTY_MAP);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		resource.save(Collections.EMPTY_MAP);
 	}
 	
 	// Saves the UML model into a file
@@ -376,7 +370,7 @@ public class UMLModelAbstraction
 		name += memberEnd2.getType().getName();
 		if (memberEnd2.getName().length() > 0)
 		{
-			name += " (" + memberEnd2.getName() + ")";			
+			name += " (" + memberEnd2.getName() + ")";
 		}
 		
 		return name; 

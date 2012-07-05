@@ -1,6 +1,7 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -41,7 +42,7 @@ public class Serializer
 	
 		
 	// Saves the Maps for OntoUML->UML, OntoUML->Decisions and OntoUML->UMLAttributes
-	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
+	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction) throws IOException
 	{
 		// Converts the OntoUML<->UML Map into an ID<->ID Map
 		Map<String, String> idMap = convertOntoInfoMap (ontoumlResource, umlResource);
@@ -63,24 +64,18 @@ public class Serializer
 		// Saves the fake Maps into a file
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;
-		try
-		{
-			fos = new FileOutputStream(fileName);
-			out = new ObjectOutputStream(fos);
-			out.writeObject(idMap);
-			out.writeObject(scopeMap);
-			out.writeObject(historyMap);
-			out.writeObject(timeMap);
-			out.writeObject(attributeMap);
-			out.writeObject(timePrimitiveStr);
-			out.writeObject(durationPrimitiveStr);
-			out.writeObject(booleanPrimitiveStr);
-			out.close();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
+
+		fos = new FileOutputStream(fileName);
+		out = new ObjectOutputStream(fos);
+		out.writeObject(idMap);
+		out.writeObject(scopeMap);
+		out.writeObject(historyMap);
+		out.writeObject(timeMap);
+		out.writeObject(attributeMap);
+		out.writeObject(timePrimitiveStr);
+		out.writeObject(durationPrimitiveStr);
+		out.writeObject(booleanPrimitiveStr);
+		out.close();
 	}
 	
 	public static Map<String, String> convertOntoInfoMap (Resource ontoumlResource, Resource umlResource)
@@ -182,6 +177,7 @@ public class Serializer
 	// Loads the OntoUML[ID]<->UML[ID] Map from a file
 	@SuppressWarnings("unchecked")
 	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
+	throws IOException, ClassNotFoundException
 	{
 		Map<String, String> idMap = null;
 		Map<String, ScopeDecision> scopeMap = null;
@@ -196,30 +192,19 @@ public class Serializer
 		ObjectInputStream in = null;
 		
 		// Loads the ID <-> ID Map from file
-		try
-		{
-			fis = new FileInputStream(fileName);
-			in = new ObjectInputStream(fis);
-			
-			idMap = (Map<String, String>) in.readObject();
-			scopeMap = (Map<String, ScopeDecision>) in.readObject();
-			historyMap = (Map<String, HistoryDecision>) in.readObject();
-			timeMap = (Map<String, TimeDecision>) in.readObject();
-			attributeMap = (Map<String, UMLAttributeSlotString>) in.readObject();
-			timePrimitiveStr = (String) in.readObject();
-			durationPrimitiveStr = (String) in.readObject();
-			booleanPrimitiveStr = (String) in.readObject();
-			
-			in.close();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
+		fis = new FileInputStream(fileName);
+		in = new ObjectInputStream(fis);
+		
+		idMap = (Map<String, String>) in.readObject();
+		scopeMap = (Map<String, ScopeDecision>) in.readObject();
+		historyMap = (Map<String, HistoryDecision>) in.readObject();
+		timeMap = (Map<String, TimeDecision>) in.readObject();
+		attributeMap = (Map<String, UMLAttributeSlotString>) in.readObject();
+		timePrimitiveStr = (String) in.readObject();
+		durationPrimitiveStr = (String) in.readObject();
+		booleanPrimitiveStr = (String) in.readObject();
+		
+		in.close();
 		
 		// Convert it to RefOntoUML.Element <-> UML.Element Map
 		loadOntoInfoMap (ontoumlResource, umlResource, idMap);

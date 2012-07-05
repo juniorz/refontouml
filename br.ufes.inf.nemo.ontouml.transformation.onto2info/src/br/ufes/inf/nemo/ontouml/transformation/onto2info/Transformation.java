@@ -458,117 +458,147 @@ public class Transformation
         }
 	}
 	
+	public org.eclipse.uml2.uml.Generalization createOrGetArtificialGeneralization (RefOntoUML.RoleMixin roleMixin, RefOntoUML.Role role, List<org.eclipse.uml2.uml.Generalization> genlist)
+	{
+		// UML.Generalization corresponding to OntoUML.Role (in case the artificial UML.Generalization already exists)
+		org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(role);
+
+		// Role's rigid parent (e.g., OntoUML.Kind.Person from OntoUML.Role.PrivateCustomer)
+		RefOntoUML.RigidSortalClass rigidParent = role.rigidParent();
+		// UML.Class corresponding to the OntoUML.RigidParent (e.g., UML.Person corresponding to OntoUML.Person)
+		org.eclipse.uml2.uml.Classifier specific2 = Onto2InfoMap.getClassifier(rigidParent);
+
+		// OntoUML.Role (<->UML.Generalization), RigidSortal (<->UML.Generalization.specific) and RoleMixin (<->UML.Generalization.general) in scope
+		// Maybe I should constrain: OntoUML.Role in scope -> OntoUML.RigidParent in scope
+		if (dh.inScope(role) && dh.inScope(rigidParent) && dh.inScope(roleMixin))
+		{
+			// In Scope
+			if (gen2 == null)
+			{
+				// UML.Generalization (RigidSortal->RoleMixin) does not exist
+				// Create artificial Generalization (RigidSortal -> RoleMixin)
+				org.eclipse.uml2.uml.Classifier general2 = Onto2InfoMap.getClassifier(roleMixin);    					
+				
+				gen2 = umlAbstraction.createGeneralization (specific2, general2);
+				
+				// Relates the OntoUML.Role and the UML.Generalization
+				Onto2InfoMap.relateElements(role, gen2);
+				
+				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
+				numAdditions++;
+			}
+			
+			// The artificial UML.Generalization (that already existed or was just created) must be added to the return list
+			genlist.add(gen2);
+		}
+		else
+		{
+			// Out of Scope
+			if (gen2 != null)
+			{
+				// UML.Generalization exists    					
+				// Removes the reference in the map from the OntoUML.Role to the UML.Generalization
+				Onto2InfoMap.removeElement(role);
+				
+				if (dh.inScope(role)) // let us suppose this implies dh.inScope(rigidParent) (but, right now, this may cause a bug)
+				{
+					// OntoUML.Specific (UML.Generalization.specific) is in scope
+					// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
+					umlAbstraction.removeGeneralization(specific2, gen2); 
+				}
+										
+				// If the OntoUML.Specific is out of scope then:
+				// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
+				// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
+				
+				// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
+				ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
+				numRemovals++;
+			}
+		}
+		
+		return gen2;
+	}
+	
+	public void createOrGetArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
+	{
+		// For each OntoUML.Role of a RoleMixin there will be an (artificial) UML.Generalization between the UML<->Role'sRigidParent and the UML<->RoleMixin
+		// (e.g., UML.Person -> UML.Customer, corresponding to OntoUML.Role.PrivateCustomer)
+		
+		// An already existing artificial UML.GeneralizationSet related to the artificial UML.Generalizations, if any
+		org.eclipse.uml2.uml.GeneralizationSet gset2 = null;
+		
+    	// UML.Generalization List (important to link them later with a UML.GeneralizationSet, in case there must be one)
+		List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
+				
+		// For each Role (e.g., PrivateCustomer, CorporateCustomer) of a RoleMixin (e.g., Customer)
+		for (RefOntoUML.Role role : roleMixin.roles())
+		{
+			// UML.Generalization corresponding to OntoUML.Role (in case the artificial UML.Generalization already exists)
+			org.eclipse.uml2.uml.Generalization gen2 = createOrGetArtificialGeneralization (roleMixin, role, genlist);
+			
+			// One more thing... There may be an artificial UML.GeneralizationSet
+			if (gen2 != null)
+			{
+				if (gen2.getGeneralizationSets().size() > 0)
+				{
+					gset2 = gen2.getGeneralizationSets().get(0);
+				}
+			}
+		}
+		
+		createArtificialGeneralizationSet (roleMixin, gset2, genlist);
+	}
+		
+	public void createArtificialGeneralizationSet (RefOntoUML.RoleMixin roleMixin, org.eclipse.uml2.uml.GeneralizationSet gset2, List<org.eclipse.uml2.uml.Generalization> genlist)
+	{				
+		// The UML.GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
+		if (genlist.size() > 1)
+		{
+			// UML.GeneralizationSet "in scope"
+			if (gset2 == null)
+			{
+				// UML.GeneralizationSet does not exist
+				// Linking the GeneralizationSet and the Generalizations
+    			gset2 = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
+    			umlAbstraction.addPackageableElement(gset2);
+    			
+    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
+    			numAdditions++;
+			}
+		}
+		else
+		{
+			// UML.GeneralizationSet "out of scope"
+			if (gset2 != null)
+			{
+				// UML.GeneralizationSet exists
+				// Remove it from the UML.Model
+				umlAbstraction.removePackageableElement(gset2);
+				
+				// For each UML.Generalization in scope, remove its reference to the UML.GeneralizationSet
+				for (org.eclipse.uml2.uml.Generalization sgen : genlist)
+				{
+					sgen.getGeneralizationSets().remove(gset2);
+				}
+				
+				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
+				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
+				numRemovals++;
+			}
+		}
+	}
+	
 	public void createArtificialGeneralizationsforRoleMixin ()
 	{
         // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
 		
-		// For each RoleMixin (e.g., Customer)
+		// For each RoleMixin
         for (RefOntoUML.RoleMixin roleMixin : ontoAbstraction.roleMixins)
         {
-        	// UML.Generalization List (important to link them later with a UML.Generalization, in case there must be one)
-			List<org.eclipse.uml2.uml.Generalization> genlist = new LinkedList<org.eclipse.uml2.uml.Generalization>();
-			org.eclipse.uml2.uml.GeneralizationSet gset2 = null;
-    		
-    		// For each Role (e.g., PrivateCustomer, CorporateCustomer)
-    		for (RefOntoUML.Role role : roleMixin.roles())
-    		{
-    			org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(role);
-    			RefOntoUML.RigidSortalClass rigidParent = role.rigidParent();
-    			org.eclipse.uml2.uml.Classifier specific2 = Onto2InfoMap.getClassifier(rigidParent);
-    							
-    			// Generalization.general (RoleMixin), OntoUML.Role and Generalization.specific (RigidSortal) in scope
-    			// Maybe I should constrain: OntoUML.Role in scope -> OntoUML.RigidParent in scope
-    			if (dh.inScope(roleMixin) && dh.inScope(role) && dh.inScope(rigidParent))
-    			{
-    				// In Scope
-    				if (gen2 == null)
-    				{
-    					// UML.Generalization (RigidSortal->RoleMixin) does not exist
-        				// Create artificial Generalization (RigidSortal -> RoleMixin)
-    					org.eclipse.uml2.uml.Classifier general2 = Onto2InfoMap.getClassifier(roleMixin);    					
-    					
-        				gen2 = umlAbstraction.createGeneralization (specific2, general2);
-        				
-        				// Relates the OntoUML.Role and the UML.Generalization
-        				Onto2InfoMap.relateElements(role, gen2);
-        				
-        				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
-        				numAdditions++;
-    				}
-    				
-    				genlist.add(gen2);
-    			}
-    			else
-    			{
-    				// Out of Scope
-    				if (gen2 != null)
-    				{
-    					// UML.Generalization exists    					
-    					// Removes the reference in the map from the OntoUML.Role to the UML.Generalization
-    					Onto2InfoMap.removeElement(role);
-						
-						if (dh.inScope(role)) // let us suppose this implies dh.inScope(rigidParent) (but, right now, this may cause a bug)
-						{
-							// OntoUML.Specific (UML.Generalization.specific) is in scope
-							// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
-							umlAbstraction.removeGeneralization(specific2, gen2); 
-						}
-												
-						// If the OntoUML.Specific is out of scope then:
-						// The corresponding UML.Classifier will be absent/removed from the UML.Model in the previously called method: createdClasses()
-						// So, I won't need to remove the UML.Generalizations from the UML.Model or from the specific UML.Classifier
-						
-						// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
-						ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
-						numRemovals++;
-    				}
-    			}
-    			
-    			// One more thing... There may be an artificial UML.GeneralizationSet
-    			if (gen2 != null)
-    			{
-    				 if (gen2.getGeneralizationSets().size() > 0)
-    				 {
-    					 gset2 = gen2.getGeneralizationSets().get(0);
-    				 }
-    			}
-    		}
-    		
-    		// The GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
-    		if (genlist.size() > 1)
-    		{
-    			// UML.GeneralizationSet "in scope"
-    			if (gset2 == null)
-    			{
-    				// UML.GeneralizationSet does not exist
-    				// Linking the GeneralizationSet and the Generalizations
-	    			gset2 = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
-	    			umlAbstraction.addPackageableElement(gset2);
-	    			
-	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
-	    			numAdditions++;
-    			}
-    		}
-    		else
-    		{
-    			// UML.GeneralizationSet "out of scope"
-    			if (gset2 != null)
-    			{
-    				// UML.GeneralizationSet exists
-    				// Remove it from the UML.Model
-    				umlAbstraction.removePackageableElement(gset2);
-    				
-    				// For each UML.Generalization in scope, remove its reference to the UML.GeneralizationSet
-    				for (org.eclipse.uml2.uml.Generalization sgen : genlist)
-    				{
-    					sgen.getGeneralizationSets().remove(gset2);
-    				}
-    				
-    				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
-    				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
-    				numRemovals++;
-    			}
-    		}
+        	// 1- Create or get (or remove) artificial UML.Generalizations, each corresponding to a Role of the RoleMixin
+    		// 2- Create (or remove) an artificial UML.GeneralizationSet for the RoleMixin, if necessary
+			createOrGetArtificialGeneralizations (roleMixin);
         }
 	}
 	
