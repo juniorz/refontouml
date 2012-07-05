@@ -371,10 +371,7 @@ public class Transformation
         			
         			umlAbstraction.addPackageableElement(a2);
         			
-					ui.writeLog("Created UML.Association { " +
-							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
-							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
-							"}");
+					ui.writeLog("Created UML.Association: " + umlAbstraction.associationToString(a2));
 					numAdditions++;
         		}
         	}
@@ -390,10 +387,7 @@ public class Transformation
 					Onto2InfoMap.removeElement(mediation.relatorEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 					Onto2InfoMap.removeElement(mediation.mediatedEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 											
-					ui.writeLog("Removed UML.Association { " +
-							a2.getMemberEnds().get(0).getType().getName() + " (" + a2.getMemberEnds().get(0).getName() + "), " +
-							a2.getMemberEnds().get(1).getType().getName() + " (" + a2.getMemberEnds().get(1).getName() + ") " +
-							"}");
+					ui.writeLog("Removed UML.Association: " + umlAbstraction.associationToString(a2));
 					numRemovals++;
         		}
         	}
@@ -551,7 +545,7 @@ public class Transformation
 	    			gset2 = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
 	    			umlAbstraction.addPackageableElement(gset2);
 	    			
-	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
+	    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
 	    			numAdditions++;
     			}
     		}
@@ -570,56 +564,70 @@ public class Transformation
     					sgen.getGeneralizationSets().remove(gset2);
     				}
     				
-    				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName()); // TODO: print a better name
+    				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
+    				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
     				numRemovals++;
     			}
     		}
         }
 	}
 	
+	List<RefOntoUML.Generalization> getGeneralizationsWithSpecificInScope (RefOntoUML.GeneralizationSet gset1)
+	{
+		List<RefOntoUML.Generalization> genList = new LinkedList<RefOntoUML.Generalization>();
+		
+		// For each OntoUML.Generalization in OntoUML.GeneralizationSet
+		for (RefOntoUML.Generalization gen1 : gset1.getGeneralization())
+		{
+			// OntoUML.Generalization.specific in Scope
+			if (dh.inScope(gen1.getSpecific()))
+				genList.add(gen1);
+		}
+		
+		return genList;
+	}
+	
 	public void createReplicateGeneralizationSets ()
 	{
-		// Generalization Sets (as long as both the parent and (at least some) children are in scope)      
-		for (RefOntoUML.GeneralizationSet gs1 : ontoAbstraction.generalizationSets)
+		// Generalization Sets (as long as both the parent and (at least some) children are in scope)
+		
+		// For each OntoUML.GeneralizationSet
+		for (RefOntoUML.GeneralizationSet gset1 : ontoAbstraction.generalizationSets)
 		{
-			// Couting OntoUML.GeneralizationSet.children() in scope
-			int childInScope = 0;
-			for (RefOntoUML.Classifier child : gs1.children())
-			{
-				if (dh.inScope(child))
-					childInScope++;
-			}
-			
 			// The corresponding UML.GeneralizationSet
-			org.eclipse.uml2.uml.GeneralizationSet gs2 = Onto2InfoMap.getGeneralizationSet(gs1);
+			org.eclipse.uml2.uml.GeneralizationSet gset2 = Onto2InfoMap.getGeneralizationSet(gset1);
+			
+			// Couting OntoUML.GeneralizationSet.children() in scope
+			List<RefOntoUML.Generalization> genInScope = getGeneralizationsWithSpecificInScope(gset1);
 			
 			// GeneralizationSet.parent and at least one GeneralizationSet.child in scope
-			if (dh.inScope(gs1.parent()) && childInScope > 1)
+			if (dh.inScope(gset1.parent()) && genInScope.size() > 1)
 			{
 				// In Scope
-				if (gs2 == null)
+				if (gset2 == null)
 				{
 					// Creates the corresponding UML.GeneralizationSet
-					gs2 = fa.createGeneralizationSet ((RefOntoUML.GeneralizationSet) gs1);
-					umlAbstraction.addPackageableElement(gs2);
+					gset2 = fa.createGeneralizationSet (gset1, genInScope);
+					umlAbstraction.addPackageableElement(gset2);
 					
-					ui.writeLog("Created UML.GeneralizationSet " + gs2.getName());
+					ui.writeLog("Created UML.GeneralizationSet: " + umlAbstraction.generalizationSetToString(gset2));
 					numAdditions++;
 				}
 			}
 			else
 			{
 				// Out of Scope
-				if (gs2 != null)
+				if (gset2 != null)
 				{
 					// Removes the links between the UML.GeneralizationSet and the related UML.Generalizations
-					gs2.getGeneralizations().clear();
+					gset2.getGeneralizations().clear();
 					// Removes the corresponding UML.GeneralizationSet from the UML.Model
-					umlAbstraction.removePackageableElement(gs2);
+					umlAbstraction.removePackageableElement(gset2);
 					// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
-					Onto2InfoMap.removeElement(gs1);
+					Onto2InfoMap.removeElement(gset1);
 					
-					ui.writeLog("Removed UML.GeneralizationSet " + gs2.getName());
+					// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
+					ui.writeLog("Removed UML.GeneralizationSet: " + gset2.getName());
 					numRemovals++;
 				}
 			}
@@ -632,7 +640,7 @@ public class Transformation
 		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getTimeType()))
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getTimeType());
-			ui.writeLog("Created UML.DataType " + umlAbstraction.getTimeType().getName());
+			ui.writeLog("Created UML.DataType: " + umlAbstraction.getTimeType().getName());
 			numAdditions++;
 		}
 		
@@ -640,7 +648,7 @@ public class Transformation
 		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getDurationType()))
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getDurationType());
-			ui.writeLog("Created UML.DataType " + umlAbstraction.getDurationType().getName());
+			ui.writeLog("Created UML.DataType: " + umlAbstraction.getDurationType().getName());
 			numAdditions++;
 		}
 		
@@ -648,11 +656,12 @@ public class Transformation
 		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getBooleanType()))
 		{
 			umlAbstraction.addPackageableElement(umlAbstraction.getBooleanType());
-			ui.writeLog("Created UML.PrimitiveType " + umlAbstraction.getBooleanType().getName());
+			ui.writeLog("Created UML.PrimitiveType: " + umlAbstraction.getBooleanType().getName());
 			numAdditions++;
 		}
 	}
 
+	// TODO: this shouldn't be here, I guess...
 	public void printSuccessMessage (boolean first)
 	{
 		String extraText = "";
@@ -669,12 +678,12 @@ public class Transformation
 			{
 				if (numAdditions != 0)
 				{
-					extraText += numAdditions + " additions";
+					extraText += numAdditions + " addition" + (numAdditions == 1 ? "" : "s");
 					if (numRemovals != 0)
 						extraText += ", ";
 				}
 				if (numRemovals != 0)
-					extraText += numRemovals + " removals";
+					extraText += numRemovals + " removal" + (numRemovals == 1 ? "" : "s");
 			}
 			
 			extraText += ")";

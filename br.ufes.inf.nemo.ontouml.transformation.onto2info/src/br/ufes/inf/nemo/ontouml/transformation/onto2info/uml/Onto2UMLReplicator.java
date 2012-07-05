@@ -1,5 +1,7 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.uml;
 
+import java.util.List;
+
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 
 public class Onto2UMLReplicator
@@ -230,14 +232,14 @@ public class Onto2UMLReplicator
         }       
      }
      
-     public org.eclipse.uml2.uml.GeneralizationSet createGeneralizationSet (RefOntoUML.GeneralizationSet gs1)
+     public org.eclipse.uml2.uml.GeneralizationSet createGeneralizationSet (RefOntoUML.GeneralizationSet gs1, List<RefOntoUML.Generalization> genList)
      {
         org.eclipse.uml2.uml.GeneralizationSet gs2 = myfactory.createGeneralizationSet();
              
         replicateNamedElement(gs1, gs2);
         		
-        // Adds all the generalizations
-        for  (RefOntoUML.Generalization gen1 : gs1.getGeneralization())
+        // Adds only the generalizations in list
+        for  (RefOntoUML.Generalization gen1 : genList)
         {
         	org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(gen1);
 

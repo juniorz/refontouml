@@ -336,4 +336,49 @@ public class UMLModelAbstraction
 		
 		return gset;
 	}
+	
+	public String generalizationSetToString (org.eclipse.uml2.uml.GeneralizationSet gset2)
+	{
+		// GeneralizationSet.general.name
+		String name = gset2.getGeneralizations().get(0).getGeneral().getName();
+		
+		name += " {";
+		
+		// GeneralizationSet.specific.name
+		for (org.eclipse.uml2.uml.Generalization gen2 : gset2.getGeneralizations())
+		{
+			name += gen2.getSpecific().getName();
+			name += ", ";
+		}
+		
+		name = name.substring(0, name.length()-2);
+		name += "}";
+
+		return name;
+	}
+	
+	public String associationToString (org.eclipse.uml2.uml.Association a2)
+	{
+		org.eclipse.uml2.uml.Property memberEnd1 = a2.getMemberEnds().get(0);
+		org.eclipse.uml2.uml.Property memberEnd2 = a2.getMemberEnds().get(1);
+		String name = "";	
+		
+		// MemberEnd1
+		name += memberEnd1.getType().getName();
+		if (memberEnd1.getName().length() > 0)
+		{
+			name += " (" + memberEnd1.getName() + ")";
+		}
+		
+		name += " <-> ";
+		
+		// MemberEnd2
+		name += memberEnd2.getType().getName();
+		if (memberEnd2.getName().length() > 0)
+		{
+			name += " (" + memberEnd2.getName() + ")";			
+		}
+		
+		return name; 
+	}
 }
