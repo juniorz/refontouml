@@ -67,7 +67,6 @@ public class OntoUML2InfoUML
 			// UML Model, if any
 			if (umlAbstraction.load(umlfilename))
 			{
-				// TODO: Put the loaded Map in the Ref2UMLReplicator
 				// TODO: in case of Exception here, delete the Map and the UML model (this.exception())
 				// Loads the user Decisions, the OntoUML<->UML mappings
 				Serializer.loadMap(ontoAbstraction.resource, umlAbstraction.resource, mapfilename, dh, umlAbstraction);
@@ -108,6 +107,7 @@ public class OntoUML2InfoUML
 	
 	public static void exception()
 	{
+		// TODO: Dialog asking for permission?
 		File f = new File(umlfilename);
 		if (f.delete())
 			ui.writeText("File " + umlfilename + " was deleted");

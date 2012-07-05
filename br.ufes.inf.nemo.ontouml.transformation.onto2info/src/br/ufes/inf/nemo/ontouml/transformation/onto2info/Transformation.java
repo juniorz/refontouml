@@ -582,7 +582,7 @@ public class Transformation
 					sgen.getGeneralizationSets().remove(gset2);
 				}
 				
-				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
+				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
 				numRemovals++;
 			}
@@ -656,7 +656,7 @@ public class Transformation
 					// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
 					Onto2InfoMap.removeElement(gset1);
 					
-					// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone (TODO: print in OntoUML)
+					// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 					ui.writeLog("Removed UML.GeneralizationSet: " + gset2.getName());
 					numRemovals++;
 				}
@@ -691,7 +691,6 @@ public class Transformation
 		}
 	}
 
-	// TODO: this shouldn't be here, I guess...
 	public void printSuccessMessage (boolean first)
 	{
 		String extraText = "";

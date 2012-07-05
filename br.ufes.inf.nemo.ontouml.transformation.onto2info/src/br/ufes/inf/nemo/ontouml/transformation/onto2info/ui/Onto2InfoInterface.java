@@ -278,7 +278,7 @@ public class Onto2InfoInterface
 		viewer.getTree().setHeaderVisible(true);
 		viewer.getTree().setBackgroundMode(SWT.INHERIT_DEFAULT);
 		
-		// The focusing thing... FIXME: I'm not sure if I need those things
+		// The focusing thing... To focus on a table cell, instead of a table row (and other things I don't know)
 		FocusCellOwnerDrawHighlighter h = new FocusCellOwnerDrawHighlighter(viewer)
 		{
 			protected Color getSelectedCellBackgroundColorNoFocus(ViewerCell cell)
@@ -549,7 +549,6 @@ public class Onto2InfoInterface
 		table.setHeaderVisible(true);
 		table.setBackgroundMode(SWT.INHERIT_DEFAULT);
 		
-		// The focusing thing... FIXME: I'm not sure if I need those things
 		FocusCellOwnerDrawHighlighter h = new FocusCellOwnerDrawHighlighter(tableViewer)
 		{
 			protected Color getSelectedCellBackgroundColorNoFocus(ViewerCell cell)
