@@ -12,7 +12,7 @@
    <feature url="features/br.inf.ufes.nemo.rcarraretto.sbvr_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.rcarraretto.sbvr" version="1.0.0.201206141945">
       <category name="transformation"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201206141945">
+   <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201208171512.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201208171512">
       <category name="transformation"/>
    </feature>
    <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201206141945">
