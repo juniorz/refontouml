@@ -16,6 +16,9 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 public class RefOntoUML2UML {
 
+	/** 
+	 * The UML Model file(.uml) will be saved into the same directory of RefOntoUML Model file(.refontouml).
+	 */ 	  
 	public static Resource Transformation (String refontoumlPath)
 	{	   	   
 	   Resource refontoumlResource = load(refontoumlPath).getResources().get(0);
@@ -33,6 +36,16 @@ public class RefOntoUML2UML {
 	    return umlResource;
 	}
         
+	/**
+	 * I Use this one for a particular case. 
+	 */
+	public static org.eclipse.uml2.uml.Model Transformation (RefOntoUML.Model model)
+	{	   	   		   		
+	   Transformation t = new Transformation();			  
+	   org.eclipse.uml2.uml.Model umlmodel = t.Transform(model);
+	   return umlmodel;
+	}
+	
 	/** 
 	 * Load the RefOntoUML Model to a Resource
 	 */	
@@ -76,25 +89,25 @@ public class RefOntoUML2UML {
 	/** 
 	 * Save the UML Model to a Resource
 	 */	
-	private static Resource save (String path, org.eclipse.uml2.uml.Model umlmodel) 
+	private static Resource save (String Path, org.eclipse.uml2.uml.Model umlmodel) 
 	{
 		final ResourceSet rset = new ResourceSetImpl();
 		
 		rset.getResourceFactoryRegistry().getExtensionToFactoryMap().put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE);	
 		rset.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE);			    	
-    	
-		File file = createFile(path.replace(".refontouml", ".uml"));
-    	URI fileURI = URI.createFileURI(file.getAbsolutePath());    	
-    	final Resource resource = rset.createResource(fileURI);    	
-    	resource.getContents().add(umlmodel);    	
-    	
-    	try{
-    		resource.save(Collections.emptyMap());
-    	}catch(IOException e){
-    		e.printStackTrace();
-    	}
-    	Dealer.out("<uml> Saved: " + resource +"\n\n");
-    	
-    	return resource;
-	}		
+    			
+		File file = createFile(Path.replace(".refontouml", ".uml"));
+		URI fileURI = URI.createFileURI(file.getAbsolutePath());    	
+	    final Resource resource = rset.createResource(fileURI);    	
+	    resource.getContents().add(umlmodel);    	
+	    	
+	    try{
+	    	resource.save(Collections.emptyMap());
+	    }catch(IOException e){
+	    	e.printStackTrace();
+	    }
+	    Dealer.out("<uml> Saved: " + resource +"\n\n");
+	    return resource;		   	
+	}
+	
 }
