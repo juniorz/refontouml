@@ -33,6 +33,7 @@ import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.*;
+import org.eclipse.ui.PlatformUI;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.OntoUML2InfoUML;
@@ -50,9 +51,23 @@ public class Onto2InfoInterface
 		
 	}
 	
+	public Display createDisplay()
+	{
+		try
+		{
+			// For Plugin
+			return PlatformUI.getWorkbench().getDisplay();
+		}
+		catch (Exception e)
+		{
+			// For Development
+			return new Display();
+		}
+	}
+	
 	public void load (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
 	{
-		Display display = new Display();
+		Display display = createDisplay();		
 		final Shell shell = new Shell(display);
 		shell.setText("OntoUML to UML Transformation");
 		GridLayout layout = new GridLayout();
