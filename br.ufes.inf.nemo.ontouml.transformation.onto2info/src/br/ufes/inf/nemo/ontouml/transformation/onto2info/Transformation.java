@@ -769,6 +769,7 @@ public class Transformation
 		}
 		
 		printSuccessMessage(first);
+		ui.refreshWorkspace();
         
         return umlAbstraction.umlmodel;
 	}

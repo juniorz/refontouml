@@ -4,8 +4,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -24,20 +22,11 @@ public class Handler extends AbstractHandler
 		{
 			IFile f = (IFile) firstElement;
 
-			// Check file extension
+			// Check ".refontouml" file extension
 			if (f.getFileExtension().compareTo("refontouml") == 0)
 			{
+				OntoUML2InfoUML.project = f.getProject();
 				OntoUML2InfoUML.transformation(f.getLocation().toString());
-				
-				try
-				{
-					f.getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
-				}
-				catch (CoreException e)
-				{
-					MessageDialog.openError(HandlerUtil.getActiveShell(event), "Error", "Error on refreshing workspace");
-					return null;
-				}
 			}
 			else
 			{

@@ -3,6 +3,8 @@ package br.ufes.inf.nemo.ontouml.transformation.onto2info;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.core.resources.IProject;
+
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
@@ -26,8 +28,10 @@ public class OntoUML2InfoUML
 	// map file
 	static String mapfilename;
 
-	static // preloaded the UML Model, the Onto<->UML mappings and the user decisions
-	boolean preloaded = false;
+	// preloaded the UML Model, the Onto<->UML mappings and the user decisions
+	static boolean preloaded = false;
+
+	public static IProject project = null;
 	
 	public static void main(String[] args)
 	{
@@ -81,7 +85,7 @@ public class OntoUML2InfoUML
 			
 			Transformation t = new Transformation(ontoAbstraction, umlAbstraction, ui);
 			
-			ui.load(ontoAbstraction, dh, t);
+			ui.load(ontoAbstraction, dh, t, project);
 			// Program execution stops here, until the user closes the window			
 		}
 		catch (Exception e)
@@ -118,5 +122,7 @@ public class OntoUML2InfoUML
 			ui.writeText("File " + mapfilename + " was deleted");
 		
 		// FIXME: reinitialize some variables
+		
+		ui.refreshWorkspace();
 	}
 }

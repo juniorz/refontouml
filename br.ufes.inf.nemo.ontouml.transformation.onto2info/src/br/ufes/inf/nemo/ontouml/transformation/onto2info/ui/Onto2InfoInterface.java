@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
@@ -45,6 +48,7 @@ public class Onto2InfoInterface
 {
 	Text text = null;
 	Text log = null;
+	IProject project = null;
 	
 	public Onto2InfoInterface ()
 	{
@@ -65,8 +69,25 @@ public class Onto2InfoInterface
 		}
 	}
 	
-	public void load (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t)
+	public void refreshWorkspace()
 	{
+		if (project != null)
+		{
+			try
+			{
+				project.refreshLocal(IResource.DEPTH_INFINITE, null);
+			}
+			catch (CoreException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void load (final RefOntoUMLModelAbstraction ma, final DecisionHandler dh, final Transformation t, IProject project)
+	{
+		this.project = project;
+		
 		Display display = createDisplay();		
 		final Shell shell = new Shell(display);
 		shell.setText("OntoUML to UML Transformation");
