@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201206141945">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201209061023.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201209061023">
       <category name="metamodel"/>
    </feature>
    <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201206141945">
