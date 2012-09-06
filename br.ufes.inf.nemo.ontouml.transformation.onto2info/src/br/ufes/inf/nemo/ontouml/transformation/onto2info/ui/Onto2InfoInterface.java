@@ -120,7 +120,7 @@ public class Onto2InfoInterface
 		{
 			if (!display.readAndDispatch()) display.sleep();
 		}
-		display.dispose();
+		//display.dispose();
 	}
 	
 	public void DecisionTabFolder (Composite parent, RefOntoUMLModelAbstraction ma, DecisionHandler dh)
