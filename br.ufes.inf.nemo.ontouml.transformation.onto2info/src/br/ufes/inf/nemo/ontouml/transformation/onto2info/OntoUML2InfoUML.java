@@ -87,6 +87,7 @@ public class OntoUML2InfoUML
 		catch (Exception e)
 		{
 			System.out.println("A terrible execution problem has happened.");
+			e.printStackTrace();
 		}
 	}
 	

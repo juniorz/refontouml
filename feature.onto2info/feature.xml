@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="br.inf.ufes.nemo.rcarraretto.onto2info"
+      label="Domain Ontology to Information Model"
+      version="1.0.0.qualifier"
+      provider-name="Roberto Carraretto">
+
+   <description url="http://code.google.com/p/rcarraretto/">
+      Domain Ontology to Information Model (OntoUML to UML)
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.qualifier"/>
+   </requires>
+
+   <plugin
+         id="br.ufes.inf.nemo.ontouml.transformation.onto2info"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

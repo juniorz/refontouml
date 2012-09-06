@@ -407,7 +407,7 @@ public class Transformation
 		List<RefOntoUML.Class> specifics = new LinkedList<RefOntoUML.Class>(ontoAbstraction.rigidSortals);
 		specifics.addAll(ontoAbstraction.allMixins);
 		
-        // Generalizations (Rigid Sortals) (as long as both the specific and the general are in scope)
+        // Generalizations (as long as both the specific and the general are in scope)
         for (RefOntoUML.Classifier specific : specifics)
         {
         	// For each Generalization of an OntoUML.Class (excluding Roles and Phases)
