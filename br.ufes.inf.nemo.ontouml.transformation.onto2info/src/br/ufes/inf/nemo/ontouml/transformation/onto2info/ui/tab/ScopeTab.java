@@ -35,6 +35,36 @@ public class ScopeTab implements Tab
 		treeViewer.getTree().setLinesVisible(true);
 		treeViewer.getTree().setHeaderVisible(true);
 		
+		// Controlling checkbox states
+		addCheckboxListener(treeViewer, dh);
+		
+		// Column 1
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.LEFT);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Universal");
+		column.setLabelProvider(new ColumnLabelProvider()
+		{
+			public String getText(Object element)
+			{
+				return ((RefOntoUML.Class) element).getName();
+			}
+
+		});
+		
+		treeViewer.setContentProvider(new ScopeContentProvider());
+		treeViewer.setInput(new ScopeModel(ma));
+		treeViewer.expandAll();
+		
+		// Initialize the values of checkboxes according to previous ScopeDecisions
+		// Passing the top nodes of the Tree as parameter
+		InitializeScopeCheckboxes (treeViewer.getTree().getItems(), dh);
+				
+		return treeViewer;
+	}
+	
+	private void addCheckboxListener (final CheckboxTreeViewer treeViewer, final DecisionHandler dh)
+	{
 		// When user checks a checkbox in the tree, check all its children
 		treeViewer.addCheckStateListener(new ICheckStateListener()
 		{
@@ -86,30 +116,6 @@ public class ScopeTab implements Tab
 				}
 			}
 		});
-		
-		// Column 1
-		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.LEFT);
-		column.getColumn().setWidth(200);
-		column.getColumn().setMoveable(true);
-		column.getColumn().setText("Universal");
-		column.setLabelProvider(new ColumnLabelProvider()
-		{
-			public String getText(Object element)
-			{
-				return ((RefOntoUML.Class) element).getName();
-			}
-
-		});
-		
-		treeViewer.setContentProvider(new ScopeContentProvider());
-		treeViewer.setInput(new ScopeModel(ma));
-		treeViewer.expandAll();
-		
-		// Initialize the values of checkboxes according to previous ScopeDecisions
-		// Passing the top nodes of the Tree as parameter
-		InitializeScopeCheckboxes (treeViewer.getTree().getItems(), dh);
-				
-		return treeViewer;
 	}
 	
 	public void InitializeScopeCheckboxes (TreeItem[] items, DecisionHandler dh)
