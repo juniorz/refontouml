@@ -1773,17 +1773,20 @@
       <details key="MixinConstraint1" value="A Mixin cannot have a RoleMixin parent"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Mode" eSuperTypes="#//MomentClass">
+  <eClassifiers xsi:type="ecore:EClass" name="IntrinsicMomentClass" abstract="true"
+      eSuperTypes="#//MomentClass">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ModeConstraint1"/>
+      <details key="constraints" value="IntrinsicMomentConstraint1"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-      <details key="ModeConstraint1" value="Characterization.allInstances()->exists( x | allParents()->including(self)->includes(x.mode()) )"/>
+      <details key="IntrinsicMomentConstraint1" value="Characterization.allInstances()->exists( x | allParents()->including(self)->includes(x.characterizing()) )"/>
     </eAnnotations>
     <eAnnotations source="Comments">
-      <details key="ModeConstraint1" value="A Mode must be connected (directly or indirectly) to a Characterization"/>
+      <details key="IntrinsicMomentConstraint1" value="An IntrinsicMoment must be connected (directly or indirectly) to a Characterization"/>
     </eAnnotations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Mode" eSuperTypes="#//IntrinsicMomentClass"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Quality" eSuperTypes="#//IntrinsicMomentClass"/>
   <eClassifiers xsi:type="ecore:EClass" name="Relator" eSuperTypes="#//MomentClass">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="RelatorConstraint1 RelatorConstraint2"/>
@@ -1957,14 +1960,14 @@
       <details key="constraints" value="CharacterizationConstraint1 CharacterizationConstraint2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-      <details key="CharacterizationConstraint1" value="mode().oclIsTypeOf(Mode)"/>
+      <details key="CharacterizationConstraint1" value="characterizing().oclIsKindOf(IntrinsicMomentClass)"/>
       <details key="CharacterizationConstraint2" value="characterizedEnd().lower = 1 and characterizedEnd().upper = 1"/>
     </eAnnotations>
     <eAnnotations source="Comments">
-      <details key="CharacterizationConstraint1" value="The source must be a Mode"/>
+      <details key="CharacterizationConstraint1" value="The source must be an IntrinsicMoment"/>
       <details key="CharacterizationConstraint2" value="The characterized end cardinality is exactly one"/>
     </eAnnotations>
-    <eOperations name="modeEnd" lowerBound="1" eType="#//Property">
+    <eOperations name="characterizingEnd" lowerBound="1" eType="#//Property">
       <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
         <details key="body" value="sourceEnd()"/>
       </eAnnotations>
@@ -1974,9 +1977,9 @@
         <details key="body" value="targetEnd()"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="mode" lowerBound="1" eType="#//Classifier">
+    <eOperations name="characterizing" lowerBound="1" eType="#//Classifier">
       <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-        <details key="body" value="modeEnd().type"/>
+        <details key="body" value="characterizingEnd().type"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="characterized" lowerBound="1" eType="#//Classifier">

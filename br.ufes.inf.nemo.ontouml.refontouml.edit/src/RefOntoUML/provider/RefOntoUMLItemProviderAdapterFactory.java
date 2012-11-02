@@ -1030,6 +1030,31 @@ public class RefOntoUMLItemProviderAdapterFactory extends RefOntoUMLAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link RefOntoUML.Quality} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected QualityItemProvider qualityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link RefOntoUML.Quality}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createQualityAdapter()
+	{
+		if (qualityItemProvider == null)
+		{
+			qualityItemProvider = new QualityItemProvider(this);
+		}
+
+		return qualityItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link RefOntoUML.Relator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1428,6 +1453,7 @@ public class RefOntoUMLItemProviderAdapterFactory extends RefOntoUMLAdapterFacto
 		if (roleMixinItemProvider != null) roleMixinItemProvider.dispose();
 		if (mixinItemProvider != null) mixinItemProvider.dispose();
 		if (modeItemProvider != null) modeItemProvider.dispose();
+		if (qualityItemProvider != null) qualityItemProvider.dispose();
 		if (relatorItemProvider != null) relatorItemProvider.dispose();
 		if (subQuantityOfItemProvider != null) subQuantityOfItemProvider.dispose();
 		if (subCollectionOfItemProvider != null) subCollectionOfItemProvider.dispose();

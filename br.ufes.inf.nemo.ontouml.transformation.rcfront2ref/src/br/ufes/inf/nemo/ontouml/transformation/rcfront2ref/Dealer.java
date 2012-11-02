@@ -183,6 +183,10 @@ public class Dealer
 			{
 				c2 = myfactory.createMode();
 			}
+			else if (stereoname.compareTo("Quality") == 0)
+			{
+				c2 = myfactory.createQuality();
+			}
 		}
 		else if (c1.getAppliedStereotypes().size() == 0)
 		{

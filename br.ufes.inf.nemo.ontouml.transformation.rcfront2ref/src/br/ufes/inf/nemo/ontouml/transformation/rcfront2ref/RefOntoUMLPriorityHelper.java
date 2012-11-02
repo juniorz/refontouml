@@ -31,6 +31,8 @@ public class RefOntoUMLPriorityHelper implements Comparator<RefOntoUML.Packageab
 			return RefOntoUMLPriority.roleMixin;
 		else if (c1 instanceof RefOntoUML.Relator)
 			return RefOntoUMLPriority.relator;
+		else if (c1 instanceof RefOntoUML.Quality)
+			return RefOntoUMLPriority.quality;
 		else if (c1 instanceof RefOntoUML.Mode)
 			return RefOntoUMLPriority.mode;
 		else if (c1 instanceof RefOntoUML.Mediation)

@@ -32,6 +32,7 @@ import RefOntoUML.Generalization;
 import RefOntoUML.GeneralizationSet;
 import RefOntoUML.InstanceSpecification;
 import RefOntoUML.InstanceValue;
+import RefOntoUML.IntrinsicMomentClass;
 import RefOntoUML.Kind;
 import RefOntoUML.LiteralBoolean;
 import RefOntoUML.LiteralInteger;
@@ -59,6 +60,7 @@ import RefOntoUML.PackageableElement;
 import RefOntoUML.Phase;
 import RefOntoUML.PrimitiveType;
 import RefOntoUML.Property;
+import RefOntoUML.Quality;
 import RefOntoUML.Quantity;
 import RefOntoUML.RedefinableElement;
 import RefOntoUML.RefOntoUMLPackage;
@@ -470,9 +472,19 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 				return createMixinAdapter();
 			}
 			@Override
+			public Adapter caseIntrinsicMomentClass(IntrinsicMomentClass object)
+			{
+				return createIntrinsicMomentClassAdapter();
+			}
+			@Override
 			public Adapter caseMode(Mode object)
 			{
 				return createModeAdapter();
+			}
+			@Override
+			public Adapter caseQuality(Quality object)
+			{
+				return createQualityAdapter();
 			}
 			@Override
 			public Adapter caseRelator(Relator object)
@@ -1512,6 +1524,21 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link RefOntoUML.IntrinsicMomentClass <em>Intrinsic Moment Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see RefOntoUML.IntrinsicMomentClass
+	 * @generated
+	 */
+	public Adapter createIntrinsicMomentClassAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link RefOntoUML.Mode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1522,6 +1549,21 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createModeAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link RefOntoUML.Quality <em>Quality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see RefOntoUML.Quality
+	 * @generated
+	 */
+	public Adapter createQualityAdapter()
 	{
 		return null;
 	}

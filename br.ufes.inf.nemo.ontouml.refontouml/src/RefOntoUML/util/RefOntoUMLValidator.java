@@ -33,6 +33,7 @@ import RefOntoUML.Generalization;
 import RefOntoUML.GeneralizationSet;
 import RefOntoUML.InstanceSpecification;
 import RefOntoUML.InstanceValue;
+import RefOntoUML.IntrinsicMomentClass;
 import RefOntoUML.Kind;
 import RefOntoUML.LiteralBoolean;
 import RefOntoUML.LiteralInteger;
@@ -60,6 +61,7 @@ import RefOntoUML.PackageableElement;
 import RefOntoUML.Phase;
 import RefOntoUML.PrimitiveType;
 import RefOntoUML.Property;
+import RefOntoUML.Quality;
 import RefOntoUML.Quantity;
 import RefOntoUML.RedefinableElement;
 import RefOntoUML.RefOntoUMLPackage;
@@ -677,12 +679,13 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	private static Constraint mixin_MixinConstraint1InvOCL;
 	/**
-	 * The parsed OCL expression for the definition of the '<em>ModeConstraint1</em>' invariant constraint.
+	 * The parsed OCL expression for the definition of the '<em>IntrinsicMomentConstraint1</em>' invariant constraint.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static Constraint mode_ModeConstraint1InvOCL;
+	private static Constraint intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL;
+
 	/**
 	 * The parsed OCL expression for the definition of the '<em>RelatorConstraint1</em>' invariant constraint.
 	 * <!-- begin-user-doc -->
@@ -1063,8 +1066,12 @@ public class RefOntoUMLValidator extends EObjectValidator
 				return validateRoleMixin((RoleMixin)value, diagnostics, context);
 			case RefOntoUMLPackage.MIXIN:
 				return validateMixin((Mixin)value, diagnostics, context);
+			case RefOntoUMLPackage.INTRINSIC_MOMENT_CLASS:
+				return validateIntrinsicMomentClass((IntrinsicMomentClass)value, diagnostics, context);
 			case RefOntoUMLPackage.MODE:
 				return validateMode((Mode)value, diagnostics, context);
+			case RefOntoUMLPackage.QUALITY:
+				return validateQuality((Quality)value, diagnostics, context);
 			case RefOntoUMLPackage.RELATOR:
 				return validateRelator((Relator)value, diagnostics, context);
 			case RefOntoUMLPackage.DIRECTED_BINARY_ASSOCIATION:
@@ -4116,6 +4123,83 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateIntrinsicMomentClass(IntrinsicMomentClass intrinsicMomentClass, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+		boolean result = validate_EveryMultiplicityConforms(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateElement_not_own_self(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateElement_has_owner(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_has_no_qualified_name(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_has_qualified_name(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_visibility_needs_ownership(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamespace_members_distinguishable(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRedefinableElement_redefinition_context_valid(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRedefinableElement_redefinition_consistent(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_no_cycles_in_generalization(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_generalization_hierarchies(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_specialize_type(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_maps_to_generalization_set(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_ClassAttributeConstraint1(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_passive_class(intrinsicMomentClass, diagnostics, context);
+		if (result || diagnostics != null) result &= validateIntrinsicMomentClass_IntrinsicMomentConstraint1(intrinsicMomentClass, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the IntrinsicMomentConstraint1 constraint of '<em>Intrinsic Moment Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateIntrinsicMomentClass_IntrinsicMomentConstraint1(IntrinsicMomentClass intrinsicMomentClass, DiagnosticChain diagnostics, Map<Object, Object> context)
+	{
+        if (intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL == null)
+        {
+			OCL.Helper helper = OCL_ENV.createOCLHelper();
+			helper.setContext(RefOntoUMLPackage.eINSTANCE.getIntrinsicMomentClass());
+			
+			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getIntrinsicMomentClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
+			String expr = ocl.getDetails().get("IntrinsicMomentConstraint1");
+			
+			try
+			{
+				intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL = helper.createInvariant(expr);
+			}
+			catch (ParserException e)
+			{
+				throw new UnsupportedOperationException(e.getLocalizedMessage());
+			}
+		}
+		
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL);
+		
+		if (!query.check(intrinsicMomentClass))
+		{
+			if (diagnostics != null)
+			{
+				diagnostics.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 DIAGNOSTIC_SOURCE,
+						 0,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "IntrinsicMomentConstraint1", getObjectLabel(intrinsicMomentClass, context) }),
+						 new Object[] { intrinsicMomentClass }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateMode(Mode mode, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
 		boolean result = validate_EveryMultiplicityConforms(mode, diagnostics, context);
@@ -4139,53 +4223,40 @@ public class RefOntoUMLValidator extends EObjectValidator
 		if (result || diagnostics != null) result &= validateClassifier_maps_to_generalization_set(mode, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_ClassAttributeConstraint1(mode, diagnostics, context);
 		if (result || diagnostics != null) result &= validateClass_passive_class(mode, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMode_ModeConstraint1(mode, diagnostics, context);
+		if (result || diagnostics != null) result &= validateIntrinsicMomentClass_IntrinsicMomentConstraint1(mode, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ModeConstraint1 constraint of '<em>Mode</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateMode_ModeConstraint1(Mode mode, DiagnosticChain diagnostics, Map<Object, Object> context)
+	public boolean validateQuality(Quality quality, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mode_ModeConstraint1InvOCL == null)
-        {
-			OCL.Helper helper = OCL_ENV.createOCLHelper();
-			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMode());
-			
-			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMode().getEAnnotation(OCL_ANNOTATION_SOURCE);
-			String expr = ocl.getDetails().get("ModeConstraint1");
-			
-			try
-			{
-				mode_ModeConstraint1InvOCL = helper.createInvariant(expr);
-			}
-			catch (ParserException e)
-			{
-				throw new UnsupportedOperationException(e.getLocalizedMessage());
-			}
-		}
-		
-		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mode_ModeConstraint1InvOCL);
-		
-		if (!query.check(mode))
-		{
-			if (diagnostics != null)
-			{
-				diagnostics.add
-					(new BasicDiagnostic
-						(Diagnostic.ERROR,
-						 DIAGNOSTIC_SOURCE,
-						 0,
-						 EcorePlugin.INSTANCE.getString("_UI_GenericConstraint_diagnostic", new Object[] { "ModeConstraint1", getObjectLabel(mode, context) }),
-						 new Object[] { mode }));
-			}
-			return false;
-		}
-		return true;
+		boolean result = validate_EveryMultiplicityConforms(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateElement_not_own_self(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateElement_has_owner(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_has_no_qualified_name(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_has_qualified_name(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamedElement_visibility_needs_ownership(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateNamespace_members_distinguishable(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRedefinableElement_redefinition_context_valid(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateRedefinableElement_redefinition_consistent(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_no_cycles_in_generalization(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_generalization_hierarchies(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_specialize_type(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClassifier_maps_to_generalization_set(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_ClassAttributeConstraint1(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateClass_passive_class(quality, diagnostics, context);
+		if (result || diagnostics != null) result &= validateIntrinsicMomentClass_IntrinsicMomentConstraint1(quality, diagnostics, context);
+		return result;
 	}
 
 	/**

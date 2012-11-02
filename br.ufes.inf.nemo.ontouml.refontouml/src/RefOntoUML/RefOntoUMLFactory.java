@@ -369,6 +369,15 @@ public interface RefOntoUMLFactory extends EFactory
 	Mode createMode();
 
 	/**
+	 * Returns a new object of class '<em>Quality</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Quality</em>'.
+	 * @generated
+	 */
+	Quality createQuality();
+
+	/**
 	 * Returns a new object of class '<em>Relator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

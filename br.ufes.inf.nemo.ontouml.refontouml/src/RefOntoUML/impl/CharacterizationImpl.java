@@ -60,9 +60,9 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property modeEnd()
+	public Property characterizingEnd()
 	{
-		if (modeEndBodyOCL == null) {
+		if (characterizingEndBodyOCL == null) {
 			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getCharacterization().getEOperations().get(0);
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getCharacterization(), eOperation);
@@ -70,13 +70,13 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 			String body = ocl.getDetails().get("body");
 			
 			try {
-				modeEndBodyOCL = helper.createQuery(body);
+				characterizingEndBodyOCL = helper.createQuery(body);
 			} catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
-		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(modeEndBodyOCL);
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(characterizingEndBodyOCL);
 	
 		return (Property) query.evaluate(this);
 	
@@ -114,9 +114,9 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Classifier mode()
+	public Classifier characterizing()
 	{
-		if (modeBodyOCL == null) {
+		if (characterizingBodyOCL == null) {
 			EOperation eOperation = RefOntoUMLPackage.eINSTANCE.getCharacterization().getEOperations().get(2);
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setOperationContext(RefOntoUMLPackage.eINSTANCE.getCharacterization(), eOperation);
@@ -124,13 +124,13 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 			String body = ocl.getDetails().get("body");
 			
 			try {
-				modeBodyOCL = helper.createQuery(body);
+				characterizingBodyOCL = helper.createQuery(body);
 			} catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
-		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(modeBodyOCL);
+		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(characterizingBodyOCL);
 	
 		return (Classifier) query.evaluate(this);
 	
@@ -164,14 +164,14 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 	}
 
 	/**
-	 * The parsed OCL expression for the body of the '{@link #modeEnd <em>Mode End</em>}' operation.
+	 * The parsed OCL expression for the body of the '{@link #characterizingEnd <em>Characterizing End</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #modeEnd
+	 * @see #characterizingEnd
 	 * @generated
 	 */
-	private static OCLExpression<EClassifier> modeEndBodyOCL;
-	
+	private static OCLExpression<EClassifier> characterizingEndBodyOCL;
+
 	/**
 	 * The parsed OCL expression for the body of the '{@link #characterizedEnd <em>Characterized End</em>}' operation.
 	 * <!-- begin-user-doc -->
@@ -182,14 +182,14 @@ public class CharacterizationImpl extends DependencyRelationshipImpl implements 
 	private static OCLExpression<EClassifier> characterizedEndBodyOCL;
 	
 	/**
-	 * The parsed OCL expression for the body of the '{@link #mode <em>Mode</em>}' operation.
+	 * The parsed OCL expression for the body of the '{@link #characterizing <em>Characterizing</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #mode
+	 * @see #characterizing
 	 * @generated
 	 */
-	private static OCLExpression<EClassifier> modeBodyOCL;
-	
+	private static OCLExpression<EClassifier> characterizingBodyOCL;
+
 	/**
 	 * The parsed OCL expression for the body of the '{@link #characterized <em>Characterized</em>}' operation.
 	 * <!-- begin-user-doc -->

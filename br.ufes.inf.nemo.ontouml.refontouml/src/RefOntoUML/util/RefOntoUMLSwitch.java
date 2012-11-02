@@ -32,6 +32,7 @@ import RefOntoUML.Generalization;
 import RefOntoUML.GeneralizationSet;
 import RefOntoUML.InstanceSpecification;
 import RefOntoUML.InstanceValue;
+import RefOntoUML.IntrinsicMomentClass;
 import RefOntoUML.Kind;
 import RefOntoUML.LiteralBoolean;
 import RefOntoUML.LiteralInteger;
@@ -59,6 +60,7 @@ import RefOntoUML.PackageableElement;
 import RefOntoUML.Phase;
 import RefOntoUML.PrimitiveType;
 import RefOntoUML.Property;
+import RefOntoUML.Quality;
 import RefOntoUML.Quantity;
 import RefOntoUML.RedefinableElement;
 import RefOntoUML.RefOntoUMLPackage;
@@ -1064,10 +1066,28 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case RefOntoUMLPackage.INTRINSIC_MOMENT_CLASS:
+			{
+				IntrinsicMomentClass intrinsicMomentClass = (IntrinsicMomentClass)theEObject;
+				T result = caseIntrinsicMomentClass(intrinsicMomentClass);
+				if (result == null) result = caseMomentClass(intrinsicMomentClass);
+				if (result == null) result = caseClass(intrinsicMomentClass);
+				if (result == null) result = caseClassifier(intrinsicMomentClass);
+				if (result == null) result = caseNamespace(intrinsicMomentClass);
+				if (result == null) result = caseRedefinableElement(intrinsicMomentClass);
+				if (result == null) result = caseType(intrinsicMomentClass);
+				if (result == null) result = casePackageableElement(intrinsicMomentClass);
+				if (result == null) result = caseNamedElement(intrinsicMomentClass);
+				if (result == null) result = caseElement(intrinsicMomentClass);
+				if (result == null) result = caseEModelElement(intrinsicMomentClass);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case RefOntoUMLPackage.MODE:
 			{
 				Mode mode = (Mode)theEObject;
 				T result = caseMode(mode);
+				if (result == null) result = caseIntrinsicMomentClass(mode);
 				if (result == null) result = caseMomentClass(mode);
 				if (result == null) result = caseClass(mode);
 				if (result == null) result = caseClassifier(mode);
@@ -1078,6 +1098,24 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = caseNamedElement(mode);
 				if (result == null) result = caseElement(mode);
 				if (result == null) result = caseEModelElement(mode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RefOntoUMLPackage.QUALITY:
+			{
+				Quality quality = (Quality)theEObject;
+				T result = caseQuality(quality);
+				if (result == null) result = caseIntrinsicMomentClass(quality);
+				if (result == null) result = caseMomentClass(quality);
+				if (result == null) result = caseClass(quality);
+				if (result == null) result = caseClassifier(quality);
+				if (result == null) result = caseNamespace(quality);
+				if (result == null) result = caseRedefinableElement(quality);
+				if (result == null) result = caseType(quality);
+				if (result == null) result = casePackageableElement(quality);
+				if (result == null) result = caseNamedElement(quality);
+				if (result == null) result = caseElement(quality);
+				if (result == null) result = caseEModelElement(quality);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -2331,6 +2369,22 @@ public class RefOntoUMLSwitch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Intrinsic Moment Class</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Intrinsic Moment Class</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntrinsicMomentClass(IntrinsicMomentClass object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Mode</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2342,6 +2396,22 @@ public class RefOntoUMLSwitch<T>
 	 * @generated
 	 */
 	public T caseMode(Mode object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Quality</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Quality</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQuality(Quality object)
 	{
 		return null;
 	}

@@ -25,6 +25,7 @@ import RefOntoUML.Generalization;
 import RefOntoUML.GeneralizationSet;
 import RefOntoUML.InstanceSpecification;
 import RefOntoUML.InstanceValue;
+import RefOntoUML.IntrinsicMomentClass;
 import RefOntoUML.Kind;
 import RefOntoUML.LiteralBoolean;
 import RefOntoUML.LiteralInteger;
@@ -42,6 +43,7 @@ import RefOntoUML.PackageMerge;
 import RefOntoUML.Phase;
 import RefOntoUML.PrimitiveType;
 import RefOntoUML.Property;
+import RefOntoUML.Quality;
 import RefOntoUML.Quantity;
 import RefOntoUML.RefOntoUMLFactory;
 import RefOntoUML.RefOntoUMLPackage;
@@ -156,6 +158,7 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 			case RefOntoUMLPackage.ROLE_MIXIN: return createRoleMixin();
 			case RefOntoUMLPackage.MIXIN: return createMixin();
 			case RefOntoUMLPackage.MODE: return createMode();
+			case RefOntoUMLPackage.QUALITY: return createQuality();
 			case RefOntoUMLPackage.RELATOR: return createRelator();
 			case RefOntoUMLPackage.SUB_QUANTITY_OF: return createsubQuantityOf();
 			case RefOntoUMLPackage.SUB_COLLECTION_OF: return createsubCollectionOf();
@@ -641,6 +644,17 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	{
 		ModeImpl mode = new ModeImpl();
 		return mode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Quality createQuality()
+	{
+		QualityImpl quality = new QualityImpl();
+		return quality;
 	}
 
 	/**

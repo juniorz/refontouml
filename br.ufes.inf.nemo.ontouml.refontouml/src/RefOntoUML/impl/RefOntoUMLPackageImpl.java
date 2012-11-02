@@ -495,7 +495,21 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass intrinsicMomentClassEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass modeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass qualityEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2722,13 +2736,41 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIntrinsicMomentClass()
+	{
+		if (intrinsicMomentClassEClass == null)
+		{
+			intrinsicMomentClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(69);
+		}
+		return intrinsicMomentClassEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMode()
 	{
 		if (modeEClass == null)
 		{
-			modeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(69);
+			modeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(70);
 		}
 		return modeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getQuality()
+	{
+		if (qualityEClass == null)
+		{
+			qualityEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(71);
+		}
+		return qualityEClass;
 	}
 
 	/**
@@ -2740,7 +2782,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (relatorEClass == null)
 		{
-			relatorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(70);
+			relatorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(72);
 		}
 		return relatorEClass;
 	}
@@ -2754,7 +2796,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (directedBinaryAssociationEClass == null)
 		{
-			directedBinaryAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(71);
+			directedBinaryAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(73);
 		}
 		return directedBinaryAssociationEClass;
 	}
@@ -2768,7 +2810,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (meronymicEClass == null)
 		{
-			meronymicEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(72);
+			meronymicEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(74);
 		}
 		return meronymicEClass;
 	}
@@ -2832,7 +2874,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (subQuantityOfEClass == null)
 		{
-			subQuantityOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(73);
+			subQuantityOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(75);
 		}
 		return subQuantityOfEClass;
 	}
@@ -2846,7 +2888,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (subCollectionOfEClass == null)
 		{
-			subCollectionOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(74);
+			subCollectionOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(76);
 		}
 		return subCollectionOfEClass;
 	}
@@ -2860,7 +2902,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (memberOfEClass == null)
 		{
-			memberOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(75);
+			memberOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(77);
 		}
 		return memberOfEClass;
 	}
@@ -2874,7 +2916,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (componentOfEClass == null)
 		{
-			componentOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(76);
+			componentOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(78);
 		}
 		return componentOfEClass;
 	}
@@ -2888,7 +2930,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (dependencyRelationshipEClass == null)
 		{
-			dependencyRelationshipEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(77);
+			dependencyRelationshipEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(79);
 		}
 		return dependencyRelationshipEClass;
 	}
@@ -2902,7 +2944,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (characterizationEClass == null)
 		{
-			characterizationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(78);
+			characterizationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(80);
 		}
 		return characterizationEClass;
 	}
@@ -2916,7 +2958,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (mediationEClass == null)
 		{
-			mediationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(79);
+			mediationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(81);
 		}
 		return mediationEClass;
 	}
@@ -2930,7 +2972,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (derivationEClass == null)
 		{
-			derivationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(80);
+			derivationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(82);
 		}
 		return derivationEClass;
 	}
@@ -2944,7 +2986,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (formalAssociationEClass == null)
 		{
-			formalAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(81);
+			formalAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(83);
 		}
 		return formalAssociationEClass;
 	}
@@ -2958,7 +3000,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	{
 		if (materialAssociationEClass == null)
 		{
-			materialAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(82);
+			materialAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(84);
 		}
 		return materialAssociationEClass;
 	}

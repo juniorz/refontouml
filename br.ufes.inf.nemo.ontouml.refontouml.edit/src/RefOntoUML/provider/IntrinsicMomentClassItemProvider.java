@@ -7,7 +7,7 @@
 package RefOntoUML.provider;
 
 
-import RefOntoUML.Mode;
+import RefOntoUML.IntrinsicMomentClass;
 
 import java.util.Collection;
 import java.util.List;
@@ -23,13 +23,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link RefOntoUML.Mode} object.
+ * This is the item provider adapter for a {@link RefOntoUML.IntrinsicMomentClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ModeItemProvider
-	extends IntrinsicMomentClassItemProvider
+public class IntrinsicMomentClassItemProvider
+	extends MomentClassItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -43,7 +43,7 @@ public class ModeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModeItemProvider(AdapterFactory adapterFactory)
+	public IntrinsicMomentClassItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -66,7 +66,7 @@ public class ModeItemProvider
 	}
 
 	/**
-	 * This returns Mode.gif.
+	 * This returns IntrinsicMomentClass.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -74,7 +74,7 @@ public class ModeItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Mode"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/IntrinsicMomentClass"));
 	}
 
 	/**
@@ -86,10 +86,10 @@ public class ModeItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((Mode)object).getName();
+		String label = ((IntrinsicMomentClass)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Mode_type") :
-			getString("_UI_Mode_type") + " " + label;
+			getString("_UI_IntrinsicMomentClass_type") :
+			getString("_UI_IntrinsicMomentClass_type") + " " + label;
 	}
 
 	/**

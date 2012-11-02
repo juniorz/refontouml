@@ -93,9 +93,9 @@ public class ValidationMessage
 		{
 			description = "A Mixin cannot have a RoleMixin parent";
 		}
-		else if (constraintid.compareTo("ModeConstraint1") == 0)
+		else if (constraintid.compareTo("IntrinsicMomentConstraint1") == 0)
 		{
-			description = "A Mode must be connected (directly or indirectly) to a Characterization";
+			description = "An IntrinsicMoment must be connected (directly or indirectly) to a Characterization";
 		}
 		else if (constraintid.compareTo("RelatorConstraint1") == 0)
 		{
@@ -187,7 +187,7 @@ public class ValidationMessage
 		}
 		else if (constraintid.compareTo("CharacterizationConstraint1") == 0)
 		{
-			description = "The source must be a Mode";
+			description = "The source must be an IntrinsicMoment";
 		}
 		else if (constraintid.compareTo("CharacterizationConstraint2") == 0)
 		{

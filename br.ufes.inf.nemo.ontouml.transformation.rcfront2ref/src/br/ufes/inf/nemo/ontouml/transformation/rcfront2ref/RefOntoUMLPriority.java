@@ -13,6 +13,7 @@ public enum RefOntoUMLPriority
 	phase,
 	role,
 	relator,
+	quality,
 	mode,
 	dataType,
 	material,

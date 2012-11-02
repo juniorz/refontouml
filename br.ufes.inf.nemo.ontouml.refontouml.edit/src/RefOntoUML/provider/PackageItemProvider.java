@@ -401,6 +401,11 @@ public class PackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(RefOntoUMLPackage.eINSTANCE.getPackage_PackagedElement(),
+				 RefOntoUMLFactory.eINSTANCE.createQuality()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RefOntoUMLPackage.eINSTANCE.getPackage_PackagedElement(),
 				 RefOntoUMLFactory.eINSTANCE.createRelator()));
 
 		newChildDescriptors.add

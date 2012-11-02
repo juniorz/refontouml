@@ -14,8 +14,8 @@ package RefOntoUML;
  *
  * @see RefOntoUML.RefOntoUMLPackage#getCharacterization()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='CharacterizationConstraint1 CharacterizationConstraint2'"
- *        annotation="http://www.eclipse.org/ocl/examples/OCL CharacterizationConstraint1='mode().oclIsTypeOf(Mode)' CharacterizationConstraint2='characterizedEnd().lower = 1 and characterizedEnd().upper = 1'"
- *        annotation="Comments CharacterizationConstraint1='The source must be a Mode' CharacterizationConstraint2='The characterized end cardinality is exactly one'"
+ *        annotation="http://www.eclipse.org/ocl/examples/OCL CharacterizationConstraint1='characterizing().oclIsKindOf(IntrinsicMomentClass)' CharacterizationConstraint2='characterizedEnd().lower = 1 and characterizedEnd().upper = 1'"
+ *        annotation="Comments CharacterizationConstraint1='The source must be an IntrinsicMoment' CharacterizationConstraint2='The characterized end cardinality is exactly one'"
  * @generated
  */
 public interface Characterization extends DependencyRelationship
@@ -27,7 +27,7 @@ public interface Characterization extends DependencyRelationship
 	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='sourceEnd()'"
 	 * @generated
 	 */
-	Property modeEnd();
+	Property characterizingEnd();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -42,10 +42,10 @@ public interface Characterization extends DependencyRelationship
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='modeEnd().type'"
+	 *        annotation="http://www.eclipse.org/ocl/examples/OCL body='characterizingEnd().type'"
 	 * @generated
 	 */
-	Classifier mode();
+	Classifier characterizing();
 
 	/**
 	 * <!-- begin-user-doc -->

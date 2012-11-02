@@ -12907,14 +12907,14 @@ public interface RefOntoUMLPackage extends EPackage
 	int MIXIN_FEATURE_COUNT = SEMI_RIGID_MIXIN_CLASS_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link RefOntoUML.impl.ModeImpl <em>Mode</em>}' class.
+	 * The meta object id for the '{@link RefOntoUML.impl.IntrinsicMomentClassImpl <em>Intrinsic Moment Class</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see RefOntoUML.impl.ModeImpl
-	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getMode()
+	 * @see RefOntoUML.impl.IntrinsicMomentClassImpl
+	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getIntrinsicMomentClass()
 	 * @generated
 	 */
-	int MODE = 63;
+	int INTRINSIC_MOMENT_CLASS = 63;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -12923,7 +12923,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__EANNOTATIONS = MOMENT_CLASS__EANNOTATIONS;
+	int INTRINSIC_MOMENT_CLASS__EANNOTATIONS = MOMENT_CLASS__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
@@ -12932,7 +12932,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNED_ELEMENT = MOMENT_CLASS__OWNED_ELEMENT;
+	int INTRINSIC_MOMENT_CLASS__OWNED_ELEMENT = MOMENT_CLASS__OWNED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -12941,7 +12941,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNER = MOMENT_CLASS__OWNER;
+	int INTRINSIC_MOMENT_CLASS__OWNER = MOMENT_CLASS__OWNER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
@@ -12950,7 +12950,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNED_COMMENT = MOMENT_CLASS__OWNED_COMMENT;
+	int INTRINSIC_MOMENT_CLASS__OWNED_COMMENT = MOMENT_CLASS__OWNED_COMMENT;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -12959,7 +12959,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__NAME = MOMENT_CLASS__NAME;
+	int INTRINSIC_MOMENT_CLASS__NAME = MOMENT_CLASS__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -12968,7 +12968,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__VISIBILITY = MOMENT_CLASS__VISIBILITY;
+	int INTRINSIC_MOMENT_CLASS__VISIBILITY = MOMENT_CLASS__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -12977,7 +12977,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__QUALIFIED_NAME = MOMENT_CLASS__QUALIFIED_NAME;
+	int INTRINSIC_MOMENT_CLASS__QUALIFIED_NAME = MOMENT_CLASS__QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
@@ -12986,7 +12986,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__CLIENT_DEPENDENCY = MOMENT_CLASS__CLIENT_DEPENDENCY;
+	int INTRINSIC_MOMENT_CLASS__CLIENT_DEPENDENCY = MOMENT_CLASS__CLIENT_DEPENDENCY;
 
 	/**
 	 * The feature id for the '<em><b>Namespace</b></em>' reference.
@@ -12995,7 +12995,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__NAMESPACE = MOMENT_CLASS__NAMESPACE;
+	int INTRINSIC_MOMENT_CLASS__NAMESPACE = MOMENT_CLASS__NAMESPACE;
 
 	/**
 	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
@@ -13004,7 +13004,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__NAME_EXPRESSION = MOMENT_CLASS__NAME_EXPRESSION;
+	int INTRINSIC_MOMENT_CLASS__NAME_EXPRESSION = MOMENT_CLASS__NAME_EXPRESSION;
 
 	/**
 	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
@@ -13013,7 +13013,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__ELEMENT_IMPORT = MOMENT_CLASS__ELEMENT_IMPORT;
+	int INTRINSIC_MOMENT_CLASS__ELEMENT_IMPORT = MOMENT_CLASS__ELEMENT_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Package Import</b></em>' containment reference list.
@@ -13022,7 +13022,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__PACKAGE_IMPORT = MOMENT_CLASS__PACKAGE_IMPORT;
+	int INTRINSIC_MOMENT_CLASS__PACKAGE_IMPORT = MOMENT_CLASS__PACKAGE_IMPORT;
 
 	/**
 	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
@@ -13031,7 +13031,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNED_RULE = MOMENT_CLASS__OWNED_RULE;
+	int INTRINSIC_MOMENT_CLASS__OWNED_RULE = MOMENT_CLASS__OWNED_RULE;
 
 	/**
 	 * The feature id for the '<em><b>Member</b></em>' reference list.
@@ -13040,7 +13040,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__MEMBER = MOMENT_CLASS__MEMBER;
+	int INTRINSIC_MOMENT_CLASS__MEMBER = MOMENT_CLASS__MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
@@ -13049,7 +13049,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__IMPORTED_MEMBER = MOMENT_CLASS__IMPORTED_MEMBER;
+	int INTRINSIC_MOMENT_CLASS__IMPORTED_MEMBER = MOMENT_CLASS__IMPORTED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
@@ -13058,7 +13058,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNED_MEMBER = MOMENT_CLASS__OWNED_MEMBER;
+	int INTRINSIC_MOMENT_CLASS__OWNED_MEMBER = MOMENT_CLASS__OWNED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
@@ -13067,7 +13067,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__IS_LEAF = MOMENT_CLASS__IS_LEAF;
+	int INTRINSIC_MOMENT_CLASS__IS_LEAF = MOMENT_CLASS__IS_LEAF;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Element</b></em>' reference list.
@@ -13076,7 +13076,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__REDEFINED_ELEMENT = MOMENT_CLASS__REDEFINED_ELEMENT;
+	int INTRINSIC_MOMENT_CLASS__REDEFINED_ELEMENT = MOMENT_CLASS__REDEFINED_ELEMENT;
 
 	/**
 	 * The feature id for the '<em><b>Redefinition Context</b></em>' reference list.
@@ -13085,7 +13085,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__REDEFINITION_CONTEXT = MOMENT_CLASS__REDEFINITION_CONTEXT;
+	int INTRINSIC_MOMENT_CLASS__REDEFINITION_CONTEXT = MOMENT_CLASS__REDEFINITION_CONTEXT;
 
 	/**
 	 * The feature id for the '<em><b>Package</b></em>' reference.
@@ -13094,7 +13094,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__PACKAGE = MOMENT_CLASS__PACKAGE;
+	int INTRINSIC_MOMENT_CLASS__PACKAGE = MOMENT_CLASS__PACKAGE;
 
 	/**
 	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
@@ -13103,7 +13103,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__IS_ABSTRACT = MOMENT_CLASS__IS_ABSTRACT;
+	int INTRINSIC_MOMENT_CLASS__IS_ABSTRACT = MOMENT_CLASS__IS_ABSTRACT;
 
 	/**
 	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
@@ -13112,7 +13112,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__GENERALIZATION = MOMENT_CLASS__GENERALIZATION;
+	int INTRINSIC_MOMENT_CLASS__GENERALIZATION = MOMENT_CLASS__GENERALIZATION;
 
 	/**
 	 * The feature id for the '<em><b>Powertype Extent</b></em>' reference list.
@@ -13121,7 +13121,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__POWERTYPE_EXTENT = MOMENT_CLASS__POWERTYPE_EXTENT;
+	int INTRINSIC_MOMENT_CLASS__POWERTYPE_EXTENT = MOMENT_CLASS__POWERTYPE_EXTENT;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference list.
@@ -13130,7 +13130,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__FEATURE = MOMENT_CLASS__FEATURE;
+	int INTRINSIC_MOMENT_CLASS__FEATURE = MOMENT_CLASS__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
@@ -13139,7 +13139,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__INHERITED_MEMBER = MOMENT_CLASS__INHERITED_MEMBER;
+	int INTRINSIC_MOMENT_CLASS__INHERITED_MEMBER = MOMENT_CLASS__INHERITED_MEMBER;
 
 	/**
 	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
@@ -13148,7 +13148,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__REDEFINED_CLASSIFIER = MOMENT_CLASS__REDEFINED_CLASSIFIER;
+	int INTRINSIC_MOMENT_CLASS__REDEFINED_CLASSIFIER = MOMENT_CLASS__REDEFINED_CLASSIFIER;
 
 	/**
 	 * The feature id for the '<em><b>General</b></em>' reference list.
@@ -13157,7 +13157,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__GENERAL = MOMENT_CLASS__GENERAL;
+	int INTRINSIC_MOMENT_CLASS__GENERAL = MOMENT_CLASS__GENERAL;
 
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
@@ -13166,7 +13166,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__ATTRIBUTE = MOMENT_CLASS__ATTRIBUTE;
+	int INTRINSIC_MOMENT_CLASS__ATTRIBUTE = MOMENT_CLASS__ATTRIBUTE;
 
 	/**
 	 * The feature id for the '<em><b>Nested Classifier</b></em>' containment reference list.
@@ -13175,7 +13175,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__NESTED_CLASSIFIER = MOMENT_CLASS__NESTED_CLASSIFIER;
+	int INTRINSIC_MOMENT_CLASS__NESTED_CLASSIFIER = MOMENT_CLASS__NESTED_CLASSIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
@@ -13184,7 +13184,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__SUPER_CLASS = MOMENT_CLASS__SUPER_CLASS;
+	int INTRINSIC_MOMENT_CLASS__SUPER_CLASS = MOMENT_CLASS__SUPER_CLASS;
 
 	/**
 	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
@@ -13193,7 +13193,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__IS_ACTIVE = MOMENT_CLASS__IS_ACTIVE;
+	int INTRINSIC_MOMENT_CLASS__IS_ACTIVE = MOMENT_CLASS__IS_ACTIVE;
 
 	/**
 	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
@@ -13202,7 +13202,314 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE__OWNED_ATTRIBUTE = MOMENT_CLASS__OWNED_ATTRIBUTE;
+	int INTRINSIC_MOMENT_CLASS__OWNED_ATTRIBUTE = MOMENT_CLASS__OWNED_ATTRIBUTE;
+
+	/**
+	 * The number of structural features of the '<em>Intrinsic Moment Class</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTRINSIC_MOMENT_CLASS_FEATURE_COUNT = MOMENT_CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link RefOntoUML.impl.ModeImpl <em>Mode</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see RefOntoUML.impl.ModeImpl
+	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getMode()
+	 * @generated
+	 */
+	int MODE = 64;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__EANNOTATIONS = INTRINSIC_MOMENT_CLASS__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNED_ELEMENT = INTRINSIC_MOMENT_CLASS__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNER = INTRINSIC_MOMENT_CLASS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNED_COMMENT = INTRINSIC_MOMENT_CLASS__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__NAME = INTRINSIC_MOMENT_CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__VISIBILITY = INTRINSIC_MOMENT_CLASS__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__QUALIFIED_NAME = INTRINSIC_MOMENT_CLASS__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__CLIENT_DEPENDENCY = INTRINSIC_MOMENT_CLASS__CLIENT_DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__NAMESPACE = INTRINSIC_MOMENT_CLASS__NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__NAME_EXPRESSION = INTRINSIC_MOMENT_CLASS__NAME_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__ELEMENT_IMPORT = INTRINSIC_MOMENT_CLASS__ELEMENT_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Package Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__PACKAGE_IMPORT = INTRINSIC_MOMENT_CLASS__PACKAGE_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNED_RULE = INTRINSIC_MOMENT_CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__MEMBER = INTRINSIC_MOMENT_CLASS__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__IMPORTED_MEMBER = INTRINSIC_MOMENT_CLASS__IMPORTED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNED_MEMBER = INTRINSIC_MOMENT_CLASS__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__IS_LEAF = INTRINSIC_MOMENT_CLASS__IS_LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__REDEFINED_ELEMENT = INTRINSIC_MOMENT_CLASS__REDEFINED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Redefinition Context</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__REDEFINITION_CONTEXT = INTRINSIC_MOMENT_CLASS__REDEFINITION_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__PACKAGE = INTRINSIC_MOMENT_CLASS__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__IS_ABSTRACT = INTRINSIC_MOMENT_CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__GENERALIZATION = INTRINSIC_MOMENT_CLASS__GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Powertype Extent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__POWERTYPE_EXTENT = INTRINSIC_MOMENT_CLASS__POWERTYPE_EXTENT;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__FEATURE = INTRINSIC_MOMENT_CLASS__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__INHERITED_MEMBER = INTRINSIC_MOMENT_CLASS__INHERITED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__REDEFINED_CLASSIFIER = INTRINSIC_MOMENT_CLASS__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__GENERAL = INTRINSIC_MOMENT_CLASS__GENERAL;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__ATTRIBUTE = INTRINSIC_MOMENT_CLASS__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Classifier</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__NESTED_CLASSIFIER = INTRINSIC_MOMENT_CLASS__NESTED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__SUPER_CLASS = INTRINSIC_MOMENT_CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__IS_ACTIVE = INTRINSIC_MOMENT_CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODE__OWNED_ATTRIBUTE = INTRINSIC_MOMENT_CLASS__OWNED_ATTRIBUTE;
 
 	/**
 	 * The number of structural features of the '<em>Mode</em>' class.
@@ -13211,7 +13518,314 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODE_FEATURE_COUNT = MOMENT_CLASS_FEATURE_COUNT + 0;
+	int MODE_FEATURE_COUNT = INTRINSIC_MOMENT_CLASS_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link RefOntoUML.impl.QualityImpl <em>Quality</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see RefOntoUML.impl.QualityImpl
+	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getQuality()
+	 * @generated
+	 */
+	int QUALITY = 65;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__EANNOTATIONS = INTRINSIC_MOMENT_CLASS__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNED_ELEMENT = INTRINSIC_MOMENT_CLASS__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNER = INTRINSIC_MOMENT_CLASS__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNED_COMMENT = INTRINSIC_MOMENT_CLASS__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__NAME = INTRINSIC_MOMENT_CLASS__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__VISIBILITY = INTRINSIC_MOMENT_CLASS__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__QUALIFIED_NAME = INTRINSIC_MOMENT_CLASS__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__CLIENT_DEPENDENCY = INTRINSIC_MOMENT_CLASS__CLIENT_DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__NAMESPACE = INTRINSIC_MOMENT_CLASS__NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__NAME_EXPRESSION = INTRINSIC_MOMENT_CLASS__NAME_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__ELEMENT_IMPORT = INTRINSIC_MOMENT_CLASS__ELEMENT_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Package Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__PACKAGE_IMPORT = INTRINSIC_MOMENT_CLASS__PACKAGE_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNED_RULE = INTRINSIC_MOMENT_CLASS__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__MEMBER = INTRINSIC_MOMENT_CLASS__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__IMPORTED_MEMBER = INTRINSIC_MOMENT_CLASS__IMPORTED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNED_MEMBER = INTRINSIC_MOMENT_CLASS__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__IS_LEAF = INTRINSIC_MOMENT_CLASS__IS_LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__REDEFINED_ELEMENT = INTRINSIC_MOMENT_CLASS__REDEFINED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Redefinition Context</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__REDEFINITION_CONTEXT = INTRINSIC_MOMENT_CLASS__REDEFINITION_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__PACKAGE = INTRINSIC_MOMENT_CLASS__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__IS_ABSTRACT = INTRINSIC_MOMENT_CLASS__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__GENERALIZATION = INTRINSIC_MOMENT_CLASS__GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Powertype Extent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__POWERTYPE_EXTENT = INTRINSIC_MOMENT_CLASS__POWERTYPE_EXTENT;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__FEATURE = INTRINSIC_MOMENT_CLASS__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__INHERITED_MEMBER = INTRINSIC_MOMENT_CLASS__INHERITED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__REDEFINED_CLASSIFIER = INTRINSIC_MOMENT_CLASS__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__GENERAL = INTRINSIC_MOMENT_CLASS__GENERAL;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__ATTRIBUTE = INTRINSIC_MOMENT_CLASS__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Nested Classifier</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__NESTED_CLASSIFIER = INTRINSIC_MOMENT_CLASS__NESTED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Super Class</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__SUPER_CLASS = INTRINSIC_MOMENT_CLASS__SUPER_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Is Active</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__IS_ACTIVE = INTRINSIC_MOMENT_CLASS__IS_ACTIVE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Attribute</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY__OWNED_ATTRIBUTE = INTRINSIC_MOMENT_CLASS__OWNED_ATTRIBUTE;
+
+	/**
+	 * The number of structural features of the '<em>Quality</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALITY_FEATURE_COUNT = INTRINSIC_MOMENT_CLASS_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link RefOntoUML.impl.RelatorImpl <em>Relator</em>}' class.
@@ -13221,7 +13835,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getRelator()
 	 * @generated
 	 */
-	int RELATOR = 64;
+	int RELATOR = 66;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -13528,7 +14142,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getDirectedBinaryAssociation()
 	 * @generated
 	 */
-	int DIRECTED_BINARY_ASSOCIATION = 65;
+	int DIRECTED_BINARY_ASSOCIATION = 67;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -13853,7 +14467,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getMeronymic()
 	 * @generated
 	 */
-	int MERONYMIC = 66;
+	int MERONYMIC = 68;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -14223,7 +14837,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getsubQuantityOf()
 	 * @generated
 	 */
-	int SUB_QUANTITY_OF = 67;
+	int SUB_QUANTITY_OF = 69;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -14593,7 +15207,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getsubCollectionOf()
 	 * @generated
 	 */
-	int SUB_COLLECTION_OF = 68;
+	int SUB_COLLECTION_OF = 70;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -14963,7 +15577,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getmemberOf()
 	 * @generated
 	 */
-	int MEMBER_OF = 69;
+	int MEMBER_OF = 71;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -15333,7 +15947,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getcomponentOf()
 	 * @generated
 	 */
-	int COMPONENT_OF = 70;
+	int COMPONENT_OF = 72;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -15703,7 +16317,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getDependencyRelationship()
 	 * @generated
 	 */
-	int DEPENDENCY_RELATIONSHIP = 71;
+	int DEPENDENCY_RELATIONSHIP = 73;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -16028,7 +16642,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getCharacterization()
 	 * @generated
 	 */
-	int CHARACTERIZATION = 72;
+	int CHARACTERIZATION = 74;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -16353,7 +16967,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getMediation()
 	 * @generated
 	 */
-	int MEDIATION = 73;
+	int MEDIATION = 75;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -16678,7 +17292,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getDerivation()
 	 * @generated
 	 */
-	int DERIVATION = 74;
+	int DERIVATION = 76;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -17003,7 +17617,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getFormalAssociation()
 	 * @generated
 	 */
-	int FORMAL_ASSOCIATION = 75;
+	int FORMAL_ASSOCIATION = 77;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -17328,7 +17942,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getMaterialAssociation()
 	 * @generated
 	 */
-	int MATERIAL_ASSOCIATION = 76;
+	int MATERIAL_ASSOCIATION = 78;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -17653,7 +18267,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getVisibilityKind()
 	 * @generated
 	 */
-	int VISIBILITY_KIND = 77;
+	int VISIBILITY_KIND = 79;
 
 	/**
 	 * The meta object id for the '{@link RefOntoUML.AggregationKind <em>Aggregation Kind</em>}' enum.
@@ -17663,7 +18277,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getAggregationKind()
 	 * @generated
 	 */
-	int AGGREGATION_KIND = 78;
+	int AGGREGATION_KIND = 80;
 
 	/**
 	 * The meta object id for the '<em>Integer</em>' data type.
@@ -17672,7 +18286,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getInteger()
 	 * @generated
 	 */
-	int INTEGER = 79;
+	int INTEGER = 81;
 
 	/**
 	 * The meta object id for the '<em>Boolean</em>' data type.
@@ -17681,7 +18295,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getBoolean()
 	 * @generated
 	 */
-	int BOOLEAN = 80;
+	int BOOLEAN = 82;
 
 	/**
 	 * The meta object id for the '<em>String</em>' data type.
@@ -17691,7 +18305,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getString()
 	 * @generated
 	 */
-	int STRING = 81;
+	int STRING = 83;
 
 	/**
 	 * The meta object id for the '<em>Unlimited Natural</em>' data type.
@@ -17700,7 +18314,7 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @see RefOntoUML.impl.RefOntoUMLPackageImpl#getUnlimitedNatural()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL = 82;
+	int UNLIMITED_NATURAL = 84;
 
 
 	/**
@@ -19577,6 +20191,16 @@ public interface RefOntoUMLPackage extends EPackage
 	EClass getMixin();
 
 	/**
+	 * Returns the meta object for class '{@link RefOntoUML.IntrinsicMomentClass <em>Intrinsic Moment Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Intrinsic Moment Class</em>'.
+	 * @see RefOntoUML.IntrinsicMomentClass
+	 * @generated
+	 */
+	EClass getIntrinsicMomentClass();
+
+	/**
 	 * Returns the meta object for class '{@link RefOntoUML.Mode <em>Mode</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19585,6 +20209,16 @@ public interface RefOntoUMLPackage extends EPackage
 	 * @generated
 	 */
 	EClass getMode();
+
+	/**
+	 * Returns the meta object for class '{@link RefOntoUML.Quality <em>Quality</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Quality</em>'.
+	 * @see RefOntoUML.Quality
+	 * @generated
+	 */
+	EClass getQuality();
 
 	/**
 	 * Returns the meta object for class '{@link RefOntoUML.Relator <em>Relator</em>}'.

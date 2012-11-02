@@ -6,28 +6,28 @@
  */
 package RefOntoUML.impl;
 
-import RefOntoUML.Mode;
+import RefOntoUML.Quality;
 import RefOntoUML.RefOntoUMLPackage;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mode</b></em>'.
+ * An implementation of the model object '<em><b>Quality</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ModeImpl extends IntrinsicMomentClassImpl implements Mode
+public class QualityImpl extends IntrinsicMomentClassImpl implements Quality
 {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModeImpl()
+	protected QualityImpl()
 	{
 		super();
 	}
@@ -40,7 +40,7 @@ public class ModeImpl extends IntrinsicMomentClassImpl implements Mode
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RefOntoUMLPackage.eINSTANCE.getMode();
+		return RefOntoUMLPackage.eINSTANCE.getQuality();
 	}
 
-} //ModeImpl
+} //QualityImpl
