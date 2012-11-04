@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.TreeItem;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.ScopeContentProvider;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.ScopeModel;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.ScopeContentProvider;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.ScopeModel;
 
 public class ScopeTab implements Tab
 {	

@@ -21,6 +21,7 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.OntoUML2InfoUML;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.HistoryTrackingTab;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.ReferenceTab;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.ScopeTab;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.Tab;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.TimeTrackingTab;
@@ -112,10 +113,11 @@ public class Onto2InfoInterface
 		Rectangle clientArea = parent.getClientArea();
 		tabFolder.setLocation (clientArea.x, clientArea.y);
 		
-		Tab[] tabs = new Tab[3];
+		Tab[] tabs = new Tab[4];
 		tabs[0] = new ScopeTab();
 		tabs[1] = new HistoryTrackingTab();
 		tabs[2] = new TimeTrackingTab();
+		tabs[3] = new ReferenceTab();
 		
 		for (int i=0; i<tabs.length; i++)
 		{

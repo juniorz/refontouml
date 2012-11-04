@@ -1,25 +1,25 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content;
 
 import java.util.LinkedList;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 
-public class TimeModel
+public class HistoryTimeModel
 {
-	public LinkedList<RefOntoUML.Class> timeModel;
+	public LinkedList<RefOntoUML.Class> model;
 	
-	public TimeModel (RefOntoUMLModelAbstraction ontoumlmodel)
+	public HistoryTimeModel (RefOntoUMLModelAbstraction ontoumlmodel)
 	{
 		// Root nodes = Substance Sortal + Relators
-		timeModel = new LinkedList<RefOntoUML.Class>();
+		model = new LinkedList<RefOntoUML.Class>();
 		
 		for (RefOntoUML.SubstanceSortal ss : ontoumlmodel.substanceSortals)
 		{
-			timeModel.add(ss);
+			model.add(ss);
 		}
 		for (RefOntoUML.Relator r : ontoumlmodel.relators)
 		{
-			timeModel.add(r);
+			model.add(r);
 		}
 	}
 }

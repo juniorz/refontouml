@@ -12,8 +12,8 @@ import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.BooleanCellEditor;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.EmulatedNativeCheckBoxLabelProvider;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.TimeContentProvider;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.TimeModel;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.SimpleContentProvider;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.HistoryTimeModel;
 
 public class TimeTrackingTab extends TrackingTab
 {	
@@ -151,8 +151,8 @@ public class TimeTrackingTab extends TrackingTab
 		});
 		
 		// ContentProvider and Input
-		viewer.setContentProvider(new TimeContentProvider());
-		viewer.setInput((new TimeModel(ma)).timeModel);
+		viewer.setContentProvider(new SimpleContentProvider());
+		viewer.setInput((new HistoryTimeModel(ma)).model);
 		
 		return viewer;
 	}

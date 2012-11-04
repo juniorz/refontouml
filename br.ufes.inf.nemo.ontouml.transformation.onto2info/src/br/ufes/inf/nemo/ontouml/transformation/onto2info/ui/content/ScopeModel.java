@@ -1,4 +1,4 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content;
 
 import java.util.LinkedList;
 

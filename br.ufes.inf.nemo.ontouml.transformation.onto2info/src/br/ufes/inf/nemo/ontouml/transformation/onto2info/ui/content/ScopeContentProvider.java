@@ -1,10 +1,11 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+
 
 public class ScopeContentProvider implements ITreeContentProvider
 {

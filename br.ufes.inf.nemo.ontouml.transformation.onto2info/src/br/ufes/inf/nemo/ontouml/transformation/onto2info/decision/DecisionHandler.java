@@ -1,25 +1,28 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.ReferenceModel;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.HistoryTimeModel;
 
 public class DecisionHandler
 {
-	public Map<RefOntoUML.Classifier, ScopeDecision> scopeMap;
+	public Map<RefOntoUML.Class, ScopeDecision> scopeMap;
 	public Map<RefOntoUML.Class, HistoryDecision> historyMap;
 	public Map<RefOntoUML.Class, TimeDecision> timeMap;
+	public Map<RefOntoUML.Class, ReferenceDecision> referenceMap;
+	
 	public Map<RefOntoUML.Class, UMLAttributeSlot> attributeMap;
 	
 	public DecisionHandler(RefOntoUMLModelAbstraction ma)
 	{
-    	scopeMap = new HashMap<RefOntoUML.Classifier, ScopeDecision>();
+    	scopeMap = new HashMap<RefOntoUML.Class, ScopeDecision>();
     	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
     	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
+    	referenceMap = new HashMap<RefOntoUML.Class, ReferenceDecision>();
     	attributeMap = new HashMap<RefOntoUML.Class, UMLAttributeSlot>();
     	initializeDecisions(ma);
 	}
@@ -32,18 +35,22 @@ public class DecisionHandler
 			scopeMap.put(c, new ScopeDecision());
 		}
 		
-		// History and Time Tracking Decisions (OntoUML.SubstanceSortal and OntoUML.Relator)
-		List<RefOntoUML.Class> htclasses = new LinkedList<RefOntoUML.Class>(ontoAbstraction.substanceSortals);
-		htclasses.addAll(ontoAbstraction.relators);
-		
-		for (RefOntoUML.Class c : htclasses)
+		// History and Time Tracking Decisions
+		HistoryTimeModel htModel = new HistoryTimeModel(ontoAbstraction);
+		for (RefOntoUML.Class c : htModel.model)
 		{
 			historyMap.put(c, new HistoryDecision());
 			timeMap.put(c, new TimeDecision());
 			attributeMap.put(c, new UMLAttributeSlot());
 		}
 		
-		// TODO: Reference Decisions
+		// Reference Decisions
+		ReferenceModel refModel = new ReferenceModel(ontoAbstraction);
+		for (RefOntoUML.Class c : refModel.model)
+		{
+			referenceMap.put(c, new ReferenceDecision());
+		}
+		
 		// TODO: Measurement Decisions
 	}
 		
@@ -113,6 +120,17 @@ public class DecisionHandler
 		return historyMap.get(c).present;
 	}
 	
+	public boolean getReferenceDecision (RefOntoUML.Class c)
+	{
+		return referenceMap.get(c).reference;
+	}
+	
+	public void setReferenceDecision (Object o, boolean value)
+	{
+		//System.out.println("setting reference to " + value + " -> " + o);
+		referenceMap.get(o).reference = value;
+	}
+	
 	public UMLAttributeSlot getAttributeSlot (RefOntoUML.Class c)
 	{
 		return attributeMap.get(c);
@@ -132,7 +150,7 @@ public class DecisionHandler
 	
 	public void printScopeDecisions ()
 	{
-		for (Entry<RefOntoUML.Classifier, ScopeDecision> e : scopeMap.entrySet())
+		for (Entry<RefOntoUML.Class, ScopeDecision> e : scopeMap.entrySet())
 		{
 			System.out.println(
 					e.getKey().getName() +
