@@ -1,4 +1,4 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.serialize;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.Decision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.HistoryDecision;

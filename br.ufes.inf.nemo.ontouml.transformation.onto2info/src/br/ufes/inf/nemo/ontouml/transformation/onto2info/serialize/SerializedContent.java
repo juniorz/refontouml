@@ -1,4 +1,4 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.serialize;
 
 import java.io.Serializable;
 import java.util.Map;
