@@ -130,6 +130,11 @@ public class DecisionHandler
 		return referenceMap.get(c).attributeName;
 	}
 	
+	public AttributeType getReferenceAttributeType (RefOntoUML.Class c)
+	{
+		return referenceMap.get(c).attributeType;
+	}
+	
 	public void setReferenceDecision (Object o, boolean value)
 	{
 		//System.out.println("setting reference to " + value + " -> " + o);
@@ -139,6 +144,11 @@ public class DecisionHandler
 	public void setReferenceAttributeName (Object o, String attributeName)
 	{
 		referenceMap.get(o).attributeName = attributeName;
+	}
+	
+	public void setReferenceAttributeType (Object o, int attributeTypeCode)
+	{
+		referenceMap.get(o).attributeType = AttributeType.values()[attributeTypeCode];
 	}
 	
 	public UMLAttributeSlot getAttributeSlot (RefOntoUML.Class c)

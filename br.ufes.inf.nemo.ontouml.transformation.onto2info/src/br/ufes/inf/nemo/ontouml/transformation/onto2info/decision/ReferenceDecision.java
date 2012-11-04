@@ -6,10 +6,12 @@ public class ReferenceDecision implements Decision
 
 	public boolean reference;
 	public String attributeName;
+	public AttributeType attributeType;
 	
 	public ReferenceDecision()
 	{
 		reference = true;
 		attributeName = "id";
+		attributeType = AttributeType.INT;
 	}
 }

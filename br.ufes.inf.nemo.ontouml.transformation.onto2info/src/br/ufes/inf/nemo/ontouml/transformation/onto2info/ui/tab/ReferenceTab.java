@@ -21,6 +21,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.TreeItem;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.ReferenceModel;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.SimpleContentProvider;
@@ -131,11 +132,12 @@ public class ReferenceTab implements Tab
 		{
 			public String getText(Object element)
 			{
-				return "batata frita"; //dh.getReferenceAttributeName((RefOntoUML.Class)element); // FIXME
+				return dh.getReferenceAttributeType((RefOntoUML.Class)element).toString();
 			}
 		});
 		// Based on org.eclipse.jface.snippets.viewers.snippet027
-		final ComboBoxCellEditor comboBoxCellEditor = new ComboBoxCellEditor(treeViewer.getTree(), new String[] {"int", "string", "custom"});
+		final ComboBoxCellEditor comboBoxCellEditor = new ComboBoxCellEditor(treeViewer.getTree(), 
+					new String[] { AttributeType.INT.toString(), AttributeType.STRING.toString(), AttributeType.CUSTOM.toString()});
 		column.setEditingSupport(new EditingSupport(treeViewer)
 		{
 			protected boolean canEdit(Object element)
@@ -150,13 +152,14 @@ public class ReferenceTab implements Tab
 
 			protected Object getValue(Object element)
 			{
-				return 0;//dh.getReferenceAttributeName((RefOntoUML.Class)element); // FIXME
+				//System.out.println("getValue()" + dh.getReferenceAttributeType((RefOntoUML.Class)element).ordinal());
+				return dh.getReferenceAttributeType((RefOntoUML.Class)element).ordinal();
 			}
 
 			protected void setValue(Object element, Object value)
 			{
-				System.out.println("setValue() " + value);
-				//dh.setReferenceAttributeName(element, value.toString()); // FIXME
+				//System.out.println("setValue() " + value);
+				dh.setReferenceAttributeType(element, (Integer)value);
 				treeViewer.update(element, null);
 			}
 		});
