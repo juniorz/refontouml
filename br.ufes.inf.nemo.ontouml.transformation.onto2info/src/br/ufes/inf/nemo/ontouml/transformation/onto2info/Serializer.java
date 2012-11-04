@@ -39,28 +39,30 @@ public class Serializer
 	}
 	
 	
-// FIXME: perhaps I can modularize convert() and load() methods for Scope, History, Time and Reference (using a Decision super class)
-// FIXME: What if I put all those Maps in a Class and this Class is Serializable? Then I just serialize this Class (acting as a Map wrapper).
+
+
 	
 		
 	// Saves the Maps for OntoUML->UML, OntoUML->Decisions and OntoUML->UMLAttributes
 	public static void saveMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction) throws IOException
 	{
+		SerializedContent content = new SerializedContent();
+		
 		// Converts the OntoUML<->UML Map into an ID<->ID Map
-		Map<String, String> idMap = convertOntoInfoMap (ontoumlResource, umlResource);
+		content.idMap = convertOntoInfoMap (ontoumlResource, umlResource);
 		
 		// Converts the OntoUML<->ScopeDecision Map into an ID<->ScopeDecision Map
-		Map<String, Decision> scopeMap = convertDecisionMap (ontoumlResource, dh.scopeMap);
-		Map<String, Decision> historyMap = convertDecisionMap (ontoumlResource, dh.historyMap);
-		Map<String, Decision> timeMap = convertDecisionMap (ontoumlResource, dh.timeMap);
-		Map<String, Decision> referenceMap = convertDecisionMap (ontoumlResource, dh.referenceMap);
+		content.scopeIdMap = convertDecisionMap (ontoumlResource, dh.scopeMap);
+		content.historyIdMap = convertDecisionMap (ontoumlResource, dh.historyMap);
+		content.timeIdMap = convertDecisionMap (ontoumlResource, dh.timeMap);
+		content.referenceIdMap = convertDecisionMap (ontoumlResource, dh.referenceMap);
 		
 		// Converts the OntoUML<->UMLAttributeSlot Map into an ID<->UMLAttributeSlotString Map
-		Map<String, UMLAttributeSlotString> attributeMap = convertAttributeMap (ontoumlResource, umlResource, dh);
+		content.attributeIdMap = convertAttributeMap (ontoumlResource, umlResource, dh);
 		
-		String timePrimitiveStr = getUUID (umlResource, umlAbstraction.getTimeType());
-		String durationPrimitiveStr = getUUID (umlResource, umlAbstraction.getDurationType());
-		String booleanPrimitiveStr = getUUID (umlResource, umlAbstraction.getBooleanType());
+		content.timePrimitiveId = getUUID (umlResource, umlAbstraction.getTimeType());
+		content.durationPrimitiveId = getUUID (umlResource, umlAbstraction.getDurationType());
+		content.booleanPrimitiveId = getUUID (umlResource, umlAbstraction.getBooleanType());
 		
 		// Saves the fake Maps into a file
 		FileOutputStream fos = null;
@@ -68,15 +70,7 @@ public class Serializer
 
 		fos = new FileOutputStream(fileName);
 		out = new ObjectOutputStream(fos);
-		out.writeObject(idMap);
-		out.writeObject(scopeMap);
-		out.writeObject(historyMap);
-		out.writeObject(timeMap);
-		out.writeObject(referenceMap);
-		out.writeObject(attributeMap);
-		out.writeObject(timePrimitiveStr);
-		out.writeObject(durationPrimitiveStr);
-		out.writeObject(booleanPrimitiveStr);
+		out.writeObject(content);
 		out.close();
 	}
 	
@@ -154,50 +148,30 @@ public class Serializer
 	
 	
 	// Loads the OntoUML[ID]<->UML[ID] Map from a file
-	@SuppressWarnings("unchecked")
 	public static void loadMap (Resource ontoumlResource, Resource umlResource, String fileName, DecisionHandler dh, UMLModelAbstraction umlAbstraction)
 	throws IOException, ClassNotFoundException
 	{
-		Map<String, String> idMap = null;
-		Map<String, ScopeDecision> scopeMap = null;
-		Map<String, HistoryDecision> historyMap = null;
-		Map<String, TimeDecision> timeMap = null;
-		Map<String, ReferenceDecision> referenceMap = null;
-		Map<String, UMLAttributeSlotString> attributeMap = null;
-		String timePrimitiveStr = null;
-		String durationPrimitiveStr = null;
-		String booleanPrimitiveStr = null;
-				
+		SerializedContent content;
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		
 		// Loads the ID <-> ID Map from file
 		fis = new FileInputStream(fileName);
 		in = new ObjectInputStream(fis);
-		
-		idMap = (Map<String, String>) in.readObject();
-		scopeMap = (Map<String, ScopeDecision>) in.readObject();
-		historyMap = (Map<String, HistoryDecision>) in.readObject();
-		timeMap = (Map<String, TimeDecision>) in.readObject();
-		referenceMap = (Map<String, ReferenceDecision>) in.readObject();
-		attributeMap = (Map<String, UMLAttributeSlotString>) in.readObject();
-		timePrimitiveStr = (String) in.readObject();
-		durationPrimitiveStr = (String) in.readObject();
-		booleanPrimitiveStr = (String) in.readObject();
-		
+		content = (SerializedContent) in.readObject();
 		in.close();
 		
 		// Convert it to RefOntoUML.Element <-> UML.Element Map
-		loadOntoInfoMap (ontoumlResource, umlResource, idMap);
-		loadScopeMap(ontoumlResource, scopeMap, dh);
-		loadHistoryMap(ontoumlResource, historyMap, dh);
-		loadTimeMap(ontoumlResource, timeMap, dh);
-		loadReferenceMap(ontoumlResource, referenceMap, dh);
-		loadAttributeMap(ontoumlResource, umlResource, attributeMap, dh);
+		loadOntoInfoMap (ontoumlResource, umlResource, content.idMap);
+		loadScopeMap(ontoumlResource, content.scopeIdMap, dh);
+		loadHistoryMap(ontoumlResource, content.historyIdMap, dh);
+		loadTimeMap(ontoumlResource, content.timeIdMap, dh);
+		loadReferenceMap(ontoumlResource, content.referenceIdMap, dh);
+		loadAttributeMap(ontoumlResource, umlResource, content.attributeIdMap, dh);
 		
-		umlAbstraction.timeType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, timePrimitiveStr);
-		umlAbstraction.durationType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, durationPrimitiveStr);
-		umlAbstraction.booleanType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, booleanPrimitiveStr);
+		umlAbstraction.timeType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, content.timePrimitiveId);
+		umlAbstraction.durationType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, content.durationPrimitiveId);
+		umlAbstraction.booleanType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, content.booleanPrimitiveId);
 	}
 	
 	public static void loadOntoInfoMap (Resource ontoumlResource, Resource umlResource, Map<String, String> idMap)
@@ -212,51 +186,51 @@ public class Serializer
 		}
 	}	
 	
-	public static void loadScopeMap (Resource ontoumlResource, Map<String, ScopeDecision> idMap, DecisionHandler dh)
+	private static void loadScopeMap (Resource ontoumlResource, Map<String, Decision> idMap, DecisionHandler dh)
 	{
 		dh.scopeMap = new HashMap<RefOntoUML.Class, ScopeDecision>();
 		
-		for (Entry<String, ScopeDecision> entry : idMap.entrySet())
+		for (Entry<String, Decision> entry : idMap.entrySet())
 		{
 			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
-			dh.scopeMap.put(ontoumlObj, entry.getValue());
+			dh.scopeMap.put(ontoumlObj, (ScopeDecision) entry.getValue());
 		}
 	}
 	
-	public static void loadHistoryMap (Resource ontoumlResource, Map<String, HistoryDecision> idMap, DecisionHandler dh)
+	private static void loadHistoryMap (Resource ontoumlResource, Map<String, Decision> idMap, DecisionHandler dh)
 	{
 		dh.historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
 		
-		for (Entry<String, HistoryDecision> entry : idMap.entrySet())
+		for (Entry<String, Decision> entry : idMap.entrySet())
 		{
 			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
-			dh.historyMap.put(ontoumlObj, entry.getValue());
+			dh.historyMap.put(ontoumlObj, (HistoryDecision) entry.getValue());
 		}
 	}
 	
-	public static void loadTimeMap (Resource ontoumlResource, Map<String, TimeDecision> idMap, DecisionHandler dh)
+	private static void loadTimeMap (Resource ontoumlResource, Map<String, Decision> idMap, DecisionHandler dh)
 	{
 		dh.timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
 		
-		for (Entry<String, TimeDecision> entry : idMap.entrySet())
+		for (Entry<String, Decision> entry : idMap.entrySet())
 		{
 			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
-			dh.timeMap.put(ontoumlObj, entry.getValue());
+			dh.timeMap.put(ontoumlObj, (TimeDecision) entry.getValue());
 		}
 	}
 	
-	public static void loadReferenceMap (Resource ontoumlResource, Map<String, ReferenceDecision> idMap, DecisionHandler dh)
+	private static void loadReferenceMap (Resource ontoumlResource, Map<String, Decision> idMap, DecisionHandler dh)
 	{
 		dh.referenceMap = new HashMap<RefOntoUML.Class, ReferenceDecision>();
 		
-		for (Entry<String, ReferenceDecision> entry : idMap.entrySet())
+		for (Entry<String, Decision> entry : idMap.entrySet())
 		{
 			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
-			dh.referenceMap.put(ontoumlObj, entry.getValue());
+			dh.referenceMap.put(ontoumlObj, (ReferenceDecision) entry.getValue());
 		}
 	}
 	
-	public static void loadAttributeMap (Resource ontoumlResource, Resource umlResource, Map<String, UMLAttributeSlotString> idMap, DecisionHandler dh)
+	private static void loadAttributeMap (Resource ontoumlResource, Resource umlResource, Map<String, UMLAttributeSlotString> idMap, DecisionHandler dh)
 	{
 		dh.attributeMap = new HashMap<RefOntoUML.Class, UMLAttributeSlot>();
 		
