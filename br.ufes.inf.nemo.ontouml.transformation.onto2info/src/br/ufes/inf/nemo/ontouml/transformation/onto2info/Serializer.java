@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.Decision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.HistoryDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ReferenceDecision;
@@ -49,13 +50,10 @@ public class Serializer
 		Map<String, String> idMap = convertOntoInfoMap (ontoumlResource, umlResource);
 		
 		// Converts the OntoUML<->ScopeDecision Map into an ID<->ScopeDecision Map
-		Map<String, ScopeDecision> scopeMap = convertScopeMap (ontoumlResource, dh);
-		// Converts the OntoUML<->HistoryDecision Map into an ID<->HistoryDecision Map
-		Map<String, HistoryDecision> historyMap = convertHistoryMap (ontoumlResource, dh);
-		// Converts the OntoUML<->TimeDecision Map into an ID<->TimeDecision Map
-		Map<String, TimeDecision> timeMap = convertTimeMap (ontoumlResource, dh);
-		// Converts the OntoUML<->ReferenceDecision Map into an ID<->ReferenceDecision Map
-		Map<String, ReferenceDecision> referenceMap = convertReferenceMap (ontoumlResource, dh);
+		Map<String, Decision> scopeMap = convertDecisionMap (ontoumlResource, dh.scopeMap);
+		Map<String, Decision> historyMap = convertDecisionMap (ontoumlResource, dh.historyMap);
+		Map<String, Decision> timeMap = convertDecisionMap (ontoumlResource, dh.timeMap);
+		Map<String, Decision> referenceMap = convertDecisionMap (ontoumlResource, dh.referenceMap);
 		
 		// Converts the OntoUML<->UMLAttributeSlot Map into an ID<->UMLAttributeSlotString Map
 		Map<String, UMLAttributeSlotString> attributeMap = convertAttributeMap (ontoumlResource, umlResource, dh);
@@ -96,11 +94,14 @@ public class Serializer
 		return idMap;
 	}
 	
-	public static Map<String, ScopeDecision> convertScopeMap (Resource ontoumlResource, DecisionHandler dh)
+	// Coverts a Map<OntoUML.Class, Decision> into a Map<String, Decision>
+	// I'm using "Bounded Wildcards" in this method
+	// http://docs.oracle.com/javase/tutorial/extra/generics/wildcards.html
+	private static Map<String, Decision> convertDecisionMap (Resource ontoumlResource, Map<RefOntoUML.Class, ? extends Decision> map)
 	{
-		Map<String, ScopeDecision> idMap = new HashMap<String, ScopeDecision>();
+		Map<String, Decision> idMap = new HashMap<String, Decision>();
 		
-		for (Entry<RefOntoUML.Class, ScopeDecision> entry : dh.scopeMap.entrySet())
+		for (Entry<RefOntoUML.Class, ? extends Decision> entry : map.entrySet())
 		{
 			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
 			idMap.put(ontoumlID, entry.getValue());
@@ -109,46 +110,7 @@ public class Serializer
 		return idMap;
 	}
 	
-	public static Map<String, HistoryDecision> convertHistoryMap (Resource ontoumlResource, DecisionHandler dh)
-	{
-		Map<String, HistoryDecision> idMap = new HashMap<String, HistoryDecision>();
-		
-		for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
-		{
-			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
-			idMap.put(ontoumlID, entry.getValue());
-		}
-		
-		return idMap;
-	}
-	
-	public static Map<String, TimeDecision> convertTimeMap (Resource ontoumlResource, DecisionHandler dh)
-	{
-		Map<String, TimeDecision> idMap = new HashMap<String, TimeDecision>();
-		
-		for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
-		{
-			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
-			idMap.put(ontoumlID, entry.getValue());
-		}
-		
-		return idMap;
-	}
-	
-	public static Map<String, ReferenceDecision> convertReferenceMap (Resource ontoumlResource, DecisionHandler dh)
-	{
-		Map<String, ReferenceDecision> idMap = new HashMap<String, ReferenceDecision>();
-		
-		for (Entry<RefOntoUML.Class, ReferenceDecision> entry : dh.referenceMap.entrySet())
-		{
-			String ontoumlID = getUUID (ontoumlResource, entry.getKey());
-			idMap.put(ontoumlID, entry.getValue());
-		}
-		
-		return idMap;
-	}
-	
-	public static Map<String, UMLAttributeSlotString> convertAttributeMap (Resource ontoumlResource, Resource umlResource, DecisionHandler dh)
+	private static Map<String, UMLAttributeSlotString> convertAttributeMap (Resource ontoumlResource, Resource umlResource, DecisionHandler dh)
 	{
 		Map<String, UMLAttributeSlotString> idMap = new HashMap<String, UMLAttributeSlotString>();
 		

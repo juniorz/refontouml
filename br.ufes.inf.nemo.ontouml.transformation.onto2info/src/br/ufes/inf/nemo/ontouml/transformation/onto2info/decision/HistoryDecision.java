@@ -1,8 +1,6 @@
 package br.ufes.inf.nemo.ontouml.transformation.onto2info.decision;
 
-import java.io.Serializable;
-
-public class HistoryDecision implements Serializable
+public class HistoryDecision implements Decision
 {
 	private static final long serialVersionUID = -582351433775987751L;
 	
