@@ -182,15 +182,23 @@ public class ReferenceTab implements Tab
 
 			protected Object getValue(Object element)
 			{
-				//System.out.println("getValue()" + dh.getReferenceAttributeType((RefOntoUML.Class)element).ordinal());
 				return dh.getReferenceAttributeType((RefOntoUML.Class)element).ordinal();
 			}
 
 			protected void setValue(Object element, Object value)
 			{
-				//System.out.println("setValue() " + value);
-				dh.setReferenceAttributeType(element, (Integer)value);
-				treeViewer.update(element, null);
+				// 0 = int
+				// 1 = string
+				// 2 = custom
+				// -1 = invalid (the user typed some invalid name)
+				int attributeTypeCode = (Integer) value;
+				
+				if (attributeTypeCode >= 0)
+				{
+					AttributeType attributeType = AttributeType.values()[attributeTypeCode];
+					dh.setReferenceAttributeType(element, attributeType);
+					treeViewer.update(element, null);
+				}
 			}
 		});
 	}
@@ -206,7 +214,14 @@ public class ReferenceTab implements Tab
 		{
 			public String getText(Object element)
 			{
-				return dh.getReferenceTypeName((RefOntoUML.Class)element);
+				RefOntoUML.Class c = (RefOntoUML.Class)element;
+				String typeName = "";
+				
+				// Attribute Type Name is only for CUSTOM types
+				if (dh.getReferenceAttributeType(c) == AttributeType.CUSTOM)
+					typeName = dh.getReferenceTypeName((RefOntoUML.Class)element);
+				
+				return typeName;
 			}
 		});
 		
@@ -215,7 +230,8 @@ public class ReferenceTab implements Tab
 		{
 			protected boolean canEdit(Object element)
 			{
-				return true;
+				// Attribute Type Name is only for CUSTOM types
+				return (dh.getReferenceAttributeType((RefOntoUML.Class)element) == AttributeType.CUSTOM);
 			}
 
 			protected CellEditor getCellEditor(Object element)

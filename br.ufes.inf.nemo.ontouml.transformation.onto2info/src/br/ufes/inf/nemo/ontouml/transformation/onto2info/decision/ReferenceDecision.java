@@ -16,4 +16,14 @@ public class ReferenceDecision implements Decision
 		attributeType = AttributeType.INT;
 		typeName = "";
 	}
+	
+	public void setAttributeType (AttributeType attributeType, String universalName)
+	{
+		this.attributeType = attributeType;
+
+		if (attributeType == AttributeType.CUSTOM && typeName.compareTo("")== 0)
+		{
+			typeName = universalName + "ID";
+		}
+	}
 }

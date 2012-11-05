@@ -151,10 +151,9 @@ public class DecisionHandler
 		referenceMap.get(o).attributeName = attributeName;
 	}
 	
-	public void setReferenceAttributeType (Object o, int attributeTypeCode)
+	public void setReferenceAttributeType (Object o, AttributeType attributeType)
 	{
-		if (attributeTypeCode > 0)
-			referenceMap.get(o).attributeType = AttributeType.values()[attributeTypeCode];
+		referenceMap.get(o).setAttributeType(attributeType, ((RefOntoUML.Class)o).getName());
 	}
 	
 	public void setReferenceTypeName (Object o, String typeName)
