@@ -18,6 +18,8 @@ import org.eclipse.swt.widgets.TreeItem;
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.BooleanCellEditor;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.EmulatedNativeCheckBoxLabelProvider;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.MeasurementModel;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.SimpleContentProvider;
 
@@ -36,13 +38,18 @@ public class MeasurementTab implements Tab
 		treeViewer.getTree().setLinesVisible(true);
 		treeViewer.getTree().setHeaderVisible(true);
 				
-		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());	
+		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());
+		// BooleanCellEditor is a custom class created by a guy in JFace Snippets
+		final BooleanCellEditor booleanCellEditor = new BooleanCellEditor(treeViewer.getTree());
+		booleanCellEditor.setChangeOnActivation(true);
 		
 		// Columns
 		universalColumn(treeViewer);
 		characterizedUniversalColumn(treeViewer, dh, textCellEditor);
 		attributeTypeColumn(treeViewer, dh);
-		typeNameColumn(treeViewer, dh, textCellEditor);			
+		typeNameColumn(treeViewer, dh, textCellEditor);
+		historyTrackingColumn(treeViewer, dh, booleanCellEditor);
+		timeTrackingColumn(treeViewer, dh, booleanCellEditor);
 		
 		// Content
 		treeViewer.setContentProvider(new SimpleContentProvider());
@@ -97,31 +104,6 @@ public class MeasurementTab implements Tab
 				return ((RefOntoUML.Quality)element).characterized().getName();
 			}
 		});
-		
-		// Based on org.eclipse.jface.snippets.viewers.snippet026
-		/*column.setEditingSupport(new EditingSupport(treeViewer)
-		{
-			protected boolean canEdit(Object element)
-			{
-				return true;
-			}
-
-			protected CellEditor getCellEditor(Object element)
-			{
-				return textCellEditor;
-			}
-
-			protected Object getValue(Object element)
-			{
-				return dh.getReferenceAttributeName((RefOntoUML.Class)element); // FIXME
-			}
-
-			protected void setValue(Object element, Object value)
-			{
-				dh.setReferenceAttributeName(element, value.toString()); // FIXME
-				treeViewer.update(element, null);
-			}
-		});*/
 	}
 	
 	public void attributeTypeColumn (final TreeViewer treeViewer, final DecisionHandler dh)
@@ -222,6 +204,88 @@ public class MeasurementTab implements Tab
 			protected void setValue(Object element, Object value)
 			{
 				dh.setMeasurementTypeName(element, value.toString());
+				treeViewer.update(element, null);
+			}
+		});
+	}
+	
+	public void historyTrackingColumn (final TreeViewer treeViewer, final DecisionHandler dh, final BooleanCellEditor booleanCellEditor)
+	{
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.CENTER);
+		column.getColumn().setWidth(80);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("History");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(treeViewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getHTPastDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(treeViewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getHTPastDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setHTPastDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				treeViewer.update(element, null);
+			}
+		});
+	}
+	
+	public void timeTrackingColumn (final TreeViewer treeViewer, final DecisionHandler dh, final BooleanCellEditor booleanCellEditor)
+	{
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.CENTER);
+		column.getColumn().setWidth(80);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Time");
+		column.setLabelProvider(new EmulatedNativeCheckBoxLabelProvider(treeViewer)
+		{
+			protected boolean isChecked(Object element)
+			{
+				//System.out.println(((RefOntoUML.Class)element).getName());
+				return dh.getStartTimeDecision((RefOntoUML.Class)element);
+			}
+		});
+		column.setEditingSupport(new EditingSupport(treeViewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				// Only if history tracking on past
+				return dh.getHTPastDecision((RefOntoUML.Class)element);
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return booleanCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				//System.out.println("getValue(" + ((RefOntoUML.Class)element).getName() + ")");
+				return new Boolean(dh.getStartTimeDecision((RefOntoUML.Class)element));
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				//((File) element).read = ((Boolean) value).booleanValue();
+				dh.setStartTimeDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
 				treeViewer.update(element, null);
 			}
 		});
