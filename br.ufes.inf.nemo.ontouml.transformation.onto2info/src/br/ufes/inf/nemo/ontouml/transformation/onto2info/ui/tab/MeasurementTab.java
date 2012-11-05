@@ -4,18 +4,12 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckStateChangedEvent;
 import org.eclipse.jface.viewers.CheckboxTreeViewer;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.eclipse.jface.viewers.ColumnViewerEditor;
-import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
-import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
-import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
-import org.eclipse.jface.viewers.TreeViewerEditor;
-import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -24,106 +18,88 @@ import org.eclipse.swt.widgets.TreeItem;
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.ReferenceModel;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.MeasurementModel;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.SimpleContentProvider;
 
-public class ReferenceTab implements Tab
+public class MeasurementTab implements Tab
 {
 	@Override
 	public String getName()
 	{
-		return "Reference";
+		return "Measurement";
 	}
-		
+	
 	@Override
 	public Control getControl(Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)
 	{
 		final CheckboxTreeViewer treeViewer = new CheckboxTreeViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLinesVisible(true);
 		treeViewer.getTree().setHeaderVisible(true);
+				
+		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());	
+		
+		// Columns
+		universalColumn(treeViewer);
+		characterizedUniversalColumn(treeViewer, dh, textCellEditor);
+		attributeTypeColumn(treeViewer, dh);
+		typeNameColumn(treeViewer, dh, textCellEditor);			
+		
+		// Content
+		treeViewer.setContentProvider(new SimpleContentProvider());
+		treeViewer.setInput((new MeasurementModel(ma)).model);
+		treeViewer.expandAll();
+				
+		// Initialize the values of checkboxes according to previous Measurement Decisions
+		// Passing the top nodes of the Tree as parameter
+		initializeCheckboxes (treeViewer.getTree().getItems(), dh);
 		
 		// Checkbox Listener
 		treeViewer.addCheckStateListener(new ICheckStateListener()
 		{
 			public void checkStateChanged(CheckStateChangedEvent event)
 			{
-				dh.setReferenceDecision(event.getElement(), event.getChecked());
+				dh.setScopeDecision(event.getElement(), event.getChecked());
 			}
 		});
 		
-		// Actions when you focus (click, double click, etc.) the cell
-		// Without this: one click = edit
-		// With this: one click = select / double-click = edit
-		/*TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(treeViewer, new FocusCellOwnerDrawHighlighter(treeViewer));
-		ColumnViewerEditorActivationStrategy actSupport = new ColumnViewerEditorActivationStrategy(treeViewer)
-		{
-			protected boolean isEditorActivationEvent(ColumnViewerEditorActivationEvent event)
-			{
-				return event.eventType == ColumnViewerEditorActivationEvent.TRAVERSAL
-						|| event.eventType == ColumnViewerEditorActivationEvent.MOUSE_DOUBLE_CLICK_SELECTION
-						|| (event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED && event.keyCode == SWT.CR)
-						|| event.eventType == ColumnViewerEditorActivationEvent.PROGRAMMATIC;
-			}
-		};
-		TreeViewerEditor.create(treeViewer, focusCellManager, actSupport,
-				ColumnViewerEditor.TABBING_HORIZONTAL
-						| ColumnViewerEditor.TABBING_MOVE_TO_ROW_NEIGHBOR
-						| ColumnViewerEditor.TABBING_VERTICAL
-						| ColumnViewerEditor.KEYBOARD_ACTIVATION);*/
-		
-		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());	
-		
-		// Columns
-		universalColumn(treeViewer);
-		attributeNameColumn(treeViewer, dh, textCellEditor);
-		attributeTypeColumn(treeViewer, dh);
-		typeNameColumn(treeViewer, dh, textCellEditor);			
-		
-		// Content
-		treeViewer.setContentProvider(new SimpleContentProvider());
-		treeViewer.setInput((new ReferenceModel(ma)).model);
-		treeViewer.expandAll();
-				
-		// Initialize the values of checkboxes according to previous Reference Decisions
-		// Passing the top nodes of the Tree as parameter
-		initializeCheckboxes (treeViewer.getTree().getItems(), dh);
-		
 		return treeViewer.getTree();
 	}
-	
+
 	public void universalColumn (TreeViewer treeViewer)
 	{
 		// Column 1
 		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.LEFT);
 		column.getColumn().setWidth(200);
 		column.getColumn().setMoveable(true);
-		column.getColumn().setText("Universal");
+		column.getColumn().setText("Quality Universal");
 		column.setLabelProvider(new ColumnLabelProvider()
 		{
 			public String getText(Object element)
 			{
-				return ((RefOntoUML.Class) element).getName();
+				RefOntoUML.Quality q = (RefOntoUML.Quality) element;
+				//return (q.getName() + " (" + q.characterized().getName() + ")");
+				return q.getName();
 			}
 		});
 	}
 	
-	public void attributeNameColumn (final TreeViewer treeViewer, final DecisionHandler dh, final TextCellEditor textCellEditor)
+	public void characterizedUniversalColumn (final TreeViewer treeViewer, final DecisionHandler dh, final TextCellEditor textCellEditor)
 	{
 		// Column 2
 		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.NONE);
-		column.getColumn().setWidth(200);
+		column.getColumn().setWidth(150);
 		column.getColumn().setMoveable(true);
-		column.getColumn().setText("Attribute Name");
+		column.getColumn().setText("Characterized Universal");
 		column.setLabelProvider(new ColumnLabelProvider()
 		{
 			public String getText(Object element)
 			{
-				return dh.getReferenceAttributeName((RefOntoUML.Class)element);
+				return ((RefOntoUML.Quality)element).characterized().getName();
 			}
 		});
 		
 		// Based on org.eclipse.jface.snippets.viewers.snippet026
-		column.setEditingSupport(new EditingSupport(treeViewer)
+		/*column.setEditingSupport(new EditingSupport(treeViewer)
 		{
 			protected boolean canEdit(Object element)
 			{
@@ -137,29 +113,29 @@ public class ReferenceTab implements Tab
 
 			protected Object getValue(Object element)
 			{
-				return dh.getReferenceAttributeName((RefOntoUML.Class)element);
+				return dh.getReferenceAttributeName((RefOntoUML.Class)element); // FIXME
 			}
 
 			protected void setValue(Object element, Object value)
 			{
-				dh.setReferenceAttributeName(element, value.toString());
+				dh.setReferenceAttributeName(element, value.toString()); // FIXME
 				treeViewer.update(element, null);
 			}
-		});
+		});*/
 	}
 	
 	public void attributeTypeColumn (final TreeViewer treeViewer, final DecisionHandler dh)
 	{
 		// Column 3
 		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.NONE);
-		column.getColumn().setWidth(200);
+		column.getColumn().setWidth(100);
 		column.getColumn().setMoveable(true);
 		column.getColumn().setText("Attribute Type");
 		column.setLabelProvider(new ColumnLabelProvider()
 		{
 			public String getText(Object element)
 			{
-				return dh.getReferenceAttributeType((RefOntoUML.Class)element).toString();
+				return dh.getMeasurementAttributeType((RefOntoUML.Class)element).toString();
 			}
 		});
 		
@@ -181,7 +157,7 @@ public class ReferenceTab implements Tab
 
 			protected Object getValue(Object element)
 			{
-				return dh.getReferenceAttributeType((RefOntoUML.Class)element).ordinal();
+				return dh.getMeasurementAttributeType((RefOntoUML.Class)element).ordinal();
 			}
 
 			protected void setValue(Object element, Object value)
@@ -195,7 +171,7 @@ public class ReferenceTab implements Tab
 				if (attributeTypeCode >= 0)
 				{
 					AttributeType attributeType = AttributeType.values()[attributeTypeCode];
-					dh.setReferenceAttributeType(element, attributeType);
+					dh.setMeasurementAttributeType(element, attributeType);
 					treeViewer.update(element, null);
 				}
 			}
@@ -217,8 +193,8 @@ public class ReferenceTab implements Tab
 				String typeName = "";
 				
 				// Attribute Type Name is only for CUSTOM types
-				if (dh.getReferenceAttributeType(c) == AttributeType.CUSTOM)
-					typeName = dh.getReferenceTypeName((RefOntoUML.Class)element);
+				if (dh.getMeasurementAttributeType(c) == AttributeType.CUSTOM)
+					typeName = dh.getMeasurementTypeName((RefOntoUML.Class)element);
 				
 				return typeName;
 			}
@@ -230,7 +206,7 @@ public class ReferenceTab implements Tab
 			protected boolean canEdit(Object element)
 			{
 				// Attribute Type Name is only for CUSTOM types
-				return (dh.getReferenceAttributeType((RefOntoUML.Class)element) == AttributeType.CUSTOM);
+				return (dh.getMeasurementAttributeType((RefOntoUML.Class)element) == AttributeType.CUSTOM);
 			}
 
 			protected CellEditor getCellEditor(Object element)
@@ -240,12 +216,12 @@ public class ReferenceTab implements Tab
 
 			protected Object getValue(Object element)
 			{
-				return dh.getReferenceTypeName((RefOntoUML.Class)element);
+				return dh.getMeasurementTypeName((RefOntoUML.Class)element);
 			}
 
 			protected void setValue(Object element, Object value)
 			{
-				dh.setReferenceTypeName(element, value.toString());
+				dh.setMeasurementTypeName(element, value.toString());
 				treeViewer.update(element, null);
 			}
 		});
@@ -256,7 +232,7 @@ public class ReferenceTab implements Tab
 		for (int i = 0; i < items.length; i++)
 		{
 			Object obj = items[i].getData();
-			boolean value = dh.getReferenceDecision((RefOntoUML.Class)obj);
+			boolean value = dh.inScope((RefOntoUML.Classifier)obj);
 			items[i].setChecked(value);
 		}
 	}

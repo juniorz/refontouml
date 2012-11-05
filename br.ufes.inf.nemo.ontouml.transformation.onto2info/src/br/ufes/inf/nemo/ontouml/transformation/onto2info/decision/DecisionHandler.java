@@ -14,6 +14,7 @@ public class DecisionHandler
 	public Map<RefOntoUML.Class, HistoryDecision> historyMap;
 	public Map<RefOntoUML.Class, TimeDecision> timeMap;
 	public Map<RefOntoUML.Class, ReferenceDecision> referenceMap;
+	public Map<RefOntoUML.Class, MeasurementDecision> measurementMap;
 	
 	public Map<RefOntoUML.Class, UMLAttributeSlot> attributeMap;
 	
@@ -23,6 +24,7 @@ public class DecisionHandler
     	historyMap = new HashMap<RefOntoUML.Class, HistoryDecision>();
     	timeMap = new HashMap<RefOntoUML.Class, TimeDecision>();
     	referenceMap = new HashMap<RefOntoUML.Class, ReferenceDecision>();
+    	measurementMap = new HashMap<RefOntoUML.Class, MeasurementDecision>();
     	attributeMap = new HashMap<RefOntoUML.Class, UMLAttributeSlot>();
     	initializeDecisions(ma);
 	}
@@ -37,6 +39,8 @@ public class DecisionHandler
 		
 		// History and Time Tracking Decisions
 		HistoryTimeModel htModel = new HistoryTimeModel(ontoAbstraction);
+		// Qualities are shown in their own panel, so they are not in HistoryTimeModel 
+		htModel.model.addAll(ontoAbstraction.qualities);
 		for (RefOntoUML.Class c : htModel.model)
 		{
 			historyMap.put(c, new HistoryDecision());
@@ -51,7 +55,11 @@ public class DecisionHandler
 			referenceMap.put(c, new ReferenceDecision());
 		}
 		
-		// TODO: Measurement Decisions
+		// Measurement Decisions
+		for (RefOntoUML.Class c : ontoAbstraction.qualities)
+		{
+			measurementMap.put(c, new MeasurementDecision(c.getName()));
+		}
 	}
 		
 	public boolean inScope(RefOntoUML.Classifier c)
@@ -120,6 +128,12 @@ public class DecisionHandler
 		return historyMap.get(c).present;
 	}
 	
+	
+	
+	
+	
+	/* Reference */	
+	
 	public boolean getReferenceDecision (RefOntoUML.Class c)
 	{
 		return referenceMap.get(c).reference;
@@ -159,6 +173,32 @@ public class DecisionHandler
 	public void setReferenceTypeName (Object o, String typeName)
 	{
 		referenceMap.get(o).typeName = typeName;
+	}
+	
+	
+	
+	
+	
+	/* Measurement */	
+	
+	public AttributeType getMeasurementAttributeType (RefOntoUML.Class c)
+	{
+		return measurementMap.get(c).attributeType;
+	}
+	
+	public String getMeasurementTypeName (RefOntoUML.Class c)
+	{
+		return measurementMap.get(c).typeName;
+	}	
+	
+	public void setMeasurementAttributeType (Object o, AttributeType attributeType)
+	{
+		measurementMap.get(o).attributeType = attributeType;
+	}
+	
+	public void setMeasurementTypeName (Object o, String typeName)
+	{
+		measurementMap.get(o).typeName = typeName;
 	}
 	
 	public UMLAttributeSlot getAttributeSlot (RefOntoUML.Class c)
