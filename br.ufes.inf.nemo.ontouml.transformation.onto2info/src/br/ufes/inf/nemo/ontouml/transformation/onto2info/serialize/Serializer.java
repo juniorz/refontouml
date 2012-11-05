@@ -16,6 +16,7 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.Decision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.HistoryDecision;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.MeasurementDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ReferenceDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ScopeDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.TimeDecision;
@@ -52,11 +53,12 @@ public class Serializer
 		// Converts the OntoUML<->UML Map into an ID<->ID Map
 		content.idMap = convertOntoInfoMap (ontoumlResource, umlResource);
 		
-		// Converts the OntoUML<->ScopeDecision Map into an ID<->ScopeDecision Map
+		// Converts the OntoUML<->Decision Map into an ID<->Decision Map
 		content.scopeIdMap = convertDecisionMap (ontoumlResource, dh.scopeMap);
 		content.historyIdMap = convertDecisionMap (ontoumlResource, dh.historyMap);
 		content.timeIdMap = convertDecisionMap (ontoumlResource, dh.timeMap);
 		content.referenceIdMap = convertDecisionMap (ontoumlResource, dh.referenceMap);
+		content.measurementIdMap = convertDecisionMap (ontoumlResource, dh.measurementMap);
 		
 		// Converts the OntoUML<->UMLAttributeSlot Map into an ID<->UMLAttributeSlotString Map
 		content.attributeIdMap = convertAttributeMap (ontoumlResource, umlResource, dh);
@@ -168,6 +170,7 @@ public class Serializer
 		loadHistoryMap(ontoumlResource, content.historyIdMap, dh);
 		loadTimeMap(ontoumlResource, content.timeIdMap, dh);
 		loadReferenceMap(ontoumlResource, content.referenceIdMap, dh);
+		loadMeasurementMap(ontoumlResource, content.measurementIdMap, dh);
 		loadAttributeMap(ontoumlResource, umlResource, content.attributeIdMap, dh);
 		
 		umlAbstraction.timeType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, content.timePrimitiveId);
@@ -228,6 +231,17 @@ public class Serializer
 		{
 			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
 			dh.referenceMap.put(ontoumlObj, (ReferenceDecision) entry.getValue());
+		}
+	}
+	
+	private static void loadMeasurementMap (Resource ontoumlResource, Map<String, Decision> idMap, DecisionHandler dh)
+	{
+		dh.measurementMap = new HashMap<RefOntoUML.Class, MeasurementDecision>();
+		
+		for (Entry<String, Decision> entry : idMap.entrySet())
+		{
+			RefOntoUML.Class ontoumlObj = (RefOntoUML.Class) getEObject (ontoumlResource, entry.getKey());
+			dh.measurementMap.put(ontoumlObj, (MeasurementDecision) entry.getValue());
 		}
 	}
 	

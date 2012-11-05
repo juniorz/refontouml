@@ -41,6 +41,9 @@ public class Transformation
         // History Tracking
         for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
         {
+        	if (entry.getKey() instanceof RefOntoUML.Quality)
+        		continue; // FIXME: Not dealing with Qualities yet (and perhaps the HT decision on qualities should be on MeasurementDecision, not here)
+        	
         	RefOntoUML.Class c1 = entry.getKey();
         	HistoryDecision decision = entry.getValue();
         	UMLAttributeSlot slot = dh.getAttributeSlot(c1);
@@ -225,6 +228,9 @@ public class Transformation
         // Time Tracking
         for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
         {
+        	if ((entry.getKey() instanceof RefOntoUML.Quality))
+        		continue; // FIXME: Not dealing Qualities yet
+        	
         	RefOntoUML.Class c1 = entry.getKey();
         	TimeDecision decision = entry.getValue();
         	UMLAttributeSlot slot = dh.getAttributeSlot(c1);

@@ -10,6 +10,6 @@ public class MeasurementDecision implements Decision
 	public MeasurementDecision(String qualityName)
 	{
 		attributeType = AttributeType.CUSTOM;
-		typeName = qualityName + "Value";
+		typeName = qualityName.replace(" ", "") + "Value";
 	}
 }

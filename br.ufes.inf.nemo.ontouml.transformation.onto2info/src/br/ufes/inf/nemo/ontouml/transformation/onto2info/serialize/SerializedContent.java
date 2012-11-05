@@ -15,6 +15,7 @@ public class SerializedContent implements Serializable
 	Map<String, Decision> historyIdMap;
 	Map<String, Decision> timeIdMap;
 	Map<String, Decision> referenceIdMap;
+	Map<String, Decision> measurementIdMap;
 	Map<String, UMLAttributeSlotString> attributeIdMap;
 	String timePrimitiveId;
 	String durationPrimitiveId;
