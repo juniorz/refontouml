@@ -243,7 +243,19 @@ public class MeasurementTab implements Tab
 
 			protected void setValue(Object element, Object value)
 			{
-				dh.setHTPastDecision((RefOntoUML.Class)element, ((Boolean) value).booleanValue());
+				RefOntoUML.Class c = (RefOntoUML.Class)element;
+				boolean bvalue = ((Boolean) value).booleanValue();
+				
+				// Sets HT value
+				dh.setHTPastDecision(c, bvalue);
+				
+				// HT = false -> TT = false
+				if (!bvalue)
+				{
+					// Sets TT value
+					dh.setStartTimeDecision(c, bvalue);
+				}
+
 				treeViewer.update(element, null);
 			}
 		});
