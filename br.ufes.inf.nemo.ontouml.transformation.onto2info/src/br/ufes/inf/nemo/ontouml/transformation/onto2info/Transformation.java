@@ -254,10 +254,10 @@ public class Transformation
 	
 	public void createClasses ()
 	{
-		// All OntoUML.Classes (except Roles and Phases)
+		// All OntoUML.ObjectClasses (except Roles, Phases and Qualities)
 		for (RefOntoUML.Class c : ontoAbstraction.classes)
 		{
-			if (!(c instanceof RefOntoUML.AntiRigidSortalClass))
+			if (!(c instanceof RefOntoUML.AntiRigidSortalClass) && !(c instanceof RefOntoUML.Quality))
 			{
 				// Corresponding UML.Class
 				org.eclipse.uml2.uml.Class c2 = Onto2InfoMap.getClass(c);

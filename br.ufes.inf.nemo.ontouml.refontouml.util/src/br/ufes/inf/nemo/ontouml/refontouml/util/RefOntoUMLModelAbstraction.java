@@ -44,7 +44,10 @@ public class RefOntoUMLModelAbstraction
 	public List<RefOntoUML.Mixin> semiMixins;
 	public List<RefOntoUML.RoleMixin> roleMixins;
 	
+	// Relators
 	public List<RefOntoUML.Relator> relators;
+	// Qualities
+	public List<RefOntoUML.Quality> qualities;
 	
 	public List<RefOntoUML.GeneralizationSet> generalizationSets;
 	// TODO: perhaps, a list of generalizations
@@ -72,6 +75,7 @@ public class RefOntoUMLModelAbstraction
 		roleMixins = new LinkedList<RefOntoUML.RoleMixin>();
 		
 		relators = new LinkedList<RefOntoUML.Relator>();
+		qualities = new LinkedList<RefOntoUML.Quality>();
 		
 		generalizationSets = new LinkedList<RefOntoUML.GeneralizationSet>();
 	}
@@ -188,11 +192,15 @@ public class RefOntoUMLModelAbstraction
 				}
 				else if (pe instanceof RefOntoUML.MomentClass)
 				{
-					// TODO: Quality and Mode
 					if (pe instanceof RefOntoUML.Relator)
 					{
 						relators.add((RefOntoUML.Relator)pe);
 					}
+					else if (pe instanceof RefOntoUML.Quality)
+					{
+						qualities.add((RefOntoUML.Quality)pe);
+					}
+					// TODO: Mode
 				}
 			}
 			else if (pe instanceof RefOntoUML.GeneralizationSet)
