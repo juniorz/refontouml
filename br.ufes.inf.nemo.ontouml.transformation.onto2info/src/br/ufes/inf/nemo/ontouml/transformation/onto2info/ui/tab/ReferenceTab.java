@@ -12,6 +12,7 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
 import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.TreeViewerEditor;
 import org.eclipse.jface.viewers.TreeViewerFocusCellManager;
@@ -70,7 +71,28 @@ public class ReferenceTab implements Tab
 						| ColumnViewerEditor.TABBING_VERTICAL
 						| ColumnViewerEditor.KEYBOARD_ACTIVATION);*/
 		
+		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());	
 		
+		// Columns
+		universalColumn(treeViewer);
+		attributeNameColumn(treeViewer, dh, textCellEditor);
+		attributeTypeColumn(treeViewer, dh);
+		typeNameColumn(treeViewer, dh, textCellEditor);			
+		
+		// Content
+		treeViewer.setContentProvider(new SimpleContentProvider());
+		treeViewer.setInput((new ReferenceModel(ma)).model);
+		treeViewer.expandAll();
+				
+		// Initialize the values of checkboxes according to previous Reference Decisions
+		// Passing the top nodes of the Tree as parameter
+		initializeCheckboxes (treeViewer.getTree().getItems(), dh);
+		
+		return treeViewer.getTree();
+	}
+	
+	public void universalColumn (TreeViewer treeViewer)
+	{
 		// Column 1
 		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.LEFT);
 		column.getColumn().setWidth(200);
@@ -84,9 +106,12 @@ public class ReferenceTab implements Tab
 			}
 
 		});
-		
+	}
+	
+	public void attributeNameColumn (final TreeViewer treeViewer, final DecisionHandler dh, final TextCellEditor textCellEditor)
+	{
 		// Column 2
-		column = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.NONE);
 		column.getColumn().setWidth(200);
 		column.getColumn().setMoveable(true);
 		column.getColumn().setText("Attribute Name");
@@ -97,8 +122,8 @@ public class ReferenceTab implements Tab
 				return dh.getReferenceAttributeName((RefOntoUML.Class)element);
 			}
 		});
+		
 		// Based on org.eclipse.jface.snippets.viewers.snippet026
-		final TextCellEditor textCellEditor = new TextCellEditor(treeViewer.getTree());		
 		column.setEditingSupport(new EditingSupport(treeViewer)
 		{
 			protected boolean canEdit(Object element)
@@ -122,9 +147,12 @@ public class ReferenceTab implements Tab
 				treeViewer.update(element, null);
 			}
 		});
-		
+	}
+	
+	public void attributeTypeColumn (final TreeViewer treeViewer, final DecisionHandler dh)
+	{
 		// Column 3
-		column = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.NONE);
 		column.getColumn().setWidth(200);
 		column.getColumn().setMoveable(true);
 		column.getColumn().setText("Attribute Type");
@@ -135,9 +163,11 @@ public class ReferenceTab implements Tab
 				return dh.getReferenceAttributeType((RefOntoUML.Class)element).toString();
 			}
 		});
+		
 		// Based on org.eclipse.jface.snippets.viewers.snippet027
 		final ComboBoxCellEditor comboBoxCellEditor = new ComboBoxCellEditor(treeViewer.getTree(), 
 					new String[] { AttributeType.INT.toString(), AttributeType.STRING.toString(), AttributeType.CUSTOM.toString()});
+		
 		column.setEditingSupport(new EditingSupport(treeViewer)
 		{
 			protected boolean canEdit(Object element)
@@ -163,16 +193,47 @@ public class ReferenceTab implements Tab
 				treeViewer.update(element, null);
 			}
 		});
+	}
+	
+	public void typeNameColumn (final TreeViewer treeViewer, final DecisionHandler dh, final TextCellEditor textCellEditor)
+	{
+		// Column 4
+		TreeViewerColumn column = new TreeViewerColumn(treeViewer, SWT.NONE);
+		column.getColumn().setWidth(200);
+		column.getColumn().setMoveable(true);
+		column.getColumn().setText("Type Name");
+		column.setLabelProvider(new ColumnLabelProvider()
+		{
+			public String getText(Object element)
+			{
+				return dh.getReferenceTypeName((RefOntoUML.Class)element);
+			}
+		});
 		
-		treeViewer.setContentProvider(new SimpleContentProvider());
-		treeViewer.setInput((new ReferenceModel(ma)).model);
-		treeViewer.expandAll();
-				
-		// Initialize the values of checkboxes according to previous Reference Decisions
-		// Passing the top nodes of the Tree as parameter
-		initializeCheckboxes (treeViewer.getTree().getItems(), dh);
-		
-		return treeViewer.getTree();
+		// Based on org.eclipse.jface.snippets.viewers.snippet026		
+		column.setEditingSupport(new EditingSupport(treeViewer)
+		{
+			protected boolean canEdit(Object element)
+			{
+				return true;
+			}
+
+			protected CellEditor getCellEditor(Object element)
+			{
+				return textCellEditor;
+			}
+
+			protected Object getValue(Object element)
+			{
+				return dh.getReferenceTypeName((RefOntoUML.Class)element);
+			}
+
+			protected void setValue(Object element, Object value)
+			{
+				dh.setReferenceTypeName(element, value.toString());
+				treeViewer.update(element, null);
+			}
+		});
 	}
 
 	public void initializeCheckboxes (TreeItem[] items, DecisionHandler dh)
