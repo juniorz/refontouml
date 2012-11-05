@@ -3538,6 +3538,16 @@
     <eAnnotations source="Comments">
       <details key="IntrinsicMomentConstraint1" value="An IntrinsicMoment must be connected (directly or indirectly) to a Characterization"/>
     </eAnnotations>
+    <eOperations name="characterization" eType="#//Characterization">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="Characterization.allInstances()->select( x | x.characterizing() = self )->any(true)"/>
+      </eAnnotations>
+    </eOperations>
+    <eOperations name="characterized" eType="#//Classifier">
+      <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
+        <details key="body" value="characterization().characterized()"/>
+      </eAnnotations>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Mode" eSuperTypes="#//IntrinsicMomentClass"/>
   <eClassifiers xsi:type="ecore:EClass" name="Quality" eSuperTypes="#//IntrinsicMomentClass"/>

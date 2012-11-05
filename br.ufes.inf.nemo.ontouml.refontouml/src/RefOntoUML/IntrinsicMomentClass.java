@@ -22,4 +22,20 @@ package RefOntoUML;
  */
 public interface IntrinsicMomentClass extends MomentClass
 {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='Characterization.allInstances()->select( x | x.characterizing() = self )->any(true)'"
+	 * @generated
+	 */
+	Characterization characterization();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/ocl/examples/OCL body='characterization().characterized()'"
+	 * @generated
+	 */
+	Classifier characterized();
 } // IntrinsicMomentClass
