@@ -46,7 +46,7 @@ public class OntoUML2InfoUML
 	{
 		ontofilename = fileAbsolutePath;
 		umlfilename = fileAbsolutePath.replace(".refontouml", ".uml");
-		mapfilename = fileAbsolutePath.replace(".refontouml", ".map");
+		mapfilename = fileAbsolutePath.replace(".refontouml", ".dec");
 
 		ontoAbstraction = new RefOntoUMLModelAbstraction();
 		umlAbstraction = new UMLModelAbstraction();
@@ -100,15 +100,16 @@ public class OntoUML2InfoUML
 	{
 		if (preloaded)
 		{
-			ui.writeText("Loaded the UML Model (" + umlfilename + ")");
-			ui.writeText("Loaded the OntoUML<->UML correspondences and informational decisions (" + mapfilename + ")");
+			ui.writeText("Loaded the domain ontology (" + ontofilename + ")");
+			ui.writeText("Loaded the information model (" + umlfilename + ")");
+			ui.writeText("Loaded the decisions (" + mapfilename + ")");
 		}
 	}
 	
 	public static void saveMap () throws IOException
 	{
 		//if (true) throw new RuntimeException(); // for debug
-		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, ontofilename.replace(".refontouml", ".map"), dh, umlAbstraction);
+		Serializer.saveMap(ontoAbstraction.resource, umlAbstraction.resource, ontofilename.replace(".refontouml", ".dec"), dh, umlAbstraction);
 	}
 	
 	public static void exception()
