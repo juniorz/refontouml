@@ -19,7 +19,7 @@ public class HistoryTrackingTab extends TrackingTab
 {	
 	public String getName()
 	{
-		return "History Tracking";
+		return "History";
 	}
 	
 	public Control getControl(Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)

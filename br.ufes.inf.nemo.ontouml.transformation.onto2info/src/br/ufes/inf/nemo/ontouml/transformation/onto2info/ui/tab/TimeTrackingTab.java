@@ -19,7 +19,7 @@ public class TimeTrackingTab extends TrackingTab
 {	
 	public String getName()
 	{
-		return "Time Tracking";
+		return "Time";
 	}
 	
 	public Control getControl(Composite parent, RefOntoUMLModelAbstraction ma, final DecisionHandler dh)

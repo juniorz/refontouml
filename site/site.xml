@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201209061023.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201209061023">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.refontouml_1.0.0.201211061653.jar" id="br.inf.ufes.nemo.rcarraretto.refontouml" version="1.0.0.201211061653">
       <category name="metamodel"/>
    </feature>
    <feature url="features/br.inf.ufes.nemo.rcarraretto.ab2rc_1.0.0.201206141945.jar" id="br.inf.ufes.nemo.rcarraretto.ab2rc" version="1.0.0.201206141945">
@@ -15,10 +15,10 @@
    <feature url="features/br.inf.ufes.nemo.johnguerson.ref2uml_1.0.0.201208171545.jar" id="br.inf.ufes.nemo.johnguerson.ref2uml" version="1.0.0.201208171545">
       <category name="transformation"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201211050810.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201211050810">
+   <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201211061653.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201211061653">
       <category name="metamodel"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.onto2info_1.0.0.201209061140.jar" id="br.inf.ufes.nemo.rcarraretto.onto2info" version="1.0.0.201209061140">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.onto2info_1.0.0.201211061653.jar" id="br.inf.ufes.nemo.rcarraretto.onto2info" version="1.0.0.201211061653">
       <category name="transformation"/>
    </feature>
    <category-def name="metamodel" label="Metamodel">

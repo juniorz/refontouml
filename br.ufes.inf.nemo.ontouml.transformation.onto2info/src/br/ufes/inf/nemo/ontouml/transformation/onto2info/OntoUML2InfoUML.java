@@ -45,7 +45,7 @@ public class OntoUML2InfoUML
 	public static void transformation (String fileAbsolutePath)
 	{
 		ontofilename = fileAbsolutePath;
-		umlfilename = fileAbsolutePath.replace(".refontouml", ".uml");
+		umlfilename = fileAbsolutePath.replace(".refontouml", " [info].uml");
 		mapfilename = fileAbsolutePath.replace(".refontouml", ".dec");
 
 		ontoAbstraction = new RefOntoUMLModelAbstraction();
