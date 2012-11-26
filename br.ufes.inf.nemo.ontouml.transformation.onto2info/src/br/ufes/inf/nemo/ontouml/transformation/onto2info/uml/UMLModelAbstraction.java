@@ -210,6 +210,13 @@ public class UMLModelAbstraction
 	
 	public org.eclipse.uml2.uml.Property addReferenceAttribute (RefOntoUML.Class c1, ReferenceDecision decision)
 	{
+		org.eclipse.uml2.uml.Type type = getReferenceType(decision);
+		
+		return addClassAttribute (c1, decision.attributeName, type, true);
+	}
+	
+	public org.eclipse.uml2.uml.Type getReferenceType (ReferenceDecision decision)
+	{
 		org.eclipse.uml2.uml.Type type = null;
 		
 		if (decision.attributeType == AttributeType.INT)
@@ -226,7 +233,12 @@ public class UMLModelAbstraction
 			addPackageableElement(type);
 		}
 		
-		return addClassAttribute (c1, decision.attributeName, type, true);
+		return type;
+	}
+	
+	public boolean isCustomType (org.eclipse.uml2.uml.Type type)
+	{
+		return type != integerType && type != stringType;	
 	}
 	
 	// TODO: This method may be modularized
