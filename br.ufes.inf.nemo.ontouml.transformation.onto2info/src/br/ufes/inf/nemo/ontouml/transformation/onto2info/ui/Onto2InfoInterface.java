@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.*;
 import org.eclipse.ui.PlatformUI;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.impl.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.OntoUML2InfoUML;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.HistoryTrackingTab;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.tab.MeasurementTab;

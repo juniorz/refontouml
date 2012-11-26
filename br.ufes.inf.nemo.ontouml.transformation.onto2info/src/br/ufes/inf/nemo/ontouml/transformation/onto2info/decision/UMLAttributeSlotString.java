@@ -10,4 +10,14 @@ public class UMLAttributeSlotString implements Serializable
 	public String endAttribute;
 	public String durationAttribute;
 	public String htAttribute;
+	public String refAttribute;
+	
+	public UMLAttributeSlotString()
+	{
+		startAttribute = null;
+		endAttribute = null;
+		durationAttribute = null;
+		htAttribute = null;
+		refAttribute = null;
+	}
 }

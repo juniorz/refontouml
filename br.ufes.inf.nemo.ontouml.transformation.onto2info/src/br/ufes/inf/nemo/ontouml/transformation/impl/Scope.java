@@ -1,264 +1,44 @@
-package br.ufes.inf.nemo.ontouml.transformation.onto2info;
+package br.ufes.inf.nemo.ontouml.transformation.impl;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map.Entry;
 
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
-import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Onto2UMLReplicator;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 
-public class Transformation
+public class Scope
 {
-	// OntoUML Model (Abstraction)
+	Transformation main;
 	RefOntoUMLModelAbstraction ontoAbstraction;
-	// UML Model (Abstraction)
 	UMLModelAbstraction umlAbstraction;
-	// UML Factory (Abstraction)
 	Onto2UMLReplicator fa;
-	// Decision Handler
 	DecisionHandler dh;
-	// Interface
 	Onto2InfoInterface ui;
 
-	// Number of additions in one transformation operation
-	int numAdditions;
-	// Number of removals in one transformation operation
-	int numRemovals;
-
-	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction, Onto2InfoInterface ui)  
-    { 
-		this.ontoAbstraction = ontoAbstraction;
-		this.umlAbstraction = umlAbstraction;
-		this.ui = ui;
-    	fa = new Onto2UMLReplicator();
-    }
 	
-	public void dealHistoryTracking ()
+	Scope(Transformation t)
 	{
-        // History Tracking
-        for (Entry<RefOntoUML.Class, HistoryDecision> entry : dh.historyMap.entrySet())
-        {
-        	if (entry.getKey() instanceof RefOntoUML.Quality)
-        		continue; // FIXME: Not dealing with Qualities yet (and perhaps the HT decision on qualities should be on MeasurementDecision, not here)
-        	
-        	RefOntoUML.Class c1 = entry.getKey();
-        	HistoryDecision decision = entry.getValue();
-        	UMLAttributeSlot slot = dh.getAttributeSlot(c1);
-        	
-        	if (dh.inScope(c1))
-        	{
-        		// OntoUML.Class in scope        		
-	        	if (decision.requiresAttribute())
-	        	{
-	        		// HistoryTracking = true
-	        		if (slot.htAttribute == null)
-	        		{
-	        			// UML.Property (Attribute) does not exist
-	        			slot.htAttribute = umlAbstraction.addHistoryTrackingAttribute(c1);
-	        			
-	        			ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.htAttribute.getName());
-	        			numAdditions++;
-	        		}
-	        	}
-	        	else
-	        	{
-	        		// HistoryTracking = false
-	        		if (slot.htAttribute != null)
-	        		{
-	        			// UML.Property (Attribute) exists
-	        			// Remove it from the UML.Class
-	        			umlAbstraction.removeClassAttribute(c1, slot.htAttribute);
-	        			// Remove it from the HistoryDecision
-	        			slot.htAttribute = null;
-	        			
-	        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
-	        			numRemovals++;
-	        		}
-	        	}
-        	}
-        	else
-        	{
-        		// OntoUML.Class out of scope
-        		// UML.Class was already removed, but...
-        		if (slot.htAttribute != null)
-        		{
-        			// Clear the UMLAttributeSlot
-        			slot.htAttribute = null;
-        			ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
-        			numRemovals++;
-        		}
-        	}
-        }
+		this.main = t;
+		
+		this.ontoAbstraction = main.ontoAbstraction;
+		this.umlAbstraction = main.umlAbstraction;
+		this.fa = main.fa;
+		this.dh = main.dh;
+		this.ui = main.ui;
 	}
 	
-	interface SlotManipulator
+	public void dealScope()
 	{
-		public org.eclipse.uml2.uml.Property getSlotAttribute ();
-		public void setSlotAttribute (org.eclipse.uml2.uml.Property p);
-		public org.eclipse.uml2.uml.Property addTimeAttribute (RefOntoUML.Class c1);
+		createClasses();
+		createAssociations();
+		createGeneralizations();
 	}
 	
-	class StartAttributeManipulator implements SlotManipulator
-	{
-		UMLAttributeSlot slot;
-		
-		public StartAttributeManipulator (UMLAttributeSlot slot)
-		{
-			this.slot = slot;
-		}
-		
-		public org.eclipse.uml2.uml.Property getSlotAttribute ()
-		{
-			return slot.startAttribute;
-		}
-		
-		public void setSlotAttribute (org.eclipse.uml2.uml.Property p)
-		{
-			slot.startAttribute = p;
-		}
-		
-		public org.eclipse.uml2.uml.Property addTimeAttribute (RefOntoUML.Class c1)
-		{
-			return umlAbstraction.addStartTime(c1);
-		}
-	}
-	
-	class EndAttributeManipulator implements SlotManipulator
-	{
-		UMLAttributeSlot slot;
-		
-		public EndAttributeManipulator (UMLAttributeSlot slot)
-		{
-			this.slot = slot;
-		}
-		
-		public org.eclipse.uml2.uml.Property getSlotAttribute ()
-		{
-			return slot.endAttribute;
-		}
-		
-		public void setSlotAttribute (org.eclipse.uml2.uml.Property p)
-		{
-			slot.endAttribute = p;
-		}
-		
-		public org.eclipse.uml2.uml.Property addTimeAttribute (RefOntoUML.Class c1)
-		{
-			return umlAbstraction.addEndTime(c1);
-		}
-	}
-	
-	class DurationAttributeManipulator implements SlotManipulator
-	{
-		UMLAttributeSlot slot;
-		
-		public DurationAttributeManipulator (UMLAttributeSlot slot)
-		{
-			this.slot = slot;
-		}
-		
-		public org.eclipse.uml2.uml.Property getSlotAttribute ()
-		{
-			return slot.durationAttribute;
-		}
-		
-		public void setSlotAttribute (org.eclipse.uml2.uml.Property p)
-		{
-			slot.durationAttribute = p;
-		}
-		
-		public org.eclipse.uml2.uml.Property addTimeAttribute (RefOntoUML.Class c1)
-		{
-			return umlAbstraction.addDuration(c1);
-		}
-	}
-	
-	public void dealTimeAttribute (RefOntoUML.Class c1, boolean decision, SlotManipulator sm)
-	{
-		// StartTime
-    	if (decision)
-    	{
-    		// Decision = true
-    		if (sm.getSlotAttribute() == null)
-    		{
-    			// UML.Property (Attribute) does not exist
-    			
-    			// 1- Create a new time attribute (start, end or duration) for the UML.Class corresponding to c1
-    			// 2- Set this new time attribute in the slot
-    			sm.setSlotAttribute(sm.addTimeAttribute(c1));
-    			
-    			ui.writeLog("Created UML.Property for " + c1.getName() + " (" + sm.getSlotAttribute().getName() + ")");
-    			numAdditions++;
-    		}
-    	}
-    	else
-    	{
-    		// Decision = false
-    		if (sm.getSlotAttribute() != null)
-    		{
-    			// UML.Property (Attribute) exists
-    			
-    			// Remove it from the UML.Class
-    			umlAbstraction.removeClassAttribute(c1, sm.getSlotAttribute());
-    			
-    			// The attribute must be removed from the Slot
-    			setSlotAttributeToNull(c1, sm);
-    		}
-    	}
-	}
-	
-	public void setSlotAttributeToNull (RefOntoUML.Class c1, SlotManipulator sm)
-	{
-		if (sm.getSlotAttribute() != null)
-		{
-			String attributeName = sm.getSlotAttribute().getName(); // Store the attribute name, before it becomes null (just for printing)
-			// Set the attribute (start, end or duration) as null in the slot
-			sm.setSlotAttribute(null);
-			
-			ui.writeLog("Removed UML.Property for " + c1.getName() + " (" + attributeName + ")");
-			numRemovals++;
-		}
-	}
-	
-	public void dealTimeTracking ()
-	{
-        // Time Tracking
-        for (Entry<RefOntoUML.Class, TimeDecision> entry : dh.timeMap.entrySet())
-        {
-        	if ((entry.getKey() instanceof RefOntoUML.Quality))
-        		continue; // FIXME: Not dealing Qualities yet
-        	
-        	RefOntoUML.Class c1 = entry.getKey();
-        	TimeDecision decision = entry.getValue();
-        	UMLAttributeSlot slot = dh.getAttributeSlot(c1);
-
-        	SlotManipulator startSM = new StartAttributeManipulator(slot);
-        	SlotManipulator endSM = new EndAttributeManipulator(slot);
-        	SlotManipulator durationSM = new DurationAttributeManipulator(slot);
-        	
-        	if (dh.inScope(c1))
-        	{
-        		// OntoUML.Class in scope
-        		dealTimeAttribute (c1, decision.start, startSM);
-        		dealTimeAttribute (c1, decision.end, endSM);
-				dealTimeAttribute (c1, decision.duration, durationSM);
-        	}
-        	else
-        	{
-        		// OntoUML.Class out of scope
-        		// UML.Class was already removed, but...
-        		// One must clean the references in the UMLAttributeSlot
-        		setSlotAttributeToNull (c1, startSM);
-        		setSlotAttributeToNull (c1, endSM);
-        		setSlotAttributeToNull (c1, durationSM);
-        	}
-        }
-	}
-	
-	public void createClasses ()
+	private void createClasses ()
 	{
 		// All OntoUML.ObjectClasses (except Roles, Phases and Qualities)
 		for (RefOntoUML.Class c : ontoAbstraction.classes)
@@ -284,7 +64,7 @@ public class Transformation
 			        	}
 			        	
 			        	ui.writeLog("Created UML.Class " + c2.getName());
-			        	numAdditions++;
+			        	main.numAdditions++;
 					}
 				}
 				else
@@ -299,14 +79,14 @@ public class Transformation
 						// If some day OntoUML.Classes could have attributes, an OntoUML.Property<->UML.Property mapping would also have to be removed
 
 						ui.writeLog("Removed UML.Class " + c2.getName());
-						numRemovals++;
+						main.numRemovals++;
 					}
 				}
 			}
 		}	
 	}
 	
-	public void createAssociations ()
+	private void createAssociations ()
 	{
 		// Roles + RoleMixins
 		List<RefOntoUML.Class> qroles = new LinkedList<RefOntoUML.Class>(ontoAbstraction.roles);
@@ -378,7 +158,7 @@ public class Transformation
         			umlAbstraction.addPackageableElement(a2);
         			
 					ui.writeLog("Created UML.Association: " + umlAbstraction.associationToString(a2));
-					numAdditions++;
+					main.numAdditions++;
         		}
         	}
         	else
@@ -394,20 +174,20 @@ public class Transformation
 					Onto2InfoMap.removeElement(mediation.mediatedEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 											
 					ui.writeLog("Removed UML.Association: " + umlAbstraction.associationToString(a2));
-					numRemovals++;
+					main.numRemovals++;
         		}
         	}
         }
 	}
 	
-	public void createGeneralizations ()
+	private void createGeneralizations ()
 	{
 		createReplicateGeneralizations();
 		createReplicateGeneralizationSets();
         createArtificialGeneralizationsforRoleMixin();
 	}
 	
-	public void createReplicateGeneralizations ()
+	private void createReplicateGeneralizations ()
 	{
 		// RigidSortals + AllMixins
 		List<RefOntoUML.Class> specifics = new LinkedList<RefOntoUML.Class>(ontoAbstraction.rigidSortals);
@@ -431,7 +211,7 @@ public class Transformation
 						gen2 = fa.createGeneralization(gen1);
 						
 						ui.writeLog("Created UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
-						numAdditions++;
+						main.numAdditions++;
 					}
 				}
 				else
@@ -457,14 +237,14 @@ public class Transformation
 
 						// gen2.general and gen2.specific may be already gone, so I can't print them
 						ui.writeLog("Removed UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
-						numRemovals++;
+						main.numRemovals++;
 					}
 				}
 			}
         }
 	}
 	
-	public org.eclipse.uml2.uml.Generalization createOrGetArtificialGeneralization (RefOntoUML.RoleMixin roleMixin, RefOntoUML.Role role, List<org.eclipse.uml2.uml.Generalization> genlist)
+	private org.eclipse.uml2.uml.Generalization createOrGetArtificialGeneralization (RefOntoUML.RoleMixin roleMixin, RefOntoUML.Role role, List<org.eclipse.uml2.uml.Generalization> genlist)
 	{
 		// UML.Generalization corresponding to OntoUML.Role (in case the artificial UML.Generalization already exists)
 		org.eclipse.uml2.uml.Generalization gen2 = Onto2InfoMap.getGeneralization(role);
@@ -491,7 +271,7 @@ public class Transformation
 				Onto2InfoMap.relateElements(role, gen2);
 				
 				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
-				numAdditions++;
+				main.numAdditions++;
 			}
 			
 			// The artificial UML.Generalization (that already existed or was just created) must be added to the return list
@@ -519,14 +299,14 @@ public class Transformation
 				
 				// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
 				ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
-				numRemovals++;
+				main.numRemovals++;
 			}
 		}
 		
 		return gen2;
 	}
 	
-	public void createOrGetArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
+	private void createOrGetArtificialGeneralizations (RefOntoUML.RoleMixin roleMixin)
 	{
 		// For each OntoUML.Role of a RoleMixin there will be an (artificial) UML.Generalization between the UML<->Role'sRigidParent and the UML<->RoleMixin
 		// (e.g., UML.Person -> UML.Customer, corresponding to OntoUML.Role.PrivateCustomer)
@@ -556,7 +336,7 @@ public class Transformation
 		createArtificialGeneralizationSet (roleMixin, gset2, genlist);
 	}
 		
-	public void createArtificialGeneralizationSet (RefOntoUML.RoleMixin roleMixin, org.eclipse.uml2.uml.GeneralizationSet gset2, List<org.eclipse.uml2.uml.Generalization> genlist)
+	private void createArtificialGeneralizationSet (RefOntoUML.RoleMixin roleMixin, org.eclipse.uml2.uml.GeneralizationSet gset2, List<org.eclipse.uml2.uml.Generalization> genlist)
 	{				
 		// The UML.GeneralizationSet is only necessary when there is at least two children (rigidSortals) in scope 
 		if (genlist.size() > 1)
@@ -570,7 +350,7 @@ public class Transformation
     			umlAbstraction.addPackageableElement(gset2);
     			
     			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
-    			numAdditions++;
+    			main.numAdditions++;
 			}
 		}
 		else
@@ -590,12 +370,12 @@ public class Transformation
 				
 				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
-				numRemovals++;
+				main.numRemovals++;
 			}
 		}
 	}
 	
-	public void createArtificialGeneralizationsforRoleMixin ()
+	private void createArtificialGeneralizationsforRoleMixin ()
 	{
         // Artificial Generalizations between RoleMixin Types and RigidSortal Types (as long as both are in scope)
 		
@@ -623,7 +403,7 @@ public class Transformation
 		return genList;
 	}
 	
-	public void createReplicateGeneralizationSets ()
+	private void createReplicateGeneralizationSets ()
 	{
 		// Generalization Sets (as long as both the parent and (at least some) children are in scope)
 		
@@ -647,7 +427,7 @@ public class Transformation
 					umlAbstraction.addPackageableElement(gset2);
 					
 					ui.writeLog("Created UML.GeneralizationSet: " + umlAbstraction.generalizationSetToString(gset2));
-					numAdditions++;
+					main.numAdditions++;
 				}
 			}
 			else
@@ -664,119 +444,9 @@ public class Transformation
 					
 					// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 					ui.writeLog("Removed UML.GeneralizationSet: " + gset2.getName());
-					numRemovals++;
+					main.numRemovals++;
 				}
 			}
 		}
-	}
-	
-	public void addPrimitiveTypes()
-	{
-        // Time DataType
-		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getTimeType()))
-		{
-			umlAbstraction.addPackageableElement(umlAbstraction.getTimeType());
-			ui.writeLog("Created UML.DataType: " + umlAbstraction.getTimeType().getName());
-			numAdditions++;
-		}
-		
-        // Duration DataType
-		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getDurationType()))
-		{
-			umlAbstraction.addPackageableElement(umlAbstraction.getDurationType());
-			ui.writeLog("Created UML.DataType: " + umlAbstraction.getDurationType().getName());
-			numAdditions++;
-		}
-		
-        // Boolean PrimitiveType
-		if (!umlAbstraction.hasPackageableElement(umlAbstraction.getBooleanType()))
-		{
-			umlAbstraction.addPackageableElement(umlAbstraction.getBooleanType());
-			ui.writeLog("Created UML.PrimitiveType: " + umlAbstraction.getBooleanType().getName());
-			numAdditions++;
-		}
-	}
-
-	public void printSuccessMessage (boolean first)
-	{
-		String extraText = "";
-		
-		if (!first)
-		{
-			extraText += " (";
-			
-			if (numAdditions == 0 && numRemovals == 0)
-			{
-				extraText += "no changes";
-			}
-			else
-			{
-				if (numAdditions != 0)
-				{
-					extraText += numAdditions + " addition" + (numAdditions == 1 ? "" : "s");
-					if (numRemovals != 0)
-						extraText += ", ";
-				}
-				if (numRemovals != 0)
-					extraText += numRemovals + " removal" + (numRemovals == 1 ? "" : "s");
-			}
-			
-			extraText += ")";
-		}
-		
-		ui.writeText("Transformation done" + extraText);
-	}
-	
-	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
-	{
-		// Transformation from scratch
-		boolean first = true;
-		// Initialize additions and removals made so far
-		numAdditions = 0;
-		numRemovals = 0;
-		this.dh = dh;
-		
-		try
-		{
-			if (umlAbstraction.umlmodel == null)
-			{
-				// Transformation from scratch
-				umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
-			}
-			else
-			{
-				// Transformation over a pre-loaded UML.Model
-				first = false;
-			}
-			
-			createClasses();
-			createAssociations();
-			createGeneralizations();
-	        dealHistoryTracking();
-	        dealTimeTracking();
-
-	        // Adds the PrimitiveTypes (time, duration, boolean) to the UML.Model
-	        // I like them at the end of the model, rather than at the beginning
-	        addPrimitiveTypes();
-	        
-	        // Saves the UML.Model in a file
-	        umlAbstraction.save();
-	        // Saves the Onto<->UML Mappings and Decisions in a file
-	        OntoUML2InfoUML.saveMap();
-	        
-			//if (true) throw new RuntimeException(); // for debug
-		}
-		catch (Exception e)
-		{
-			ui.writeText("Could not perform the transformation. A terrible exception has happened.");
-			OntoUML2InfoUML.exception();
-			e.printStackTrace();
-			return null;
-		}
-		
-		printSuccessMessage(first);
-		ui.refreshWorkspace();
-        
-        return umlAbstraction.umlmodel;
 	}
 }

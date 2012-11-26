@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.eclipse.core.resources.IProject;
 
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
+import br.ufes.inf.nemo.ontouml.transformation.impl.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.serialize.Serializer;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;

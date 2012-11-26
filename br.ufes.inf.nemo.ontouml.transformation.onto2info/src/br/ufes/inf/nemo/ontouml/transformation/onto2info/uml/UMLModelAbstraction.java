@@ -14,7 +14,10 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import br.ufes.inf.nemo.ontouml.transformation.impl.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ReferenceDecision;
 
 public class UMLModelAbstraction
 {
@@ -29,6 +32,8 @@ public class UMLModelAbstraction
 	public org.eclipse.uml2.uml.DataType timeType;
 	public org.eclipse.uml2.uml.DataType durationType;
 	public org.eclipse.uml2.uml.PrimitiveType booleanType;
+	public org.eclipse.uml2.uml.PrimitiveType integerType;
+	public org.eclipse.uml2.uml.PrimitiveType stringType;
 		
 	// UML Factory	
 	org.eclipse.uml2.uml.UMLFactory myfactory;
@@ -48,6 +53,8 @@ public class UMLModelAbstraction
 		createTimeType();
 		createDurationType();
 		createBooleanType();
+		createIntegerType();
+		createStringType();
 	}
 	
 	// Loads a UML.Model from a file
@@ -159,31 +166,26 @@ public class UMLModelAbstraction
 	{
 		timeType = createDataType("Time");
 	}
-	
-	public org.eclipse.uml2.uml.DataType getTimeType ()
-	{
-		return timeType;
-	}
-	
+		
 	// The DataType that will be referred to by all duration attributes
 	private void createDurationType ()
 	{
 		durationType = createDataType("Duration");
 	}
-	
-	public org.eclipse.uml2.uml.DataType getDurationType ()
-	{
-		return durationType;
-	}
-	
+		
 	private void createBooleanType ()
 	{
 		booleanType = createPrimitiveType("Boolean");
 	}
-	
-	public org.eclipse.uml2.uml.PrimitiveType getBooleanType ()
+		
+	private void createIntegerType ()
 	{
-		return booleanType;
+		integerType = createPrimitiveType("Integer");
+	}
+	
+	private void createStringType ()
+	{
+		stringType = createPrimitiveType("String");
 	}
 	
 	public org.eclipse.uml2.uml.Property addStartTime (RefOntoUML.Class c1)
@@ -205,6 +207,93 @@ public class UMLModelAbstraction
 	{
 		return addClassAttribute (c1, "current", booleanType, true);
 	}
+	
+	public org.eclipse.uml2.uml.Property addReferenceAttribute (RefOntoUML.Class c1, ReferenceDecision decision)
+	{
+		org.eclipse.uml2.uml.Type type = null;
+		
+		if (decision.attributeType == AttributeType.INT)
+		{
+			type = integerType;
+		}
+		else if (decision.attributeType == AttributeType.STRING)
+		{
+			type = stringType;
+		}
+		else if (decision.attributeType == AttributeType.CUSTOM)
+		{
+			type = createDataType(decision.typeName);
+			addPackageableElement(type);
+		}
+		
+		return addClassAttribute (c1, decision.attributeName, type, true);
+	}
+	
+	// TODO: This method may be modularized
+	public void addPrimitiveTypes (Transformation t)
+	{
+        // Time DataType
+		if (!hasPackageableElement(timeType))
+		{
+			addPackageableElement(timeType);
+			t.ui.writeLog("Created UML.DataType: " + timeType.getName());
+			t.numAdditions++;
+		}
+		
+        // Duration DataType
+		if (!hasPackageableElement(durationType))
+		{
+			addPackageableElement(durationType);
+			t.ui.writeLog("Created UML.DataType: " + durationType.getName());
+			t.numAdditions++;
+		}
+		
+        // Boolean PrimitiveType
+		if (!hasPackageableElement(booleanType))
+		{
+			addPackageableElement(booleanType);
+			t.ui.writeLog("Created UML.PrimitiveType: " + booleanType.getName());
+			t.numAdditions++;
+		}
+		
+		// Integer PrimitiveType
+		if (!hasPackageableElement(integerType))
+		{
+			addPackageableElement(integerType);
+			t.ui.writeLog("Created UML.PrimitiveType: " + integerType.getName());
+			t.numAdditions++;
+		}
+		
+		// String PrimitiveType
+		if (!hasPackageableElement(stringType))
+		{
+			addPackageableElement(stringType);
+			t.ui.writeLog("Created UML.PrimitiveType: " + stringType.getName());
+			t.numAdditions++;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/* TODO: I think those methods should be in another class... 
+	 * They do not refer specifically to the target UML model, but rather to UML convenience methods (perhaps, "fa" class is more appropriate) 
+	 */
+	
 		
 	// Set the basic attributes of DataType
 	private static void initializeDataType (org.eclipse.uml2.uml.DataType dataType, String name)

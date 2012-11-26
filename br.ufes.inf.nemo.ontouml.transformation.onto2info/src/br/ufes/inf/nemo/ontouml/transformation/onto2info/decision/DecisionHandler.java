@@ -31,10 +31,13 @@ public class DecisionHandler
 	
 	private void initializeDecisions (RefOntoUMLModelAbstraction ontoAbstraction)
 	{
-		// Scope Decisions (OntoUML.Class)
 		for (RefOntoUML.Class c : ontoAbstraction.classes)
 		{
+			// Scope Decisions (OntoUML.Class)
 			scopeMap.put(c, new ScopeDecision());
+			
+			// UML Attributes (History, Time, Reference, Measurement)
+			attributeMap.put(c, new UMLAttributeSlot());
 		}
 		
 		// History and Time Tracking Decisions
@@ -45,7 +48,6 @@ public class DecisionHandler
 		{
 			historyMap.put(c, new HistoryDecision());
 			timeMap.put(c, new TimeDecision());
-			attributeMap.put(c, new UMLAttributeSlot());
 		}
 		
 		// Reference Decisions

@@ -20,4 +20,6 @@ public class SerializedContent implements Serializable
 	String timePrimitiveId;
 	String durationPrimitiveId;
 	String booleanPrimitiveId;
+	String integerPrimitiveId;
+	String stringPrimitiveId;
 }

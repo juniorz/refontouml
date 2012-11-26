@@ -63,9 +63,11 @@ public class Serializer
 		// Converts the OntoUML<->UMLAttributeSlot Map into an ID<->UMLAttributeSlotString Map
 		content.attributeIdMap = convertAttributeMap (ontoumlResource, umlResource, dh);
 		
-		content.timePrimitiveId = getUUID (umlResource, umlAbstraction.getTimeType());
-		content.durationPrimitiveId = getUUID (umlResource, umlAbstraction.getDurationType());
-		content.booleanPrimitiveId = getUUID (umlResource, umlAbstraction.getBooleanType());
+		content.timePrimitiveId = getUUID (umlResource, umlAbstraction.timeType);
+		content.durationPrimitiveId = getUUID (umlResource, umlAbstraction.durationType);
+		content.booleanPrimitiveId = getUUID (umlResource, umlAbstraction.booleanType);
+		content.integerPrimitiveId = getUUID (umlResource, umlAbstraction.integerType);
+		content.stringPrimitiveId = getUUID (umlResource, umlAbstraction.stringType);
 		
 		// Saves the fake Maps into a file
 		FileOutputStream fos = null;
@@ -120,23 +122,18 @@ public class Serializer
 			
 			if (slot.startAttribute != null)
 				stringSlot.startAttribute = getUUID (umlResource, slot.startAttribute);
-			else
-				stringSlot.startAttribute = null;
 			
 			if (slot.endAttribute != null)
 				stringSlot.endAttribute = getUUID (umlResource, slot.endAttribute);
-			else
-				stringSlot.endAttribute = null;
 			
 			if (slot.durationAttribute != null)
 				stringSlot.durationAttribute = getUUID (umlResource, slot.durationAttribute);
-			else
-				stringSlot.durationAttribute = null;
 			
 			if (slot.htAttribute != null)
 				stringSlot.htAttribute = getUUID (umlResource, slot.htAttribute);
-			else
-				stringSlot.htAttribute = null;
+			
+			if (slot.refAttribute != null)
+				stringSlot.refAttribute = getUUID (umlResource, slot.refAttribute);
 			
 			idMap.put(ontoumlID, stringSlot);
 		}
@@ -176,6 +173,8 @@ public class Serializer
 		umlAbstraction.timeType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, content.timePrimitiveId);
 		umlAbstraction.durationType = (org.eclipse.uml2.uml.DataType) getEObject(umlResource, content.durationPrimitiveId);
 		umlAbstraction.booleanType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, content.booleanPrimitiveId);
+		umlAbstraction.integerType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, content.integerPrimitiveId);
+		umlAbstraction.stringType = (org.eclipse.uml2.uml.PrimitiveType) getEObject(umlResource, content.stringPrimitiveId);
 	}
 	
 	public static void loadOntoInfoMap (Resource ontoumlResource, Resource umlResource, Map<String, String> idMap)
@@ -267,6 +266,9 @@ public class Serializer
 			
 			if (stringSlot.htAttribute != null)
 				slot.htAttribute = (org.eclipse.uml2.uml.Property) getEObject(umlResource, stringSlot.htAttribute);
+			
+			if (stringSlot.refAttribute != null)
+				slot.refAttribute = (org.eclipse.uml2.uml.Property) getEObject(umlResource, stringSlot.refAttribute);
 			
 			dh.attributeMap.put(ontoumlObj, slot);
 		}

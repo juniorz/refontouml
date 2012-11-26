@@ -8,11 +8,15 @@ public class UMLAttributeSlot
 	// current : Boolean [1,1] attribute
 	public org.eclipse.uml2.uml.Property htAttribute;
 	
+	// Reference attribute (identifier)
+	public org.eclipse.uml2.uml.Property refAttribute;
+	
 	public UMLAttributeSlot()
 	{
 		startAttribute = null;
 		endAttribute = null;
 		durationAttribute = null;
 		htAttribute = null;
+		refAttribute = null;
 	}
 }
