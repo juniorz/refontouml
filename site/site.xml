@@ -18,7 +18,7 @@
    <feature url="features/br.inf.ufes.nemo.feature.rceditor_1.0.0.201211061653.jar" id="br.inf.ufes.nemo.feature.rceditor" version="1.0.0.201211061653">
       <category name="metamodel"/>
    </feature>
-   <feature url="features/br.inf.ufes.nemo.rcarraretto.onto2info_1.0.0.201211061653.jar" id="br.inf.ufes.nemo.rcarraretto.onto2info" version="1.0.0.201211061653">
+   <feature url="features/br.inf.ufes.nemo.rcarraretto.onto2info_1.0.0.201211272137.jar" id="br.inf.ufes.nemo.rcarraretto.onto2info" version="1.0.0.201211272137">
       <category name="transformation"/>
    </feature>
    <category-def name="metamodel" label="Metamodel">

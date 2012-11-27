@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="br.inf.ufes.nemo.rcarraretto.onto2info"
-      label="Domain Ontology to Information Model"
+      label="Onto to Info"
       version="1.0.0.qualifier"
       provider-name="Roberto Carraretto">
 
