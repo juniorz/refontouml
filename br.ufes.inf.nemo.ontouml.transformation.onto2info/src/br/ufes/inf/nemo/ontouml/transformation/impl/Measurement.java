@@ -23,7 +23,7 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSl
 - Scope=false
 
 - HT=true, TT=true
-- HT=true, TT=false
+- HT=true, TT=false 
  
  */
 
@@ -96,16 +96,24 @@ public class Measurement
 		{
 			// Measurement attribute exists
 			
-			// from HT=false to HT=true
-			if (main.dh.getHTPastDecision(q1) && slot.measureType == null)
+			if (main.dh.getHTPastDecision(q1))
 			{
-				removeAttributeFromCharacterizedType(slot);
+				if (slot.measureType == null)
+				{
+					// from HT=false to HT=true
+					removeAttributeFromCharacterizedType(slot);
+				}
+					
 				addHistoryTracking(q1, c1, decision, slot);
 			}
-			// from HT=true to HT=false
-			else if (!main.dh.getHTPastDecision(q1) && slot.measureType != null)
+			else if (!main.dh.getHTPastDecision(q1))
 			{
-				removeHistoryTracking(slot);
+				if (slot.measureType != null)
+				{
+					// from HT=true to HT=false
+					removeHistoryTracking(slot);
+				}
+								
 				addAttributeToCharacterizedType(q1, c1, decision, slot);
 			}
 			else
@@ -207,10 +215,14 @@ public class Measurement
 			// create "Measure Association" (between the "Characterized Type" and the "Measure Type")
 			main.umlAbstraction.createMeasureAssociation((org.eclipse.uml2.uml.Class)Onto2InfoMap.getElement(c1), slot.measureType);
 		}
-		
+			
 		if (main.dh.getStartTimeDecision(q1))
 		{
 			addTimeTracking(slot);
+		}
+		else
+		{
+			removeTimeTracking(slot);
 		}
 	}
 	
