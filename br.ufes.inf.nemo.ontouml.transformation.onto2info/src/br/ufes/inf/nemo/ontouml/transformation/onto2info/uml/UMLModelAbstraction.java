@@ -192,29 +192,34 @@ public class UMLModelAbstraction
 	
 	public org.eclipse.uml2.uml.Property addStartTime (RefOntoUML.Class c1)
 	{
-		return addClassAttribute (c1, "start", timeType, true);
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		return addClassAttribute (c2, "start", timeType, true);
 	}
 	
 	public org.eclipse.uml2.uml.Property addEndTime (RefOntoUML.Class c1)
 	{
-		return addClassAttribute (c1, "end", timeType, false);
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		return addClassAttribute (c2, "end", timeType, false);
 	}
 	
 	public org.eclipse.uml2.uml.Property addDuration (RefOntoUML.Class c1)
 	{
-		return addClassAttribute (c1, "duration", durationType, true);
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		return addClassAttribute (c2, "duration", durationType, true);
 	}
 	
 	public org.eclipse.uml2.uml.Property addHistoryTrackingAttribute (RefOntoUML.Class c1)
 	{
-		return addClassAttribute (c1, "current", booleanType, true);
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		return addClassAttribute (c2, "current", booleanType, true);
 	}
 	
 	public org.eclipse.uml2.uml.Property addReferenceAttribute (RefOntoUML.Class c1, ReferenceDecision decision)
 	{
 		org.eclipse.uml2.uml.Type type = getReferenceType(decision);
-		
-		return addClassAttribute (c1, decision.attributeName, type, true);
+	
+		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
+		return addClassAttribute (c2, decision.attributeName, type, true);
 	}
 	
 	public org.eclipse.uml2.uml.Type getReferenceType (ReferenceDecision decision)
@@ -243,13 +248,12 @@ public class UMLModelAbstraction
 		return type != integerType && type != stringType;	
 	}
 	
-	public org.eclipse.uml2.uml.Property addMeasurementAttribute (RefOntoUML.Quality q1, RefOntoUML.Class c1, MeasurementDecision decision)
+	public org.eclipse.uml2.uml.Property addMeasurementAttribute (RefOntoUML.Quality q1, org.eclipse.uml2.uml.Class c2, MeasurementDecision decision)
 	{
 		org.eclipse.uml2.uml.Type type = getMeasurementType(decision);
-		
-		return addClassAttribute (c1, q1.getName().toLowerCase(), type, true);
+		return addClassAttribute (c2, q1.getName().toLowerCase(), type, true);
 	}
-	
+		
 	public org.eclipse.uml2.uml.Type getMeasurementType (MeasurementDecision decision)
 	{
 		org.eclipse.uml2.uml.Type type = null;
@@ -338,7 +342,7 @@ public class UMLModelAbstraction
 	
 		
 	// Set the basic attributes of DataType
-	private static void initializeDataType (org.eclipse.uml2.uml.DataType dataType, String name)
+	private void initializeClassifier (org.eclipse.uml2.uml.Classifier dataType, String name)
 	{
 		// visibility (Element)
 		dataType.setVisibility(org.eclipse.uml2.uml.VisibilityKind.PUBLIC_LITERAL);
@@ -348,26 +352,8 @@ public class UMLModelAbstraction
 		dataType.setIsAbstract(false);
 	}
 	
-	private org.eclipse.uml2.uml.DataType createDataType (String name)
+	private void initializeProperty (org.eclipse.uml2.uml.Property p, String name, org.eclipse.uml2.uml.Type type, int lower, int upper)
 	{
-		org.eclipse.uml2.uml.DataType dt = myfactory.createDataType();
-		initializeDataType (dt, name);
-		return dt;
-	}
-	
-	private org.eclipse.uml2.uml.PrimitiveType createPrimitiveType (String name)
-	{
-		org.eclipse.uml2.uml.PrimitiveType pt = myfactory.createPrimitiveType();
-		initializeDataType (pt, name);
-		return pt;
-	}
-		
-	private org.eclipse.uml2.uml.Property addClassAttribute (RefOntoUML.Class c1, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
-	{
-		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
-		
-		org.eclipse.uml2.uml.Property p = myfactory.createProperty();
-		
 		// name (NamedElement)
 		p.setName(name);
 		// isLeaf (RedefinableElement)
@@ -375,13 +361,13 @@ public class UMLModelAbstraction
 		// isStatic (Feature)
 		p.setIsStatic(false);
 		// isReadOnly (StructuralFeature)
-		p.setIsReadOnly(true);
+		p.setIsReadOnly(false);
 
 		// lower, upper (MultiplicityElement)            
 		org.eclipse.uml2.uml.LiteralInteger lowerValue = myfactory.createLiteralInteger();
 		org.eclipse.uml2.uml.LiteralUnlimitedNatural upperValue = myfactory.createLiteralUnlimitedNatural();
-		lowerValue.setValue(isRequired ? 1 : 0);
-		upperValue.setValue(1);   
+		lowerValue.setValue(lower);
+		upperValue.setValue(upper);   
 		p.setLowerValue(lowerValue);
 		p.setUpperValue(upperValue);
 
@@ -391,7 +377,57 @@ public class UMLModelAbstraction
 		// isDerived (Property)
 		p.setIsDerived(false);        
 		// aggregation (Property)
-		p.setAggregation(org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL);    
+		p.setAggregation(org.eclipse.uml2.uml.AggregationKind.NONE_LITERAL);
+	}
+	
+	private org.eclipse.uml2.uml.DataType createDataType (String name)
+	{
+		org.eclipse.uml2.uml.DataType dt = myfactory.createDataType();
+		initializeClassifier (dt, name);
+		return dt;
+	}
+	
+	private org.eclipse.uml2.uml.PrimitiveType createPrimitiveType (String name)
+	{
+		org.eclipse.uml2.uml.PrimitiveType pt = myfactory.createPrimitiveType();
+		initializeClassifier (pt, name);
+		return pt;
+	}
+	
+	public org.eclipse.uml2.uml.Class createMeasureType (String name)
+	{
+		org.eclipse.uml2.uml.Class measureType = myfactory.createClass();
+		initializeClassifier (measureType, name);
+		
+		addPackageableElement(measureType);
+		
+		return measureType;
+	}
+	
+	public void createMeasureAssociation (org.eclipse.uml2.uml.Class characterizedType, org.eclipse.uml2.uml.Class measureType)
+	{
+		// "Characterized Type" end
+		org.eclipse.uml2.uml.Property characterizedEnd = myfactory.createProperty();
+		initializeProperty(characterizedEnd, "", characterizedType, 1, 1);
+		
+		// "Measure Type" end
+		org.eclipse.uml2.uml.Property measureEnd = myfactory.createProperty();
+		initializeProperty(measureEnd, "", measureType, 1, -1);
+		
+		// Association
+		org.eclipse.uml2.uml.Association measureAssociation = myfactory.createAssociation();
+		initializeClassifier (measureAssociation, "");
+		measureAssociation.getOwnedEnds().add(characterizedEnd);
+		measureAssociation.getOwnedEnds().add(measureEnd);
+		
+		addPackageableElement(measureAssociation);
+	}
+	
+	private org.eclipse.uml2.uml.Property addClassAttribute (org.eclipse.uml2.uml.Class c2, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
+	{		
+		org.eclipse.uml2.uml.Property p = myfactory.createProperty();
+		
+		initializeProperty(p, name, type, isRequired ? 1 : 0, 1);
 		
 		// Linking Class and Property
 		c2.getOwnedAttributes().add(p);

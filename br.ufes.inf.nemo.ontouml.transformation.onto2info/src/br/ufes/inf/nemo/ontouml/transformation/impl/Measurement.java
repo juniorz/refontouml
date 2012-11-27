@@ -2,6 +2,7 @@ package br.ufes.inf.nemo.ontouml.transformation.impl;
 
 import java.util.Map.Entry;
 
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.MeasurementDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlot;
 
@@ -54,14 +55,21 @@ public class Measurement
 		if (slot.measurementAttribute == null)
 		{
 			// Measurement attribute does NOT exist
-			slot.measurementAttribute = main.umlAbstraction.addMeasurementAttribute(q1, c1, decision);
 			
-			main.ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.measurementAttribute.getName());
-			Log.addition();
+			if (main.dh.getHTPastDecision(q1))
+			{
+				// History Tracking = true
+				dealHistoryTracking(q1, c1, decision, slot);
+			}
+			else
+			{
+				// History Tracking = false
+				// Measurement attribute goes to the "Characterized Type"
+				addAttributeToCharacterizedType(q1, c1, decision, slot);
+			}
 		}
 		else
 		{
-			// FIXME
 			// Measurement attribute exists
 			
 			// Check if the attribute has changed
@@ -83,6 +91,31 @@ public class Measurement
 				
 				// TODO: display in the ui that a change happened
 			}
+		}
+	}
+	
+	private void addAttributeToCharacterizedType (RefOntoUML.Quality q1, RefOntoUML.Class c1, MeasurementDecision decision, UMLAttributeSlot slot)
+	{
+		slot.measurementAttribute = main.umlAbstraction.addMeasurementAttribute(q1, (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1), decision);
+		main.ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.measurementAttribute.getName());
+		Log.addition();
+	}
+	
+	// TODO
+	private void dealHistoryTracking(RefOntoUML.Quality q1, RefOntoUML.Class c1, MeasurementDecision decision, UMLAttributeSlot slot)
+	{
+		if (slot.measureType == null)
+		{
+			// create "Measure Type"
+			slot.measureType = main.umlAbstraction.createMeasureType(q1.getName() + " Measure");
+			// add the "Measurement Attribute" to the "Measure type"
+			slot.measurementAttribute = main.umlAbstraction.addMeasurementAttribute(q1, slot.measureType, decision);
+			// create "Measure Association" (between the "Characterized Type" and the "Measure Type")
+			main.umlAbstraction.createMeasureAssociation((org.eclipse.uml2.uml.Class)Onto2InfoMap.getElement(c1), slot.measureType);
+		}
+		else
+		{
+			// "Measure Type" already exists
 		}
 	}
 	
