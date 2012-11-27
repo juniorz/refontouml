@@ -423,7 +423,7 @@ public class UMLModelAbstraction
 		addPackageableElement(measureAssociation);
 	}
 	
-	private org.eclipse.uml2.uml.Property addClassAttribute (org.eclipse.uml2.uml.Class c2, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
+	public org.eclipse.uml2.uml.Property addClassAttribute (org.eclipse.uml2.uml.Class c2, String name, org.eclipse.uml2.uml.Type type, boolean isRequired)
 	{		
 		org.eclipse.uml2.uml.Property p = myfactory.createProperty();
 		

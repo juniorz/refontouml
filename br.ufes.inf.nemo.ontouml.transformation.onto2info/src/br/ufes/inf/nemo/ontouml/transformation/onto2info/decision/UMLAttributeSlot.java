@@ -13,8 +13,7 @@ public class UMLAttributeSlot
 	
 	// Measurement attribute
 	public org.eclipse.uml2.uml.Property measurementAttribute;
-	
-	// TODO: serialize this attribute
+	// Measure type
 	public org.eclipse.uml2.uml.Class measureType;
 	
 	public UMLAttributeSlot()
@@ -25,5 +24,6 @@ public class UMLAttributeSlot
 		htAttribute = null;
 		refAttribute = null;
 		measurementAttribute = null;
+		measureType = null;
 	}
 }

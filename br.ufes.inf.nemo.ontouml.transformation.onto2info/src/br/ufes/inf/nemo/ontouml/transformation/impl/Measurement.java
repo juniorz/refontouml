@@ -112,11 +112,25 @@ public class Measurement
 			slot.measurementAttribute = main.umlAbstraction.addMeasurementAttribute(q1, slot.measureType, decision);
 			// create "Measure Association" (between the "Characterized Type" and the "Measure Type")
 			main.umlAbstraction.createMeasureAssociation((org.eclipse.uml2.uml.Class)Onto2InfoMap.getElement(c1), slot.measureType);
+			
+			if (main.dh.getStartTimeDecision(q1))
+			{
+				dealTimeTracking(slot);
+			}
 		}
 		else
 		{
 			// "Measure Type" already exists
 			// TODO
+		}
+	}
+	
+	private void dealTimeTracking(UMLAttributeSlot slot)
+	{
+		if (slot.startAttribute == null)
+		{
+			// create "Time Attribute"
+			main.umlAbstraction.addClassAttribute (slot.measureType, "time", main.umlAbstraction.timeType, true);
 		}
 	}
 	

@@ -138,6 +138,9 @@ public class Serializer
 			if (slot.measurementAttribute != null)
 				stringSlot.measurementAttribute = getUUID (umlResource, slot.measurementAttribute);
 			
+			if (slot.measureType != null)
+				stringSlot.measureType = getUUID (umlResource, slot.measureType);
+			
 			idMap.put(ontoumlID, stringSlot);
 		}
 		
@@ -275,6 +278,9 @@ public class Serializer
 			
 			if (stringSlot.measurementAttribute != null)
 				slot.measurementAttribute = (org.eclipse.uml2.uml.Property) getEObject(umlResource, stringSlot.measurementAttribute);
+			
+			if (stringSlot.measureType != null)
+				slot.measureType = (org.eclipse.uml2.uml.Class) getEObject(umlResource, stringSlot.measureType);
 			
 			dh.attributeMap.put(ontoumlObj, slot);
 		}
