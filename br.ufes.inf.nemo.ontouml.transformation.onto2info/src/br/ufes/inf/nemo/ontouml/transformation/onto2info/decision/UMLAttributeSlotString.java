@@ -11,6 +11,7 @@ public class UMLAttributeSlotString implements Serializable
 	public String durationAttribute;
 	public String htAttribute;
 	public String refAttribute;
+	public String measurementAttribute;
 	
 	public UMLAttributeSlotString()
 	{
@@ -19,5 +20,6 @@ public class UMLAttributeSlotString implements Serializable
 		durationAttribute = null;
 		htAttribute = null;
 		refAttribute = null;
+		measurementAttribute = null;
 	}
 }
