@@ -11,7 +11,7 @@
  *     Alexander Ljungberg<siker@norwinter.com> - in bug 260061
  *******************************************************************************/
 
-package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.util;
 
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.util.Util;

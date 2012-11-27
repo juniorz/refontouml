@@ -8,7 +8,7 @@
  * Contributors:
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
-package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui;
+package br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.util;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;

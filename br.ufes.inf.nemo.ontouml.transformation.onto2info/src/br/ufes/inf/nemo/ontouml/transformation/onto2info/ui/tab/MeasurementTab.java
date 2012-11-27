@@ -18,10 +18,10 @@ import org.eclipse.swt.widgets.TreeItem;
 import br.ufes.inf.nemo.ontouml.refontouml.util.RefOntoUMLModelAbstraction;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.BooleanCellEditor;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.EmulatedNativeCheckBoxLabelProvider;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.MeasurementModel;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.content.SimpleContentProvider;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.util.BooleanCellEditor;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.util.EmulatedNativeCheckBoxLabelProvider;
 
 public class MeasurementTab implements Tab
 {
