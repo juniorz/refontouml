@@ -11,6 +11,9 @@ public class UMLAttributeSlot
 	// Reference attribute (identifier)
 	public org.eclipse.uml2.uml.Property refAttribute;
 	
+	// Measurement attribute
+	public org.eclipse.uml2.uml.Property measurementAttribute;
+	
 	public UMLAttributeSlot()
 	{
 		startAttribute = null;
@@ -18,5 +21,6 @@ public class UMLAttributeSlot
 		durationAttribute = null;
 		htAttribute = null;
 		refAttribute = null;
+		measurementAttribute = null;
 	}
 }

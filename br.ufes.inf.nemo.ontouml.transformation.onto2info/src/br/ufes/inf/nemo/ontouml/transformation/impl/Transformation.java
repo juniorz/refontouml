@@ -59,6 +59,7 @@ public class Transformation
 	        (new HistoryTracking(this)).dealHistoryTracking();
 	        (new TimeTracking(this)).dealTimeTracking();
 	        (new Reference(this)).dealReference();
+	        (new Measurement(this)).dealMeasurement();
 
 	        // Adds the PrimitiveTypes (time, duration, boolean) to the UML.Model
 	        // I like them at the end of the model, rather than at the beginning

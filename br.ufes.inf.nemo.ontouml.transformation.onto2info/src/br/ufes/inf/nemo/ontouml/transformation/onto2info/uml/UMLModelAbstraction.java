@@ -17,6 +17,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 import br.ufes.inf.nemo.ontouml.transformation.impl.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
+import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.MeasurementDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.ReferenceDecision;
 
 public class UMLModelAbstraction
@@ -241,6 +242,34 @@ public class UMLModelAbstraction
 		return type != integerType && type != stringType;	
 	}
 	
+	public org.eclipse.uml2.uml.Property addMeasurementAttribute (RefOntoUML.Quality q1, RefOntoUML.Class c1, MeasurementDecision decision)
+	{
+		org.eclipse.uml2.uml.Type type = getMeasurementType(decision);
+		
+		return addClassAttribute (c1, q1.getName().toLowerCase(), type, true);
+	}
+	
+	public org.eclipse.uml2.uml.Type getMeasurementType (MeasurementDecision decision)
+	{
+		org.eclipse.uml2.uml.Type type = null;
+		
+		if (decision.attributeType == AttributeType.INT)
+		{
+			type = integerType;
+		}
+		else if (decision.attributeType == AttributeType.STRING)
+		{
+			type = stringType;
+		}
+		else if (decision.attributeType == AttributeType.CUSTOM)
+		{
+			type = createDataType(decision.typeName);
+			addPackageableElement(type);
+		}
+		
+		return type;
+	}
+	
 	// TODO: This method may be modularized
 	public void addPrimitiveTypes (Transformation t)
 	{
@@ -373,6 +402,11 @@ public class UMLModelAbstraction
 	{
 		org.eclipse.uml2.uml.Class c2 = (org.eclipse.uml2.uml.Class) Onto2InfoMap.getElement(c1);
 		c2.getOwnedAttributes().remove(p);
+	}
+	
+	public void removeClassAttribute (org.eclipse.uml2.uml.Property p)
+	{
+		p.getClass_().getOwnedAttributes().remove(p);
 	}
 	
 	// Return a UML.Generalization between two UML.Classifiers, if it exists
