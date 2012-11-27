@@ -64,7 +64,7 @@ public class Scope
 			        	}
 			        	
 			        	ui.writeLog("Created UML.Class " + c2.getName());
-			        	main.numAdditions++;
+			        	Log.addition();
 					}
 				}
 				else
@@ -79,7 +79,7 @@ public class Scope
 						// If some day OntoUML.Classes could have attributes, an OntoUML.Property<->UML.Property mapping would also have to be removed
 
 						ui.writeLog("Removed UML.Class " + c2.getName());
-						main.numRemovals++;
+						Log.removal();
 					}
 				}
 			}
@@ -158,7 +158,7 @@ public class Scope
         			umlAbstraction.addPackageableElement(a2);
         			
 					ui.writeLog("Created UML.Association: " + umlAbstraction.associationToString(a2));
-					main.numAdditions++;
+					Log.addition();
         		}
         	}
         	else
@@ -174,7 +174,7 @@ public class Scope
 					Onto2InfoMap.removeElement(mediation.mediatedEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 											
 					ui.writeLog("Removed UML.Association: " + umlAbstraction.associationToString(a2));
-					main.numRemovals++;
+					Log.removal();
         		}
         	}
         }
@@ -211,7 +211,7 @@ public class Scope
 						gen2 = fa.createGeneralization(gen1);
 						
 						ui.writeLog("Created UML.Generalization: " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
-						main.numAdditions++;
+						Log.addition();
 					}
 				}
 				else
@@ -237,7 +237,7 @@ public class Scope
 
 						// gen2.general and gen2.specific may be already gone, so I can't print them
 						ui.writeLog("Removed UML.Generalization: " + gen1.getSpecific().getName() + "->" + gen1.getGeneral().getName());
-						main.numRemovals++;
+						Log.removal();
 					}
 				}
 			}
@@ -271,7 +271,7 @@ public class Scope
 				Onto2InfoMap.relateElements(role, gen2);
 				
 				ui.writeLog("Created UML.Generalization (artificial): " + gen2.getSpecific().getName() + "->" + gen2.getGeneral().getName());
-				main.numAdditions++;
+				Log.addition();
 			}
 			
 			// The artificial UML.Generalization (that already existed or was just created) must be added to the return list
@@ -299,7 +299,7 @@ public class Scope
 				
 				// Can't print UML.Generalization.general or UML.Generalization.specific because they may be already gone
 				ui.writeLog("Removed UML.Generalization (artificial): " + rigidParent.getName() + "->" + roleMixin.getName());
-				main.numRemovals++;
+				Log.removal();
 			}
 		}
 		
@@ -350,7 +350,7 @@ public class Scope
     			umlAbstraction.addPackageableElement(gset2);
     			
     			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
-    			main.numAdditions++;
+    			Log.addition();
 			}
 		}
 		else
@@ -370,7 +370,7 @@ public class Scope
 				
 				// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 				ui.writeLog("Removed UML.GeneralizationSet (artificial): " + gset2.getName());
-				main.numRemovals++;
+				Log.removal();
 			}
 		}
 	}
@@ -427,7 +427,7 @@ public class Scope
 					umlAbstraction.addPackageableElement(gset2);
 					
 					ui.writeLog("Created UML.GeneralizationSet: " + umlAbstraction.generalizationSetToString(gset2));
-					main.numAdditions++;
+					Log.addition();
 				}
 			}
 			else
@@ -444,7 +444,7 @@ public class Scope
 					
 					// Cannot print the UML.GeneralizationSet properly because references to UML.Generalizations, generals and specifics may be gone
 					ui.writeLog("Removed UML.GeneralizationSet: " + gset2.getName());
-					main.numRemovals++;
+					Log.removal();
 				}
 			}
 		}

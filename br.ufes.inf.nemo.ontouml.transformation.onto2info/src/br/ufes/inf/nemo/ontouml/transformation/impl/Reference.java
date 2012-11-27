@@ -35,7 +35,7 @@ public class Reference
 	        			slot.refAttribute = main.umlAbstraction.addReferenceAttribute(c1, decision);
 	        			
 	        			main.ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.refAttribute.getName());
-	        			main.numAdditions++;
+	        			Log.addition();
 					}
 					else
 					{
@@ -77,7 +77,7 @@ public class Reference
 	        			slot.refAttribute = null;
 	        			
 	        			main.ui.writeLog("Removed UML.Property for " + c1.getName() + " (Reference)");
-	        			main.numRemovals++;
+	        			Log.removal();
 					}
 				}
 			}
@@ -90,7 +90,7 @@ public class Reference
         			// Clear the UMLAttributeSlot
         			slot.refAttribute = null;
         			main.ui.writeLog("Removed UML.Property for " + c1.getName() + " (Reference)");
-        			main.numRemovals++;
+        			Log.removal();
         		}
 			}
 		}

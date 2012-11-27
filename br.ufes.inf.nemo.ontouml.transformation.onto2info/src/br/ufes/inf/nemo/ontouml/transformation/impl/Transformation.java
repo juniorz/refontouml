@@ -20,11 +20,6 @@ public class Transformation
 	// Interface
 	public Onto2InfoInterface ui;
 
-	// Number of additions in one transformation operation
-	public int numAdditions;
-	// Number of removals in one transformation operation
-	public int numRemovals;
-
 	public Transformation(RefOntoUMLModelAbstraction ontoAbstraction, UMLModelAbstraction umlAbstraction, Onto2InfoInterface ui)  
     { 
 		this.ontoAbstraction = ontoAbstraction;
@@ -37,9 +32,8 @@ public class Transformation
 	{
 		// Transformation from scratch
 		boolean first = true;
-		// Initialize additions and removals made so far
-		numAdditions = 0;
-		numRemovals = 0;
+		// Reset change log (additions and removals)
+		Log.reset();
 		this.dh = dh;
 		
 		try
@@ -80,39 +74,9 @@ public class Transformation
 			return null;
 		}
 		
-		printSuccessMessage(first);
+		ui.writeText("Transformation done" + Log.toString(first));
 		ui.refreshWorkspace();
         
         return umlAbstraction.umlmodel;
-	}
-
-	public void printSuccessMessage (boolean first)
-	{
-		String extraText = "";
-		
-		if (!first)
-		{
-			extraText += " (";
-			
-			if (numAdditions == 0 && numRemovals == 0)
-			{
-				extraText += "no changes";
-			}
-			else
-			{
-				if (numAdditions != 0)
-				{
-					extraText += numAdditions + " addition" + (numAdditions == 1 ? "" : "s");
-					if (numRemovals != 0)
-						extraText += ", ";
-				}
-				if (numRemovals != 0)
-					extraText += numRemovals + " removal" + (numRemovals == 1 ? "" : "s");
-			}
-			
-			extraText += ")";
-		}
-		
-		ui.writeText("Transformation done" + extraText);
 	}
 }

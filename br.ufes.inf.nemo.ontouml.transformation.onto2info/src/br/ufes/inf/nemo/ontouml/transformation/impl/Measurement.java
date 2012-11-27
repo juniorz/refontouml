@@ -57,7 +57,7 @@ public class Measurement
 			slot.measurementAttribute = main.umlAbstraction.addMeasurementAttribute(q1, c1, decision);
 			
 			main.ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.measurementAttribute.getName());
-			main.numAdditions++;
+			Log.addition();
 		}
 		else
 		{
@@ -98,7 +98,7 @@ public class Measurement
 			// Clear the UMLAttributeSlot
 			slot.measurementAttribute = null;
 			main.ui.writeLog("Removed UML.Property " + "(Measurement)");
-			main.numRemovals++;
+			Log.removal();
 		}
 	}
 	
@@ -109,7 +109,7 @@ public class Measurement
 			// Clear the UMLAttributeSlot
 			slot.measurementAttribute = null;
 			main.ui.writeLog("Removed UML.Property " + "(Measurement)");
-			main.numRemovals++;
+			Log.removal();
 		}
 	}
 }

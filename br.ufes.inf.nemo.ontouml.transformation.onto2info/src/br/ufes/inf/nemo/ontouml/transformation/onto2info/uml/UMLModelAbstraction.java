@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import br.ufes.inf.nemo.ontouml.transformation.impl.Log;
 import br.ufes.inf.nemo.ontouml.transformation.impl.Transformation;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.AttributeType;
@@ -278,7 +279,7 @@ public class UMLModelAbstraction
 		{
 			addPackageableElement(timeType);
 			t.ui.writeLog("Created UML.DataType: " + timeType.getName());
-			t.numAdditions++;
+			Log.addition();
 		}
 		
         // Duration DataType
@@ -286,7 +287,7 @@ public class UMLModelAbstraction
 		{
 			addPackageableElement(durationType);
 			t.ui.writeLog("Created UML.DataType: " + durationType.getName());
-			t.numAdditions++;
+			Log.addition();
 		}
 		
         // Boolean PrimitiveType
@@ -294,7 +295,7 @@ public class UMLModelAbstraction
 		{
 			addPackageableElement(booleanType);
 			t.ui.writeLog("Created UML.PrimitiveType: " + booleanType.getName());
-			t.numAdditions++;
+			Log.addition();
 		}
 		
 		// Integer PrimitiveType
@@ -302,7 +303,7 @@ public class UMLModelAbstraction
 		{
 			addPackageableElement(integerType);
 			t.ui.writeLog("Created UML.PrimitiveType: " + integerType.getName());
-			t.numAdditions++;
+			Log.addition();
 		}
 		
 		// String PrimitiveType
@@ -310,7 +311,7 @@ public class UMLModelAbstraction
 		{
 			addPackageableElement(stringType);
 			t.ui.writeLog("Created UML.PrimitiveType: " + stringType.getName());
-			t.numAdditions++;
+			Log.addition();
 		}
 	}
 	

@@ -64,7 +64,7 @@ public class TimeTracking
     			sm.setSlotAttribute(sm.addTimeAttribute(c1));
     			
     			main.ui.writeLog("Created UML.Property for " + c1.getName() + " (" + sm.getSlotAttribute().getName() + ")");
-    			main.numAdditions++;
+    			Log.addition();
     		}
     	}
     	else
@@ -92,7 +92,7 @@ public class TimeTracking
 			sm.setSlotAttribute(null);
 			
 			main.ui.writeLog("Removed UML.Property for " + c1.getName() + " (" + attributeName + ")");
-			main.numRemovals++;
+			Log.removal();
 		}
 	}
 	

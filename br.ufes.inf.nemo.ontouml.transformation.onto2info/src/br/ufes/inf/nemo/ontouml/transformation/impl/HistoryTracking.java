@@ -38,7 +38,7 @@ public class HistoryTracking
 	        			slot.htAttribute = main.umlAbstraction.addHistoryTrackingAttribute(c1);
 	        			
 	        			main.ui.writeLog("Created UML.Property for " + c1.getName() + ": " + slot.htAttribute.getName());
-	        			main.numAdditions++;
+	        			Log.addition();
 	        		}
 	        	}
 	        	else
@@ -53,7 +53,7 @@ public class HistoryTracking
 	        			slot.htAttribute = null;
 	        			
 	        			main.ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
-	        			main.numRemovals++;
+	        			Log.removal();
 	        		}
 	        	}
         	}
@@ -66,7 +66,7 @@ public class HistoryTracking
         			// Clear the UMLAttributeSlot
         			slot.htAttribute = null;
         			main.ui.writeLog("Removed UML.Property for " + c1.getName() + " (History Tracking)");
-        			main.numRemovals++;
+        			Log.removal();
         		}
         	}
         }
