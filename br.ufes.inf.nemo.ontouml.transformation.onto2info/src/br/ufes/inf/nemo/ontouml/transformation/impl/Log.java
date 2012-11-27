@@ -29,32 +29,29 @@ public class Log
 		numRemovals++;
 	}
 	
-	public static String toString (boolean first)
+	public static String message ()
 	{
 		String extraText = "";
 		
-		if (!first)
+		extraText += " (";
+		
+		if (numAdditions == 0 && numRemovals == 0)
 		{
-			extraText += " (";
-			
-			if (numAdditions == 0 && numRemovals == 0)
-			{
-				extraText += "no changes";
-			}
-			else
-			{
-				if (numAdditions != 0)
-				{
-					extraText += numAdditions + " addition" + (numAdditions == 1 ? "" : "s");
-					if (numRemovals != 0)
-						extraText += ", ";
-				}
-				if (numRemovals != 0)
-					extraText += numRemovals + " removal" + (numRemovals == 1 ? "" : "s");
-			}
-			
-			extraText += ")";
+			extraText += "no changes";
 		}
+		else
+		{
+			if (numAdditions != 0)
+			{
+				extraText += numAdditions + " addition" + (numAdditions == 1 ? "" : "s");
+				if (numRemovals != 0)
+					extraText += ", ";
+			}
+			if (numRemovals != 0)
+				extraText += numRemovals + " removal" + (numRemovals == 1 ? "" : "s");
+		}
+		
+		extraText += ")";
 		
 		return extraText;
 	}

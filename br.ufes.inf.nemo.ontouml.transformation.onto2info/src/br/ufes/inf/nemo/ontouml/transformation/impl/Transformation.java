@@ -74,7 +74,7 @@ public class Transformation
 			return null;
 		}
 		
-		ui.writeText("Transformation done" + Log.toString(first));
+		ui.writeText("Transformation done" + (first ? "" : Log.message()));
 		ui.refreshWorkspace();
         
         return umlAbstraction.umlmodel;
