@@ -6,6 +6,27 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.MeasurementDecision;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.UMLAttributeSlot;
 
+/*
+
+ TESTS:
+ 
+ - Scope=true, HT=false
+ - Scope=false, HT=false
+ 
+- Scope=true, HT=false
+- Scope=true, HT=true
+
+- Scope=true, HT=true
+- Scope=true, HT=false
+
+- Scope=true, HT=true
+- Scope=false
+
+- HT=true, TT=true
+- HT=true, TT=false
+ 
+ */
+
 public class Measurement
 {
 	Transformation main;
@@ -75,11 +96,23 @@ public class Measurement
 		{
 			// Measurement attribute exists
 			
-			// FIXME: history tracking was done? from ht=false to ht=true / from ht=true to ht=false
-			
-			
-			// Check for changes in names or data types
-			changesInAttribute(decision, slot);
+			// from HT=false to HT=true
+			if (main.dh.getHTPastDecision(q1) && slot.measureType == null)
+			{
+				removeAttributeFromCharacterizedType(slot);
+				addHistoryTracking(q1, c1, decision, slot);
+			}
+			// from HT=true to HT=false
+			else if (!main.dh.getHTPastDecision(q1) && slot.measureType != null)
+			{
+				removeHistoryTracking(slot);
+				addAttributeToCharacterizedType(q1, c1, decision, slot);
+			}
+			else
+			{
+				// Check for changes in names or data types
+				changesInAttribute(decision, slot);
+			}
 		}
 	}
 	
@@ -117,7 +150,11 @@ public class Measurement
 	private void cIn_qOut (UMLAttributeSlot slot)
 	{
 		removeHistoryTracking(slot);
-		
+		removeAttributeFromCharacterizedType(slot);
+	}
+	
+	private void removeAttributeFromCharacterizedType (UMLAttributeSlot slot)
+	{
 		if (slot.measurementAttribute != null)
 		{
 			// The "Characterized Type" remains...
@@ -183,6 +220,12 @@ public class Measurement
 		{
 			// Remove the "Time attribute"
 			removeTimeTracking (slot);
+			
+			// Remove the "Measurement attribute"
+			main.ui.writeLog("Removed attribute from " + slot.measureType.getName() + ": " + slot.measurementAttribute.getName());
+			Log.removal();			
+			main.umlAbstraction.removeClassAttribute(slot.measurementAttribute);						
+			slot.measurementAttribute = null;
 			
 			// Remove the "Measure Association"
 			main.umlAbstraction.removePackageableElement(slot.measureType.getAssociations().get(0));
