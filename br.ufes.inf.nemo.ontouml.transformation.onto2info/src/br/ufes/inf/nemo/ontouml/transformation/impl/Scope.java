@@ -8,13 +8,11 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.Onto2InfoMap;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.DecisionHandler;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Onto2UMLReplicator;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
 
 public class Scope
 {
 	Transformation main;
 	RefOntoUMLModelAbstraction ontoAbstraction;
-	UMLModelAbstraction umlAbstraction;
 	Onto2UMLReplicator fa;
 	DecisionHandler dh;
 	Onto2InfoInterface ui;
@@ -23,19 +21,28 @@ public class Scope
 	Scope(Transformation t)
 	{
 		this.main = t;
+		this.fa = new Onto2UMLReplicator();
 		
 		this.ontoAbstraction = main.ontoAbstraction;
-		this.umlAbstraction = main.umlAbstraction;
-		this.fa = main.fa;
 		this.dh = main.dh;
 		this.ui = main.ui;
 	}
 	
 	public void dealScope()
 	{
+		createModel();
 		createClasses();
 		createAssociations();
 		createGeneralizations();
+	}
+	
+	private void createModel()
+	{
+		if (main.umlAbstraction.umlmodel == null)
+		{
+			// Transformation from scratch
+			main.umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
+		}
 	}
 	
 	private void createClasses ()
@@ -56,7 +63,7 @@ public class Scope
 					{
 						// Create corresponding UML.Class
 			        	c2 = fa.createClass(c);
-			        	umlAbstraction.addPackageableElement(c2);
+			        	main.umlAbstraction.addPackageableElement(c2);
 			        	
 			        	if (c instanceof RefOntoUML.RoleMixin)
 			        	{
@@ -73,7 +80,7 @@ public class Scope
 					if (c2 != null)
 					{
 						// Remove the corresponding UML.Class
-						umlAbstraction.removePackageableElement(c2);
+						main.umlAbstraction.removePackageableElement(c2);
 						// Remove the mapping between the OntoUML.Class and the UML.Class
 						Onto2InfoMap.removeElement(c);
 						// If some day OntoUML.Classes could have attributes, an OntoUML.Property<->UML.Property mapping would also have to be removed
@@ -155,9 +162,9 @@ public class Scope
         			else if (roleMixin != null)
         				a2 = fa.createAssociationRepresentingRoleMixin(roleMixin);
         			
-        			umlAbstraction.addPackageableElement(a2);
+        			main.umlAbstraction.addPackageableElement(a2);
         			
-					ui.writeLog("Created UML.Association: " + umlAbstraction.associationToString(a2));
+					ui.writeLog("Created UML.Association: " + main.umlAbstraction.associationToString(a2));
 					Log.addition();
         		}
         	}
@@ -167,13 +174,13 @@ public class Scope
         		if (a2 != null)
         		{					
 					// Remove the corresponding UML.Association from the UML.Model
-					umlAbstraction.removePackageableElement(a2);
+        			main.umlAbstraction.removePackageableElement(a2);
 					// Remove the mapping between the OntoUML.Mediation and the UML.Association
 					Onto2InfoMap.removeElement(mediation); // mediation won't be null here, since a2 is not
 					Onto2InfoMap.removeElement(mediation.relatorEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 					Onto2InfoMap.removeElement(mediation.mediatedEnd()); // subtle detail (OntoUML.Property<->UML.Property mapping)
 											
-					ui.writeLog("Removed UML.Association: " + umlAbstraction.associationToString(a2));
+					ui.writeLog("Removed UML.Association: " + main.umlAbstraction.associationToString(a2));
 					Log.removal();
         		}
         	}
@@ -228,7 +235,7 @@ public class Scope
 							// Get the UML.Classifier corresponding to the specific
 							org.eclipse.uml2.uml.Classifier specific2 = Onto2InfoMap.getClassifier(specific);
 							// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
-							umlAbstraction.removeGeneralization(specific2, gen2); 
+							main.umlAbstraction.removeGeneralization(specific2, gen2); 
 						}
 												
 						// If the OntoUML.Specific is out of scope then:
@@ -265,7 +272,7 @@ public class Scope
 				// Create artificial Generalization (RigidSortal -> RoleMixin)
 				org.eclipse.uml2.uml.Classifier general2 = Onto2InfoMap.getClassifier(roleMixin);    					
 				
-				gen2 = umlAbstraction.createGeneralization (specific2, general2);
+				gen2 = main.umlAbstraction.createGeneralization (specific2, general2);
 				
 				// Relates the OntoUML.Role and the UML.Generalization
 				Onto2InfoMap.relateElements(role, gen2);
@@ -290,7 +297,7 @@ public class Scope
 				{
 					// OntoUML.Specific (UML.Generalization.specific) is in scope
 					// Remove the UML.Generalization as an owned generalization of the specific UML.Classifier
-					umlAbstraction.removeGeneralization(specific2, gen2); 
+					main.umlAbstraction.removeGeneralization(specific2, gen2); 
 				}
 										
 				// If the OntoUML.Specific is out of scope then:
@@ -346,10 +353,10 @@ public class Scope
 			{
 				// UML.GeneralizationSet does not exist
 				// Linking the GeneralizationSet and the Generalizations
-    			gset2 = umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
-    			umlAbstraction.addPackageableElement(gset2);
+    			gset2 = main.umlAbstraction.createGeneralizationSetForRoleMixin (roleMixin, genlist);
+    			main.umlAbstraction.addPackageableElement(gset2);
     			
-    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + umlAbstraction.generalizationSetToString(gset2));
+    			ui.writeLog("Created UML.GeneralizationSet (artificial): " + main.umlAbstraction.generalizationSetToString(gset2));
     			Log.addition();
 			}
 		}
@@ -360,7 +367,7 @@ public class Scope
 			{
 				// UML.GeneralizationSet exists
 				// Remove it from the UML.Model
-				umlAbstraction.removePackageableElement(gset2);
+				main.umlAbstraction.removePackageableElement(gset2);
 				
 				// For each UML.Generalization in scope, remove its reference to the UML.GeneralizationSet
 				for (org.eclipse.uml2.uml.Generalization sgen : genlist)
@@ -424,9 +431,9 @@ public class Scope
 				{
 					// Creates the corresponding UML.GeneralizationSet
 					gset2 = fa.createGeneralizationSet (gset1, genInScope);
-					umlAbstraction.addPackageableElement(gset2);
+					main.umlAbstraction.addPackageableElement(gset2);
 					
-					ui.writeLog("Created UML.GeneralizationSet: " + umlAbstraction.generalizationSetToString(gset2));
+					ui.writeLog("Created UML.GeneralizationSet: " + main.umlAbstraction.generalizationSetToString(gset2));
 					Log.addition();
 				}
 			}
@@ -438,7 +445,7 @@ public class Scope
 					// Removes the links between the UML.GeneralizationSet and the related UML.Generalizations
 					gset2.getGeneralizations().clear();
 					// Removes the corresponding UML.GeneralizationSet from the UML.Model
-					umlAbstraction.removePackageableElement(gset2);
+					main.umlAbstraction.removePackageableElement(gset2);
 					// Removes the mapping between the OntoUML.GeneralizationSet and the UML.GeneralizationSet
 					Onto2InfoMap.removeElement(gset1);
 					

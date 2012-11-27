@@ -5,7 +5,6 @@ import br.ufes.inf.nemo.ontouml.transformation.onto2info.decision.*;
 import br.ufes.inf.nemo.ontouml.refontouml.util.*;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.ui.Onto2InfoInterface;
 import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.UMLModelAbstraction;
-import br.ufes.inf.nemo.ontouml.transformation.onto2info.uml.Onto2UMLReplicator;
 
 public class Transformation
 {
@@ -13,8 +12,6 @@ public class Transformation
 	RefOntoUMLModelAbstraction ontoAbstraction;
 	// UML Model (Abstraction)
 	UMLModelAbstraction umlAbstraction;
-	// UML Factory (Abstraction)
-	Onto2UMLReplicator fa;
 	// Decision Handler
 	DecisionHandler dh;
 	// Interface
@@ -25,30 +22,20 @@ public class Transformation
 		this.ontoAbstraction = ontoAbstraction;
 		this.umlAbstraction = umlAbstraction;
 		this.ui = ui;
-    	fa = new Onto2UMLReplicator();
     }
 	
 	public org.eclipse.uml2.uml.Model transform (DecisionHandler dh)
 	{
-		// Transformation from scratch
-		boolean first = true;
+		// Transformation from scratch / Transformation over a pre-loaded UML.Model
+		boolean first = umlAbstraction.umlmodel == null;
+		
 		// Reset change log (additions and removals)
 		Log.reset();
-		this.dh = dh;
 		
+		this.dh = dh;
+				
 		try
-		{
-			if (umlAbstraction.umlmodel == null)
-			{
-				// Transformation from scratch
-				umlAbstraction.umlmodel = fa.partiallyCreateModel(ontoAbstraction.model);
-			}
-			else
-			{
-				// Transformation over a pre-loaded UML.Model
-				first = false;
-			}
-			
+		{			
 			(new Scope(this)).dealScope();
 	        (new HistoryTracking(this)).dealHistoryTracking();
 	        (new TimeTracking(this)).dealTimeTracking();
