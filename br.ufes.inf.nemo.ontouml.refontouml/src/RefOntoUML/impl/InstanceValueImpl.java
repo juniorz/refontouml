@@ -70,12 +70,10 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	 */
 	public InstanceSpecification getInstance()
 	{
-		if (instance != null && instance.eIsProxy())
-		{
+		if (instance != null && instance.eIsProxy()) {
 			InternalEObject oldInstance = (InternalEObject)instance;
 			instance = (InstanceSpecification)eResolveProxy(oldInstance);
-			if (instance != oldInstance)
-			{
+			if (instance != oldInstance) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.INSTANCE_VALUE__INSTANCE, oldInstance, instance));
 			}
@@ -114,8 +112,7 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_VALUE__INSTANCE:
 				if (resolve) return getInstance();
 				return basicGetInstance();
@@ -131,8 +128,7 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_VALUE__INSTANCE:
 				setInstance((InstanceSpecification)newValue);
 				return;
@@ -148,8 +144,7 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_VALUE__INSTANCE:
 				setInstance((InstanceSpecification)null);
 				return;
@@ -165,8 +160,7 @@ public class InstanceValueImpl extends ValueSpecificationImpl implements Instanc
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_VALUE__INSTANCE:
 				return instance != null;
 		}

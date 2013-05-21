@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.ocl.ParserException;
@@ -195,12 +196,10 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 */
 	public Classifier getPowertype()
 	{
-		if (powertype != null && powertype.eIsProxy())
-		{
+		if (powertype != null && powertype.eIsProxy()) {
 			InternalEObject oldPowertype = (InternalEObject)powertype;
 			powertype = (Classifier)eResolveProxy(oldPowertype);
-			if (powertype != oldPowertype)
-			{
+			if (powertype != oldPowertype) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.GENERALIZATION_SET__POWERTYPE, oldPowertype, powertype));
 			}
@@ -227,8 +226,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	{
 		Classifier oldPowertype = powertype;
 		powertype = newPowertype;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.GENERALIZATION_SET__POWERTYPE, oldPowertype, newPowertype);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -242,8 +240,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 */
 	public void setPowertype(Classifier newPowertype)
 	{
-		if (newPowertype != powertype)
-		{
+		if (newPowertype != powertype) {
 			NotificationChain msgs = null;
 			if (powertype != null)
 				msgs = ((InternalEObject)powertype).eInverseRemove(this, RefOntoUMLPackage.CLASSIFIER__POWERTYPE_EXTENT, Classifier.class, msgs);
@@ -263,9 +260,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	 */
 	public EList<Generalization> getGeneralization()
 	{
-		if (generalization == null)
-		{
-			generalization = new EObjectWithInverseResolvingEList.ManyInverse<Generalization>(Generalization.class, this, RefOntoUMLPackage.GENERALIZATION_SET__GENERALIZATION, RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET);
+		if (generalization == null) {
+			generalization = new EObjectWithInverseEList.ManyInverse<Generalization>(Generalization.class, this, RefOntoUMLPackage.GENERALIZATION_SET__GENERALIZATION, RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET);
 		}
 		return generalization;
 	}
@@ -281,10 +277,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -309,10 +303,8 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -391,8 +383,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__POWERTYPE:
 				if (powertype != null)
 					msgs = ((InternalEObject)powertype).eInverseRemove(this, RefOntoUMLPackage.CLASSIFIER__POWERTYPE_EXTENT, Classifier.class, msgs);
@@ -411,8 +402,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__POWERTYPE:
 				return basicSetPowertype(null, msgs);
 			case RefOntoUMLPackage.GENERALIZATION_SET__GENERALIZATION:
@@ -429,8 +419,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_COVERING:
 				return isIsCovering();
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_DISJOINT:
@@ -453,8 +442,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_COVERING:
 				setIsCovering((Boolean)newValue);
 				return;
@@ -480,8 +468,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_COVERING:
 				setIsCovering(IS_COVERING_EDEFAULT);
 				return;
@@ -506,8 +493,7 @@ public class GeneralizationSetImpl extends PackageableElementImpl implements Gen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_COVERING:
 				return isCovering != IS_COVERING_EDEFAULT;
 			case RefOntoUMLPackage.GENERALIZATION_SET__IS_DISJOINT:

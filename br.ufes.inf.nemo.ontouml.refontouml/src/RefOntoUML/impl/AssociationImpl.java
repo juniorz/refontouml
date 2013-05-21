@@ -181,8 +181,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	 */
 	public EList<Property> getOwnedEnd()
 	{
-		if (ownedEnd == null)
-		{
+		if (ownedEnd == null) {
 			ownedEnd = new EObjectContainmentWithInverseEList<Property>(Property.class, this, RefOntoUMLPackage.ASSOCIATION__OWNED_END, RefOntoUMLPackage.PROPERTY__OWNING_ASSOCIATION);
 		}
 		return ownedEnd;
@@ -195,8 +194,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	 */
 	public EList<Property> getMemberEnd()
 	{
-		if (memberEnd == null)
-		{
+		if (memberEnd == null) {
 			memberEnd = new EObjectWithInverseResolvingEList<Property>(Property.class, this, RefOntoUMLPackage.ASSOCIATION__MEMBER_END, RefOntoUMLPackage.PROPERTY__ASSOCIATION);
 		}
 		return memberEnd;
@@ -263,8 +261,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	 */
 	public EList<Property> getNavigableOwnedEnd()
 	{
-		if (navigableOwnedEnd == null)
-		{
+		if (navigableOwnedEnd == null) {
 			navigableOwnedEnd = new EObjectResolvingEList<Property>(Property.class, this, RefOntoUMLPackage.ASSOCIATION__NAVIGABLE_OWNED_END);
 		}
 		return navigableOwnedEnd;
@@ -281,10 +278,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -309,10 +304,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -337,10 +330,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -365,10 +356,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -415,8 +404,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedEnd()).basicAdd(otherEnd, msgs);
 			case RefOntoUMLPackage.ASSOCIATION__MEMBER_END:
@@ -433,8 +421,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
 				return ((InternalEList<?>)getOwnedEnd()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.ASSOCIATION__MEMBER_END:
@@ -451,8 +438,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return getRelatedElement();
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
@@ -478,8 +464,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
 				getOwnedEnd().clear();
 				getOwnedEnd().addAll((Collection<? extends Property>)newValue);
@@ -507,8 +492,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
 				getOwnedEnd().clear();
 				return;
@@ -533,8 +517,7 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ASSOCIATION__RELATED_ELEMENT:
 				return !getRelatedElement().isEmpty();
 			case RefOntoUMLPackage.ASSOCIATION__OWNED_END:
@@ -559,10 +542,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Relationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Relationship.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.ASSOCIATION__RELATED_ELEMENT: return RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
@@ -578,10 +559,8 @@ public class AssociationImpl extends ClassifierImpl implements Association
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Relationship.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Relationship.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT: return RefOntoUMLPackage.ASSOCIATION__RELATED_ELEMENT;
 				default: return -1;
 			}

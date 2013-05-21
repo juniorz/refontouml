@@ -150,8 +150,7 @@ public class ModelImpl extends PackageImpl implements Model
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MODEL__VIEWPOINT:
 				return getViewpoint();
 		}
@@ -166,8 +165,7 @@ public class ModelImpl extends PackageImpl implements Model
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MODEL__VIEWPOINT:
 				setViewpoint((String)newValue);
 				return;
@@ -183,8 +181,7 @@ public class ModelImpl extends PackageImpl implements Model
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MODEL__VIEWPOINT:
 				unsetViewpoint();
 				return;
@@ -200,8 +197,7 @@ public class ModelImpl extends PackageImpl implements Model
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MODEL__VIEWPOINT:
 				return isSetViewpoint();
 		}

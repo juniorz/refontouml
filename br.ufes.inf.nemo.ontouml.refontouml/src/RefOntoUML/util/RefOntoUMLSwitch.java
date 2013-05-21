@@ -122,8 +122,7 @@ public class RefOntoUMLSwitch<T>
 	 */
 	public RefOntoUMLSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = RefOntoUMLPackage.eINSTANCE;
 		}
 	}
@@ -149,12 +148,10 @@ public class RefOntoUMLSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -172,10 +169,8 @@ public class RefOntoUMLSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case RefOntoUMLPackage.COMMENT:
-			{
+		switch (classifierID) {
+			case RefOntoUMLPackage.COMMENT: {
 				Comment comment = (Comment)theEObject;
 				T result = caseComment(comment);
 				if (result == null) result = caseElement(comment);
@@ -183,16 +178,14 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ELEMENT:
-			{
+			case RefOntoUMLPackage.ELEMENT: {
 				Element element = (Element)theEObject;
 				T result = caseElement(element);
 				if (result == null) result = caseEModelElement(element);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PACKAGE:
-			{
+			case RefOntoUMLPackage.PACKAGE: {
 				RefOntoUML.Package package_ = (RefOntoUML.Package)theEObject;
 				T result = casePackage(package_);
 				if (result == null) result = caseNamespace(package_);
@@ -203,8 +196,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PACKAGEABLE_ELEMENT:
-			{
+			case RefOntoUMLPackage.PACKAGEABLE_ELEMENT: {
 				PackageableElement packageableElement = (PackageableElement)theEObject;
 				T result = casePackageableElement(packageableElement);
 				if (result == null) result = caseNamedElement(packageableElement);
@@ -213,8 +205,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.NAMED_ELEMENT:
-			{
+			case RefOntoUMLPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
 				if (result == null) result = caseElement(namedElement);
@@ -222,8 +213,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DEPENDENCY:
-			{
+			case RefOntoUMLPackage.DEPENDENCY: {
 				Dependency dependency = (Dependency)theEObject;
 				T result = caseDependency(dependency);
 				if (result == null) result = casePackageableElement(dependency);
@@ -235,8 +225,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP:
-			{
+			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP: {
 				DirectedRelationship directedRelationship = (DirectedRelationship)theEObject;
 				T result = caseDirectedRelationship(directedRelationship);
 				if (result == null) result = caseRelationship(directedRelationship);
@@ -245,8 +234,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.RELATIONSHIP:
-			{
+			case RefOntoUMLPackage.RELATIONSHIP: {
 				Relationship relationship = (Relationship)theEObject;
 				T result = caseRelationship(relationship);
 				if (result == null) result = caseElement(relationship);
@@ -254,8 +242,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.NAMESPACE:
-			{
+			case RefOntoUMLPackage.NAMESPACE: {
 				Namespace namespace = (Namespace)theEObject;
 				T result = caseNamespace(namespace);
 				if (result == null) result = caseNamedElement(namespace);
@@ -264,8 +251,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ELEMENT_IMPORT:
-			{
+			case RefOntoUMLPackage.ELEMENT_IMPORT: {
 				ElementImport elementImport = (ElementImport)theEObject;
 				T result = caseElementImport(elementImport);
 				if (result == null) result = caseDirectedRelationship(elementImport);
@@ -275,8 +261,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PACKAGE_IMPORT:
-			{
+			case RefOntoUMLPackage.PACKAGE_IMPORT: {
 				PackageImport packageImport = (PackageImport)theEObject;
 				T result = casePackageImport(packageImport);
 				if (result == null) result = caseDirectedRelationship(packageImport);
@@ -286,8 +271,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.CONSTRAINTX:
-			{
+			case RefOntoUMLPackage.CONSTRAINTX: {
 				Constraintx constraintx = (Constraintx)theEObject;
 				T result = caseConstraintx(constraintx);
 				if (result == null) result = casePackageableElement(constraintx);
@@ -297,8 +281,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.VALUE_SPECIFICATION:
-			{
+			case RefOntoUMLPackage.VALUE_SPECIFICATION: {
 				ValueSpecification valueSpecification = (ValueSpecification)theEObject;
 				T result = caseValueSpecification(valueSpecification);
 				if (result == null) result = casePackageableElement(valueSpecification);
@@ -309,8 +292,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.TYPED_ELEMENT:
-			{
+			case RefOntoUMLPackage.TYPED_ELEMENT: {
 				TypedElement typedElement = (TypedElement)theEObject;
 				T result = caseTypedElement(typedElement);
 				if (result == null) result = caseNamedElement(typedElement);
@@ -319,8 +301,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.TYPE:
-			{
+			case RefOntoUMLPackage.TYPE: {
 				Type type = (Type)theEObject;
 				T result = caseType(type);
 				if (result == null) result = casePackageableElement(type);
@@ -330,8 +311,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ASSOCIATION:
-			{
+			case RefOntoUMLPackage.ASSOCIATION: {
 				Association association = (Association)theEObject;
 				T result = caseAssociation(association);
 				if (result == null) result = caseClassifier(association);
@@ -346,8 +326,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.CLASSIFIER:
-			{
+			case RefOntoUMLPackage.CLASSIFIER: {
 				Classifier classifier = (Classifier)theEObject;
 				T result = caseClassifier(classifier);
 				if (result == null) result = caseNamespace(classifier);
@@ -360,8 +339,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.REDEFINABLE_ELEMENT:
-			{
+			case RefOntoUMLPackage.REDEFINABLE_ELEMENT: {
 				RedefinableElement redefinableElement = (RedefinableElement)theEObject;
 				T result = caseRedefinableElement(redefinableElement);
 				if (result == null) result = caseNamedElement(redefinableElement);
@@ -370,8 +348,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.GENERALIZATION:
-			{
+			case RefOntoUMLPackage.GENERALIZATION: {
 				Generalization generalization = (Generalization)theEObject;
 				T result = caseGeneralization(generalization);
 				if (result == null) result = caseDirectedRelationship(generalization);
@@ -381,8 +358,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.GENERALIZATION_SET:
-			{
+			case RefOntoUMLPackage.GENERALIZATION_SET: {
 				GeneralizationSet generalizationSet = (GeneralizationSet)theEObject;
 				T result = caseGeneralizationSet(generalizationSet);
 				if (result == null) result = casePackageableElement(generalizationSet);
@@ -392,8 +368,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.FEATURE:
-			{
+			case RefOntoUMLPackage.FEATURE: {
 				Feature feature = (Feature)theEObject;
 				T result = caseFeature(feature);
 				if (result == null) result = caseRedefinableElement(feature);
@@ -403,8 +378,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.OPAQUE_EXPRESSION:
-			{
+			case RefOntoUMLPackage.OPAQUE_EXPRESSION: {
 				OpaqueExpression opaqueExpression = (OpaqueExpression)theEObject;
 				T result = caseOpaqueExpression(opaqueExpression);
 				if (result == null) result = caseValueSpecification(opaqueExpression);
@@ -416,8 +390,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT:
-			{
+			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT: {
 				MultiplicityElement multiplicityElement = (MultiplicityElement)theEObject;
 				T result = caseMultiplicityElement(multiplicityElement);
 				if (result == null) result = caseElement(multiplicityElement);
@@ -425,8 +398,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PROPERTY:
-			{
+			case RefOntoUMLPackage.PROPERTY: {
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
 				if (result == null) result = caseStructuralFeature(property);
@@ -440,8 +412,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.CLASS:
-			{
+			case RefOntoUMLPackage.CLASS: {
 				RefOntoUML.Class class_ = (RefOntoUML.Class)theEObject;
 				T result = caseClass(class_);
 				if (result == null) result = caseClassifier(class_);
@@ -455,8 +426,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MODEL:
-			{
+			case RefOntoUMLPackage.MODEL: {
 				Model model = (Model)theEObject;
 				T result = caseModel(model);
 				if (result == null) result = casePackage(model);
@@ -468,8 +438,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DATA_TYPE:
-			{
+			case RefOntoUMLPackage.DATA_TYPE: {
 				DataType dataType = (DataType)theEObject;
 				T result = caseDataType(dataType);
 				if (result == null) result = caseClassifier(dataType);
@@ -483,8 +452,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.STRUCTURAL_FEATURE:
-			{
+			case RefOntoUMLPackage.STRUCTURAL_FEATURE: {
 				StructuralFeature structuralFeature = (StructuralFeature)theEObject;
 				T result = caseStructuralFeature(structuralFeature);
 				if (result == null) result = caseFeature(structuralFeature);
@@ -497,8 +465,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.STRING_EXPRESSION:
-			{
+			case RefOntoUMLPackage.STRING_EXPRESSION: {
 				StringExpression stringExpression = (StringExpression)theEObject;
 				T result = caseStringExpression(stringExpression);
 				if (result == null) result = caseExpression(stringExpression);
@@ -511,8 +478,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.EXPRESSION:
-			{
+			case RefOntoUMLPackage.EXPRESSION: {
 				Expression expression = (Expression)theEObject;
 				T result = caseExpression(expression);
 				if (result == null) result = caseValueSpecification(expression);
@@ -524,8 +490,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PACKAGE_MERGE:
-			{
+			case RefOntoUMLPackage.PACKAGE_MERGE: {
 				PackageMerge packageMerge = (PackageMerge)theEObject;
 				T result = casePackageMerge(packageMerge);
 				if (result == null) result = caseDirectedRelationship(packageMerge);
@@ -535,8 +500,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ENUMERATION:
-			{
+			case RefOntoUMLPackage.ENUMERATION: {
 				Enumeration enumeration = (Enumeration)theEObject;
 				T result = caseEnumeration(enumeration);
 				if (result == null) result = caseDataType(enumeration);
@@ -551,8 +515,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ENUMERATION_LITERAL:
-			{
+			case RefOntoUMLPackage.ENUMERATION_LITERAL: {
 				EnumerationLiteral enumerationLiteral = (EnumerationLiteral)theEObject;
 				T result = caseEnumerationLiteral(enumerationLiteral);
 				if (result == null) result = caseInstanceSpecification(enumerationLiteral);
@@ -563,8 +526,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.INSTANCE_SPECIFICATION:
-			{
+			case RefOntoUMLPackage.INSTANCE_SPECIFICATION: {
 				InstanceSpecification instanceSpecification = (InstanceSpecification)theEObject;
 				T result = caseInstanceSpecification(instanceSpecification);
 				if (result == null) result = casePackageableElement(instanceSpecification);
@@ -574,8 +536,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SLOT:
-			{
+			case RefOntoUMLPackage.SLOT: {
 				Slot slot = (Slot)theEObject;
 				T result = caseSlot(slot);
 				if (result == null) result = caseElement(slot);
@@ -583,8 +544,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PRIMITIVE_TYPE:
-			{
+			case RefOntoUMLPackage.PRIMITIVE_TYPE: {
 				PrimitiveType primitiveType = (PrimitiveType)theEObject;
 				T result = casePrimitiveType(primitiveType);
 				if (result == null) result = caseDataType(primitiveType);
@@ -599,8 +559,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_SPECIFICATION:
-			{
+			case RefOntoUMLPackage.LITERAL_SPECIFICATION: {
 				LiteralSpecification literalSpecification = (LiteralSpecification)theEObject;
 				T result = caseLiteralSpecification(literalSpecification);
 				if (result == null) result = caseValueSpecification(literalSpecification);
@@ -612,8 +571,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_INTEGER:
-			{
+			case RefOntoUMLPackage.LITERAL_INTEGER: {
 				LiteralInteger literalInteger = (LiteralInteger)theEObject;
 				T result = caseLiteralInteger(literalInteger);
 				if (result == null) result = caseLiteralSpecification(literalInteger);
@@ -626,8 +584,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_STRING:
-			{
+			case RefOntoUMLPackage.LITERAL_STRING: {
 				LiteralString literalString = (LiteralString)theEObject;
 				T result = caseLiteralString(literalString);
 				if (result == null) result = caseLiteralSpecification(literalString);
@@ -640,8 +597,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_BOOLEAN:
-			{
+			case RefOntoUMLPackage.LITERAL_BOOLEAN: {
 				LiteralBoolean literalBoolean = (LiteralBoolean)theEObject;
 				T result = caseLiteralBoolean(literalBoolean);
 				if (result == null) result = caseLiteralSpecification(literalBoolean);
@@ -654,8 +610,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_NULL:
-			{
+			case RefOntoUMLPackage.LITERAL_NULL: {
 				LiteralNull literalNull = (LiteralNull)theEObject;
 				T result = caseLiteralNull(literalNull);
 				if (result == null) result = caseLiteralSpecification(literalNull);
@@ -668,8 +623,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.INSTANCE_VALUE:
-			{
+			case RefOntoUMLPackage.INSTANCE_VALUE: {
 				InstanceValue instanceValue = (InstanceValue)theEObject;
 				T result = caseInstanceValue(instanceValue);
 				if (result == null) result = caseValueSpecification(instanceValue);
@@ -681,8 +635,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.LITERAL_UNLIMITED_NATURAL:
-			{
+			case RefOntoUMLPackage.LITERAL_UNLIMITED_NATURAL: {
 				LiteralUnlimitedNatural literalUnlimitedNatural = (LiteralUnlimitedNatural)theEObject;
 				T result = caseLiteralUnlimitedNatural(literalUnlimitedNatural);
 				if (result == null) result = caseLiteralSpecification(literalUnlimitedNatural);
@@ -695,8 +648,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.OBJECT_CLASS:
-			{
+			case RefOntoUMLPackage.OBJECT_CLASS: {
 				ObjectClass objectClass = (ObjectClass)theEObject;
 				T result = caseObjectClass(objectClass);
 				if (result == null) result = caseClass(objectClass);
@@ -711,8 +663,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MOMENT_CLASS:
-			{
+			case RefOntoUMLPackage.MOMENT_CLASS: {
 				MomentClass momentClass = (MomentClass)theEObject;
 				T result = caseMomentClass(momentClass);
 				if (result == null) result = caseClass(momentClass);
@@ -727,8 +678,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SORTAL_CLASS:
-			{
+			case RefOntoUMLPackage.SORTAL_CLASS: {
 				SortalClass sortalClass = (SortalClass)theEObject;
 				T result = caseSortalClass(sortalClass);
 				if (result == null) result = caseObjectClass(sortalClass);
@@ -744,8 +694,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MIXIN_CLASS:
-			{
+			case RefOntoUMLPackage.MIXIN_CLASS: {
 				MixinClass mixinClass = (MixinClass)theEObject;
 				T result = caseMixinClass(mixinClass);
 				if (result == null) result = caseObjectClass(mixinClass);
@@ -761,8 +710,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.RIGID_SORTAL_CLASS:
-			{
+			case RefOntoUMLPackage.RIGID_SORTAL_CLASS: {
 				RigidSortalClass rigidSortalClass = (RigidSortalClass)theEObject;
 				T result = caseRigidSortalClass(rigidSortalClass);
 				if (result == null) result = caseSortalClass(rigidSortalClass);
@@ -779,8 +727,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ANTI_RIGID_SORTAL_CLASS:
-			{
+			case RefOntoUMLPackage.ANTI_RIGID_SORTAL_CLASS: {
 				AntiRigidSortalClass antiRigidSortalClass = (AntiRigidSortalClass)theEObject;
 				T result = caseAntiRigidSortalClass(antiRigidSortalClass);
 				if (result == null) result = caseSortalClass(antiRigidSortalClass);
@@ -797,8 +744,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SUBSTANCE_SORTAL:
-			{
+			case RefOntoUMLPackage.SUBSTANCE_SORTAL: {
 				SubstanceSortal substanceSortal = (SubstanceSortal)theEObject;
 				T result = caseSubstanceSortal(substanceSortal);
 				if (result == null) result = caseRigidSortalClass(substanceSortal);
@@ -816,8 +762,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SUB_KIND:
-			{
+			case RefOntoUMLPackage.SUB_KIND: {
 				SubKind subKind = (SubKind)theEObject;
 				T result = caseSubKind(subKind);
 				if (result == null) result = caseRigidSortalClass(subKind);
@@ -835,8 +780,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.KIND:
-			{
+			case RefOntoUMLPackage.KIND: {
 				Kind kind = (Kind)theEObject;
 				T result = caseKind(kind);
 				if (result == null) result = caseSubstanceSortal(kind);
@@ -855,8 +799,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.QUANTITY:
-			{
+			case RefOntoUMLPackage.QUANTITY: {
 				Quantity quantity = (Quantity)theEObject;
 				T result = caseQuantity(quantity);
 				if (result == null) result = caseSubstanceSortal(quantity);
@@ -875,8 +818,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.COLLECTIVE:
-			{
+			case RefOntoUMLPackage.COLLECTIVE: {
 				Collective collective = (Collective)theEObject;
 				T result = caseCollective(collective);
 				if (result == null) result = caseSubstanceSortal(collective);
@@ -895,8 +837,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.PHASE:
-			{
+			case RefOntoUMLPackage.PHASE: {
 				Phase phase = (Phase)theEObject;
 				T result = casePhase(phase);
 				if (result == null) result = caseAntiRigidSortalClass(phase);
@@ -914,8 +855,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ROLE:
-			{
+			case RefOntoUMLPackage.ROLE: {
 				Role role = (Role)theEObject;
 				T result = caseRole(role);
 				if (result == null) result = caseAntiRigidSortalClass(role);
@@ -933,8 +873,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.RIGID_MIXIN_CLASS:
-			{
+			case RefOntoUMLPackage.RIGID_MIXIN_CLASS: {
 				RigidMixinClass rigidMixinClass = (RigidMixinClass)theEObject;
 				T result = caseRigidMixinClass(rigidMixinClass);
 				if (result == null) result = caseMixinClass(rigidMixinClass);
@@ -951,8 +890,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.NON_RIGID_MIXIN_CLASS:
-			{
+			case RefOntoUMLPackage.NON_RIGID_MIXIN_CLASS: {
 				NonRigidMixinClass nonRigidMixinClass = (NonRigidMixinClass)theEObject;
 				T result = caseNonRigidMixinClass(nonRigidMixinClass);
 				if (result == null) result = caseMixinClass(nonRigidMixinClass);
@@ -969,8 +907,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.CATEGORY:
-			{
+			case RefOntoUMLPackage.CATEGORY: {
 				Category category = (Category)theEObject;
 				T result = caseCategory(category);
 				if (result == null) result = caseRigidMixinClass(category);
@@ -988,8 +925,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ANTI_RIGID_MIXIN_CLASS:
-			{
+			case RefOntoUMLPackage.ANTI_RIGID_MIXIN_CLASS: {
 				AntiRigidMixinClass antiRigidMixinClass = (AntiRigidMixinClass)theEObject;
 				T result = caseAntiRigidMixinClass(antiRigidMixinClass);
 				if (result == null) result = caseNonRigidMixinClass(antiRigidMixinClass);
@@ -1007,8 +943,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SEMI_RIGID_MIXIN_CLASS:
-			{
+			case RefOntoUMLPackage.SEMI_RIGID_MIXIN_CLASS: {
 				SemiRigidMixinClass semiRigidMixinClass = (SemiRigidMixinClass)theEObject;
 				T result = caseSemiRigidMixinClass(semiRigidMixinClass);
 				if (result == null) result = caseNonRigidMixinClass(semiRigidMixinClass);
@@ -1026,8 +961,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.ROLE_MIXIN:
-			{
+			case RefOntoUMLPackage.ROLE_MIXIN: {
 				RoleMixin roleMixin = (RoleMixin)theEObject;
 				T result = caseRoleMixin(roleMixin);
 				if (result == null) result = caseAntiRigidMixinClass(roleMixin);
@@ -1046,8 +980,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MIXIN:
-			{
+			case RefOntoUMLPackage.MIXIN: {
 				Mixin mixin = (Mixin)theEObject;
 				T result = caseMixin(mixin);
 				if (result == null) result = caseSemiRigidMixinClass(mixin);
@@ -1066,8 +999,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.INTRINSIC_MOMENT_CLASS:
-			{
+			case RefOntoUMLPackage.INTRINSIC_MOMENT_CLASS: {
 				IntrinsicMomentClass intrinsicMomentClass = (IntrinsicMomentClass)theEObject;
 				T result = caseIntrinsicMomentClass(intrinsicMomentClass);
 				if (result == null) result = caseMomentClass(intrinsicMomentClass);
@@ -1083,8 +1015,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MODE:
-			{
+			case RefOntoUMLPackage.MODE: {
 				Mode mode = (Mode)theEObject;
 				T result = caseMode(mode);
 				if (result == null) result = caseIntrinsicMomentClass(mode);
@@ -1101,8 +1032,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.QUALITY:
-			{
+			case RefOntoUMLPackage.QUALITY: {
 				Quality quality = (Quality)theEObject;
 				T result = caseQuality(quality);
 				if (result == null) result = caseIntrinsicMomentClass(quality);
@@ -1119,8 +1049,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.RELATOR:
-			{
+			case RefOntoUMLPackage.RELATOR: {
 				Relator relator = (Relator)theEObject;
 				T result = caseRelator(relator);
 				if (result == null) result = caseMomentClass(relator);
@@ -1136,8 +1065,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DIRECTED_BINARY_ASSOCIATION:
-			{
+			case RefOntoUMLPackage.DIRECTED_BINARY_ASSOCIATION: {
 				DirectedBinaryAssociation directedBinaryAssociation = (DirectedBinaryAssociation)theEObject;
 				T result = caseDirectedBinaryAssociation(directedBinaryAssociation);
 				if (result == null) result = caseAssociation(directedBinaryAssociation);
@@ -1153,8 +1081,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MERONYMIC:
-			{
+			case RefOntoUMLPackage.MERONYMIC: {
 				Meronymic meronymic = (Meronymic)theEObject;
 				T result = caseMeronymic(meronymic);
 				if (result == null) result = caseDirectedBinaryAssociation(meronymic);
@@ -1171,8 +1098,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SUB_QUANTITY_OF:
-			{
+			case RefOntoUMLPackage.SUB_QUANTITY_OF: {
 				subQuantityOf subQuantityOf = (subQuantityOf)theEObject;
 				T result = casesubQuantityOf(subQuantityOf);
 				if (result == null) result = caseMeronymic(subQuantityOf);
@@ -1190,8 +1116,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.SUB_COLLECTION_OF:
-			{
+			case RefOntoUMLPackage.SUB_COLLECTION_OF: {
 				subCollectionOf subCollectionOf = (subCollectionOf)theEObject;
 				T result = casesubCollectionOf(subCollectionOf);
 				if (result == null) result = caseMeronymic(subCollectionOf);
@@ -1209,8 +1134,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MEMBER_OF:
-			{
+			case RefOntoUMLPackage.MEMBER_OF: {
 				memberOf memberOf = (memberOf)theEObject;
 				T result = casememberOf(memberOf);
 				if (result == null) result = caseMeronymic(memberOf);
@@ -1228,8 +1152,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.COMPONENT_OF:
-			{
+			case RefOntoUMLPackage.COMPONENT_OF: {
 				componentOf componentOf = (componentOf)theEObject;
 				T result = casecomponentOf(componentOf);
 				if (result == null) result = caseMeronymic(componentOf);
@@ -1247,8 +1170,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DEPENDENCY_RELATIONSHIP:
-			{
+			case RefOntoUMLPackage.DEPENDENCY_RELATIONSHIP: {
 				DependencyRelationship dependencyRelationship = (DependencyRelationship)theEObject;
 				T result = caseDependencyRelationship(dependencyRelationship);
 				if (result == null) result = caseDirectedBinaryAssociation(dependencyRelationship);
@@ -1265,8 +1187,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.CHARACTERIZATION:
-			{
+			case RefOntoUMLPackage.CHARACTERIZATION: {
 				Characterization characterization = (Characterization)theEObject;
 				T result = caseCharacterization(characterization);
 				if (result == null) result = caseDependencyRelationship(characterization);
@@ -1284,8 +1205,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MEDIATION:
-			{
+			case RefOntoUMLPackage.MEDIATION: {
 				Mediation mediation = (Mediation)theEObject;
 				T result = caseMediation(mediation);
 				if (result == null) result = caseDependencyRelationship(mediation);
@@ -1303,8 +1223,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.DERIVATION:
-			{
+			case RefOntoUMLPackage.DERIVATION: {
 				Derivation derivation = (Derivation)theEObject;
 				T result = caseDerivation(derivation);
 				if (result == null) result = caseDependencyRelationship(derivation);
@@ -1322,8 +1241,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.FORMAL_ASSOCIATION:
-			{
+			case RefOntoUMLPackage.FORMAL_ASSOCIATION: {
 				FormalAssociation formalAssociation = (FormalAssociation)theEObject;
 				T result = caseFormalAssociation(formalAssociation);
 				if (result == null) result = caseAssociation(formalAssociation);
@@ -1339,8 +1257,7 @@ public class RefOntoUMLSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RefOntoUMLPackage.MATERIAL_ASSOCIATION:
-			{
+			case RefOntoUMLPackage.MATERIAL_ASSOCIATION: {
 				MaterialAssociation materialAssociation = (MaterialAssociation)theEObject;
 				T result = caseMaterialAssociation(materialAssociation);
 				if (result == null) result = caseAssociation(materialAssociation);

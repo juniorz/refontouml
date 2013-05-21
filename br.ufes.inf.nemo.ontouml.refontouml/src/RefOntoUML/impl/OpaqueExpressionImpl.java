@@ -92,8 +92,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 */
 	public EList<String> getBody()
 	{
-		if (body == null)
-		{
+		if (body == null) {
 			body = new EDataTypeEList.Unsettable<String>(String.class, this, RefOntoUMLPackage.OPAQUE_EXPRESSION__BODY);
 		}
 		return body;
@@ -126,8 +125,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	 */
 	public EList<String> getLanguage()
 	{
-		if (language == null)
-		{
+		if (language == null) {
 			language = new EDataTypeUniqueEList.Unsettable<String>(String.class, this, RefOntoUMLPackage.OPAQUE_EXPRESSION__LANGUAGE);
 		}
 		return language;
@@ -164,10 +162,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -192,10 +188,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -220,10 +214,8 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -305,8 +297,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__BODY:
 				return getBody();
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__LANGUAGE:
@@ -324,8 +315,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__BODY:
 				getBody().clear();
 				getBody().addAll((Collection<? extends String>)newValue);
@@ -346,8 +336,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__BODY:
 				unsetBody();
 				return;
@@ -366,8 +355,7 @@ public class OpaqueExpressionImpl extends ValueSpecificationImpl implements Opaq
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__BODY:
 				return isSetBody();
 			case RefOntoUMLPackage.OPAQUE_EXPRESSION__LANGUAGE:

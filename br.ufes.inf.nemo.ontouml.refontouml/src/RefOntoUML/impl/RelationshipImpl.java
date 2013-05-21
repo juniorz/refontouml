@@ -105,8 +105,7 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				return getRelatedElement();
 		}
@@ -121,8 +120,7 @@ public abstract class RelationshipImpl extends ElementImpl implements Relationsh
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT:
 				return !getRelatedElement().isEmpty();
 		}

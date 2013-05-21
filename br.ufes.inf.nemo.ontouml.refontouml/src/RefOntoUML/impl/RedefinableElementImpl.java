@@ -197,10 +197,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -225,10 +223,8 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -274,8 +270,7 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF:
 				return isIsLeaf();
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT:
@@ -294,8 +289,7 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF:
 				setIsLeaf((Boolean)newValue);
 				return;
@@ -311,8 +305,7 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -328,8 +321,7 @@ public abstract class RedefinableElementImpl extends NamedElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF:
 				return isLeaf != IS_LEAF_EDEFAULT;
 			case RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT:

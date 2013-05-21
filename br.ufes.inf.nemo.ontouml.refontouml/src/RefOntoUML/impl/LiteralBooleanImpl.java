@@ -102,8 +102,7 @@ public class LiteralBooleanImpl extends LiteralSpecificationImpl implements Lite
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_BOOLEAN__VALUE:
 				return isValue();
 		}
@@ -118,8 +117,7 @@ public class LiteralBooleanImpl extends LiteralSpecificationImpl implements Lite
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_BOOLEAN__VALUE:
 				setValue((Boolean)newValue);
 				return;
@@ -135,8 +133,7 @@ public class LiteralBooleanImpl extends LiteralSpecificationImpl implements Lite
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_BOOLEAN__VALUE:
 				setValue(VALUE_EDEFAULT);
 				return;
@@ -152,8 +149,7 @@ public class LiteralBooleanImpl extends LiteralSpecificationImpl implements Lite
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_BOOLEAN__VALUE:
 				return value != VALUE_EDEFAULT;
 		}

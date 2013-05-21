@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Element extends EModelElement
+public interface Element extends EObject, EModelElement
 {
 	/**
 	 * Returns the value of the '<em><b>Owned Element</b></em>' reference list.

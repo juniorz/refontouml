@@ -155,8 +155,7 @@ public class CommentImpl extends ElementImpl implements Comment
 	 */
 	public EList<Element> getAnnotatedElement()
 	{
-		if (annotatedElement == null)
-		{
+		if (annotatedElement == null) {
 			annotatedElement = new EObjectResolvingEList<Element>(Element.class, this, RefOntoUMLPackage.COMMENT__ANNOTATED_ELEMENT);
 		}
 		return annotatedElement;
@@ -170,8 +169,7 @@ public class CommentImpl extends ElementImpl implements Comment
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COMMENT__BODY:
 				return getBody();
 			case RefOntoUMLPackage.COMMENT__ANNOTATED_ELEMENT:
@@ -189,8 +187,7 @@ public class CommentImpl extends ElementImpl implements Comment
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COMMENT__BODY:
 				setBody((String)newValue);
 				return;
@@ -210,8 +207,7 @@ public class CommentImpl extends ElementImpl implements Comment
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COMMENT__BODY:
 				unsetBody();
 				return;
@@ -230,8 +226,7 @@ public class CommentImpl extends ElementImpl implements Comment
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COMMENT__BODY:
 				return isSetBody();
 			case RefOntoUMLPackage.COMMENT__ANNOTATED_ELEMENT:

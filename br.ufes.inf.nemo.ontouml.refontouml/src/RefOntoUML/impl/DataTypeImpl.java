@@ -76,8 +76,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	 */
 	public EList<Property> getOwnedAttribute()
 	{
-		if (ownedAttribute == null)
-		{
+		if (ownedAttribute == null) {
 			ownedAttribute = new EObjectContainmentWithInverseEList<Property>(Property.class, this, RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE, RefOntoUMLPackage.PROPERTY__DATATYPE);
 		}
 		return ownedAttribute;
@@ -116,8 +115,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 		}
@@ -132,8 +130,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				return ((InternalEList<?>)getOwnedAttribute()).basicRemove(otherEnd, msgs);
 		}
@@ -148,8 +145,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				return getOwnedAttribute();
 		}
@@ -165,8 +161,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
 				getOwnedAttribute().addAll((Collection<? extends Property>)newValue);
@@ -183,8 +178,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				getOwnedAttribute().clear();
 				return;
@@ -200,8 +194,7 @@ public class DataTypeImpl extends ClassifierImpl implements DataType
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DATA_TYPE__OWNED_ATTRIBUTE:
 				return ownedAttribute != null && !ownedAttribute.isEmpty();
 		}

@@ -138,8 +138,7 @@ public class LiteralStringImpl extends LiteralSpecificationImpl implements Liter
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_STRING__VALUE:
 				return getValue();
 		}
@@ -154,8 +153,7 @@ public class LiteralStringImpl extends LiteralSpecificationImpl implements Liter
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_STRING__VALUE:
 				setValue((String)newValue);
 				return;
@@ -171,8 +169,7 @@ public class LiteralStringImpl extends LiteralSpecificationImpl implements Liter
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_STRING__VALUE:
 				unsetValue();
 				return;
@@ -188,8 +185,7 @@ public class LiteralStringImpl extends LiteralSpecificationImpl implements Liter
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.LITERAL_STRING__VALUE:
 				return isSetValue();
 		}

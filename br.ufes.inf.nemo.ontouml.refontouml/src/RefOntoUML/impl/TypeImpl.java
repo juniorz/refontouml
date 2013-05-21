@@ -160,8 +160,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPE__PACKAGE:
 				if (resolve) return getPackage();
 				return basicGetPackage();
@@ -177,8 +176,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPE__PACKAGE:
 				setPackage((RefOntoUML.Package)newValue);
 				return;
@@ -194,8 +192,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPE__PACKAGE:
 				setPackage((RefOntoUML.Package)null);
 				return;
@@ -211,8 +208,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPE__PACKAGE:
 				return basicGetPackage() != null;
 		}

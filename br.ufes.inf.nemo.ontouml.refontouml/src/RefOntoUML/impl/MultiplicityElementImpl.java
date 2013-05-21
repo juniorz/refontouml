@@ -311,8 +311,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	{
 		ValueSpecification oldUpperValue = upperValue;
 		upperValue = newUpperValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.MULTIPLICITY_ELEMENT__UPPER_VALUE, oldUpperValue, newUpperValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -326,8 +325,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 */
 	public void setUpperValue(ValueSpecification newUpperValue)
 	{
-		if (newUpperValue != upperValue)
-		{
+		if (newUpperValue != upperValue) {
 			NotificationChain msgs = null;
 			if (upperValue != null)
 				msgs = ((InternalEObject)upperValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.MULTIPLICITY_ELEMENT__UPPER_VALUE, null, msgs);
@@ -359,8 +357,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	{
 		ValueSpecification oldLowerValue = lowerValue;
 		lowerValue = newLowerValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.MULTIPLICITY_ELEMENT__LOWER_VALUE, oldLowerValue, newLowerValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -374,8 +371,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	 */
 	public void setLowerValue(ValueSpecification newLowerValue)
 	{
-		if (newLowerValue != lowerValue)
-		{
+		if (newLowerValue != lowerValue) {
 			NotificationChain msgs = null;
 			if (lowerValue != null)
 				msgs = ((InternalEObject)lowerValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.MULTIPLICITY_ELEMENT__LOWER_VALUE, null, msgs);
@@ -399,10 +395,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -427,10 +421,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -455,10 +447,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -483,10 +473,8 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -622,8 +610,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__UPPER_VALUE:
 				return basicSetUpperValue(null, msgs);
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__LOWER_VALUE:
@@ -640,8 +627,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return isIsOrdered();
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:
@@ -666,8 +652,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered((Boolean)newValue);
 				return;
@@ -698,8 +683,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				setIsOrdered(IS_ORDERED_EDEFAULT);
 				return;
@@ -730,8 +714,7 @@ public abstract class MultiplicityElementImpl extends ElementImpl implements Mul
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_ORDERED:
 				return isOrdered != IS_ORDERED_EDEFAULT;
 			case RefOntoUMLPackage.MULTIPLICITY_ELEMENT__IS_UNIQUE:

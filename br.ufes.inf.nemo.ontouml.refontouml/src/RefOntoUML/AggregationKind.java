@@ -105,8 +105,7 @@ public enum AggregationKind implements Enumerator
 	 * @generated
 	 */
 	private static final AggregationKind[] VALUES_ARRAY =
-		new AggregationKind[]
-		{
+		new AggregationKind[] {
 			NONE,
 			SHARED,
 			COMPOSITE,
@@ -128,11 +127,9 @@ public enum AggregationKind implements Enumerator
 	 */
 	public static AggregationKind get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AggregationKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -147,11 +144,9 @@ public enum AggregationKind implements Enumerator
 	 */
 	public static AggregationKind getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AggregationKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -166,8 +161,7 @@ public enum AggregationKind implements Enumerator
 	 */
 	public static AggregationKind get(int value)
 	{
-		switch (value)
-		{
+		switch (value) {
 			case NONE_VALUE: return NONE;
 			case SHARED_VALUE: return SHARED;
 			case COMPOSITE_VALUE: return COMPOSITE;

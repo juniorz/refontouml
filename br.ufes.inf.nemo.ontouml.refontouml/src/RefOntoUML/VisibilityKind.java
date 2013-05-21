@@ -129,8 +129,7 @@ public enum VisibilityKind implements Enumerator
 	 * @generated
 	 */
 	private static final VisibilityKind[] VALUES_ARRAY =
-		new VisibilityKind[]
-		{
+		new VisibilityKind[] {
 			PUBLIC,
 			PRIVATE,
 			PROTECTED,
@@ -153,11 +152,9 @@ public enum VisibilityKind implements Enumerator
 	 */
 	public static VisibilityKind get(String literal)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			VisibilityKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal))
-			{
+			if (result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -172,11 +169,9 @@ public enum VisibilityKind implements Enumerator
 	 */
 	public static VisibilityKind getByName(String name)
 	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			VisibilityKind result = VALUES_ARRAY[i];
-			if (result.getName().equals(name))
-			{
+			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -191,8 +186,7 @@ public enum VisibilityKind implements Enumerator
 	 */
 	public static VisibilityKind get(int value)
 	{
-		switch (value)
-		{
+		switch (value) {
 			case PUBLIC_VALUE: return PUBLIC;
 			case PRIVATE_VALUE: return PRIVATE;
 			case PROTECTED_VALUE: return PROTECTED;

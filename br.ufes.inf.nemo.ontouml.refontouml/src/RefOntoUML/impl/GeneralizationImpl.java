@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -145,12 +146,10 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 */
 	public Classifier getGeneral()
 	{
-		if (general != null && general.eIsProxy())
-		{
+		if (general != null && general.eIsProxy()) {
 			InternalEObject oldGeneral = (InternalEObject)general;
 			general = (Classifier)eResolveProxy(oldGeneral);
-			if (general != oldGeneral)
-			{
+			if (general != oldGeneral) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.GENERALIZATION__GENERAL, oldGeneral, general));
 			}
@@ -188,9 +187,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 */
 	public EList<GeneralizationSet> getGeneralizationSet()
 	{
-		if (generalizationSet == null)
-		{
-			generalizationSet = new EObjectWithInverseResolvingEList.ManyInverse<GeneralizationSet>(GeneralizationSet.class, this, RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET, RefOntoUMLPackage.GENERALIZATION_SET__GENERALIZATION);
+		if (generalizationSet == null) {
+			generalizationSet = new EObjectWithInverseEList.ManyInverse<GeneralizationSet>(GeneralizationSet.class, this, RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET, RefOntoUMLPackage.GENERALIZATION_SET__GENERALIZATION);
 		}
 		return generalizationSet;
 	}
@@ -224,8 +222,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	 */
 	public void setSpecific(Classifier newSpecific)
 	{
-		if (newSpecific != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.GENERALIZATION__SPECIFIC && newSpecific != null))
-		{
+		if (newSpecific != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.GENERALIZATION__SPECIFIC && newSpecific != null)) {
 			if (EcoreUtil.isAncestor(this, newSpecific))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -251,10 +248,8 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -277,8 +272,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGeneralizationSet()).basicAdd(otherEnd, msgs);
 			case RefOntoUMLPackage.GENERALIZATION__SPECIFIC:
@@ -297,8 +291,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__GENERALIZATION_SET:
 				return ((InternalEList<?>)getGeneralizationSet()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.GENERALIZATION__SPECIFIC:
@@ -315,8 +308,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.GENERALIZATION__SPECIFIC:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.CLASSIFIER__GENERALIZATION, Classifier.class, msgs);
 		}
@@ -331,8 +323,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__IS_SUBSTITUTABLE:
 				return isIsSubstitutable();
 			case RefOntoUMLPackage.GENERALIZATION__GENERAL:
@@ -355,8 +346,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__IS_SUBSTITUTABLE:
 				setIsSubstitutable((Boolean)newValue);
 				return;
@@ -382,8 +372,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__IS_SUBSTITUTABLE:
 				setIsSubstitutable(IS_SUBSTITUTABLE_EDEFAULT);
 				return;
@@ -408,8 +397,7 @@ public class GeneralizationImpl extends DirectedRelationshipImpl implements Gene
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.GENERALIZATION__IS_SUBSTITUTABLE:
 				return isSubstitutable != IS_SUBSTITUTABLE_EDEFAULT;
 			case RefOntoUMLPackage.GENERALIZATION__GENERAL:

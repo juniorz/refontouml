@@ -137,8 +137,7 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__SOURCE:
 				return getSource();
 			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__TARGET:
@@ -155,8 +154,7 @@ public abstract class DirectedRelationshipImpl extends RelationshipImpl implemen
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__SOURCE:
 				return !getSource().isEmpty();
 			case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__TARGET:

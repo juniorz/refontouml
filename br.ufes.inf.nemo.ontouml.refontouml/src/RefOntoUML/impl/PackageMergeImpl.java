@@ -73,12 +73,10 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 */
 	public RefOntoUML.Package getMergedPackage()
 	{
-		if (mergedPackage != null && mergedPackage.eIsProxy())
-		{
+		if (mergedPackage != null && mergedPackage.eIsProxy()) {
 			InternalEObject oldMergedPackage = (InternalEObject)mergedPackage;
 			mergedPackage = (RefOntoUML.Package)eResolveProxy(oldMergedPackage);
-			if (mergedPackage != oldMergedPackage)
-			{
+			if (mergedPackage != oldMergedPackage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.PACKAGE_MERGE__MERGED_PACKAGE, oldMergedPackage, mergedPackage));
 			}
@@ -138,8 +136,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 */
 	public void setReceivingPackage(RefOntoUML.Package newReceivingPackage)
 	{
-		if (newReceivingPackage != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE && newReceivingPackage != null))
-		{
+		if (newReceivingPackage != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE && newReceivingPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newReceivingPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -162,8 +159,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -180,8 +176,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE:
 				return basicSetReceivingPackage(null, msgs);
 		}
@@ -196,8 +191,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE, RefOntoUML.Package.class, msgs);
 		}
@@ -212,8 +206,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__MERGED_PACKAGE:
 				if (resolve) return getMergedPackage();
 				return basicGetMergedPackage();
@@ -231,8 +224,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__MERGED_PACKAGE:
 				setMergedPackage((RefOntoUML.Package)newValue);
 				return;
@@ -251,8 +243,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__MERGED_PACKAGE:
 				setMergedPackage((RefOntoUML.Package)null);
 				return;
@@ -271,8 +262,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_MERGE__MERGED_PACKAGE:
 				return mergedPackage != null;
 			case RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE:

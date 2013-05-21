@@ -130,12 +130,10 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 */
 	public RefOntoUML.Package getImportedPackage()
 	{
-		if (importedPackage != null && importedPackage.eIsProxy())
-		{
+		if (importedPackage != null && importedPackage.eIsProxy()) {
 			InternalEObject oldImportedPackage = (InternalEObject)importedPackage;
 			importedPackage = (RefOntoUML.Package)eResolveProxy(oldImportedPackage);
-			if (importedPackage != oldImportedPackage)
-			{
+			if (importedPackage != oldImportedPackage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE, oldImportedPackage, importedPackage));
 			}
@@ -195,8 +193,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 */
 	public void setImportingNamespace(Namespace newImportingNamespace)
 	{
-		if (newImportingNamespace != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null))
-		{
+		if (newImportingNamespace != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null)) {
 			if (EcoreUtil.isAncestor(this, newImportingNamespace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -222,10 +219,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -247,8 +242,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -265,8 +259,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE:
 				return basicSetImportingNamespace(null, msgs);
 		}
@@ -281,8 +274,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT, Namespace.class, msgs);
 		}
@@ -297,8 +289,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__VISIBILITY:
 				return getVisibility();
 			case RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:
@@ -318,8 +309,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
 				return;
@@ -341,8 +331,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
@@ -364,8 +353,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE_IMPORT__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
 			case RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTED_PACKAGE:

@@ -153,8 +153,7 @@ public abstract class FeatureImpl extends RedefinableElementImpl implements Feat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.FEATURE__IS_STATIC:
 				return isIsStatic();
 			case RefOntoUMLPackage.FEATURE__FEATURING_CLASSIFIER:
@@ -171,8 +170,7 @@ public abstract class FeatureImpl extends RedefinableElementImpl implements Feat
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.FEATURE__IS_STATIC:
 				setIsStatic((Boolean)newValue);
 				return;
@@ -188,8 +186,7 @@ public abstract class FeatureImpl extends RedefinableElementImpl implements Feat
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.FEATURE__IS_STATIC:
 				setIsStatic(IS_STATIC_EDEFAULT);
 				return;
@@ -205,8 +202,7 @@ public abstract class FeatureImpl extends RedefinableElementImpl implements Feat
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.FEATURE__IS_STATIC:
 				return isStatic != IS_STATIC_EDEFAULT;
 			case RefOntoUMLPackage.FEATURE__FEATURING_CLASSIFIER:

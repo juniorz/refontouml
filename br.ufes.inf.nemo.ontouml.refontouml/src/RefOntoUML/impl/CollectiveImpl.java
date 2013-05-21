@@ -102,8 +102,7 @@ public class CollectiveImpl extends SubstanceSortalImpl implements Collective
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COLLECTIVE__IS_EXTENSIONAL:
 				return isIsExtensional();
 		}
@@ -118,8 +117,7 @@ public class CollectiveImpl extends SubstanceSortalImpl implements Collective
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COLLECTIVE__IS_EXTENSIONAL:
 				setIsExtensional((Boolean)newValue);
 				return;
@@ -135,8 +133,7 @@ public class CollectiveImpl extends SubstanceSortalImpl implements Collective
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COLLECTIVE__IS_EXTENSIONAL:
 				setIsExtensional(IS_EXTENSIONAL_EDEFAULT);
 				return;
@@ -152,8 +149,7 @@ public class CollectiveImpl extends SubstanceSortalImpl implements Collective
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.COLLECTIVE__IS_EXTENSIONAL:
 				return isExtensional != IS_EXTENSIONAL_EDEFAULT;
 		}

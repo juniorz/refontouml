@@ -112,8 +112,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
 	public EList<Classifier> getClassifier()
 	{
-		if (classifier == null)
-		{
+		if (classifier == null) {
 			classifier = new EObjectResolvingEList<Classifier>(Classifier.class, this, RefOntoUMLPackage.INSTANCE_SPECIFICATION__CLASSIFIER);
 		}
 		return classifier;
@@ -126,8 +125,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
 	public EList<Slot> getSlot()
 	{
-		if (slot == null)
-		{
+		if (slot == null) {
 			slot = new EObjectContainmentWithInverseEList<Slot>(Slot.class, this, RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT, RefOntoUMLPackage.SLOT__OWNING_INSTANCE);
 		}
 		return slot;
@@ -152,8 +150,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	{
 		ValueSpecification oldSpecification = specification;
 		specification = newSpecification;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.INSTANCE_SPECIFICATION__SPECIFICATION, oldSpecification, newSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -167,8 +164,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	 */
 	public void setSpecification(ValueSpecification newSpecification)
 	{
-		if (newSpecification != specification)
-		{
+		if (newSpecification != specification) {
 			NotificationChain msgs = null;
 			if (specification != null)
 				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.INSTANCE_SPECIFICATION__SPECIFICATION, null, msgs);
@@ -192,10 +188,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -220,10 +214,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -248,10 +240,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -276,10 +266,8 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -302,8 +290,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSlot()).basicAdd(otherEnd, msgs);
 		}
@@ -318,8 +305,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT:
 				return ((InternalEList<?>)getSlot()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__SPECIFICATION:
@@ -336,8 +322,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__CLASSIFIER:
 				return getClassifier();
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT:
@@ -357,8 +342,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__CLASSIFIER:
 				getClassifier().clear();
 				getClassifier().addAll((Collection<? extends Classifier>)newValue);
@@ -382,8 +366,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__CLASSIFIER:
 				getClassifier().clear();
 				return;
@@ -405,8 +388,7 @@ public class InstanceSpecificationImpl extends PackageableElementImpl implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__CLASSIFIER:
 				return classifier != null && !classifier.isEmpty();
 			case RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT:

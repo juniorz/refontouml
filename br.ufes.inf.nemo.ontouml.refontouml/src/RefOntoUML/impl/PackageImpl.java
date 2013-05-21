@@ -147,8 +147,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	 */
 	public EList<PackageMerge> getPackageMerge()
 	{
-		if (packageMerge == null)
-		{
+		if (packageMerge == null) {
 			packageMerge = new EObjectContainmentWithInverseEList<PackageMerge>(PackageMerge.class, this, RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE, RefOntoUMLPackage.PACKAGE_MERGE__RECEIVING_PACKAGE);
 		}
 		return packageMerge;
@@ -161,8 +160,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	 */
 	public EList<PackageableElement> getPackagedElement()
 	{
-		if (packagedElement == null)
-		{
+		if (packagedElement == null) {
 			packagedElement = new EObjectContainmentEList<PackageableElement>(PackageableElement.class, this, RefOntoUMLPackage.PACKAGE__PACKAGED_ELEMENT);
 		}
 		return packagedElement;
@@ -262,10 +260,8 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -396,8 +392,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getPackageMerge()).basicAdd(otherEnd, msgs);
 		}
@@ -412,8 +407,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE:
 				return ((InternalEList<?>)getPackageMerge()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.PACKAGE__PACKAGED_ELEMENT:
@@ -430,8 +424,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__OWNED_TYPE:
 				return getOwnedType();
 			case RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE:
@@ -456,8 +449,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				getOwnedType().addAll((Collection<? extends Type>)newValue);
@@ -489,8 +481,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__OWNED_TYPE:
 				getOwnedType().clear();
 				return;
@@ -518,8 +509,7 @@ public class PackageImpl extends NamespaceImpl implements RefOntoUML.Package
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PACKAGE__OWNED_TYPE:
 				return !getOwnedType().isEmpty();
 			case RefOntoUMLPackage.PACKAGE__PACKAGE_MERGE:

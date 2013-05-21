@@ -5,7 +5,7 @@
     modelPluginID="br.ufes.inf.nemo.ontouml.refontouml" templateDirectory="/br.ufes.inf.nemo.ontouml.refontouml/templates"
     dynamicTemplates="true" modelName="RefOntoUML" testsDirectory="/br.ufes.inf.nemo.ontouml.refontouml.tests/src"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    testsPluginID="br.ufes.inf.nemo.ontouml.refontouml.tests" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    testsPluginID="br.ufes.inf.nemo.ontouml.refontouml.tests">
   <foreignModel>RefOntoUML.ecore</foreignModel>
   <modelPluginVariables>OCL_ECORE=org.eclipse.ocl.ecore</modelPluginVariables>
   <genPackages prefix="RefOntoUML" resource="XML" disposableProviderFactory="true"
@@ -361,6 +361,9 @@
       <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/hasFunctionalComplexInstances"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/hasQuantityInstances"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/hasCollectiveInstances"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/children"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/allChildren"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Classifier/partitions"/>
     </genClasses>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//RedefinableElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//RedefinableElement/isLeaf"/>
@@ -404,6 +407,8 @@
         <genParameters ecoreParameter="RefOntoUML.ecore#//GeneralizationSet/maps_to_generalization_set/diagnostics"/>
         <genParameters ecoreParameter="RefOntoUML.ecore#//GeneralizationSet/maps_to_generalization_set/context"/>
       </genOperations>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//GeneralizationSet/parent"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//GeneralizationSet/children"/>
     </genClasses>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Feature/isStatic"/>
@@ -683,7 +688,9 @@
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//SortalClass"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//MixinClass"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//RigidSortalClass"/>
-    <genClasses image="false" ecoreClass="RefOntoUML.ecore#//AntiRigidSortalClass"/>
+    <genClasses image="false" ecoreClass="RefOntoUML.ecore#//AntiRigidSortalClass">
+      <genOperations ecoreOperation="RefOntoUML.ecore#//AntiRigidSortalClass/rigidParent"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//SubstanceSortal"/>
     <genClasses ecoreClass="RefOntoUML.ecore#//SubKind"/>
     <genClasses ecoreClass="RefOntoUML.ecore#//Kind"/>
@@ -692,16 +699,32 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Collective/isExtensional"/>
     </genClasses>
     <genClasses ecoreClass="RefOntoUML.ecore#//Phase"/>
-    <genClasses ecoreClass="RefOntoUML.ecore#//Role"/>
+    <genClasses ecoreClass="RefOntoUML.ecore#//Role">
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Role/mediation"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Role/relator"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//RigidMixinClass"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//NonRigidMixinClass"/>
     <genClasses ecoreClass="RefOntoUML.ecore#//Category"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//AntiRigidMixinClass"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//SemiRigidMixinClass"/>
-    <genClasses ecoreClass="RefOntoUML.ecore#//RoleMixin"/>
+    <genClasses ecoreClass="RefOntoUML.ecore#//RoleMixin">
+      <genOperations ecoreOperation="RefOntoUML.ecore#//RoleMixin/mediation"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//RoleMixin/relator"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//RoleMixin/roles"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//RoleMixin/rigidSortals"/>
+    </genClasses>
     <genClasses ecoreClass="RefOntoUML.ecore#//Mixin"/>
+    <genClasses image="false" ecoreClass="RefOntoUML.ecore#//IntrinsicMomentClass">
+      <genOperations ecoreOperation="RefOntoUML.ecore#//IntrinsicMomentClass/characterization"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//IntrinsicMomentClass/characterized"/>
+    </genClasses>
     <genClasses ecoreClass="RefOntoUML.ecore#//Mode"/>
-    <genClasses ecoreClass="RefOntoUML.ecore#//Relator"/>
+    <genClasses ecoreClass="RefOntoUML.ecore#//Quality"/>
+    <genClasses ecoreClass="RefOntoUML.ecore#//Relator">
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Relator/mediations"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Relator/mediated"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//DirectedBinaryAssociation">
       <genOperations ecoreOperation="RefOntoUML.ecore#//DirectedBinaryAssociation/sourceEnd"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//DirectedBinaryAssociation/targetEnd"/>
@@ -710,7 +733,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isShareable"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isEssential"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isInseparable"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isImmutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isImmutablePart"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RefOntoUML.ecore#//Meronymic/isImmutableWhole"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Meronymic/wholeEnd"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Meronymic/partEnd"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Meronymic/whole"/>
@@ -722,9 +746,9 @@
     <genClasses ecoreClass="RefOntoUML.ecore#//componentOf"/>
     <genClasses image="false" ecoreClass="RefOntoUML.ecore#//DependencyRelationship"/>
     <genClasses ecoreClass="RefOntoUML.ecore#//Characterization">
-      <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/modeEnd"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/characterizingEnd"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/characterizedEnd"/>
-      <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/mode"/>
+      <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/characterizing"/>
       <genOperations ecoreOperation="RefOntoUML.ecore#//Characterization/characterized"/>
     </genClasses>
     <genClasses ecoreClass="RefOntoUML.ecore#//Mediation">

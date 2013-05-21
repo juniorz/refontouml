@@ -101,8 +101,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	 */
 	public EList<Element> getConstrainedElement()
 	{
-		if (constrainedElement == null)
-		{
+		if (constrainedElement == null) {
 			constrainedElement = new EObjectResolvingEList<Element>(Element.class, this, RefOntoUMLPackage.CONSTRAINTX__CONSTRAINED_ELEMENT);
 		}
 		return constrainedElement;
@@ -127,8 +126,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	{
 		ValueSpecification oldSpecification = specification;
 		specification = newSpecification;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.CONSTRAINTX__SPECIFICATION, oldSpecification, newSpecification);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -142,8 +140,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	 */
 	public void setSpecification(ValueSpecification newSpecification)
 	{
-		if (newSpecification != specification)
-		{
+		if (newSpecification != specification) {
 			NotificationChain msgs = null;
 			if (specification != null)
 				msgs = ((InternalEObject)specification).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.CONSTRAINTX__SPECIFICATION, null, msgs);
@@ -185,8 +182,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	 */
 	public void setContext(Namespace newContext)
 	{
-		if (newContext != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.CONSTRAINTX__CONTEXT && newContext != null))
-		{
+		if (newContext != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.CONSTRAINTX__CONTEXT && newContext != null)) {
 			if (EcoreUtil.isAncestor(this, newContext))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -212,10 +208,8 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -240,10 +234,8 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -268,10 +260,8 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -296,10 +286,8 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -324,10 +312,8 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -349,8 +335,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONTEXT:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -367,8 +352,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__SPECIFICATION:
 				return basicSetSpecification(null, msgs);
 			case RefOntoUMLPackage.CONSTRAINTX__CONTEXT:
@@ -385,8 +369,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONTEXT:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.NAMESPACE__OWNED_RULE, Namespace.class, msgs);
 		}
@@ -401,8 +384,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONSTRAINED_ELEMENT:
 				return getConstrainedElement();
 			case RefOntoUMLPackage.CONSTRAINTX__SPECIFICATION:
@@ -422,8 +404,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONSTRAINED_ELEMENT:
 				getConstrainedElement().clear();
 				getConstrainedElement().addAll((Collection<? extends Element>)newValue);
@@ -446,8 +427,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONSTRAINED_ELEMENT:
 				getConstrainedElement().clear();
 				return;
@@ -469,8 +449,7 @@ public class ConstraintxImpl extends PackageableElementImpl implements Constrain
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CONSTRAINTX__CONSTRAINED_ELEMENT:
 				return constrainedElement != null && !constrainedElement.isEmpty();
 			case RefOntoUMLPackage.CONSTRAINTX__SPECIFICATION:

@@ -178,8 +178,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	 */
 	public EList<Comment> getOwnedComment()
 	{
-		if (ownedComment == null)
-		{
+		if (ownedComment == null) {
 			ownedComment = new EObjectContainmentEList<Comment>(Comment.class, this, RefOntoUMLPackage.ELEMENT__OWNED_COMMENT);
 		}
 		return ownedComment;
@@ -196,10 +195,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -224,10 +221,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -506,8 +501,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT__OWNED_COMMENT:
 				return ((InternalEList<?>)getOwnedComment()).basicRemove(otherEnd, msgs);
 		}
@@ -522,8 +516,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT__OWNED_ELEMENT:
 				return getOwnedElement();
 			case RefOntoUMLPackage.ELEMENT__OWNER:
@@ -544,8 +537,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				getOwnedComment().addAll((Collection<? extends Comment>)newValue);
@@ -562,8 +554,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT__OWNED_COMMENT:
 				getOwnedComment().clear();
 				return;
@@ -579,8 +570,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT__OWNED_ELEMENT:
 				return !getOwnedElement().isEmpty();
 			case RefOntoUMLPackage.ELEMENT__OWNER:

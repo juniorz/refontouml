@@ -316,8 +316,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	 */
 	public EList<Dependency> getClientDependency()
 	{
-		if (clientDependency == null)
-		{
+		if (clientDependency == null) {
 			clientDependency = new EObjectWithInverseResolvingEList.ManyInverse<Dependency>(Dependency.class, this, RefOntoUMLPackage.NAMED_ELEMENT__CLIENT_DEPENDENCY, RefOntoUMLPackage.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -382,8 +381,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	{
 		StringExpression oldNameExpression = nameExpression;
 		nameExpression = newNameExpression;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.NAMED_ELEMENT__NAME_EXPRESSION, oldNameExpression, newNameExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -397,8 +395,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	 */
 	public void setNameExpression(StringExpression newNameExpression)
 	{
-		if (newNameExpression != nameExpression)
-		{
+		if (newNameExpression != nameExpression) {
 			NotificationChain msgs = null;
 			if (nameExpression != null)
 				msgs = ((InternalEObject)nameExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.NAMED_ELEMENT__NAME_EXPRESSION, null, msgs);
@@ -422,10 +419,8 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -450,10 +445,8 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -478,10 +471,8 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -632,8 +623,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__CLIENT_DEPENDENCY:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClientDependency()).basicAdd(otherEnd, msgs);
 		}
@@ -648,8 +638,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__CLIENT_DEPENDENCY:
 				return ((InternalEList<?>)getClientDependency()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.NAMED_ELEMENT__NAME_EXPRESSION:
@@ -666,8 +655,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__NAME:
 				return getName();
 			case RefOntoUMLPackage.NAMED_ELEMENT__VISIBILITY:
@@ -694,8 +682,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__NAME:
 				setName((String)newValue);
 				return;
@@ -721,8 +708,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__NAME:
 				unsetName();
 				return;
@@ -747,8 +733,7 @@ public abstract class NamedElementImpl extends ElementImpl implements NamedEleme
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMED_ELEMENT__NAME:
 				return isSetName();
 			case RefOntoUMLPackage.NAMED_ELEMENT__VISIBILITY:

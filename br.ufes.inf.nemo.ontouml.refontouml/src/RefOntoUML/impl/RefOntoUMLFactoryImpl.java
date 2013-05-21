@@ -84,16 +84,13 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	 */
 	public static RefOntoUMLFactory init()
 	{
-		try
-		{
+		try {
 			RefOntoUMLFactory theRefOntoUMLFactory = (RefOntoUMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://nemo.inf.ufes.br/ontouml/refontouml"); 
-			if (theRefOntoUMLFactory != null)
-			{
+			if (theRefOntoUMLFactory != null) {
 				return theRefOntoUMLFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RefOntoUMLFactoryImpl();
@@ -118,8 +115,7 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case RefOntoUMLPackage.COMMENT: return createComment();
 			case RefOntoUMLPackage.PACKAGE: return createPackage();
 			case RefOntoUMLPackage.DEPENDENCY: return createDependency();
@@ -182,8 +178,7 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case RefOntoUMLPackage.VISIBILITY_KIND:
 				return createVisibilityKindFromString(eDataType, initialValue);
 			case RefOntoUMLPackage.AGGREGATION_KIND:
@@ -209,8 +204,7 @@ public class RefOntoUMLFactoryImpl extends EFactoryImpl implements RefOntoUMLFac
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case RefOntoUMLPackage.VISIBILITY_KIND:
 				return convertVisibilityKindToString(eDataType, instanceValue);
 			case RefOntoUMLPackage.AGGREGATION_KIND:

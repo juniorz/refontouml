@@ -277,8 +277,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public void setDatatype(DataType newDatatype)
 	{
-		if (newDatatype != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PROPERTY__DATATYPE && newDatatype != null))
-		{
+		if (newDatatype != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PROPERTY__DATATYPE && newDatatype != null)) {
 			if (EcoreUtil.isAncestor(this, newDatatype))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -460,8 +459,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public EList<Property> getRedefinedProperty()
 	{
-		if (redefinedProperty == null)
-		{
+		if (redefinedProperty == null) {
 			redefinedProperty = new EObjectResolvingEList<Property>(Property.class, this, RefOntoUMLPackage.PROPERTY__REDEFINED_PROPERTY);
 		}
 		return redefinedProperty;
@@ -496,8 +494,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public void setOwningAssociation(Association newOwningAssociation)
 	{
-		if (newOwningAssociation != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PROPERTY__OWNING_ASSOCIATION && newOwningAssociation != null))
-		{
+		if (newOwningAssociation != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.PROPERTY__OWNING_ASSOCIATION && newOwningAssociation != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningAssociation))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -531,8 +528,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	{
 		ValueSpecification oldDefaultValue = defaultValue;
 		defaultValue = newDefaultValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.PROPERTY__DEFAULT_VALUE, oldDefaultValue, newDefaultValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -546,8 +542,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public void setDefaultValue(ValueSpecification newDefaultValue)
 	{
-		if (newDefaultValue != defaultValue)
-		{
+		if (newDefaultValue != defaultValue) {
 			NotificationChain msgs = null;
 			if (defaultValue != null)
 				msgs = ((InternalEObject)defaultValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RefOntoUMLPackage.PROPERTY__DEFAULT_VALUE, null, msgs);
@@ -619,8 +614,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public EList<Property> getSubsettedProperty()
 	{
-		if (subsettedProperty == null)
-		{
+		if (subsettedProperty == null) {
 			subsettedProperty = new EObjectResolvingEList<Property>(Property.class, this, RefOntoUMLPackage.PROPERTY__SUBSETTED_PROPERTY);
 		}
 		return subsettedProperty;
@@ -633,12 +627,10 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public Association getAssociation()
 	{
-		if (association != null && association.eIsProxy())
-		{
+		if (association != null && association.eIsProxy()) {
 			InternalEObject oldAssociation = (InternalEObject)association;
 			association = (Association)eResolveProxy(oldAssociation);
-			if (association != oldAssociation)
-			{
+			if (association != oldAssociation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.PROPERTY__ASSOCIATION, oldAssociation, association));
 			}
@@ -665,8 +657,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	{
 		Association oldAssociation = association;
 		association = newAssociation;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RefOntoUMLPackage.PROPERTY__ASSOCIATION, oldAssociation, newAssociation);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -680,8 +671,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	 */
 	public void setAssociation(Association newAssociation)
 	{
-		if (newAssociation != association)
-		{
+		if (newAssociation != association) {
 			NotificationChain msgs = null;
 			if (association != null)
 				msgs = ((InternalEObject)association).eInverseRemove(this, RefOntoUMLPackage.ASSOCIATION__MEMBER_END, Association.class, msgs);
@@ -705,10 +695,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -733,10 +721,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -761,10 +747,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -789,10 +773,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -817,10 +799,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -845,10 +825,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -873,10 +851,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -901,10 +877,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -929,10 +903,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -957,10 +929,8 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -1114,8 +1084,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__CLASS:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -1144,8 +1113,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__CLASS:
 				return eBasicSetContainer(null, RefOntoUMLPackage.PROPERTY__CLASS, msgs);
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:
@@ -1168,8 +1136,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.PROPERTY__CLASS:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.CLASS__OWNED_ATTRIBUTE, RefOntoUML.Class.class, msgs);
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:
@@ -1188,8 +1155,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__CLASS:
 				return getClass_();
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:
@@ -1231,8 +1197,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:
 				setDatatype((DataType)newValue);
 				return;
@@ -1283,8 +1248,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:
 				setDatatype((DataType)null);
 				return;
@@ -1333,8 +1297,7 @@ public class PropertyImpl extends StructuralFeatureImpl implements Property
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.PROPERTY__CLASS:
 				return getClass_() != null;
 			case RefOntoUMLPackage.PROPERTY__DATATYPE:

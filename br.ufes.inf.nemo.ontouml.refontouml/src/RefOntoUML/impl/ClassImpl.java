@@ -135,8 +135,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	 */
 	public EList<Classifier> getNestedClassifier()
 	{
-		if (nestedClassifier == null)
-		{
+		if (nestedClassifier == null) {
 			nestedClassifier = new EObjectContainmentEList<Classifier>(Classifier.class, this, RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER);
 		}
 		return nestedClassifier;
@@ -203,8 +202,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	 */
 	public EList<Property> getOwnedAttribute()
 	{
-		if (ownedAttribute == null)
-		{
+		if (ownedAttribute == null) {
 			ownedAttribute = new EObjectContainmentWithInverseEList<Property>(Property.class, this, RefOntoUMLPackage.CLASS__OWNED_ATTRIBUTE, RefOntoUMLPackage.PROPERTY__CLASS);
 		}
 		return ownedAttribute;
@@ -221,10 +219,8 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -271,8 +267,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__OWNED_ATTRIBUTE:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedAttribute()).basicAdd(otherEnd, msgs);
 		}
@@ -287,8 +282,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER:
 				return ((InternalEList<?>)getNestedClassifier()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.CLASS__OWNED_ATTRIBUTE:
@@ -305,8 +299,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER:
 				return getNestedClassifier();
 			case RefOntoUMLPackage.CLASS__SUPER_CLASS:
@@ -328,8 +321,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER:
 				getNestedClassifier().clear();
 				getNestedClassifier().addAll((Collection<? extends Classifier>)newValue);
@@ -357,8 +349,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER:
 				getNestedClassifier().clear();
 				return;
@@ -383,8 +374,7 @@ public class ClassImpl extends ClassifierImpl implements RefOntoUML.Class
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASS__NESTED_CLASSIFIER:
 				return nestedClassifier != null && !nestedClassifier.isEmpty();
 			case RefOntoUMLPackage.CLASS__SUPER_CLASS:

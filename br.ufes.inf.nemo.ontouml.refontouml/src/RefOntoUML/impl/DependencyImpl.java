@@ -199,8 +199,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 */
 	public EList<NamedElement> getSupplier()
 	{
-		if (supplier == null)
-		{
+		if (supplier == null) {
 			supplier = new EObjectResolvingEList<NamedElement>(NamedElement.class, this, RefOntoUMLPackage.DEPENDENCY__SUPPLIER);
 		}
 		return supplier;
@@ -213,8 +212,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	 */
 	public EList<NamedElement> getClient()
 	{
-		if (client == null)
-		{
+		if (client == null) {
 			client = new EObjectWithInverseResolvingEList.ManyInverse<NamedElement>(NamedElement.class, this, RefOntoUMLPackage.DEPENDENCY__CLIENT, RefOntoUMLPackage.NAMED_ELEMENT__CLIENT_DEPENDENCY);
 		}
 		return client;
@@ -229,8 +227,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__CLIENT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getClient()).basicAdd(otherEnd, msgs);
 		}
@@ -245,8 +242,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__CLIENT:
 				return ((InternalEList<?>)getClient()).basicRemove(otherEnd, msgs);
 		}
@@ -261,8 +257,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__RELATED_ELEMENT:
 				return getRelatedElement();
 			case RefOntoUMLPackage.DEPENDENCY__SOURCE:
@@ -286,8 +281,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__SUPPLIER:
 				getSupplier().clear();
 				getSupplier().addAll((Collection<? extends NamedElement>)newValue);
@@ -308,8 +302,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__SUPPLIER:
 				getSupplier().clear();
 				return;
@@ -328,8 +321,7 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.DEPENDENCY__RELATED_ELEMENT:
 				return !getRelatedElement().isEmpty();
 			case RefOntoUMLPackage.DEPENDENCY__SOURCE:
@@ -352,18 +344,14 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Relationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Relationship.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.DEPENDENCY__RELATED_ELEMENT: return RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.DEPENDENCY__SOURCE: return RefOntoUMLPackage.DIRECTED_RELATIONSHIP__SOURCE;
 				case RefOntoUMLPackage.DEPENDENCY__TARGET: return RefOntoUMLPackage.DIRECTED_RELATIONSHIP__TARGET;
 				default: return -1;
@@ -380,18 +368,14 @@ public class DependencyImpl extends PackageableElementImpl implements Dependency
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == Relationship.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Relationship.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.RELATIONSHIP__RELATED_ELEMENT: return RefOntoUMLPackage.DEPENDENCY__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__SOURCE: return RefOntoUMLPackage.DEPENDENCY__SOURCE;
 				case RefOntoUMLPackage.DIRECTED_RELATIONSHIP__TARGET: return RefOntoUMLPackage.DEPENDENCY__TARGET;
 				default: return -1;

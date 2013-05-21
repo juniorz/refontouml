@@ -75,8 +75,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	 */
 	public EList<EnumerationLiteral> getOwnedLiteral()
 	{
-		if (ownedLiteral == null)
-		{
+		if (ownedLiteral == null) {
 			ownedLiteral = new EObjectContainmentWithInverseEList<EnumerationLiteral>(EnumerationLiteral.class, this, RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL, RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION);
 		}
 		return ownedLiteral;
@@ -91,8 +90,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getOwnedLiteral()).basicAdd(otherEnd, msgs);
 		}
@@ -107,8 +105,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				return ((InternalEList<?>)getOwnedLiteral()).basicRemove(otherEnd, msgs);
 		}
@@ -123,8 +120,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				return getOwnedLiteral();
 		}
@@ -140,8 +136,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiteral().clear();
 				getOwnedLiteral().addAll((Collection<? extends EnumerationLiteral>)newValue);
@@ -158,8 +153,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				getOwnedLiteral().clear();
 				return;
@@ -175,8 +169,7 @@ public class EnumerationImpl extends DataTypeImpl implements Enumeration
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL:
 				return ownedLiteral != null && !ownedLiteral.isEmpty();
 		}

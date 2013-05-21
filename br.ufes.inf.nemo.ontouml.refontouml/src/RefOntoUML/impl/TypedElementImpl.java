@@ -70,12 +70,10 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	 */
 	public Type getType()
 	{
-		if (type != null && type.eIsProxy())
-		{
+		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (Type)eResolveProxy(oldType);
-			if (type != oldType)
-			{
+			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.TYPED_ELEMENT__TYPE, oldType, type));
 			}
@@ -114,8 +112,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPED_ELEMENT__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -131,8 +128,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPED_ELEMENT__TYPE:
 				setType((Type)newValue);
 				return;
@@ -148,8 +144,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPED_ELEMENT__TYPE:
 				setType((Type)null);
 				return;
@@ -165,8 +160,7 @@ public abstract class TypedElementImpl extends NamedElementImpl implements Typed
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.TYPED_ELEMENT__TYPE:
 				return type != null;
 		}

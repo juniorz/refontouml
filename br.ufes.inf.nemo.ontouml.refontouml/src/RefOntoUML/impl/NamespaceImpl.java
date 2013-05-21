@@ -127,8 +127,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
 	public EList<ElementImport> getElementImport()
 	{
-		if (elementImport == null)
-		{
+		if (elementImport == null) {
 			elementImport = new EObjectContainmentWithInverseEList<ElementImport>(ElementImport.class, this, RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT, RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return elementImport;
@@ -141,8 +140,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
 	public EList<PackageImport> getPackageImport()
 	{
-		if (packageImport == null)
-		{
+		if (packageImport == null) {
 			packageImport = new EObjectContainmentWithInverseEList<PackageImport>(PackageImport.class, this, RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT, RefOntoUMLPackage.PACKAGE_IMPORT__IMPORTING_NAMESPACE);
 		}
 		return packageImport;
@@ -155,8 +153,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	 */
 	public EList<Constraintx> getOwnedRule()
 	{
-		if (ownedRule == null)
-		{
+		if (ownedRule == null) {
 			ownedRule = new EObjectContainmentWithInverseEList<Constraintx>(Constraintx.class, this, RefOntoUMLPackage.NAMESPACE__OWNED_RULE, RefOntoUMLPackage.CONSTRAINTX__CONTEXT);
 		}
 		return ownedRule;
@@ -266,10 +263,8 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -400,8 +395,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElementImport()).basicAdd(otherEnd, msgs);
 			case RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT:
@@ -420,8 +414,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				return ((InternalEList<?>)getElementImport()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT:
@@ -440,8 +433,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				return getElementImport();
 			case RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT:
@@ -467,8 +459,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				getElementImport().clear();
 				getElementImport().addAll((Collection<? extends ElementImport>)newValue);
@@ -493,8 +484,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				getElementImport().clear();
 				return;
@@ -516,8 +506,7 @@ public abstract class NamespaceImpl extends NamedElementImpl implements Namespac
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT:
 				return elementImport != null && !elementImport.isEmpty();
 			case RefOntoUMLPackage.NAMESPACE__PACKAGE_IMPORT:

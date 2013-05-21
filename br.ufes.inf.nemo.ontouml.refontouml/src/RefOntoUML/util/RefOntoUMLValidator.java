@@ -938,8 +938,7 @@ public class RefOntoUMLValidator extends EObjectValidator
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-		switch (classifierID)
-		{
+		switch (classifierID) {
 			case RefOntoUMLPackage.COMMENT:
 				return validateComment((Comment)value, diagnostics, context);
 			case RefOntoUMLPackage.ELEMENT:
@@ -1828,30 +1827,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateGeneralization_GeneralizationConstraint1(Generalization generalization, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (generalization_GeneralizationConstraint1InvOCL == null)
-        {
+        if (generalization_GeneralizationConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getGeneralization());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getGeneralization().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("GeneralizationConstraint1");
 			
-			try
-			{
+			try {
 				generalization_GeneralizationConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(generalization_GeneralizationConstraint1InvOCL);
 		
-		if (!query.check(generalization))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(generalization)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -2036,30 +2030,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMultiplicityElement_LowerAndUpperBound(MultiplicityElement multiplicityElement, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (multiplicityElement_LowerAndUpperBoundInvOCL == null)
-        {
+        if (multiplicityElement_LowerAndUpperBoundInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMultiplicityElement());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMultiplicityElement().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("LowerAndUpperBound");
 			
-			try
-			{
+			try {
 				multiplicityElement_LowerAndUpperBoundInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(multiplicityElement_LowerAndUpperBoundInvOCL);
 		
-		if (!query.check(multiplicityElement))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(multiplicityElement)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -2305,30 +2294,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateClass_ClassAttributeConstraint1(RefOntoUML.Class class_, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (class__ClassAttributeConstraint1InvOCL == null)
-        {
+        if (class__ClassAttributeConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getClass_());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getClass_().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("ClassAttributeConstraint1");
 			
-			try
-			{
+			try {
 				class__ClassAttributeConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(class__ClassAttributeConstraint1InvOCL);
 		
-		if (!query.check(class_))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(class_)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -2415,30 +2399,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDataType_DataTypeAttributeConstraint1(DataType dataType, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (dataType_DataTypeAttributeConstraint1InvOCL == null)
-        {
+        if (dataType_DataTypeAttributeConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDataType());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDataType().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DataTypeAttributeConstraint1");
 			
-			try
-			{
+			try {
 				dataType_DataTypeAttributeConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(dataType_DataTypeAttributeConstraint1InvOCL);
 		
-		if (!query.check(dataType))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(dataType)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -2937,30 +2916,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateObjectClass_SubstanceSortalConstraint2a(ObjectClass objectClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (objectClass_SubstanceSortalConstraint2aInvOCL == null)
-        {
+        if (objectClass_SubstanceSortalConstraint2aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getObjectClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getObjectClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("SubstanceSortalConstraint2a");
 			
-			try
-			{
+			try {
 				objectClass_SubstanceSortalConstraint2aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(objectClass_SubstanceSortalConstraint2aInvOCL);
 		
-		if (!query.check(objectClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(objectClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3046,30 +3020,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateSortalClass_SortalClassConstraint1(SortalClass sortalClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (sortalClass_SortalClassConstraint1InvOCL == null)
-        {
+        if (sortalClass_SortalClassConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getSortalClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getSortalClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("SortalClassConstraint1");
 			
-			try
-			{
+			try {
 				sortalClass_SortalClassConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(sortalClass_SortalClassConstraint1InvOCL);
 		
-		if (!query.check(sortalClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(sortalClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3125,30 +3094,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMixinClass_MixinClassConstraint1(MixinClass mixinClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mixinClass_MixinClassConstraint1InvOCL == null)
-        {
+        if (mixinClass_MixinClassConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMixinClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMixinClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MixinClassConstraint1");
 			
-			try
-			{
+			try {
 				mixinClass_MixinClassConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mixinClass_MixinClassConstraint1InvOCL);
 		
-		if (!query.check(mixinClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(mixinClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3170,30 +3134,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMixinClass_MixinClassConstraint2(MixinClass mixinClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mixinClass_MixinClassConstraint2InvOCL == null)
-        {
+        if (mixinClass_MixinClassConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMixinClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMixinClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MixinClassConstraint2");
 			
-			try
-			{
+			try {
 				mixinClass_MixinClassConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mixinClass_MixinClassConstraint2InvOCL);
 		
-		if (!query.check(mixinClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(mixinClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3249,30 +3208,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateRigidSortalClass_RigidSortalClassConstraint1(RigidSortalClass rigidSortalClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (rigidSortalClass_RigidSortalClassConstraint1InvOCL == null)
-        {
+        if (rigidSortalClass_RigidSortalClassConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getRigidSortalClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getRigidSortalClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("RigidSortalClassConstraint1");
 			
-			try
-			{
+			try {
 				rigidSortalClass_RigidSortalClassConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(rigidSortalClass_RigidSortalClassConstraint1InvOCL);
 		
-		if (!query.check(rigidSortalClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(rigidSortalClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3362,30 +3316,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateSubstanceSortal_SubstanceSortalConstraint2b(SubstanceSortal substanceSortal, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (substanceSortal_SubstanceSortalConstraint2bInvOCL == null)
-        {
+        if (substanceSortal_SubstanceSortalConstraint2bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getSubstanceSortal());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getSubstanceSortal().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("SubstanceSortalConstraint2b");
 			
-			try
-			{
+			try {
 				substanceSortal_SubstanceSortalConstraint2bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(substanceSortal_SubstanceSortalConstraint2bInvOCL);
 		
-		if (!query.check(substanceSortal))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(substanceSortal)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3547,30 +3496,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateCollective_CollectiveConstraint1(Collective collective, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (collective_CollectiveConstraint1InvOCL == null)
-        {
+        if (collective_CollectiveConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getCollective());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getCollective().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("CollectiveConstraint1");
 			
-			try
-			{
+			try {
 				collective_CollectiveConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(collective_CollectiveConstraint1InvOCL);
 		
-		if (!query.check(collective))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(collective)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3626,30 +3570,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatePhase_PhaseConstraint2(Phase phase, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (phase_PhaseConstraint2InvOCL == null)
-        {
+        if (phase_PhaseConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getPhase());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getPhase().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("PhaseConstraint2");
 			
-			try
-			{
+			try {
 				phase_PhaseConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(phase_PhaseConstraint2InvOCL);
 		
-		if (!query.check(phase))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(phase)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3705,30 +3644,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateRole_RoleConstraint2(Role role, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (role_RoleConstraint2InvOCL == null)
-        {
+        if (role_RoleConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getRole());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getRole().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("RoleConstraint2");
 			
-			try
-			{
+			try {
 				role_RoleConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(role_RoleConstraint2InvOCL);
 		
-		if (!query.check(role))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(role)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -3853,30 +3787,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateCategory_CategoryConstraint1(Category category, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (category_CategoryConstraint1InvOCL == null)
-        {
+        if (category_CategoryConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getCategory());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getCategory().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("CategoryConstraint1");
 			
-			try
-			{
+			try {
 				category_CategoryConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(category_CategoryConstraint1InvOCL);
 		
-		if (!query.check(category))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(category)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4001,30 +3930,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateRoleMixin_RoleMixinConstraint1(RoleMixin roleMixin, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (roleMixin_RoleMixinConstraint1InvOCL == null)
-        {
+        if (roleMixin_RoleMixinConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getRoleMixin());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getRoleMixin().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("RoleMixinConstraint1");
 			
-			try
-			{
+			try {
 				roleMixin_RoleMixinConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(roleMixin_RoleMixinConstraint1InvOCL);
 		
-		if (!query.check(roleMixin))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(roleMixin)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4081,30 +4005,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMixin_MixinConstraint1(Mixin mixin, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mixin_MixinConstraint1InvOCL == null)
-        {
+        if (mixin_MixinConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMixin());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMixin().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MixinConstraint1");
 			
-			try
-			{
+			try {
 				mixin_MixinConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mixin_MixinConstraint1InvOCL);
 		
-		if (!query.check(mixin))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(mixin)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4158,30 +4077,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateIntrinsicMomentClass_IntrinsicMomentConstraint1(IntrinsicMomentClass intrinsicMomentClass, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL == null)
-        {
+        if (intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getIntrinsicMomentClass());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getIntrinsicMomentClass().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("IntrinsicMomentConstraint1");
 			
-			try
-			{
+			try {
 				intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(intrinsicMomentClass_IntrinsicMomentConstraint1InvOCL);
 		
-		if (!query.check(intrinsicMomentClass))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(intrinsicMomentClass)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4300,30 +4214,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateRelator_RelatorConstraint1(Relator relator, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (relator_RelatorConstraint1InvOCL == null)
-        {
+        if (relator_RelatorConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getRelator());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getRelator().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("RelatorConstraint1");
 			
-			try
-			{
+			try {
 				relator_RelatorConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(relator_RelatorConstraint1InvOCL);
 		
-		if (!query.check(relator))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(relator)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4345,30 +4254,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateRelator_RelatorConstraint2(Relator relator, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (relator_RelatorConstraint2InvOCL == null)
-        {
+        if (relator_RelatorConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getRelator());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getRelator().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("RelatorConstraint2");
 			
-			try
-			{
+			try {
 				relator_RelatorConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(relator_RelatorConstraint2InvOCL);
 		
-		if (!query.check(relator))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(relator)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4424,30 +4328,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDirectedBinaryAssociation_DirectedBinaryAssociationConstraint1(DirectedBinaryAssociation directedBinaryAssociation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (directedBinaryAssociation_DirectedBinaryAssociationConstraint1InvOCL == null)
-        {
+        if (directedBinaryAssociation_DirectedBinaryAssociationConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDirectedBinaryAssociation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDirectedBinaryAssociation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DirectedBinaryAssociationConstraint1");
 			
-			try
-			{
+			try {
 				directedBinaryAssociation_DirectedBinaryAssociationConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(directedBinaryAssociation_DirectedBinaryAssociationConstraint1InvOCL);
 		
-		if (!query.check(directedBinaryAssociation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(directedBinaryAssociation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4506,30 +4405,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMeronymic_MeronymicConstraint1(Meronymic meronymic, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (meronymic_MeronymicConstraint1InvOCL == null)
-        {
+        if (meronymic_MeronymicConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMeronymic());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMeronymic().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MeronymicConstraint1");
 			
-			try
-			{
+			try {
 				meronymic_MeronymicConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(meronymic_MeronymicConstraint1InvOCL);
 		
-		if (!query.check(meronymic))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(meronymic)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4551,30 +4445,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMeronymic_MeronymicConstraint2a(Meronymic meronymic, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (meronymic_MeronymicConstraint2aInvOCL == null)
-        {
+        if (meronymic_MeronymicConstraint2aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMeronymic());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMeronymic().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MeronymicConstraint2a");
 			
-			try
-			{
+			try {
 				meronymic_MeronymicConstraint2aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(meronymic_MeronymicConstraint2aInvOCL);
 		
-		if (!query.check(meronymic))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(meronymic)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4596,30 +4485,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMeronymic_MeronymicConstraint2b(Meronymic meronymic, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (meronymic_MeronymicConstraint2bInvOCL == null)
-        {
+        if (meronymic_MeronymicConstraint2bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMeronymic());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMeronymic().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MeronymicConstraint2b");
 			
-			try
-			{
+			try {
 				meronymic_MeronymicConstraint2bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(meronymic_MeronymicConstraint2bInvOCL);
 		
-		if (!query.check(meronymic))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(meronymic)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4683,30 +4567,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubQuantityOf_subQuantityOfConstraint1a(subQuantityOf subQuantityOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subQuantityOf_subQuantityOfConstraint1aInvOCL == null)
-        {
+        if (subQuantityOf_subQuantityOfConstraint1aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubQuantityOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubQuantityOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subQuantityOfConstraint1a");
 			
-			try
-			{
+			try {
 				subQuantityOf_subQuantityOfConstraint1aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subQuantityOf_subQuantityOfConstraint1aInvOCL);
 		
-		if (!query.check(subQuantityOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subQuantityOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4728,30 +4607,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubQuantityOf_subQuantityOfConstraint1b(subQuantityOf subQuantityOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subQuantityOf_subQuantityOfConstraint1bInvOCL == null)
-        {
+        if (subQuantityOf_subQuantityOfConstraint1bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubQuantityOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubQuantityOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subQuantityOfConstraint1b");
 			
-			try
-			{
+			try {
 				subQuantityOf_subQuantityOfConstraint1bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subQuantityOf_subQuantityOfConstraint1bInvOCL);
 		
-		if (!query.check(subQuantityOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subQuantityOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4773,30 +4647,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubQuantityOf_subQuantityOfConstraint2(subQuantityOf subQuantityOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subQuantityOf_subQuantityOfConstraint2InvOCL == null)
-        {
+        if (subQuantityOf_subQuantityOfConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubQuantityOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubQuantityOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subQuantityOfConstraint2");
 			
-			try
-			{
+			try {
 				subQuantityOf_subQuantityOfConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subQuantityOf_subQuantityOfConstraint2InvOCL);
 		
-		if (!query.check(subQuantityOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subQuantityOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4818,30 +4687,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubQuantityOf_subQuantityOfConstraint3(subQuantityOf subQuantityOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subQuantityOf_subQuantityOfConstraint3InvOCL == null)
-        {
+        if (subQuantityOf_subQuantityOfConstraint3InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubQuantityOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubQuantityOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subQuantityOfConstraint3");
 			
-			try
-			{
+			try {
 				subQuantityOf_subQuantityOfConstraint3InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subQuantityOf_subQuantityOfConstraint3InvOCL);
 		
-		if (!query.check(subQuantityOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subQuantityOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4863,30 +4727,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubQuantityOf_subQuantityOfConstraint4(subQuantityOf subQuantityOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subQuantityOf_subQuantityOfConstraint4InvOCL == null)
-        {
+        if (subQuantityOf_subQuantityOfConstraint4InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubQuantityOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubQuantityOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subQuantityOfConstraint4");
 			
-			try
-			{
+			try {
 				subQuantityOf_subQuantityOfConstraint4InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subQuantityOf_subQuantityOfConstraint4InvOCL);
 		
-		if (!query.check(subQuantityOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subQuantityOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4948,30 +4807,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubCollectionOf_subCollectionOfConstraint1a(subCollectionOf subCollectionOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subCollectionOf_subCollectionOfConstraint1aInvOCL == null)
-        {
+        if (subCollectionOf_subCollectionOfConstraint1aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubCollectionOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubCollectionOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subCollectionOfConstraint1a");
 			
-			try
-			{
+			try {
 				subCollectionOf_subCollectionOfConstraint1aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subCollectionOf_subCollectionOfConstraint1aInvOCL);
 		
-		if (!query.check(subCollectionOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subCollectionOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -4993,30 +4847,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubCollectionOf_subCollectionOfConstraint1b(subCollectionOf subCollectionOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subCollectionOf_subCollectionOfConstraint1bInvOCL == null)
-        {
+        if (subCollectionOf_subCollectionOfConstraint1bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubCollectionOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubCollectionOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subCollectionOfConstraint1b");
 			
-			try
-			{
+			try {
 				subCollectionOf_subCollectionOfConstraint1bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subCollectionOf_subCollectionOfConstraint1bInvOCL);
 		
-		if (!query.check(subCollectionOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subCollectionOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5038,30 +4887,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatesubCollectionOf_subCollectionOfConstraint2(subCollectionOf subCollectionOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (subCollectionOf_subCollectionOfConstraint2InvOCL == null)
-        {
+        if (subCollectionOf_subCollectionOfConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getsubCollectionOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getsubCollectionOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("subCollectionOfConstraint2");
 			
-			try
-			{
+			try {
 				subCollectionOf_subCollectionOfConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(subCollectionOf_subCollectionOfConstraint2InvOCL);
 		
-		if (!query.check(subCollectionOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(subCollectionOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5123,30 +4967,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatememberOf_memberOfConstraint1a(memberOf memberOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (memberOf_memberOfConstraint1aInvOCL == null)
-        {
+        if (memberOf_memberOfConstraint1aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getmemberOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getmemberOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("memberOfConstraint1a");
 			
-			try
-			{
+			try {
 				memberOf_memberOfConstraint1aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(memberOf_memberOfConstraint1aInvOCL);
 		
-		if (!query.check(memberOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(memberOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5168,30 +5007,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatememberOf_memberOfConstraint1b(memberOf memberOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (memberOf_memberOfConstraint1bInvOCL == null)
-        {
+        if (memberOf_memberOfConstraint1bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getmemberOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getmemberOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("memberOfConstraint1b");
 			
-			try
-			{
+			try {
 				memberOf_memberOfConstraint1bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(memberOf_memberOfConstraint1bInvOCL);
 		
-		if (!query.check(memberOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(memberOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5213,30 +5047,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatememberOf_memberOfConstraint2(memberOf memberOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (memberOf_memberOfConstraint2InvOCL == null)
-        {
+        if (memberOf_memberOfConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getmemberOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getmemberOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("memberOfConstraint2");
 			
-			try
-			{
+			try {
 				memberOf_memberOfConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(memberOf_memberOfConstraint2InvOCL);
 		
-		if (!query.check(memberOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(memberOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5297,30 +5126,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatecomponentOf_componentOfConstraint1a(componentOf componentOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (componentOf_componentOfConstraint1aInvOCL == null)
-        {
+        if (componentOf_componentOfConstraint1aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getcomponentOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getcomponentOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("componentOfConstraint1a");
 			
-			try
-			{
+			try {
 				componentOf_componentOfConstraint1aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(componentOf_componentOfConstraint1aInvOCL);
 		
-		if (!query.check(componentOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(componentOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5342,30 +5166,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validatecomponentOf_componentOfConstraint1b(componentOf componentOf, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (componentOf_componentOfConstraint1bInvOCL == null)
-        {
+        if (componentOf_componentOfConstraint1bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getcomponentOf());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getcomponentOf().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("componentOfConstraint1b");
 			
-			try
-			{
+			try {
 				componentOf_componentOfConstraint1bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(componentOf_componentOfConstraint1bInvOCL);
 		
-		if (!query.check(componentOf))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(componentOf)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5423,30 +5242,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDependencyRelationship_DependencyRelationshipConstraint1(DependencyRelationship dependencyRelationship, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (dependencyRelationship_DependencyRelationshipConstraint1InvOCL == null)
-        {
+        if (dependencyRelationship_DependencyRelationshipConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDependencyRelationship());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDependencyRelationship().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DependencyRelationshipConstraint1");
 			
-			try
-			{
+			try {
 				dependencyRelationship_DependencyRelationshipConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(dependencyRelationship_DependencyRelationshipConstraint1InvOCL);
 		
-		if (!query.check(dependencyRelationship))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(dependencyRelationship)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5468,30 +5282,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDependencyRelationship_DependencyRelationshipConstraint2(DependencyRelationship dependencyRelationship, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (dependencyRelationship_DependencyRelationshipConstraint2InvOCL == null)
-        {
+        if (dependencyRelationship_DependencyRelationshipConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDependencyRelationship());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDependencyRelationship().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DependencyRelationshipConstraint2");
 			
-			try
-			{
+			try {
 				dependencyRelationship_DependencyRelationshipConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(dependencyRelationship_DependencyRelationshipConstraint2InvOCL);
 		
-		if (!query.check(dependencyRelationship))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(dependencyRelationship)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5551,30 +5360,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateCharacterization_CharacterizationConstraint1(Characterization characterization, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (characterization_CharacterizationConstraint1InvOCL == null)
-        {
+        if (characterization_CharacterizationConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getCharacterization());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getCharacterization().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("CharacterizationConstraint1");
 			
-			try
-			{
+			try {
 				characterization_CharacterizationConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(characterization_CharacterizationConstraint1InvOCL);
 		
-		if (!query.check(characterization))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(characterization)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5596,30 +5400,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateCharacterization_CharacterizationConstraint2(Characterization characterization, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (characterization_CharacterizationConstraint2InvOCL == null)
-        {
+        if (characterization_CharacterizationConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getCharacterization());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getCharacterization().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("CharacterizationConstraint2");
 			
-			try
-			{
+			try {
 				characterization_CharacterizationConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(characterization_CharacterizationConstraint2InvOCL);
 		
-		if (!query.check(characterization))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(characterization)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5679,30 +5478,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMediation_MediationConstraint1(Mediation mediation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mediation_MediationConstraint1InvOCL == null)
-        {
+        if (mediation_MediationConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMediation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMediation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MediationConstraint1");
 			
-			try
-			{
+			try {
 				mediation_MediationConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mediation_MediationConstraint1InvOCL);
 		
-		if (!query.check(mediation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(mediation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5724,30 +5518,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMediation_MediationConstraint2(Mediation mediation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (mediation_MediationConstraint2InvOCL == null)
-        {
+        if (mediation_MediationConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMediation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMediation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MediationConstraint2");
 			
-			try
-			{
+			try {
 				mediation_MediationConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(mediation_MediationConstraint2InvOCL);
 		
-		if (!query.check(mediation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(mediation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5808,30 +5597,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDerivation_DerivationConstraint1a(Derivation derivation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (derivation_DerivationConstraint1aInvOCL == null)
-        {
+        if (derivation_DerivationConstraint1aInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDerivation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDerivation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DerivationConstraint1a");
 			
-			try
-			{
+			try {
 				derivation_DerivationConstraint1aInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(derivation_DerivationConstraint1aInvOCL);
 		
-		if (!query.check(derivation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(derivation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5853,30 +5637,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDerivation_DerivationConstraint1b(Derivation derivation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (derivation_DerivationConstraint1bInvOCL == null)
-        {
+        if (derivation_DerivationConstraint1bInvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDerivation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDerivation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DerivationConstraint1b");
 			
-			try
-			{
+			try {
 				derivation_DerivationConstraint1bInvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(derivation_DerivationConstraint1bInvOCL);
 		
-		if (!query.check(derivation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(derivation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -5898,30 +5677,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateDerivation_DerivationConstraint2(Derivation derivation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (derivation_DerivationConstraint2InvOCL == null)
-        {
+        if (derivation_DerivationConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getDerivation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getDerivation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("DerivationConstraint2");
 			
-			try
-			{
+			try {
 				derivation_DerivationConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(derivation_DerivationConstraint2InvOCL);
 		
-		if (!query.check(derivation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(derivation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -6012,30 +5786,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMaterialAssociation_MaterialAssociationConstraint1(MaterialAssociation materialAssociation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (materialAssociation_MaterialAssociationConstraint1InvOCL == null)
-        {
+        if (materialAssociation_MaterialAssociationConstraint1InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMaterialAssociation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMaterialAssociation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MaterialAssociationConstraint1");
 			
-			try
-			{
+			try {
 				materialAssociation_MaterialAssociationConstraint1InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(materialAssociation_MaterialAssociationConstraint1InvOCL);
 		
-		if (!query.check(materialAssociation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(materialAssociation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -6057,30 +5826,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMaterialAssociation_MaterialAssociationConstraint2(MaterialAssociation materialAssociation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (materialAssociation_MaterialAssociationConstraint2InvOCL == null)
-        {
+        if (materialAssociation_MaterialAssociationConstraint2InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMaterialAssociation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMaterialAssociation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MaterialAssociationConstraint2");
 			
-			try
-			{
+			try {
 				materialAssociation_MaterialAssociationConstraint2InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(materialAssociation_MaterialAssociationConstraint2InvOCL);
 		
-		if (!query.check(materialAssociation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(materialAssociation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -6102,30 +5866,25 @@ public class RefOntoUMLValidator extends EObjectValidator
 	 */
 	public boolean validateMaterialAssociation_MaterialAssociationConstraint3(MaterialAssociation materialAssociation, DiagnosticChain diagnostics, Map<Object, Object> context)
 	{
-        if (materialAssociation_MaterialAssociationConstraint3InvOCL == null)
-        {
+        if (materialAssociation_MaterialAssociationConstraint3InvOCL == null) {
 			OCL.Helper helper = OCL_ENV.createOCLHelper();
 			helper.setContext(RefOntoUMLPackage.eINSTANCE.getMaterialAssociation());
 			
 			EAnnotation ocl = RefOntoUMLPackage.eINSTANCE.getMaterialAssociation().getEAnnotation(OCL_ANNOTATION_SOURCE);
 			String expr = ocl.getDetails().get("MaterialAssociationConstraint3");
 			
-			try
-			{
+			try {
 				materialAssociation_MaterialAssociationConstraint3InvOCL = helper.createInvariant(expr);
 			}
-			catch (ParserException e)
-			{
+			catch (ParserException e) {
 				throw new UnsupportedOperationException(e.getLocalizedMessage());
 			}
 		}
 		
 		Query<EClassifier, ?, ?> query = OCL_ENV.createQuery(materialAssociation_MaterialAssociationConstraint3InvOCL);
 		
-		if (!query.check(materialAssociation))
-		{
-			if (diagnostics != null)
-			{
+		if (!query.check(materialAssociation)) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,

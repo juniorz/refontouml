@@ -690,9 +690,6 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 
 		isInited = true;
 
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
-
 		// Load packages
 		theRefOntoUMLPackage.loadPackage();
 
@@ -702,10 +699,8 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 		// Register package validator
 		EValidator.Registry.INSTANCE.put
 			(theRefOntoUMLPackage, 
-			 new EValidator.Descriptor()
-			 {
-				 public EValidator getEValidator()
-				 {
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
 					 return RefOntoUMLValidator.INSTANCE;
 				 }
 			 });
@@ -726,8 +721,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getComment()
 	{
-		if (commentEClass == null)
-		{
+		if (commentEClass == null) {
 			commentEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(4);
 		}
 		return commentEClass;
@@ -760,8 +754,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getElement()
 	{
-		if (elementEClass == null)
-		{
+		if (elementEClass == null) {
 			elementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(5);
 		}
 		return elementEClass;
@@ -804,8 +797,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPackage()
 	{
-		if (packageEClass == null)
-		{
+		if (packageEClass == null) {
 			packageEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(6);
 		}
 		return packageEClass;
@@ -868,8 +860,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPackageableElement()
 	{
-		if (packageableElementEClass == null)
-		{
+		if (packageableElementEClass == null) {
 			packageableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(7);
 		}
 		return packageableElementEClass;
@@ -882,8 +873,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getNamedElement()
 	{
-		if (namedElementEClass == null)
-		{
+		if (namedElementEClass == null) {
 			namedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(8);
 		}
 		return namedElementEClass;
@@ -956,8 +946,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDependency()
 	{
-		if (dependencyEClass == null)
-		{
+		if (dependencyEClass == null) {
 			dependencyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(10);
 		}
 		return dependencyEClass;
@@ -990,8 +979,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDirectedRelationship()
 	{
-		if (directedRelationshipEClass == null)
-		{
+		if (directedRelationshipEClass == null) {
 			directedRelationshipEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(11);
 		}
 		return directedRelationshipEClass;
@@ -1024,8 +1012,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRelationship()
 	{
-		if (relationshipEClass == null)
-		{
+		if (relationshipEClass == null) {
 			relationshipEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(12);
 		}
 		return relationshipEClass;
@@ -1048,8 +1035,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getNamespace()
 	{
-		if (namespaceEClass == null)
-		{
+		if (namespaceEClass == null) {
 			namespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(13);
 		}
 		return namespaceEClass;
@@ -1122,8 +1108,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getElementImport()
 	{
-		if (elementImportEClass == null)
-		{
+		if (elementImportEClass == null) {
 			elementImportEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(14);
 		}
 		return elementImportEClass;
@@ -1176,8 +1161,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPackageImport()
 	{
-		if (packageImportEClass == null)
-		{
+		if (packageImportEClass == null) {
 			packageImportEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(15);
 		}
 		return packageImportEClass;
@@ -1220,8 +1204,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getConstraintx()
 	{
-		if (constraintxEClass == null)
-		{
+		if (constraintxEClass == null) {
 			constraintxEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(16);
 		}
 		return constraintxEClass;
@@ -1264,8 +1247,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getValueSpecification()
 	{
-		if (valueSpecificationEClass == null)
-		{
+		if (valueSpecificationEClass == null) {
 			valueSpecificationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(17);
 		}
 		return valueSpecificationEClass;
@@ -1278,8 +1260,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getTypedElement()
 	{
-		if (typedElementEClass == null)
-		{
+		if (typedElementEClass == null) {
 			typedElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(18);
 		}
 		return typedElementEClass;
@@ -1302,8 +1283,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getType()
 	{
-		if (typeEClass == null)
-		{
+		if (typeEClass == null) {
 			typeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(19);
 		}
 		return typeEClass;
@@ -1326,8 +1306,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getAssociation()
 	{
-		if (associationEClass == null)
-		{
+		if (associationEClass == null) {
 			associationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(20);
 		}
 		return associationEClass;
@@ -1390,8 +1369,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getClassifier()
 	{
-		if (classifierEClass == null)
-		{
+		if (classifierEClass == null) {
 			classifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(21);
 		}
 		return classifierEClass;
@@ -1484,8 +1462,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRedefinableElement()
 	{
-		if (redefinableElementEClass == null)
-		{
+		if (redefinableElementEClass == null) {
 			redefinableElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(22);
 		}
 		return redefinableElementEClass;
@@ -1528,8 +1505,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getGeneralization()
 	{
-		if (generalizationEClass == null)
-		{
+		if (generalizationEClass == null) {
 			generalizationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(23);
 		}
 		return generalizationEClass;
@@ -1582,8 +1558,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getGeneralizationSet()
 	{
-		if (generalizationSetEClass == null)
-		{
+		if (generalizationSetEClass == null) {
 			generalizationSetEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(24);
 		}
 		return generalizationSetEClass;
@@ -1636,8 +1611,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getFeature()
 	{
-		if (featureEClass == null)
-		{
+		if (featureEClass == null) {
 			featureEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(25);
 		}
 		return featureEClass;
@@ -1670,8 +1644,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getOpaqueExpression()
 	{
-		if (opaqueExpressionEClass == null)
-		{
+		if (opaqueExpressionEClass == null) {
 			opaqueExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(26);
 		}
 		return opaqueExpressionEClass;
@@ -1704,8 +1677,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMultiplicityElement()
 	{
-		if (multiplicityElementEClass == null)
-		{
+		if (multiplicityElementEClass == null) {
 			multiplicityElementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(27);
 		}
 		return multiplicityElementEClass;
@@ -1778,8 +1750,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getProperty()
 	{
-		if (propertyEClass == null)
-		{
+		if (propertyEClass == null) {
 			propertyEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(28);
 		}
 		return propertyEClass;
@@ -1922,8 +1893,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getClass_()
 	{
-		if (classEClass == null)
-		{
+		if (classEClass == null) {
 			classEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(29);
 		}
 		return classEClass;
@@ -1976,8 +1946,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getModel()
 	{
-		if (modelEClass == null)
-		{
+		if (modelEClass == null) {
 			modelEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(30);
 		}
 		return modelEClass;
@@ -2000,8 +1969,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDataType()
 	{
-		if (dataTypeEClass == null)
-		{
+		if (dataTypeEClass == null) {
 			dataTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(31);
 		}
 		return dataTypeEClass;
@@ -2024,8 +1992,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getStructuralFeature()
 	{
-		if (structuralFeatureEClass == null)
-		{
+		if (structuralFeatureEClass == null) {
 			structuralFeatureEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(32);
 		}
 		return structuralFeatureEClass;
@@ -2048,8 +2015,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getStringExpression()
 	{
-		if (stringExpressionEClass == null)
-		{
+		if (stringExpressionEClass == null) {
 			stringExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(34);
 		}
 		return stringExpressionEClass;
@@ -2082,8 +2048,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getExpression()
 	{
-		if (expressionEClass == null)
-		{
+		if (expressionEClass == null) {
 			expressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(35);
 		}
 		return expressionEClass;
@@ -2116,8 +2081,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPackageMerge()
 	{
-		if (packageMergeEClass == null)
-		{
+		if (packageMergeEClass == null) {
 			packageMergeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(36);
 		}
 		return packageMergeEClass;
@@ -2150,8 +2114,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getEnumeration()
 	{
-		if (enumerationEClass == null)
-		{
+		if (enumerationEClass == null) {
 			enumerationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(37);
 		}
 		return enumerationEClass;
@@ -2174,8 +2137,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getEnumerationLiteral()
 	{
-		if (enumerationLiteralEClass == null)
-		{
+		if (enumerationLiteralEClass == null) {
 			enumerationLiteralEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(38);
 		}
 		return enumerationLiteralEClass;
@@ -2198,8 +2160,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getInstanceSpecification()
 	{
-		if (instanceSpecificationEClass == null)
-		{
+		if (instanceSpecificationEClass == null) {
 			instanceSpecificationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(39);
 		}
 		return instanceSpecificationEClass;
@@ -2242,8 +2203,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getSlot()
 	{
-		if (slotEClass == null)
-		{
+		if (slotEClass == null) {
 			slotEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(40);
 		}
 		return slotEClass;
@@ -2286,8 +2246,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPrimitiveType()
 	{
-		if (primitiveTypeEClass == null)
-		{
+		if (primitiveTypeEClass == null) {
 			primitiveTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(41);
 		}
 		return primitiveTypeEClass;
@@ -2300,8 +2259,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralSpecification()
 	{
-		if (literalSpecificationEClass == null)
-		{
+		if (literalSpecificationEClass == null) {
 			literalSpecificationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(42);
 		}
 		return literalSpecificationEClass;
@@ -2314,8 +2272,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralInteger()
 	{
-		if (literalIntegerEClass == null)
-		{
+		if (literalIntegerEClass == null) {
 			literalIntegerEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(43);
 		}
 		return literalIntegerEClass;
@@ -2338,8 +2295,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralString()
 	{
-		if (literalStringEClass == null)
-		{
+		if (literalStringEClass == null) {
 			literalStringEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(44);
 		}
 		return literalStringEClass;
@@ -2362,8 +2318,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralBoolean()
 	{
-		if (literalBooleanEClass == null)
-		{
+		if (literalBooleanEClass == null) {
 			literalBooleanEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(45);
 		}
 		return literalBooleanEClass;
@@ -2386,8 +2341,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralNull()
 	{
-		if (literalNullEClass == null)
-		{
+		if (literalNullEClass == null) {
 			literalNullEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(46);
 		}
 		return literalNullEClass;
@@ -2400,8 +2354,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getInstanceValue()
 	{
-		if (instanceValueEClass == null)
-		{
+		if (instanceValueEClass == null) {
 			instanceValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(47);
 		}
 		return instanceValueEClass;
@@ -2424,8 +2377,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getLiteralUnlimitedNatural()
 	{
-		if (literalUnlimitedNaturalEClass == null)
-		{
+		if (literalUnlimitedNaturalEClass == null) {
 			literalUnlimitedNaturalEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(48);
 		}
 		return literalUnlimitedNaturalEClass;
@@ -2448,8 +2400,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getObjectClass()
 	{
-		if (objectClassEClass == null)
-		{
+		if (objectClassEClass == null) {
 			objectClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(49);
 		}
 		return objectClassEClass;
@@ -2462,8 +2413,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMomentClass()
 	{
-		if (momentClassEClass == null)
-		{
+		if (momentClassEClass == null) {
 			momentClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(50);
 		}
 		return momentClassEClass;
@@ -2476,8 +2426,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getSortalClass()
 	{
-		if (sortalClassEClass == null)
-		{
+		if (sortalClassEClass == null) {
 			sortalClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(51);
 		}
 		return sortalClassEClass;
@@ -2490,8 +2439,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMixinClass()
 	{
-		if (mixinClassEClass == null)
-		{
+		if (mixinClassEClass == null) {
 			mixinClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(52);
 		}
 		return mixinClassEClass;
@@ -2504,8 +2452,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRigidSortalClass()
 	{
-		if (rigidSortalClassEClass == null)
-		{
+		if (rigidSortalClassEClass == null) {
 			rigidSortalClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(53);
 		}
 		return rigidSortalClassEClass;
@@ -2518,8 +2465,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getAntiRigidSortalClass()
 	{
-		if (antiRigidSortalClassEClass == null)
-		{
+		if (antiRigidSortalClassEClass == null) {
 			antiRigidSortalClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(54);
 		}
 		return antiRigidSortalClassEClass;
@@ -2532,8 +2478,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getSubstanceSortal()
 	{
-		if (substanceSortalEClass == null)
-		{
+		if (substanceSortalEClass == null) {
 			substanceSortalEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(55);
 		}
 		return substanceSortalEClass;
@@ -2546,8 +2491,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getSubKind()
 	{
-		if (subKindEClass == null)
-		{
+		if (subKindEClass == null) {
 			subKindEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(56);
 		}
 		return subKindEClass;
@@ -2560,8 +2504,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getKind()
 	{
-		if (kindEClass == null)
-		{
+		if (kindEClass == null) {
 			kindEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(57);
 		}
 		return kindEClass;
@@ -2574,8 +2517,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getQuantity()
 	{
-		if (quantityEClass == null)
-		{
+		if (quantityEClass == null) {
 			quantityEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(58);
 		}
 		return quantityEClass;
@@ -2588,8 +2530,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getCollective()
 	{
-		if (collectiveEClass == null)
-		{
+		if (collectiveEClass == null) {
 			collectiveEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(59);
 		}
 		return collectiveEClass;
@@ -2612,8 +2553,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getPhase()
 	{
-		if (phaseEClass == null)
-		{
+		if (phaseEClass == null) {
 			phaseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(60);
 		}
 		return phaseEClass;
@@ -2626,8 +2566,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRole()
 	{
-		if (roleEClass == null)
-		{
+		if (roleEClass == null) {
 			roleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(61);
 		}
 		return roleEClass;
@@ -2640,8 +2579,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRigidMixinClass()
 	{
-		if (rigidMixinClassEClass == null)
-		{
+		if (rigidMixinClassEClass == null) {
 			rigidMixinClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(62);
 		}
 		return rigidMixinClassEClass;
@@ -2654,8 +2592,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getNonRigidMixinClass()
 	{
-		if (nonRigidMixinClassEClass == null)
-		{
+		if (nonRigidMixinClassEClass == null) {
 			nonRigidMixinClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(63);
 		}
 		return nonRigidMixinClassEClass;
@@ -2668,8 +2605,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getCategory()
 	{
-		if (categoryEClass == null)
-		{
+		if (categoryEClass == null) {
 			categoryEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(64);
 		}
 		return categoryEClass;
@@ -2682,8 +2618,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getAntiRigidMixinClass()
 	{
-		if (antiRigidMixinClassEClass == null)
-		{
+		if (antiRigidMixinClassEClass == null) {
 			antiRigidMixinClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(65);
 		}
 		return antiRigidMixinClassEClass;
@@ -2696,8 +2631,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getSemiRigidMixinClass()
 	{
-		if (semiRigidMixinClassEClass == null)
-		{
+		if (semiRigidMixinClassEClass == null) {
 			semiRigidMixinClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(66);
 		}
 		return semiRigidMixinClassEClass;
@@ -2710,8 +2644,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRoleMixin()
 	{
-		if (roleMixinEClass == null)
-		{
+		if (roleMixinEClass == null) {
 			roleMixinEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(67);
 		}
 		return roleMixinEClass;
@@ -2724,8 +2657,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMixin()
 	{
-		if (mixinEClass == null)
-		{
+		if (mixinEClass == null) {
 			mixinEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(68);
 		}
 		return mixinEClass;
@@ -2738,8 +2670,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getIntrinsicMomentClass()
 	{
-		if (intrinsicMomentClassEClass == null)
-		{
+		if (intrinsicMomentClassEClass == null) {
 			intrinsicMomentClassEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(69);
 		}
 		return intrinsicMomentClassEClass;
@@ -2752,8 +2683,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMode()
 	{
-		if (modeEClass == null)
-		{
+		if (modeEClass == null) {
 			modeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(70);
 		}
 		return modeEClass;
@@ -2766,8 +2696,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getQuality()
 	{
-		if (qualityEClass == null)
-		{
+		if (qualityEClass == null) {
 			qualityEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(71);
 		}
 		return qualityEClass;
@@ -2780,8 +2709,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getRelator()
 	{
-		if (relatorEClass == null)
-		{
+		if (relatorEClass == null) {
 			relatorEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(72);
 		}
 		return relatorEClass;
@@ -2794,8 +2722,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDirectedBinaryAssociation()
 	{
-		if (directedBinaryAssociationEClass == null)
-		{
+		if (directedBinaryAssociationEClass == null) {
 			directedBinaryAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(73);
 		}
 		return directedBinaryAssociationEClass;
@@ -2808,8 +2735,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMeronymic()
 	{
-		if (meronymicEClass == null)
-		{
+		if (meronymicEClass == null) {
 			meronymicEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(74);
 		}
 		return meronymicEClass;
@@ -2872,8 +2798,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getsubQuantityOf()
 	{
-		if (subQuantityOfEClass == null)
-		{
+		if (subQuantityOfEClass == null) {
 			subQuantityOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(75);
 		}
 		return subQuantityOfEClass;
@@ -2886,8 +2811,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getsubCollectionOf()
 	{
-		if (subCollectionOfEClass == null)
-		{
+		if (subCollectionOfEClass == null) {
 			subCollectionOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(76);
 		}
 		return subCollectionOfEClass;
@@ -2900,8 +2824,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getmemberOf()
 	{
-		if (memberOfEClass == null)
-		{
+		if (memberOfEClass == null) {
 			memberOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(77);
 		}
 		return memberOfEClass;
@@ -2914,8 +2837,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getcomponentOf()
 	{
-		if (componentOfEClass == null)
-		{
+		if (componentOfEClass == null) {
 			componentOfEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(78);
 		}
 		return componentOfEClass;
@@ -2928,8 +2850,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDependencyRelationship()
 	{
-		if (dependencyRelationshipEClass == null)
-		{
+		if (dependencyRelationshipEClass == null) {
 			dependencyRelationshipEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(79);
 		}
 		return dependencyRelationshipEClass;
@@ -2942,8 +2863,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getCharacterization()
 	{
-		if (characterizationEClass == null)
-		{
+		if (characterizationEClass == null) {
 			characterizationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(80);
 		}
 		return characterizationEClass;
@@ -2956,8 +2876,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMediation()
 	{
-		if (mediationEClass == null)
-		{
+		if (mediationEClass == null) {
 			mediationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(81);
 		}
 		return mediationEClass;
@@ -2970,8 +2889,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getDerivation()
 	{
-		if (derivationEClass == null)
-		{
+		if (derivationEClass == null) {
 			derivationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(82);
 		}
 		return derivationEClass;
@@ -2984,8 +2902,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getFormalAssociation()
 	{
-		if (formalAssociationEClass == null)
-		{
+		if (formalAssociationEClass == null) {
 			formalAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(83);
 		}
 		return formalAssociationEClass;
@@ -2998,8 +2915,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EClass getMaterialAssociation()
 	{
-		if (materialAssociationEClass == null)
-		{
+		if (materialAssociationEClass == null) {
 			materialAssociationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(84);
 		}
 		return materialAssociationEClass;
@@ -3012,8 +2928,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EEnum getVisibilityKind()
 	{
-		if (visibilityKindEEnum == null)
-		{
+		if (visibilityKindEEnum == null) {
 			visibilityKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(9);
 		}
 		return visibilityKindEEnum;
@@ -3026,8 +2941,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EEnum getAggregationKind()
 	{
-		if (aggregationKindEEnum == null)
-		{
+		if (aggregationKindEEnum == null) {
 			aggregationKindEEnum = (EEnum)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(33);
 		}
 		return aggregationKindEEnum;
@@ -3040,8 +2954,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EDataType getInteger()
 	{
-		if (integerEDataType == null)
-		{
+		if (integerEDataType == null) {
 			integerEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(0);
 		}
 		return integerEDataType;
@@ -3054,8 +2967,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EDataType getBoolean()
 	{
-		if (booleanEDataType == null)
-		{
+		if (booleanEDataType == null) {
 			booleanEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(1);
 		}
 		return booleanEDataType;
@@ -3068,8 +2980,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EDataType getString()
 	{
-		if (stringEDataType == null)
-		{
+		if (stringEDataType == null) {
 			stringEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(2);
 		}
 		return stringEDataType;
@@ -3082,8 +2993,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	 */
 	public EDataType getUnlimitedNatural()
 	{
-		if (unlimitedNaturalEDataType == null)
-		{
+		if (unlimitedNaturalEDataType == null) {
 			unlimitedNaturalEDataType = (EDataType)EPackage.Registry.INSTANCE.getEPackage(RefOntoUMLPackage.eNS_URI).getEClassifiers().get(3);
 		}
 		return unlimitedNaturalEDataType;
@@ -3118,18 +3028,15 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 		isLoaded = true;
 
 		URL url = getClass().getResource(packageFilename);
-		if (url == null)
-		{
+		if (url == null) {
 			throw new RuntimeException("Missing serialized package: " + packageFilename);
 		}
 		URI uri = URI.createURI(url.toString());
 		Resource resource = new EcoreResourceFactoryImpl().createResource(uri);
-		try
-		{
+		try {
 			resource.load(null);
 		}
-		catch (IOException exception)
-		{
+		catch (IOException exception) {
 			throw new WrappedException(exception);
 		}
 		initializeFromLoadedEPackage(this, (EPackage)resource.getContents().get(0));
@@ -3166,8 +3073,7 @@ public class RefOntoUMLPackageImpl extends EPackageImpl implements RefOntoUMLPac
 	@Override
 	protected void fixInstanceClass(EClassifier eClassifier)
 	{
-		if (eClassifier.getInstanceClassName() == null)
-		{
+		if (eClassifier.getInstanceClassName() == null) {
 			eClassifier.setInstanceClassName("RefOntoUML." + eClassifier.getName());
 			setGeneratedClassName(eClassifier);
 		}

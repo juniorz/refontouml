@@ -211,12 +211,10 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	 */
 	public PackageableElement getImportedElement()
 	{
-		if (importedElement != null && importedElement.eIsProxy())
-		{
+		if (importedElement != null && importedElement.eIsProxy()) {
 			InternalEObject oldImportedElement = (InternalEObject)importedElement;
 			importedElement = (PackageableElement)eResolveProxy(oldImportedElement);
-			if (importedElement != oldImportedElement)
-			{
+			if (importedElement != oldImportedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTED_ELEMENT, oldImportedElement, importedElement));
 			}
@@ -276,8 +274,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	 */
 	public void setImportingNamespace(Namespace newImportingNamespace)
 	{
-		if (newImportingNamespace != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null))
-		{
+		if (newImportingNamespace != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null)) {
 			if (EcoreUtil.isAncestor(this, newImportingNamespace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -303,10 +300,8 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -331,10 +326,8 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -368,8 +361,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -386,8 +378,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE:
 				return basicSetImportingNamespace(null, msgs);
 		}
@@ -402,8 +393,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__IMPORTING_NAMESPACE:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.NAMESPACE__ELEMENT_IMPORT, Namespace.class, msgs);
 		}
@@ -418,8 +408,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__VISIBILITY:
 				return getVisibility();
 			case RefOntoUMLPackage.ELEMENT_IMPORT__ALIAS:
@@ -441,8 +430,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__VISIBILITY:
 				setVisibility((VisibilityKind)newValue);
 				return;
@@ -467,8 +455,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
@@ -493,8 +480,7 @@ public class ElementImportImpl extends DirectedRelationshipImpl implements Eleme
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ELEMENT_IMPORT__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
 			case RefOntoUMLPackage.ELEMENT_IMPORT__ALIAS:

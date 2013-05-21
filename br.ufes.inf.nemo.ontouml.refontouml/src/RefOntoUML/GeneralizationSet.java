@@ -127,7 +127,7 @@ public interface GeneralizationSet extends PackageableElement
 	 * @return the value of the '<em>Generalization</em>' reference list.
 	 * @see RefOntoUML.RefOntoUMLPackage#getGeneralizationSet_Generalization()
 	 * @see RefOntoUML.Generalization#getGeneralizationSet
-	 * @model opposite="generalizationSet" ordered="false"
+	 * @model opposite="generalizationSet" resolveProxies="false" transient="true" ordered="false"
 	 * @generated
 	 */
 	EList<Generalization> getGeneralization();

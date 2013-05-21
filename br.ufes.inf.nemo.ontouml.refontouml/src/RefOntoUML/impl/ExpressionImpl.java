@@ -158,8 +158,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	 */
 	public EList<ValueSpecification> getOperand()
 	{
-		if (operand == null)
-		{
+		if (operand == null) {
 			operand = new EObjectContainmentEList<ValueSpecification>(ValueSpecification.class, this, RefOntoUMLPackage.EXPRESSION__OPERAND);
 		}
 		return operand;
@@ -173,8 +172,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.EXPRESSION__OPERAND:
 				return ((InternalEList<?>)getOperand()).basicRemove(otherEnd, msgs);
 		}
@@ -189,8 +187,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.EXPRESSION__SYMBOL:
 				return getSymbol();
 			case RefOntoUMLPackage.EXPRESSION__OPERAND:
@@ -208,8 +205,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.EXPRESSION__SYMBOL:
 				setSymbol((String)newValue);
 				return;
@@ -229,8 +225,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.EXPRESSION__SYMBOL:
 				unsetSymbol();
 				return;
@@ -249,8 +244,7 @@ public class ExpressionImpl extends ValueSpecificationImpl implements Expression
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.EXPRESSION__SYMBOL:
 				return isSetSymbol();
 			case RefOntoUMLPackage.EXPRESSION__OPERAND:

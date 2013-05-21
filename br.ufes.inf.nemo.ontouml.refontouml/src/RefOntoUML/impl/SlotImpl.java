@@ -93,12 +93,10 @@ public class SlotImpl extends ElementImpl implements Slot
 	 */
 	public StructuralFeature getDefiningFeature()
 	{
-		if (definingFeature != null && definingFeature.eIsProxy())
-		{
+		if (definingFeature != null && definingFeature.eIsProxy()) {
 			InternalEObject oldDefiningFeature = (InternalEObject)definingFeature;
 			definingFeature = (StructuralFeature)eResolveProxy(oldDefiningFeature);
-			if (definingFeature != oldDefiningFeature)
-			{
+			if (definingFeature != oldDefiningFeature) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.SLOT__DEFINING_FEATURE, oldDefiningFeature, definingFeature));
 			}
@@ -136,8 +134,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 */
 	public EList<ValueSpecification> getValue()
 	{
-		if (value == null)
-		{
+		if (value == null) {
 			value = new EObjectContainmentEList<ValueSpecification>(ValueSpecification.class, this, RefOntoUMLPackage.SLOT__VALUE);
 		}
 		return value;
@@ -172,8 +169,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	 */
 	public void setOwningInstance(InstanceSpecification newOwningInstance)
 	{
-		if (newOwningInstance != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.SLOT__OWNING_INSTANCE && newOwningInstance != null))
-		{
+		if (newOwningInstance != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.SLOT__OWNING_INSTANCE && newOwningInstance != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningInstance))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -196,8 +192,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__OWNING_INSTANCE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -214,8 +209,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__VALUE:
 				return ((InternalEList<?>)getValue()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.SLOT__OWNING_INSTANCE:
@@ -232,8 +226,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.SLOT__OWNING_INSTANCE:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.INSTANCE_SPECIFICATION__SLOT, InstanceSpecification.class, msgs);
 		}
@@ -248,8 +241,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__DEFINING_FEATURE:
 				if (resolve) return getDefiningFeature();
 				return basicGetDefiningFeature();
@@ -270,8 +262,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__DEFINING_FEATURE:
 				setDefiningFeature((StructuralFeature)newValue);
 				return;
@@ -294,8 +285,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__DEFINING_FEATURE:
 				setDefiningFeature((StructuralFeature)null);
 				return;
@@ -317,8 +307,7 @@ public class SlotImpl extends ElementImpl implements Slot
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.SLOT__DEFINING_FEATURE:
 				return definingFeature != null;
 			case RefOntoUMLPackage.SLOT__VALUE:

@@ -85,8 +85,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 */
 	public void setEnumeration(Enumeration newEnumeration)
 	{
-		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
-		{
+		if (newEnumeration != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null)) {
 			if (EcoreUtil.isAncestor(this, newEnumeration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -109,8 +108,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
@@ -127,8 +125,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return basicSetEnumeration(null, msgs);
 		}
@@ -143,8 +140,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.ENUMERATION__OWNED_LITERAL, Enumeration.class, msgs);
 		}
@@ -159,8 +155,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return getEnumeration();
 		}
@@ -175,8 +170,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)newValue);
 				return;
@@ -192,8 +186,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				setEnumeration((Enumeration)null);
 				return;
@@ -209,8 +202,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.ENUMERATION_LITERAL__ENUMERATION:
 				return getEnumeration() != null;
 		}

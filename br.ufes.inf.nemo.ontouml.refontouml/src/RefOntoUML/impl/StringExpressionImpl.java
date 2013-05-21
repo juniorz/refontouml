@@ -88,8 +88,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	 */
 	public EList<StringExpression> getSubExpression()
 	{
-		if (subExpression == null)
-		{
+		if (subExpression == null) {
 			subExpression = new EObjectContainmentWithInverseEList<StringExpression>(StringExpression.class, this, RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION, RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION);
 		}
 		return subExpression;
@@ -124,8 +123,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	 */
 	public void setOwningExpression(StringExpression newOwningExpression)
 	{
-		if (newOwningExpression != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION && newOwningExpression != null))
-		{
+		if (newOwningExpression != eInternalContainer() || (eContainerFeatureID() != RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION && newOwningExpression != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningExpression))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -151,10 +149,8 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -179,10 +175,8 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -205,8 +199,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getSubExpression()).basicAdd(otherEnd, msgs);
 			case RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION:
@@ -225,8 +218,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				return ((InternalEList<?>)getSubExpression()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION:
@@ -243,8 +235,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs)
 	{
-		switch (eContainerFeatureID())
-		{
+		switch (eContainerFeatureID()) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION:
 				return eInternalContainer().eInverseRemove(this, RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION, StringExpression.class, msgs);
 		}
@@ -259,8 +250,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				return getSubExpression();
 			case RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION:
@@ -278,8 +268,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				getSubExpression().clear();
 				getSubExpression().addAll((Collection<? extends StringExpression>)newValue);
@@ -299,8 +288,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				getSubExpression().clear();
 				return;
@@ -319,8 +307,7 @@ public class StringExpressionImpl extends ExpressionImpl implements StringExpres
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.STRING_EXPRESSION__SUB_EXPRESSION:
 				return subExpression != null && !subExpression.isEmpty();
 			case RefOntoUMLPackage.STRING_EXPRESSION__OWNING_EXPRESSION:

@@ -345,8 +345,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
 	public EList<Generalization> getGeneralization()
 	{
-		if (generalization == null)
-		{
+		if (generalization == null) {
 			generalization = new EObjectContainmentWithInverseEList<Generalization>(Generalization.class, this, RefOntoUMLPackage.CLASSIFIER__GENERALIZATION, RefOntoUMLPackage.GENERALIZATION__SPECIFIC);
 		}
 		return generalization;
@@ -359,8 +358,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
 	public EList<GeneralizationSet> getPowertypeExtent()
 	{
-		if (powertypeExtent == null)
-		{
+		if (powertypeExtent == null) {
 			powertypeExtent = new EObjectWithInverseResolvingEList<GeneralizationSet>(GeneralizationSet.class, this, RefOntoUMLPackage.CLASSIFIER__POWERTYPE_EXTENT, RefOntoUMLPackage.GENERALIZATION_SET__POWERTYPE);
 		}
 		return powertypeExtent;
@@ -435,8 +433,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	 */
 	public EList<Classifier> getRedefinedClassifier()
 	{
-		if (redefinedClassifier == null)
-		{
+		if (redefinedClassifier == null) {
 			redefinedClassifier = new EObjectResolvingEList<Classifier>(Classifier.class, this, RefOntoUMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER);
 		}
 		return redefinedClassifier;
@@ -515,10 +512,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -543,10 +538,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -571,10 +564,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -599,10 +590,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -1180,10 +1169,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -1208,10 +1195,8 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 		// -> specify the condition that violates the invariant
 		// -> verify the details of the diagnostic, including severity and message
 		// Ensure that you remove @generated or mark it @generated NOT
-		if (false)
-		{
-			if (diagnostics != null)
-			{
+		if (false) {
+			if (diagnostics != null) {
 				diagnostics.add
 					(new BasicDiagnostic
 						(Diagnostic.ERROR,
@@ -1258,8 +1243,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__GENERALIZATION:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGeneralization()).basicAdd(otherEnd, msgs);
 			case RefOntoUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
@@ -1276,8 +1260,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__GENERALIZATION:
 				return ((InternalEList<?>)getGeneralization()).basicRemove(otherEnd, msgs);
 			case RefOntoUMLPackage.CLASSIFIER__POWERTYPE_EXTENT:
@@ -1294,8 +1277,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__IS_LEAF:
 				return isIsLeaf();
 			case RefOntoUMLPackage.CLASSIFIER__REDEFINED_ELEMENT:
@@ -1334,8 +1316,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__IS_LEAF:
 				setIsLeaf((Boolean)newValue);
 				return;
@@ -1373,8 +1354,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__IS_LEAF:
 				setIsLeaf(IS_LEAF_EDEFAULT);
 				return;
@@ -1408,8 +1388,7 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.CLASSIFIER__IS_LEAF:
 				return isLeaf != IS_LEAF_EDEFAULT;
 			case RefOntoUMLPackage.CLASSIFIER__REDEFINED_ELEMENT:
@@ -1446,27 +1425,21 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == RedefinableElement.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.CLASSIFIER__IS_LEAF: return RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF;
 				case RefOntoUMLPackage.CLASSIFIER__REDEFINED_ELEMENT: return RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT;
 				case RefOntoUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT: return RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == PackageableElement.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == Type.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == Type.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.CLASSIFIER__PACKAGE: return RefOntoUMLPackage.TYPE__PACKAGE;
 				default: return -1;
 			}
@@ -1482,27 +1455,21 @@ public abstract class ClassifierImpl extends NamespaceImpl implements Classifier
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == RedefinableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == RedefinableElement.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.REDEFINABLE_ELEMENT__IS_LEAF: return RefOntoUMLPackage.CLASSIFIER__IS_LEAF;
 				case RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINED_ELEMENT: return RefOntoUMLPackage.CLASSIFIER__REDEFINED_ELEMENT;
 				case RefOntoUMLPackage.REDEFINABLE_ELEMENT__REDEFINITION_CONTEXT: return RefOntoUMLPackage.CLASSIFIER__REDEFINITION_CONTEXT;
 				default: return -1;
 			}
 		}
-		if (baseClass == PackageableElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == PackageableElement.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}
-		if (baseClass == Type.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == Type.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.TYPE__PACKAGE: return RefOntoUMLPackage.CLASSIFIER__PACKAGE;
 				default: return -1;
 			}

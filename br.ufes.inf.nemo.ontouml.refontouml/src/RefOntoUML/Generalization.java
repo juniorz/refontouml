@@ -102,7 +102,7 @@ public interface Generalization extends DirectedRelationship
 	 * @return the value of the '<em>Generalization Set</em>' reference list.
 	 * @see RefOntoUML.RefOntoUMLPackage#getGeneralization_GeneralizationSet()
 	 * @see RefOntoUML.GeneralizationSet#getGeneralization
-	 * @model opposite="generalization" ordered="false"
+	 * @model opposite="generalization" resolveProxies="false" ordered="false"
 	 * @generated
 	 */
 	EList<GeneralizationSet> getGeneralizationSet();

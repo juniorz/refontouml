@@ -858,7 +858,7 @@
       <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generalizationSet" ordered="false"
-        upperBound="-1" eType="#//GeneralizationSet" eOpposite="#//GeneralizationSet/generalization"/>
+        upperBound="-1" eType="#//GeneralizationSet" resolveProxies="false" eOpposite="#//GeneralizationSet/generalization"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="specific" ordered="false"
         lowerBound="1" eType="#//Classifier" eOpposite="#//Classifier/generalization">
       <eAnnotations source="subsets" references="#//DirectedRelationship/source #//Element/owner"/>
@@ -906,7 +906,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="powertype" ordered="false"
         eType="#//Classifier" eOpposite="#//Classifier/powertypeExtent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
-        upperBound="-1" eType="#//Generalization" eOpposite="#//Generalization/generalizationSet"/>
+        upperBound="-1" eType="#//Generalization" transient="true" resolveProxies="false"
+        eOpposite="#//Generalization/generalizationSet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//RedefinableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isStatic" ordered="false"
@@ -2003,7 +2004,7 @@
       <details key="constraints" value="MediationConstraint1 MediationConstraint2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-      <details key="MediationConstraint1" value="relator().oclIsTypeOf(Relator)"/>
+      <details key="MediationConstraint1" value="relator().oclIsKindOf(Relator)"/>
       <details key="MediationConstraint2" value="mediatedEnd().lower >= 1"/>
     </eAnnotations>
     <eAnnotations source="Comments">

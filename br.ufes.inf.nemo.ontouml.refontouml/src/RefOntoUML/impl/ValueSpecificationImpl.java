@@ -71,12 +71,10 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	 */
 	public Type getType()
 	{
-		if (type != null && type.eIsProxy())
-		{
+		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (Type)eResolveProxy(oldType);
-			if (type != oldType)
-			{
+			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE, oldType, type));
 			}
@@ -187,8 +185,7 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE:
 				if (resolve) return getType();
 				return basicGetType();
@@ -204,8 +201,7 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE:
 				setType((Type)newValue);
 				return;
@@ -221,8 +217,7 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE:
 				setType((Type)null);
 				return;
@@ -238,8 +233,7 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE:
 				return type != null;
 		}
@@ -254,10 +248,8 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == TypedElement.class) {
+			switch (derivedFeatureID) {
 				case RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE: return RefOntoUMLPackage.TYPED_ELEMENT__TYPE;
 				default: return -1;
 			}
@@ -273,10 +265,8 @@ public abstract class ValueSpecificationImpl extends PackageableElementImpl impl
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
 	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == TypedElement.class) {
+			switch (baseFeatureID) {
 				case RefOntoUMLPackage.TYPED_ELEMENT__TYPE: return RefOntoUMLPackage.VALUE_SPECIFICATION__TYPE;
 				default: return -1;
 			}

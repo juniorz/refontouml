@@ -398,8 +398,7 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MERONYMIC__IS_SHAREABLE:
 				return isIsShareable();
 			case RefOntoUMLPackage.MERONYMIC__IS_ESSENTIAL:
@@ -422,8 +421,7 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MERONYMIC__IS_SHAREABLE:
 				setIsShareable((Boolean)newValue);
 				return;
@@ -451,8 +449,7 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MERONYMIC__IS_SHAREABLE:
 				setIsShareable(IS_SHAREABLE_EDEFAULT);
 				return;
@@ -480,8 +477,7 @@ public abstract class MeronymicImpl extends DirectedBinaryAssociationImpl implem
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RefOntoUMLPackage.MERONYMIC__IS_SHAREABLE:
 				return isShareable != IS_SHAREABLE_EDEFAULT;
 			case RefOntoUMLPackage.MERONYMIC__IS_ESSENTIAL:

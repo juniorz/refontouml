@@ -119,8 +119,7 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 	 */
 	public RefOntoUMLAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = RefOntoUMLPackage.eINSTANCE;
 		}
 	}
@@ -136,12 +135,10 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -154,411 +151,329 @@ public class RefOntoUMLAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected RefOntoUMLSwitch<Adapter> modelSwitch =
-		new RefOntoUMLSwitch<Adapter>()
-		{
+		new RefOntoUMLSwitch<Adapter>() {
 			@Override
-			public Adapter caseComment(Comment object)
-			{
+			public Adapter caseComment(Comment object) {
 				return createCommentAdapter();
 			}
 			@Override
-			public Adapter caseElement(Element object)
-			{
+			public Adapter caseElement(Element object) {
 				return createElementAdapter();
 			}
 			@Override
-			public Adapter casePackage(RefOntoUML.Package object)
-			{
+			public Adapter casePackage(RefOntoUML.Package object) {
 				return createPackageAdapter();
 			}
 			@Override
-			public Adapter casePackageableElement(PackageableElement object)
-			{
+			public Adapter casePackageableElement(PackageableElement object) {
 				return createPackageableElementAdapter();
 			}
 			@Override
-			public Adapter caseNamedElement(NamedElement object)
-			{
+			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
 			@Override
-			public Adapter caseDependency(Dependency object)
-			{
+			public Adapter caseDependency(Dependency object) {
 				return createDependencyAdapter();
 			}
 			@Override
-			public Adapter caseDirectedRelationship(DirectedRelationship object)
-			{
+			public Adapter caseDirectedRelationship(DirectedRelationship object) {
 				return createDirectedRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseRelationship(Relationship object)
-			{
+			public Adapter caseRelationship(Relationship object) {
 				return createRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseNamespace(Namespace object)
-			{
+			public Adapter caseNamespace(Namespace object) {
 				return createNamespaceAdapter();
 			}
 			@Override
-			public Adapter caseElementImport(ElementImport object)
-			{
+			public Adapter caseElementImport(ElementImport object) {
 				return createElementImportAdapter();
 			}
 			@Override
-			public Adapter casePackageImport(PackageImport object)
-			{
+			public Adapter casePackageImport(PackageImport object) {
 				return createPackageImportAdapter();
 			}
 			@Override
-			public Adapter caseConstraintx(Constraintx object)
-			{
+			public Adapter caseConstraintx(Constraintx object) {
 				return createConstraintxAdapter();
 			}
 			@Override
-			public Adapter caseValueSpecification(ValueSpecification object)
-			{
+			public Adapter caseValueSpecification(ValueSpecification object) {
 				return createValueSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseTypedElement(TypedElement object)
-			{
+			public Adapter caseTypedElement(TypedElement object) {
 				return createTypedElementAdapter();
 			}
 			@Override
-			public Adapter caseType(Type object)
-			{
+			public Adapter caseType(Type object) {
 				return createTypeAdapter();
 			}
 			@Override
-			public Adapter caseAssociation(Association object)
-			{
+			public Adapter caseAssociation(Association object) {
 				return createAssociationAdapter();
 			}
 			@Override
-			public Adapter caseClassifier(Classifier object)
-			{
+			public Adapter caseClassifier(Classifier object) {
 				return createClassifierAdapter();
 			}
 			@Override
-			public Adapter caseRedefinableElement(RedefinableElement object)
-			{
+			public Adapter caseRedefinableElement(RedefinableElement object) {
 				return createRedefinableElementAdapter();
 			}
 			@Override
-			public Adapter caseGeneralization(Generalization object)
-			{
+			public Adapter caseGeneralization(Generalization object) {
 				return createGeneralizationAdapter();
 			}
 			@Override
-			public Adapter caseGeneralizationSet(GeneralizationSet object)
-			{
+			public Adapter caseGeneralizationSet(GeneralizationSet object) {
 				return createGeneralizationSetAdapter();
 			}
 			@Override
-			public Adapter caseFeature(Feature object)
-			{
+			public Adapter caseFeature(Feature object) {
 				return createFeatureAdapter();
 			}
 			@Override
-			public Adapter caseOpaqueExpression(OpaqueExpression object)
-			{
+			public Adapter caseOpaqueExpression(OpaqueExpression object) {
 				return createOpaqueExpressionAdapter();
 			}
 			@Override
-			public Adapter caseMultiplicityElement(MultiplicityElement object)
-			{
+			public Adapter caseMultiplicityElement(MultiplicityElement object) {
 				return createMultiplicityElementAdapter();
 			}
 			@Override
-			public Adapter caseProperty(Property object)
-			{
+			public Adapter caseProperty(Property object) {
 				return createPropertyAdapter();
 			}
 			@Override
-			public Adapter caseClass(RefOntoUML.Class object)
-			{
+			public Adapter caseClass(RefOntoUML.Class object) {
 				return createClassAdapter();
 			}
 			@Override
-			public Adapter caseModel(Model object)
-			{
+			public Adapter caseModel(Model object) {
 				return createModelAdapter();
 			}
 			@Override
-			public Adapter caseDataType(DataType object)
-			{
+			public Adapter caseDataType(DataType object) {
 				return createDataTypeAdapter();
 			}
 			@Override
-			public Adapter caseStructuralFeature(StructuralFeature object)
-			{
+			public Adapter caseStructuralFeature(StructuralFeature object) {
 				return createStructuralFeatureAdapter();
 			}
 			@Override
-			public Adapter caseStringExpression(StringExpression object)
-			{
+			public Adapter caseStringExpression(StringExpression object) {
 				return createStringExpressionAdapter();
 			}
 			@Override
-			public Adapter caseExpression(Expression object)
-			{
+			public Adapter caseExpression(Expression object) {
 				return createExpressionAdapter();
 			}
 			@Override
-			public Adapter casePackageMerge(PackageMerge object)
-			{
+			public Adapter casePackageMerge(PackageMerge object) {
 				return createPackageMergeAdapter();
 			}
 			@Override
-			public Adapter caseEnumeration(Enumeration object)
-			{
+			public Adapter caseEnumeration(Enumeration object) {
 				return createEnumerationAdapter();
 			}
 			@Override
-			public Adapter caseEnumerationLiteral(EnumerationLiteral object)
-			{
+			public Adapter caseEnumerationLiteral(EnumerationLiteral object) {
 				return createEnumerationLiteralAdapter();
 			}
 			@Override
-			public Adapter caseInstanceSpecification(InstanceSpecification object)
-			{
+			public Adapter caseInstanceSpecification(InstanceSpecification object) {
 				return createInstanceSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseSlot(Slot object)
-			{
+			public Adapter caseSlot(Slot object) {
 				return createSlotAdapter();
 			}
 			@Override
-			public Adapter casePrimitiveType(PrimitiveType object)
-			{
+			public Adapter casePrimitiveType(PrimitiveType object) {
 				return createPrimitiveTypeAdapter();
 			}
 			@Override
-			public Adapter caseLiteralSpecification(LiteralSpecification object)
-			{
+			public Adapter caseLiteralSpecification(LiteralSpecification object) {
 				return createLiteralSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseLiteralInteger(LiteralInteger object)
-			{
+			public Adapter caseLiteralInteger(LiteralInteger object) {
 				return createLiteralIntegerAdapter();
 			}
 			@Override
-			public Adapter caseLiteralString(LiteralString object)
-			{
+			public Adapter caseLiteralString(LiteralString object) {
 				return createLiteralStringAdapter();
 			}
 			@Override
-			public Adapter caseLiteralBoolean(LiteralBoolean object)
-			{
+			public Adapter caseLiteralBoolean(LiteralBoolean object) {
 				return createLiteralBooleanAdapter();
 			}
 			@Override
-			public Adapter caseLiteralNull(LiteralNull object)
-			{
+			public Adapter caseLiteralNull(LiteralNull object) {
 				return createLiteralNullAdapter();
 			}
 			@Override
-			public Adapter caseInstanceValue(InstanceValue object)
-			{
+			public Adapter caseInstanceValue(InstanceValue object) {
 				return createInstanceValueAdapter();
 			}
 			@Override
-			public Adapter caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object)
-			{
+			public Adapter caseLiteralUnlimitedNatural(LiteralUnlimitedNatural object) {
 				return createLiteralUnlimitedNaturalAdapter();
 			}
 			@Override
-			public Adapter caseObjectClass(ObjectClass object)
-			{
+			public Adapter caseObjectClass(ObjectClass object) {
 				return createObjectClassAdapter();
 			}
 			@Override
-			public Adapter caseMomentClass(MomentClass object)
-			{
+			public Adapter caseMomentClass(MomentClass object) {
 				return createMomentClassAdapter();
 			}
 			@Override
-			public Adapter caseSortalClass(SortalClass object)
-			{
+			public Adapter caseSortalClass(SortalClass object) {
 				return createSortalClassAdapter();
 			}
 			@Override
-			public Adapter caseMixinClass(MixinClass object)
-			{
+			public Adapter caseMixinClass(MixinClass object) {
 				return createMixinClassAdapter();
 			}
 			@Override
-			public Adapter caseRigidSortalClass(RigidSortalClass object)
-			{
+			public Adapter caseRigidSortalClass(RigidSortalClass object) {
 				return createRigidSortalClassAdapter();
 			}
 			@Override
-			public Adapter caseAntiRigidSortalClass(AntiRigidSortalClass object)
-			{
+			public Adapter caseAntiRigidSortalClass(AntiRigidSortalClass object) {
 				return createAntiRigidSortalClassAdapter();
 			}
 			@Override
-			public Adapter caseSubstanceSortal(SubstanceSortal object)
-			{
+			public Adapter caseSubstanceSortal(SubstanceSortal object) {
 				return createSubstanceSortalAdapter();
 			}
 			@Override
-			public Adapter caseSubKind(SubKind object)
-			{
+			public Adapter caseSubKind(SubKind object) {
 				return createSubKindAdapter();
 			}
 			@Override
-			public Adapter caseKind(Kind object)
-			{
+			public Adapter caseKind(Kind object) {
 				return createKindAdapter();
 			}
 			@Override
-			public Adapter caseQuantity(Quantity object)
-			{
+			public Adapter caseQuantity(Quantity object) {
 				return createQuantityAdapter();
 			}
 			@Override
-			public Adapter caseCollective(Collective object)
-			{
+			public Adapter caseCollective(Collective object) {
 				return createCollectiveAdapter();
 			}
 			@Override
-			public Adapter casePhase(Phase object)
-			{
+			public Adapter casePhase(Phase object) {
 				return createPhaseAdapter();
 			}
 			@Override
-			public Adapter caseRole(Role object)
-			{
+			public Adapter caseRole(Role object) {
 				return createRoleAdapter();
 			}
 			@Override
-			public Adapter caseRigidMixinClass(RigidMixinClass object)
-			{
+			public Adapter caseRigidMixinClass(RigidMixinClass object) {
 				return createRigidMixinClassAdapter();
 			}
 			@Override
-			public Adapter caseNonRigidMixinClass(NonRigidMixinClass object)
-			{
+			public Adapter caseNonRigidMixinClass(NonRigidMixinClass object) {
 				return createNonRigidMixinClassAdapter();
 			}
 			@Override
-			public Adapter caseCategory(Category object)
-			{
+			public Adapter caseCategory(Category object) {
 				return createCategoryAdapter();
 			}
 			@Override
-			public Adapter caseAntiRigidMixinClass(AntiRigidMixinClass object)
-			{
+			public Adapter caseAntiRigidMixinClass(AntiRigidMixinClass object) {
 				return createAntiRigidMixinClassAdapter();
 			}
 			@Override
-			public Adapter caseSemiRigidMixinClass(SemiRigidMixinClass object)
-			{
+			public Adapter caseSemiRigidMixinClass(SemiRigidMixinClass object) {
 				return createSemiRigidMixinClassAdapter();
 			}
 			@Override
-			public Adapter caseRoleMixin(RoleMixin object)
-			{
+			public Adapter caseRoleMixin(RoleMixin object) {
 				return createRoleMixinAdapter();
 			}
 			@Override
-			public Adapter caseMixin(Mixin object)
-			{
+			public Adapter caseMixin(Mixin object) {
 				return createMixinAdapter();
 			}
 			@Override
-			public Adapter caseIntrinsicMomentClass(IntrinsicMomentClass object)
-			{
+			public Adapter caseIntrinsicMomentClass(IntrinsicMomentClass object) {
 				return createIntrinsicMomentClassAdapter();
 			}
 			@Override
-			public Adapter caseMode(Mode object)
-			{
+			public Adapter caseMode(Mode object) {
 				return createModeAdapter();
 			}
 			@Override
-			public Adapter caseQuality(Quality object)
-			{
+			public Adapter caseQuality(Quality object) {
 				return createQualityAdapter();
 			}
 			@Override
-			public Adapter caseRelator(Relator object)
-			{
+			public Adapter caseRelator(Relator object) {
 				return createRelatorAdapter();
 			}
 			@Override
-			public Adapter caseDirectedBinaryAssociation(DirectedBinaryAssociation object)
-			{
+			public Adapter caseDirectedBinaryAssociation(DirectedBinaryAssociation object) {
 				return createDirectedBinaryAssociationAdapter();
 			}
 			@Override
-			public Adapter caseMeronymic(Meronymic object)
-			{
+			public Adapter caseMeronymic(Meronymic object) {
 				return createMeronymicAdapter();
 			}
 			@Override
-			public Adapter casesubQuantityOf(subQuantityOf object)
-			{
+			public Adapter casesubQuantityOf(subQuantityOf object) {
 				return createsubQuantityOfAdapter();
 			}
 			@Override
-			public Adapter casesubCollectionOf(subCollectionOf object)
-			{
+			public Adapter casesubCollectionOf(subCollectionOf object) {
 				return createsubCollectionOfAdapter();
 			}
 			@Override
-			public Adapter casememberOf(memberOf object)
-			{
+			public Adapter casememberOf(memberOf object) {
 				return creatememberOfAdapter();
 			}
 			@Override
-			public Adapter casecomponentOf(componentOf object)
-			{
+			public Adapter casecomponentOf(componentOf object) {
 				return createcomponentOfAdapter();
 			}
 			@Override
-			public Adapter caseDependencyRelationship(DependencyRelationship object)
-			{
+			public Adapter caseDependencyRelationship(DependencyRelationship object) {
 				return createDependencyRelationshipAdapter();
 			}
 			@Override
-			public Adapter caseCharacterization(Characterization object)
-			{
+			public Adapter caseCharacterization(Characterization object) {
 				return createCharacterizationAdapter();
 			}
 			@Override
-			public Adapter caseMediation(Mediation object)
-			{
+			public Adapter caseMediation(Mediation object) {
 				return createMediationAdapter();
 			}
 			@Override
-			public Adapter caseDerivation(Derivation object)
-			{
+			public Adapter caseDerivation(Derivation object) {
 				return createDerivationAdapter();
 			}
 			@Override
-			public Adapter caseFormalAssociation(FormalAssociation object)
-			{
+			public Adapter caseFormalAssociation(FormalAssociation object) {
 				return createFormalAssociationAdapter();
 			}
 			@Override
-			public Adapter caseMaterialAssociation(MaterialAssociation object)
-			{
+			public Adapter caseMaterialAssociation(MaterialAssociation object) {
 				return createMaterialAssociationAdapter();
 			}
 			@Override
-			public Adapter caseEModelElement(EModelElement object)
-			{
+			public Adapter caseEModelElement(EModelElement object) {
 				return createEModelElementAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
