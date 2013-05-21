@@ -1797,7 +1797,7 @@
       <eAnnotations source="subsets" references="#//DirectedRelationship/target"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generalizationSet" ordered="false"
-        upperBound="-1" eType="#//GeneralizationSet" eOpposite="#//GeneralizationSet/generalization">
+        upperBound="-1" eType="#//GeneralizationSet" resolveProxies="false" eOpposite="#//GeneralizationSet/generalization">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Designates a set in which instances of Generalization is considered members."/>
       </eAnnotations>
@@ -1887,7 +1887,8 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="generalization" ordered="false"
-        upperBound="-1" eType="#//Generalization" eOpposite="#//Generalization/generalizationSet">
+        upperBound="-1" eType="#//Generalization" transient="true" resolveProxies="false"
+        eOpposite="#//Generalization/generalizationSet">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="Designates the instances of Generalization which are members of a given GeneralizationSet."/>
       </eAnnotations>
