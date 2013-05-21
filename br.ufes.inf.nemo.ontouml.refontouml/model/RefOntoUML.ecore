@@ -3758,7 +3758,7 @@
       <details key="constraints" value="MediationConstraint1 MediationConstraint2"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/ocl/examples/OCL">
-      <details key="MediationConstraint1" value="relator().oclIsTypeOf(Relator)"/>
+      <details key="MediationConstraint1" value="relator().oclIsKindOf(Relator)"/>
       <details key="MediationConstraint2" value="mediatedEnd().lower >= 1"/>
     </eAnnotations>
     <eAnnotations source="Comments">
