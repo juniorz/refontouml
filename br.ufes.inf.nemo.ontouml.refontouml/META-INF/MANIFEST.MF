@@ -11,4 +11,5 @@ Require-Bundle: org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.ocl.ecore;bundle-version="1.3.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: RefOntoUML,
+ RefOntoUML.impl,
  RefOntoUML.util
